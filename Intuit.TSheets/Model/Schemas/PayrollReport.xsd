@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "PayrollReport",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "payroll_report"
+  ],
+  "properties": {
+    "payroll_report": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/PayrollReportItem"
+      }
+    }
+  },
+  "definitions": {
+    "PayrollReportItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "user_id",
+        "client_id",
+        "start_date",
+        "end_date",
+        "total_re_seconds",
+        "total_pto_seconds",
+        "total_work_seconds",
+        "pto_seconds",
+        "overtime_seconds",
+        "fixed_rate_seconds"
+      ],
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "client_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "total_re_seconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_pto_seconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_work_seconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pto_seconds": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "overtime_seconds": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "fixed_rate_seconds": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    }
+  }
+}

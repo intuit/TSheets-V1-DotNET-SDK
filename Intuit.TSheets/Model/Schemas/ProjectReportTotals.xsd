@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ProjectReportTotals",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "users",
+    "groups",
+    "jobcodes",
+    "customfields"
+  ],
+  "properties": {
+    "users": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number",
+        "format": "double"
+      }
+    },
+    "groups": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number",
+        "format": "double"
+      }
+    },
+    "jobcodes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number",
+        "format": "double"
+      }
+    },
+    "customfields": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    }
+  }
+}

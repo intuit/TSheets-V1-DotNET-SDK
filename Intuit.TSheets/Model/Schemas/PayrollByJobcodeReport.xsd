@@ -1,0 +1,164 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "PayrollByJobcodeReport",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "filters",
+    "payroll_by_jobcode_report"
+  ],
+  "properties": {
+    "filters": {
+      "$ref": "#/definitions/PayrollByJobcodeReportFilters"
+    },
+    "payroll_by_jobcode_report": {
+      "$ref": "#/definitions/PayrollByJobcodeReportData"
+    }
+  },
+  "definitions": {
+    "PayrollByJobcodeReportFilters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "start_date",
+        "end_date",
+        "user_ids",
+        "group_ids",
+        "advanced_overtime"
+      ],
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "user_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "group_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "advanced_overtime": {
+          "type": "boolean"
+        }
+      }
+    },
+    "PayrollByJobcodeReportData": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "totals",
+        "by_user"
+      ],
+      "properties": {
+        "totals": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/PayrollByJobcodeReportItem"
+          }
+        },
+        "by_user": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/PayrollByJobcodeByUser"
+          }
+        }
+      }
+    },
+    "PayrollByJobcodeReportItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "jobcode_id",
+        "total_re_seconds",
+        "total_ot_seconds",
+        "total_dt_seconds",
+        "total_pto_seconds",
+        "total_work_seconds",
+        "overtime_seconds",
+        "fixed_rate_seconds"
+      ],
+      "properties": {
+        "jobcode_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_re_seconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_ot_seconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_dt_seconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_pto_seconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_work_seconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "overtime_seconds": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "fixed_rate_seconds": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    },
+    "PayrollByJobcodeByUser": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "user_id",
+        "totals",
+        "dates"
+      ],
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totals": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/PayrollByJobcodeReportItem"
+          }
+        },
+        "dates": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/definitions/PayrollByJobcodeReportItem"
+            }
+          }
+        }
+      }
+    }
+  }
+}

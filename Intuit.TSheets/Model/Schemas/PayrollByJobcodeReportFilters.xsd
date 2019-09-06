@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "PayrollByJobcodeReportFilters",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "start_date",
+    "end_date",
+    "user_ids",
+    "group_ids",
+    "advanced_overtime"
+  ],
+  "properties": {
+    "start_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "user_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      }
+    },
+    "group_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      }
+    },
+    "advanced_overtime": {
+      "type": "boolean"
+    }
+  }
+}

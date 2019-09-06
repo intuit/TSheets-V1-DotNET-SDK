@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "GeofenceConfig",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "type",
+    "type_id",
+    "active",
+    "enabled",
+    "radius",
+    "last_modified",
+    "created"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "type": {
+      "$ref": "#/definitions/GeofenceConfigType"
+    },
+    "type_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "radius": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "last_modified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "definitions": {
+    "GeofenceConfigType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Global",
+        "Clients",
+        "Jobcodes"
+      ],
+      "enum": [
+        "global",
+        "clients",
+        "job_codes"
+      ]
+    }
+  }
+}

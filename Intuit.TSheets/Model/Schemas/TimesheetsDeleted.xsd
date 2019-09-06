@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "TimesheetsDeleted",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "user_id",
+    "jobcode_id",
+    "start",
+    "end",
+    "date",
+    "duration",
+    "locked",
+    "notes",
+    "customfields",
+    "created",
+    "last_modified",
+    "type"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "user_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "jobcode_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "start": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "end": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "duration": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "locked": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "customfields": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_modified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "type": {
+      "$ref": "#/definitions/TimesheetType"
+    }
+  },
+  "definitions": {
+    "TimesheetType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Manual",
+        "Regular",
+        "Both"
+      ],
+      "enum": [
+        "manual",
+        "regular",
+        "both"
+      ]
+    }
+  }
+}

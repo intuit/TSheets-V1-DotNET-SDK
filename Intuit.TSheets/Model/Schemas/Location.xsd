@@ -1,0 +1,128 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Location",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "addr1",
+    "addr2",
+    "city",
+    "state",
+    "zip",
+    "country",
+    "formatted_address",
+    "active",
+    "latitude",
+    "longitude",
+    "place_id_hash",
+    "label",
+    "notes",
+    "geocoding_status",
+    "last_modified",
+    "created",
+    "linked_objects",
+    "geofence_config_id"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "addr1": {
+      "type": "string"
+    },
+    "addr2": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "zip": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "formatted_address": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "latitude": {
+      "type": "number",
+      "format": "double"
+    },
+    "longitude": {
+      "type": "number",
+      "format": "double"
+    },
+    "place_id_hash": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "geocoding_status": {
+      "$ref": "#/definitions/GeocodingStatus"
+    },
+    "last_modified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "linked_objects": {
+      "$ref": "#/definitions/LocationLinkedObjectIds"
+    },
+    "geofence_config_id": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "definitions": {
+    "GeocodingStatus": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "None",
+        "InProgress",
+        "Retry",
+        "Error",
+        "Complete"
+      ],
+      "enum": [
+        "none",
+        "in_progress",
+        "retry",
+        "error",
+        "complete"
+      ]
+    },
+    "LocationLinkedObjectIds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "jobcodes"
+      ],
+      "properties": {
+        "jobcodes": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    }
+  }
+}

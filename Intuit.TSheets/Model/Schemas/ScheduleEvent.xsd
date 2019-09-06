@@ -1,0 +1,159 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ScheduleEvent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "schedule_calendar_id",
+    "start",
+    "end",
+    "all_day",
+    "user_id",
+    "unassigned",
+    "assigned_user_ids",
+    "jobcode_id",
+    "active",
+    "draft",
+    "timezone",
+    "title",
+    "notes",
+    "location",
+    "color",
+    "customfields",
+    "last_modified",
+    "created"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "schedule_calendar_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "start": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "end": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "all_day": {
+      "type": "boolean"
+    },
+    "user_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "unassigned": {
+      "type": "boolean"
+    },
+    "assigned_user_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      }
+    },
+    "jobcode_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "draft": {
+      "type": "boolean"
+    },
+    "timezone": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "color": {
+      "$ref": "#/definitions/ScheduleEventColor"
+    },
+    "customfields": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "last_modified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "definitions": {
+    "ScheduleEventColor": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Beet",
+        "Black",
+        "BloomyPlum",
+        "Blue",
+        "BlueGrey",
+        "Brown",
+        "Crimson",
+        "DeepPurple",
+        "Green",
+        "Grey",
+        "Indigo",
+        "LightBlue",
+        "LightGreen",
+        "LightOlive",
+        "LightOrange",
+        "LightPurple",
+        "Olive",
+        "Orange",
+        "Pink",
+        "Purple",
+        "Red",
+        "Slate",
+        "Teal",
+        "LightRed"
+      ],
+      "enum": [
+        "#BF1959",
+        "#010101",
+        "#6A5E72",
+        "#2196F3",
+        "#78909C",
+        "#785548",
+        "#8A2731",
+        "#673AB7",
+        "#43A047",
+        "#888888",
+        "#3F51B5",
+        "#A6D5FA",
+        "#B3D9B5",
+        "#CDC8A2",
+        "#F8C499",
+        "#D7A8DF",
+        "#827717",
+        "#EF6C00",
+        "#E91E63",
+        "#9C27B0",
+        "#F44336",
+        "#486B7A",
+        "#009688",
+        "#FAB3AE"
+      ]
+    }
+  }
+}

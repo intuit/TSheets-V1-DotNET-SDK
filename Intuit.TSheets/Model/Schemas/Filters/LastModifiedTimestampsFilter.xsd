@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "LastModifiedTimestampsFilter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "endpoints"
+  ],
+  "properties": {
+    "endpoints": {
+      "$ref": "#/definitions/Endpoints"
+    }
+  },
+  "definitions": {
+    "Endpoints": {
+      "type": "string",
+      "description": "",
+      "x-enumFlags": true,
+      "x-enumNames": [
+        "CurrentUser",
+        "CustomFields",
+        "CustomFieldItems",
+        "EffectiveSettings",
+        "Geolocations",
+        "Jobcodes",
+        "JobcodeAssignments",
+        "Timesheets",
+        "TimesheetsDeleted",
+        "Users",
+        "Reminders",
+        "Locations",
+        "GeofenceConfigs"
+      ],
+      "enum": [
+        "current_user",
+        "customfields",
+        "customfielditems",
+        "effective_settings",
+        "geolocations",
+        "jobcodes",
+        "jobcode_assignments",
+        "timesheets",
+        "timesheets_deleted",
+        "users",
+        "reminders",
+        "locations",
+        "geofence_configs"
+      ]
+    }
+  }
+}

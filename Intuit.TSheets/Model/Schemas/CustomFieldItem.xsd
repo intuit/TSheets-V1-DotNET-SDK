@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "CustomFieldItem",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "customfield_id",
+    "name",
+    "short_code",
+    "active",
+    "last_modified",
+    "required_customfields"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "customfield_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "name": {
+      "type": "string"
+    },
+    "short_code": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "last_modified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "required_customfields": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      }
+    }
+  }
+}

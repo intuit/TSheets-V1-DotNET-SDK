@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "TimesheetsDeletedFilter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "start_date",
+    "end_date",
+    "ids",
+    "modified_since",
+    "modified_before",
+    "group_ids",
+    "user_ids",
+    "username",
+    "jobcode_ids",
+    "jobcode_type",
+    "type",
+    "order_results_by",
+    "order_results_reverse"
+  ],
+  "properties": {
+    "start_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ids": {
+      "type": "string"
+    },
+    "modified_since": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modified_before": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "group_ids": {
+      "type": "string"
+    },
+    "user_ids": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string"
+    },
+    "jobcode_ids": {
+      "type": "string"
+    },
+    "jobcode_type": {
+      "$ref": "#/definitions/JobcodeType"
+    },
+    "type": {
+      "$ref": "#/definitions/TimesheetType"
+    },
+    "order_results_by": {
+      "$ref": "#/definitions/TimesheetOrder"
+    },
+    "order_results_reverse": {
+      "type": "boolean"
+    }
+  },
+  "definitions": {
+    "JobcodeType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Regular",
+        "Pto",
+        "UnpaidBreak",
+        "PaidBreak",
+        "UnpaidTimeOff",
+        "All"
+      ],
+      "enum": [
+        "regular",
+        "pto",
+        "unpaid_break",
+        "paid_break",
+        "unpaid_time_off",
+        "all"
+      ]
+    },
+    "TimesheetType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Manual",
+        "Regular",
+        "Both"
+      ],
+      "enum": [
+        "manual",
+        "regular",
+        "both"
+      ]
+    },
+    "TimesheetOrder": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "FirstName",
+        "LastName",
+        "UserName",
+        "Date"
+      ],
+      "enum": [
+        "fname",
+        "lname",
+        "username",
+        "date"
+      ]
+    }
+  }
+}

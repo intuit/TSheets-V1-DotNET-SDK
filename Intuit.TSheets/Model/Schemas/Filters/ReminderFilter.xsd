@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ReminderFilter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "user_ids",
+    "reminder_types",
+    "modified_since"
+  ],
+  "properties": {
+    "user_ids": {
+      "type": "string"
+    },
+    "reminder_types": {
+      "$ref": "#/definitions/ReminderTypes"
+    },
+    "modified_since": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "definitions": {
+    "ReminderTypes": {
+      "type": "string",
+      "description": "",
+      "x-enumFlags": true,
+      "x-enumNames": [
+        "ClockIn",
+        "ClockOut",
+        "ShiftPublished",
+        "ShiftStartBefore",
+        "ShiftStartAfter",
+        "ShiftStartBeforeManager",
+        "ShiftStartAfterManager",
+        "ShiftEndBefore",
+        "ShiftEndAfter"
+      ],
+      "enum": [
+        "clock-in",
+        "clock-out",
+        "shift-published",
+        "shift-start-before",
+        "shift-start-after",
+        "shift-start-before-manager",
+        "shift-start-after-manager",
+        "shift-end-before",
+        "shift-end-after"
+      ]
+    }
+  }
+}

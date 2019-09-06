@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "FileLinkedObjectIds",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "timesheets"
+  ],
+  "properties": {
+    "timesheets": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      }
+    }
+  }
+}

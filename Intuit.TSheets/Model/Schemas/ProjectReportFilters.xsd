@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ProjectReportFilters",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "user_ids",
+    "group_ids",
+    "start_date",
+    "end_date",
+    "jobcode_ids",
+    "customfielditems",
+    "jobcode_type"
+  ],
+  "properties": {
+    "user_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      }
+    },
+    "group_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      }
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "jobcode_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      }
+    },
+    "customfielditems": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "jobcode_type": {
+      "$ref": "#/definitions/JobcodeType"
+    }
+  },
+  "definitions": {
+    "JobcodeType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Regular",
+        "Pto",
+        "UnpaidBreak",
+        "PaidBreak",
+        "UnpaidTimeOff",
+        "All"
+      ],
+      "enum": [
+        "regular",
+        "pto",
+        "unpaid_break",
+        "paid_break",
+        "unpaid_time_off",
+        "all"
+      ]
+    }
+  }
+}

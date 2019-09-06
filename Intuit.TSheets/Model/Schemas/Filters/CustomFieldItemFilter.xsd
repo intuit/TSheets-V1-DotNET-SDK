@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "CustomFieldItemFilter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "customfield_id",
+    "ids",
+    "active",
+    "modified_before",
+    "modified_since"
+  ],
+  "properties": {
+    "customfield_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "ids": {
+      "type": "string"
+    },
+    "active": {
+      "$ref": "#/definitions/TristateChoice"
+    },
+    "modified_before": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modified_since": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "definitions": {
+    "TristateChoice": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Yes",
+        "No",
+        "Both"
+      ],
+      "enum": [
+        "yes",
+        "no",
+        "both"
+      ]
+    }
+  }
+}

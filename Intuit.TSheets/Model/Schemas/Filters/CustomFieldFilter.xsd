@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "CustomFieldFilter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ids",
+    "active",
+    "applies_to",
+    "value_type",
+    "modified_before",
+    "modified_since"
+  ],
+  "properties": {
+    "ids": {
+      "type": "string"
+    },
+    "active": {
+      "$ref": "#/definitions/TristateChoice"
+    },
+    "applies_to": {
+      "$ref": "#/definitions/AppliesToType"
+    },
+    "value_type": {
+      "$ref": "#/definitions/CustomFieldValueType"
+    },
+    "modified_before": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modified_since": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "definitions": {
+    "TristateChoice": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Yes",
+        "No",
+        "Both"
+      ],
+      "enum": [
+        "yes",
+        "no",
+        "both"
+      ]
+    },
+    "AppliesToType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Timesheet",
+        "User",
+        "Jobcode",
+        "All"
+      ],
+      "enum": [
+        "timesheet",
+        "user",
+        "jobcode",
+        "all"
+      ]
+    },
+    "CustomFieldValueType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "ManagedList",
+        "Freeform",
+        "Both"
+      ],
+      "enum": [
+        "managed-list",
+        "free-form",
+        "both"
+      ]
+    }
+  }
+}

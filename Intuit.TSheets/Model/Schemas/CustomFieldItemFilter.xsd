@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "CustomFieldItemFilter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "customfield_id",
+    "customfielditem_id",
+    "applies_to",
+    "applies_to_id",
+    "active",
+    "last_modified"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "customfield_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "customfielditem_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "applies_to": {
+      "$ref": "#/definitions/FilterAppliesTo"
+    },
+    "applies_to_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "last_modified": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "definitions": {
+    "FilterAppliesTo": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Jobcodes",
+        "Users",
+        "Groups"
+      ],
+      "enum": [
+        0,
+        1,
+        2
+      ]
+    }
+  }
+}

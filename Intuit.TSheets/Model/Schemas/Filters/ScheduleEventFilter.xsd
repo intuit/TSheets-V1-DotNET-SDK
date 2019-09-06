@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ScheduleEventFilter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ids",
+    "user_ids",
+    "schedule_calendar_ids",
+    "jobcode_ids",
+    "start",
+    "end",
+    "active",
+    "draft",
+    "team_events",
+    "modified_before",
+    "modified_since"
+  ],
+  "properties": {
+    "ids": {
+      "type": "string"
+    },
+    "user_ids": {
+      "type": "string"
+    },
+    "schedule_calendar_ids": {
+      "type": "string"
+    },
+    "jobcode_ids": {
+      "type": "string"
+    },
+    "start": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "end": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "active": {
+      "$ref": "#/definitions/TristateChoice"
+    },
+    "draft": {
+      "$ref": "#/definitions/TristateChoice"
+    },
+    "team_events": {
+      "$ref": "#/definitions/TeamEvent"
+    },
+    "modified_before": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modified_since": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "definitions": {
+    "TristateChoice": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Yes",
+        "No",
+        "Both"
+      ],
+      "enum": [
+        "yes",
+        "no",
+        "both"
+      ]
+    },
+    "TeamEvent": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Base",
+        "Instance"
+      ],
+      "enum": [
+        "base",
+        "instance"
+      ]
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "GeolocationFilter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ids",
+    "modified_before",
+    "modified_since",
+    "user_ids",
+    "group_ids"
+  ],
+  "properties": {
+    "ids": {
+      "type": "string"
+    },
+    "modified_before": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modified_since": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "user_ids": {
+      "type": "string"
+    },
+    "group_ids": {
+      "type": "string"
+    }
+  }
+}

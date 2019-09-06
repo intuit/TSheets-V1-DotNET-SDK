@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "FileMetadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "file_description",
+    "image_rotation"
+  ],
+  "properties": {
+    "file_description": {
+      "type": "string"
+    },
+    "image_rotation": {
+      "$ref": "#/definitions/ImageRotation"
+    }
+  },
+  "definitions": {
+    "ImageRotation": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Top",
+        "Right",
+        "Bottom",
+        "Left"
+      ],
+      "enum": [
+        "0",
+        "90",
+        "180",
+        "270"
+      ]
+    }
+  }
+}

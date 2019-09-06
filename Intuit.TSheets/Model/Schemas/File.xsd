@@ -1,0 +1,105 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "File",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "file_name",
+    "file_data",
+    "uploaded_by_user_id",
+    "active",
+    "size",
+    "created",
+    "last_modified",
+    "linked_objects",
+    "meta_data"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "file_name": {
+      "type": "string"
+    },
+    "file_data": {
+      "type": "string"
+    },
+    "uploaded_by_user_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "size": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_modified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "linked_objects": {
+      "$ref": "#/definitions/FileLinkedObjectIds"
+    },
+    "meta_data": {
+      "$ref": "#/definitions/FileMetadata"
+    }
+  },
+  "definitions": {
+    "FileLinkedObjectIds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "timesheets"
+      ],
+      "properties": {
+        "timesheets": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    },
+    "FileMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "file_description",
+        "image_rotation"
+      ],
+      "properties": {
+        "file_description": {
+          "type": "string"
+        },
+        "image_rotation": {
+          "$ref": "#/definitions/ImageRotation"
+        }
+      }
+    },
+    "ImageRotation": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Top",
+        "Right",
+        "Bottom",
+        "Left"
+      ],
+      "enum": [
+        "0",
+        "90",
+        "180",
+        "270"
+      ]
+    }
+  }
+}

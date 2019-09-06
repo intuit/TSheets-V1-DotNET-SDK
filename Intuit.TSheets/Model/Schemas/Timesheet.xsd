@@ -1,0 +1,108 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Timesheet",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "user_id",
+    "jobcode_id",
+    "locked",
+    "notes",
+    "customfields",
+    "last_modified",
+    "type",
+    "on_the_clock",
+    "attached_files",
+    "created_by_user_id",
+    "duration",
+    "date",
+    "start",
+    "end",
+    "origin_hint"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "user_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "jobcode_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "locked": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "customfields": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "last_modified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "type": {
+      "$ref": "#/definitions/TimesheetType"
+    },
+    "on_the_clock": {
+      "type": "boolean"
+    },
+    "attached_files": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      }
+    },
+    "created_by_user_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "duration": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "start": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "end": {
+      "type": "string",
+      "format": "date-time",
+      "default": ""
+    },
+    "origin_hint": {
+      "type": "string"
+    }
+  },
+  "definitions": {
+    "TimesheetType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Manual",
+        "Regular",
+        "Both"
+      ],
+      "enum": [
+        "manual",
+        "regular",
+        "both"
+      ]
+    }
+  }
+}

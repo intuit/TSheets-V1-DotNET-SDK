@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Geolocation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "user_id",
+    "accuracy",
+    "altitude",
+    "latitude",
+    "longitude",
+    "speed",
+    "heading",
+    "source",
+    "device_identifier",
+    "created"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "user_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "accuracy": {
+      "type": "number",
+      "format": "double"
+    },
+    "altitude": {
+      "type": "number",
+      "format": "double"
+    },
+    "latitude": {
+      "type": "number",
+      "format": "double"
+    },
+    "longitude": {
+      "type": "number",
+      "format": "double"
+    },
+    "speed": {
+      "type": "number",
+      "format": "double"
+    },
+    "heading": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "source": {
+      "$ref": "#/definitions/GeolocationSource"
+    },
+    "device_identifier": {
+      "type": "string"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "definitions": {
+    "GeolocationSource": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Gps",
+        "WiFi",
+        "Cell"
+      ],
+      "enum": [
+        "gps",
+        "wifi",
+        "cell"
+      ]
+    }
+  }
+}

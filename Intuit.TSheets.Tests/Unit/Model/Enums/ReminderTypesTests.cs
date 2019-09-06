@@ -1,0 +1,47 @@
+﻿// *******************************************************************************
+// <copyright file="ReminderTypesTests.cs" company="Intuit">
+// Copyright (c) 2019 Intuit
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// </copyright>
+// *******************************************************************************
+
+namespace Intuit.TSheets.Tests.Unit.Model.Enums
+{
+    using System;
+    using Intuit.TSheets.Model.Enums;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    [TestClass]
+    public class ReminderTypesTests
+    {
+        [TestMethod, TestCategory("Unit")]
+        public void ReminderTypes_StringValuesAreCorrect()
+        {
+            const int expectedCount = 9;
+            int actualCount = Enum.GetNames(typeof(ReminderTypes)).Length;
+            Assert.AreEqual(expectedCount, actualCount, $"Expected {expectedCount} enum values.");
+
+            Assert.AreEqual("clock-in", ReminderTypes.ClockIn.StringValue());
+            Assert.AreEqual("clock-out", ReminderTypes.ClockOut.StringValue());
+            Assert.AreEqual("shift-published", ReminderTypes.ShiftPublished.StringValue());
+            Assert.AreEqual("shift-start-before", ReminderTypes.ShiftStartBefore.StringValue());
+            Assert.AreEqual("shift-start-after", ReminderTypes.ShiftStartAfter.StringValue());
+            Assert.AreEqual("shift-start-before-manager", ReminderTypes.ShiftStartBeforeManager.StringValue());
+            Assert.AreEqual("shift-start-after-manager", ReminderTypes.ShiftStartAfterManager.StringValue());
+            Assert.AreEqual("shift-end-before", ReminderTypes.ShiftEndBefore.StringValue());
+            Assert.AreEqual("shift-end-after", ReminderTypes.ShiftEndAfter.StringValue());
+        }
+    }
+}

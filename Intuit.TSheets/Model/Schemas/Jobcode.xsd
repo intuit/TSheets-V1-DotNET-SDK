@@ -1,0 +1,117 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Jobcode",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "parent_id",
+    "name",
+    "short_code",
+    "type",
+    "billable",
+    "billable_rate",
+    "has_children",
+    "assigned_to_all",
+    "required_customfields",
+    "filtered_customfielditems",
+    "active",
+    "last_modified",
+    "created",
+    "locations",
+    "project_id"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "parent_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "name": {
+      "type": "string"
+    },
+    "short_code": {
+      "type": "string"
+    },
+    "type": {
+      "$ref": "#/definitions/JobcodeType"
+    },
+    "billable": {
+      "type": "boolean"
+    },
+    "billable_rate": {
+      "type": "number",
+      "format": "double"
+    },
+    "has_children": {
+      "type": "boolean"
+    },
+    "assigned_to_all": {
+      "type": "boolean"
+    },
+    "required_customfields": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      }
+    },
+    "filtered_customfielditems": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "last_modified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "locations": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      }
+    },
+    "project_id": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "definitions": {
+    "JobcodeType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Regular",
+        "Pto",
+        "UnpaidBreak",
+        "PaidBreak",
+        "UnpaidTimeOff",
+        "All"
+      ],
+      "enum": [
+        "regular",
+        "pto",
+        "unpaid_break",
+        "paid_break",
+        "unpaid_time_off",
+        "all"
+      ]
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "CurrentTotalsReportFilter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "user_ids",
+    "group_ids",
+    "on_the_clock",
+    "page",
+    "per_page",
+    "order_by",
+    "order_desc"
+  ],
+  "properties": {
+    "user_ids": {
+      "type": "string"
+    },
+    "group_ids": {
+      "type": "string"
+    },
+    "on_the_clock": {
+      "$ref": "#/definitions/TristateChoice"
+    },
+    "page": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "per_page": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "order_by": {
+      "$ref": "#/definitions/ReportOrder"
+    },
+    "order_desc": {
+      "type": "boolean"
+    }
+  },
+  "definitions": {
+    "TristateChoice": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Yes",
+        "No",
+        "Both"
+      ],
+      "enum": [
+        "yes",
+        "no",
+        "both"
+      ]
+    },
+    "ReportOrder": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "UserName",
+        "FirstName",
+        "LastName",
+        "GroupName",
+        "GroupId",
+        "ShiftSeconds",
+        "DaySeconds"
+      ],
+      "enum": [
+        "username",
+        "first_name",
+        "last_name",
+        "group_name",
+        "group_id",
+        "shift_seconds",
+        "day_seconds"
+      ]
+    }
+  }
+}

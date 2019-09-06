@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "LastModifiedTimestamps",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "current_user",
+    "customfields",
+    "customfielditems",
+    "effective_settings",
+    "geolocations",
+    "jobcodes",
+    "jobcode_assignments",
+    "timesheets",
+    "timesheets_deleted",
+    "users",
+    "reminders",
+    "locations",
+    "geofence_configs"
+  ],
+  "properties": {
+    "current_user": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "customfields": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "customfielditems": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "effective_settings": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "geolocations": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "jobcodes": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "jobcode_assignments": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "timesheets": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "timesheets_deleted": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "users": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "reminders": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "locations": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "geofence_configs": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

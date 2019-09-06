@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "PayrollReportFilter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "start_date",
+    "end_date",
+    "user_ids",
+    "group_ids",
+    "include_zero_time",
+    "advanced_overtime"
+  ],
+  "properties": {
+    "start_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "user_ids": {
+      "type": "string"
+    },
+    "group_ids": {
+      "type": "string"
+    },
+    "include_zero_time": {
+      "type": "boolean"
+    },
+    "advanced_overtime": {
+      "type": "string"
+    }
+  }
+}

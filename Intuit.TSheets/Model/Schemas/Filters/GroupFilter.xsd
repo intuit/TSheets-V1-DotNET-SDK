@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "GroupFilter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ids",
+    "active",
+    "manager_ids",
+    "names",
+    "modified_before",
+    "modified_since"
+  ],
+  "properties": {
+    "ids": {
+      "type": "string"
+    },
+    "active": {
+      "$ref": "#/definitions/TristateChoice"
+    },
+    "manager_ids": {
+      "type": "string"
+    },
+    "names": {
+      "type": "string"
+    },
+    "modified_before": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modified_since": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "definitions": {
+    "TristateChoice": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Yes",
+        "No",
+        "Both"
+      ],
+      "enum": [
+        "yes",
+        "no",
+        "both"
+      ]
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "UserPermissions",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "admin",
+    "mobile",
+    "status_box",
+    "reports",
+    "manage_timesheets",
+    "manage_authorization",
+    "manage_users",
+    "manage_my_timesheets",
+    "manage_jobcodes",
+    "pin_login",
+    "approve_timesheets",
+    "manage_schedules",
+    "external_access",
+    "manage_my_schedule",
+    "manage_company_schedules",
+    "view_company_schedules",
+    "view_group_schedules",
+    "manage_no_schedules",
+    "view_my_schedules"
+  ],
+  "properties": {
+    "admin": {
+      "type": "boolean"
+    },
+    "mobile": {
+      "type": "boolean"
+    },
+    "status_box": {
+      "type": "boolean"
+    },
+    "reports": {
+      "type": "boolean"
+    },
+    "manage_timesheets": {
+      "type": "boolean"
+    },
+    "manage_authorization": {
+      "type": "boolean"
+    },
+    "manage_users": {
+      "type": "boolean"
+    },
+    "manage_my_timesheets": {
+      "type": "boolean"
+    },
+    "manage_jobcodes": {
+      "type": "boolean"
+    },
+    "pin_login": {
+      "type": "boolean"
+    },
+    "approve_timesheets": {
+      "type": "boolean"
+    },
+    "manage_schedules": {
+      "type": "boolean"
+    },
+    "external_access": {
+      "type": "boolean"
+    },
+    "manage_my_schedule": {
+      "type": "boolean"
+    },
+    "manage_company_schedules": {
+      "type": "boolean"
+    },
+    "view_company_schedules": {
+      "type": "boolean"
+    },
+    "view_group_schedules": {
+      "type": "boolean"
+    },
+    "manage_no_schedules": {
+      "type": "boolean"
+    },
+    "view_my_schedules": {
+      "type": "boolean"
+    }
+  }
+}

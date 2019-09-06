@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "LocationsMapFilter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ids",
+    "active",
+    "modified_before",
+    "modified_since",
+    "by_jobcode_assignment"
+  ],
+  "properties": {
+    "ids": {
+      "type": "string"
+    },
+    "active": {
+      "$ref": "#/definitions/TristateChoice"
+    },
+    "modified_before": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modified_since": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "by_jobcode_assignment": {
+      "type": "boolean"
+    }
+  },
+  "definitions": {
+    "TristateChoice": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Yes",
+        "No",
+        "Both"
+      ],
+      "enum": [
+        "yes",
+        "no",
+        "both"
+      ]
+    }
+  }
+}

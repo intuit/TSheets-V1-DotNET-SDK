@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Invitation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contact_method",
+    "contact_info",
+    "user_id"
+  ],
+  "properties": {
+    "contact_method": {
+      "$ref": "#/definitions/InvitationContactMethod"
+    },
+    "contact_info": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "definitions": {
+    "InvitationContactMethod": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Sms",
+        "Email"
+      ],
+      "enum": [
+        "sms",
+        "email"
+      ]
+    }
+  }
+}

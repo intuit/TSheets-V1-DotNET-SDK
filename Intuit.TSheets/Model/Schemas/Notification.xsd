@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Notification",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "user_id",
+    "msg_tracking_id",
+    "message",
+    "method",
+    "precheck",
+    "delivery_time",
+    "created"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "user_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "msg_tracking_id": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "method": {
+      "$ref": "#/definitions/NotificationMethod"
+    },
+    "precheck": {
+      "$ref": "#/definitions/NotificationPrecheckMacro"
+    },
+    "delivery_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "definitions": {
+    "NotificationMethod": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Push",
+        "Email",
+        "Dashboard"
+      ],
+      "enum": [
+        "push",
+        "email",
+        "dashboard"
+      ]
+    },
+    "NotificationPrecheckMacro": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "OnTheClock",
+        "OffTheClock",
+        "None"
+      ],
+      "enum": [
+        "on_the_clock",
+        "off_the_clock",
+        "none"
+      ]
+    }
+  }
+}

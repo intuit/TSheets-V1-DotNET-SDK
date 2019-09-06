@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "EffectiveSettingsSection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "settings",
+    "last_modified"
+  ],
+  "properties": {
+    "settings": {
+      "type": "object",
+      "additionalProperties": {}
+    },
+    "last_modified": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "TimesheetFilter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ids",
+    "start_date",
+    "end_date",
+    "jobcode_ids",
+    "payroll_ids",
+    "user_ids",
+    "group_ids",
+    "on_the_clock",
+    "jobcode_type",
+    "modified_before",
+    "modified_since"
+  ],
+  "properties": {
+    "ids": {
+      "type": "string"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "jobcode_ids": {
+      "type": "string"
+    },
+    "payroll_ids": {
+      "type": "string"
+    },
+    "user_ids": {
+      "type": "string"
+    },
+    "group_ids": {
+      "type": "string"
+    },
+    "on_the_clock": {
+      "$ref": "#/definitions/TristateChoice"
+    },
+    "jobcode_type": {
+      "$ref": "#/definitions/JobcodeType"
+    },
+    "modified_before": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modified_since": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "definitions": {
+    "TristateChoice": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Yes",
+        "No",
+        "Both"
+      ],
+      "enum": [
+        "yes",
+        "no",
+        "both"
+      ]
+    },
+    "JobcodeType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Regular",
+        "Pto",
+        "UnpaidBreak",
+        "PaidBreak",
+        "UnpaidTimeOff",
+        "All"
+      ],
+      "enum": [
+        "regular",
+        "pto",
+        "unpaid_break",
+        "paid_break",
+        "unpaid_time_off",
+        "all"
+      ]
+    }
+  }
+}

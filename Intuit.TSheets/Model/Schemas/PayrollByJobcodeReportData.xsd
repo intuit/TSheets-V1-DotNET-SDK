@@ -1,0 +1,110 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "PayrollByJobcodeReportData",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "totals",
+    "by_user"
+  ],
+  "properties": {
+    "totals": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/PayrollByJobcodeReportItem"
+      }
+    },
+    "by_user": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/PayrollByJobcodeByUser"
+      }
+    }
+  },
+  "definitions": {
+    "PayrollByJobcodeReportItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "jobcode_id",
+        "total_re_seconds",
+        "total_ot_seconds",
+        "total_dt_seconds",
+        "total_pto_seconds",
+        "total_work_seconds",
+        "overtime_seconds",
+        "fixed_rate_seconds"
+      ],
+      "properties": {
+        "jobcode_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_re_seconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_ot_seconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_dt_seconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_pto_seconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_work_seconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "overtime_seconds": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "fixed_rate_seconds": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    },
+    "PayrollByJobcodeByUser": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "user_id",
+        "totals",
+        "dates"
+      ],
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totals": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/PayrollByJobcodeReportItem"
+          }
+        },
+        "dates": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/definitions/PayrollByJobcodeReportItem"
+            }
+          }
+        }
+      }
+    }
+  }
+}

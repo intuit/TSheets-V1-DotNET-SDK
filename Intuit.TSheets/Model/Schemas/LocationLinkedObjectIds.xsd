@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "LocationLinkedObjectIds",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "jobcodes"
+  ],
+  "properties": {
+    "jobcodes": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "NotificationFilter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ids",
+    "delivery_before",
+    "delivery_after",
+    "user_id",
+    "msg_tracking_id"
+  ],
+  "properties": {
+    "ids": {
+      "type": "string"
+    },
+    "delivery_before": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "delivery_after": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "user_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "msg_tracking_id": {
+      "type": "string"
+    }
+  }
+}

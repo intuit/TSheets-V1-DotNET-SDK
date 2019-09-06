@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "CustomField",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "active",
+    "name",
+    "short_code",
+    "required",
+    "applies_to",
+    "type",
+    "ui_preference",
+    "regex_filter",
+    "last_modified",
+    "created",
+    "required_customfields"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string"
+    },
+    "short_code": {
+      "type": "string"
+    },
+    "required": {
+      "type": "boolean"
+    },
+    "applies_to": {
+      "$ref": "#/definitions/AppliesToType"
+    },
+    "type": {
+      "$ref": "#/definitions/CustomFieldValueType"
+    },
+    "ui_preference": {
+      "$ref": "#/definitions/CustomFieldUiPreferenceType"
+    },
+    "regex_filter": {
+      "type": "string"
+    },
+    "last_modified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "required_customfields": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      }
+    }
+  },
+  "definitions": {
+    "AppliesToType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Timesheet",
+        "User",
+        "Jobcode",
+        "All"
+      ],
+      "enum": [
+        "timesheet",
+        "user",
+        "jobcode",
+        "all"
+      ]
+    },
+    "CustomFieldValueType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "ManagedList",
+        "Freeform",
+        "Both"
+      ],
+      "enum": [
+        "managed-list",
+        "free-form",
+        "both"
+      ]
+    },
+    "CustomFieldUiPreferenceType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "DropDown",
+        "TextBoxWithSuggest"
+      ],
+      "enum": [
+        "drop_down",
+        "text_box_with_suggest"
+      ]
+    }
+  }
+}

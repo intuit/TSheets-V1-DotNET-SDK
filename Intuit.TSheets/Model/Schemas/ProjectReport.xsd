@@ -1,0 +1,151 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ProjectReport",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "project_report"
+  ],
+  "properties": {
+    "project_report": {
+      "$ref": "#/definitions/ProjectReportData"
+    }
+  },
+  "definitions": {
+    "ProjectReportData": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "filters",
+        "totals"
+      ],
+      "properties": {
+        "filters": {
+          "$ref": "#/definitions/ProjectReportFilters"
+        },
+        "totals": {
+          "$ref": "#/definitions/ProjectReportTotals"
+        }
+      }
+    },
+    "ProjectReportFilters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "user_ids",
+        "group_ids",
+        "start_date",
+        "end_date",
+        "jobcode_ids",
+        "customfielditems",
+        "jobcode_type"
+      ],
+      "properties": {
+        "user_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "group_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "jobcode_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "customfielditems": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "jobcode_type": {
+          "$ref": "#/definitions/JobcodeType"
+        }
+      }
+    },
+    "JobcodeType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Regular",
+        "Pto",
+        "UnpaidBreak",
+        "PaidBreak",
+        "UnpaidTimeOff",
+        "All"
+      ],
+      "enum": [
+        "regular",
+        "pto",
+        "unpaid_break",
+        "paid_break",
+        "unpaid_time_off",
+        "all"
+      ]
+    },
+    "ProjectReportTotals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "users",
+        "groups",
+        "jobcodes",
+        "customfields"
+      ],
+      "properties": {
+        "users": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "groups": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "jobcodes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "customfields": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Reminder",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "user_id",
+    "reminder_type",
+    "due_time",
+    "due_days_of_week",
+    "distribution_methods",
+    "active",
+    "enabled",
+    "last_modified",
+    "created"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "user_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "reminder_type": {
+      "$ref": "#/definitions/ReminderTypes"
+    },
+    "due_time": {
+      "type": "string",
+      "format": "time"
+    },
+    "due_days_of_week": {
+      "$ref": "#/definitions/DaysOfTheWeek"
+    },
+    "distribution_methods": {
+      "$ref": "#/definitions/ReminderDistributionMethods"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "last_modified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "definitions": {
+    "ReminderTypes": {
+      "type": "string",
+      "description": "",
+      "x-enumFlags": true,
+      "x-enumNames": [
+        "ClockIn",
+        "ClockOut",
+        "ShiftPublished",
+        "ShiftStartBefore",
+        "ShiftStartAfter",
+        "ShiftStartBeforeManager",
+        "ShiftStartAfterManager",
+        "ShiftEndBefore",
+        "ShiftEndAfter"
+      ],
+      "enum": [
+        "clock-in",
+        "clock-out",
+        "shift-published",
+        "shift-start-before",
+        "shift-start-after",
+        "shift-start-before-manager",
+        "shift-start-after-manager",
+        "shift-end-before",
+        "shift-end-after"
+      ]
+    },
+    "DaysOfTheWeek": {
+      "type": "string",
+      "description": "",
+      "x-enumFlags": true,
+      "x-enumNames": [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "enum": [
+        "Sun",
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat"
+      ]
+    },
+    "ReminderDistributionMethods": {
+      "type": "string",
+      "description": "",
+      "x-enumFlags": true,
+      "x-enumNames": [
+        "Push",
+        "Sms",
+        "Email"
+      ],
+      "enum": [
+        "Push",
+        "SMS",
+        "Email"
+      ]
+    }
+  }
+}

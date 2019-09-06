@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "EffectiveSettings",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "effective_settings"
+  ],
+  "properties": {
+    "effective_settings": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/EffectiveSettingsSection"
+      }
+    }
+  },
+  "definitions": {
+    "EffectiveSettingsSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "settings",
+        "last_modified"
+      ],
+      "properties": {
+        "settings": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "last_modified": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

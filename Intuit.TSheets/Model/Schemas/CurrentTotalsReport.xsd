@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "CurrentTotalsReport",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "current_totals"
+  ],
+  "properties": {
+    "current_totals": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/CurrentTotalsReportItem"
+      }
+    }
+  },
+  "definitions": {
+    "CurrentTotalsReportItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "user_id",
+        "on_the_clock",
+        "timesheet_id",
+        "jobcode_id",
+        "group_id",
+        "shift_geolocations_available",
+        "shift_seconds",
+        "day_seconds"
+      ],
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "on_the_clock": {
+          "type": "boolean"
+        },
+        "timesheet_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "jobcode_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "group_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "shift_geolocations_available": {
+          "type": "boolean"
+        },
+        "shift_seconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "day_seconds": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    }
+  }
+}

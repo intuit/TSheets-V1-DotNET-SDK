@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ProjectReportFilter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "start_date",
+    "end_date",
+    "user_ids",
+    "group_ids",
+    "jobcode_ids",
+    "jobcode_type",
+    "customfielditems"
+  ],
+  "properties": {
+    "start_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "user_ids": {
+      "type": "string"
+    },
+    "group_ids": {
+      "type": "string"
+    },
+    "jobcode_ids": {
+      "type": "string"
+    },
+    "jobcode_type": {
+      "$ref": "#/definitions/JobcodeType"
+    },
+    "customfielditems": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/KeyValuePairOfStringAndIEnumerableOfString"
+      }
+    }
+  },
+  "definitions": {
+    "JobcodeType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Regular",
+        "Pto",
+        "UnpaidBreak",
+        "PaidBreak",
+        "UnpaidTimeOff",
+        "All"
+      ],
+      "enum": [
+        "regular",
+        "pto",
+        "unpaid_break",
+        "paid_break",
+        "unpaid_time_off",
+        "all"
+      ]
+    },
+    "KeyValuePairOfStringAndIEnumerableOfString": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Key",
+        "Value"
+      ],
+      "properties": {
+        "Key": {
+          "type": "string"
+        },
+        "Value": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

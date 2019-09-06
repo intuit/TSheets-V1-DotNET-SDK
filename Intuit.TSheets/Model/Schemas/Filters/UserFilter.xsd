@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "UserFilter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ids",
+    "not_ids",
+    "employee_numbers",
+    "usernames",
+    "group_ids",
+    "not_group_ids",
+    "payroll_ids",
+    "active",
+    "first_name",
+    "last_name",
+    "modified_before",
+    "modified_since"
+  ],
+  "properties": {
+    "ids": {
+      "type": "string"
+    },
+    "not_ids": {
+      "type": "string"
+    },
+    "employee_numbers": {
+      "type": "string"
+    },
+    "usernames": {
+      "type": "string"
+    },
+    "group_ids": {
+      "type": "string"
+    },
+    "not_group_ids": {
+      "type": "string"
+    },
+    "payroll_ids": {
+      "type": "string"
+    },
+    "active": {
+      "$ref": "#/definitions/TristateChoice"
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "modified_before": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modified_since": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "definitions": {
+    "TristateChoice": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Yes",
+        "No",
+        "Both"
+      ],
+      "enum": [
+        "yes",
+        "no",
+        "both"
+      ]
+    }
+  }
+}

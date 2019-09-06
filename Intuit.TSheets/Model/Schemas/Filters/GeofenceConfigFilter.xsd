@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "GeofenceConfigFilter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ids",
+    "type",
+    "type_ids",
+    "enabled",
+    "active",
+    "modified_before",
+    "modified_since",
+    "by_jobcode_assignment"
+  ],
+  "properties": {
+    "ids": {
+      "type": "string"
+    },
+    "type": {
+      "$ref": "#/definitions/GeofenceConfigType"
+    },
+    "type_ids": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "active": {
+      "$ref": "#/definitions/TristateChoice"
+    },
+    "modified_before": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modified_since": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "by_jobcode_assignment": {
+      "type": "boolean"
+    }
+  },
+  "definitions": {
+    "GeofenceConfigType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Global",
+        "Clients",
+        "Jobcodes"
+      ],
+      "enum": [
+        "global",
+        "clients",
+        "job_codes"
+      ]
+    },
+    "TristateChoice": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Yes",
+        "No",
+        "Both"
+      ],
+      "enum": [
+        "yes",
+        "no",
+        "both"
+      ]
+    }
+  }
+}

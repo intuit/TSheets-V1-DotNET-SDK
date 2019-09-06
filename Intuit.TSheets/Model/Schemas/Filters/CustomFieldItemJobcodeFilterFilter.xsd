@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "CustomFieldItemJobcodeFilterFilter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "jobcode_id",
+    "modified_before",
+    "modified_since"
+  ],
+  "properties": {
+    "jobcode_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "modified_before": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modified_since": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

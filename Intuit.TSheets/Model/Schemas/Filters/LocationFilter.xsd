@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "LocationFilter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ids",
+    "active",
+    "geocoding_status",
+    "modified_before",
+    "modified_since",
+    "by_jobcode_assignment"
+  ],
+  "properties": {
+    "ids": {
+      "type": "string"
+    },
+    "active": {
+      "$ref": "#/definitions/TristateChoice"
+    },
+    "geocoding_status": {
+      "$ref": "#/definitions/GeocodingStatus"
+    },
+    "modified_before": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modified_since": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "by_jobcode_assignment": {
+      "type": "boolean"
+    }
+  },
+  "definitions": {
+    "TristateChoice": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Yes",
+        "No",
+        "Both"
+      ],
+      "enum": [
+        "yes",
+        "no",
+        "both"
+      ]
+    },
+    "GeocodingStatus": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "None",
+        "InProgress",
+        "Retry",
+        "Error",
+        "Complete"
+      ],
+      "enum": [
+        "none",
+        "in_progress",
+        "retry",
+        "error",
+        "complete"
+      ]
+    }
+  }
+}

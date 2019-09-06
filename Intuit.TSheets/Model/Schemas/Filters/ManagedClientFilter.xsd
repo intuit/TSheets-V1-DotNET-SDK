@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ManagedClientFilter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "active"
+  ],
+  "properties": {
+    "active": {
+      "$ref": "#/definitions/TristateChoice"
+    }
+  },
+  "definitions": {
+    "TristateChoice": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Yes",
+        "No",
+        "Both"
+      ],
+      "enum": [
+        "yes",
+        "no",
+        "both"
+      ]
+    }
+  }
+}

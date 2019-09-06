@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "CustomFieldItemFilterFilter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "jobcode_id",
+    "user_id",
+    "group_id",
+    "include_user_group",
+    "include_jobcode_filters",
+    "active",
+    "ids",
+    "modified_before",
+    "modified_since"
+  ],
+  "properties": {
+    "jobcode_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "user_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "group_id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "include_user_group": {
+      "type": "boolean"
+    },
+    "include_jobcode_filters": {
+      "type": "boolean"
+    },
+    "active": {
+      "$ref": "#/definitions/TristateChoice"
+    },
+    "ids": {
+      "type": "string"
+    },
+    "modified_before": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modified_since": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "definitions": {
+    "TristateChoice": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Yes",
+        "No",
+        "Both"
+      ],
+      "enum": [
+        "yes",
+        "no",
+        "both"
+      ]
+    }
+  }
+}

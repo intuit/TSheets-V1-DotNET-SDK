@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "CustomFieldItemUserFilter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "type",
+    "last_modified",
+    "filtered_customfielditems"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "type": {
+      "$ref": "#/definitions/UserFilterType"
+    },
+    "last_modified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "filtered_customfielditems": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "UserFilterType": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "User",
+        "Group"
+      ],
+      "enum": [
+        0,
+        1
+      ]
+    }
+  }
+}
