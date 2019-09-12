@@ -131,9 +131,9 @@ namespace Intuit.TSheets.Examples
             }
 
             // Do the same for jobcodes.  Discard ResultsMeta since we won't be using it.
-            (IList<Jobcode> allJobcodes, _) = this.apiClient.GetJobcodes(
+            (IList<Jobcode> jobcodes, _) = this.apiClient.GetJobcodes(
+                new JobcodeFilter { Name = "TestJobcode*" },
                 new RequestOptions { IncludeSupplementalData = false });
-            List<Jobcode> jobcodes = allJobcodes.Where(j => j.Name.StartsWith("TestJobcode")).ToList();
 
             if (jobcodes.Count > 0)
             {
@@ -283,25 +283,16 @@ namespace Intuit.TSheets.Examples
 
             User user = users.First();
 
-            // Now get the jobcode id.  Note that the API doesn't support filtering by jobcode name,
-            // so we'll narrow the search down to just the active regular jobs created/modified
-            // within the last 7 days, and then find the single result we need. It's good practice
-            // to cache results whenever possible.
-            var jobcodeFilter = new JobcodeFilter
-            {
-                Active = TristateChoice.Yes,
-                JobcodeType = JobcodeType.Regular,
-                ModifiedSince = DateTimeOffset.Now.AddDays(-7)
-            };
-
+            // Now get the jobcode id.
+            var jobcodeFilter = new JobcodeFilter { Name = "TestJobcode3" };
             IList<Jobcode> jobcodes = this.apiClient.GetJobcodes(jobcodeFilter).Item1;
 
-            int jobcodeId = jobcodes.Where(j => j.Name.Equals("TestJobcode3")).First().Id;
+            Jobcode jobcode = jobcodes.First();
 
             // Now clock the user into the jobcode. Note that active (i.e. "on-the-clock") timesheets
             // are created with an End time of DateTimeOffset.MinValue. The dedicated constructor
             // we're using here does that for you automatically.
-            var timesheetToCreate = new Timesheet(user.Id, jobcodeId, DateTimeOffset.Now);
+            var timesheetToCreate = new Timesheet(user.Id, jobcode.Id, DateTimeOffset.Now);
             var createdTimesheet = this.apiClient.CreateTimesheet(timesheetToCreate).Item1;
 
             return (user, createdTimesheet);
