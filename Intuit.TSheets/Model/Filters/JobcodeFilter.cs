@@ -51,6 +51,15 @@ namespace Intuit.TSheets.Model.Filters
         public IEnumerable<int> ParentIds { get; set; }
 
         /// <summary>
+        /// Gets or sets the wildcard-able filter on the jobcode name.
+        /// </summary>
+        /// <remarks>
+        /// * will be interpreted as a wild card. Starts matching from the beginning of the string.
+        /// </remarks>
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        /// <summary>
         /// Gets or sets the value for filtering by jobcode type, e.g. 'regular', 'PTO', etc.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
