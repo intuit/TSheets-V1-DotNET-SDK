@@ -15,7 +15,7 @@
     <RepositoryUrl>https://github.com/intuit/TSheets-V1-DotNET-SDK</RepositoryUrl>
     <PackageIconUrl>https://github.com/intuit/TSheets-V1-DotNET-SDK/images/tsheetsbyqb37.svg</PackageIconUrl>
     <RepositoryType>Git</RepositoryType>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageReleaseNotes>New feature: get jobcodes by wildcardable name.</PackageReleaseNotes>
     <PackageTags>tsheets, sdk, quickbooks, time, tracking, api-client, time-tracking, payroll-management</PackageTags>
     <Version>1.1.0</Version>
   </PropertyGroup>
