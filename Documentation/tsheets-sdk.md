@@ -3,7 +3,7 @@
 This documentation is intended to be a quick start reference, and covers basic usage and common practices.  It should be read in conjunction with the TSheets [API documentation](https://tsheetsteam.github.io/api_docs/), where you'll find comprehensive information on all endpoints, operations, and data types supported by the TSheets API.
 
 ## Getting Started
-1. [Sign up for a free TSheets trial](https://www.tsheets.com/signup)
+1. [Sign up for a free TSheets trial](https://www.tsheets.com/#a:apidocs)
 2. [Obtain an OAuth access token](https://tsheetsteam.github.io/api_docs/#obtaining-an-api-access-token)
 3. Try the SDK example code, or read on.
 
