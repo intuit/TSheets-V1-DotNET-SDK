@@ -48,15 +48,15 @@ namespace Intuit.TSheets.Client.Utilities
         /// Given an entity name, returns a function that instantiates the type.
         /// </summary>
         /// <param name="entityName">The name of the entity type</param>
-        /// <returns>A function which creates a new instance of the entity type.</returns>
+        /// <returns>
+        /// A function which creates a new instance of the entity type
+        /// if the type is known, else null.
+        /// </returns>
         internal static Func<IIdentifiable> GetTypeCreator(string entityName)
         {
-            if (!typeCreators.TryGetValue(entityName, out Func<IIdentifiable> typeCreator))
-            {
-                throw new InvalidOperationException($"The entity type '{entityName}' is not supported.");
-            }
-
-            return typeCreator;
+            return typeCreators.ContainsKey(entityName)
+                ? typeCreators[entityName]
+                : null;
         }
     }
 }

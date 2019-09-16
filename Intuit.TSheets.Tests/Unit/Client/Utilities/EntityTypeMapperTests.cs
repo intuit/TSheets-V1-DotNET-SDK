@@ -44,10 +44,12 @@ namespace Intuit.TSheets.Tests.Unit.Client.Utilities
         }
 
         [TestMethod, TestCategory("Unit")]
-        [ExpectedException(typeof(InvalidOperationException))]
-        public void EntityTypeMapper_ThrowsWhenProvidedInvalidEntityName()
+        public void EntityTypeMapper_ReturnsNullWhenProvidedUnknownEntityName()
         {
-            EntityTypeMapper.GetTypeCreator("notexists");
+            // Mapper must return null for unknown supplemental data sections, so as
+            // not to break existing clients when new sections are added to the API.
+            Func<IIdentifiable> createUnknown = EntityTypeMapper.GetTypeCreator("unknown");
+            Assert.IsNull(createUnknown);
         }
     }
 }
