@@ -132,14 +132,6 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
 
             Func<IIdentifiable> createUser = EntityTypeMapper.GetTypeCreator("users");
             Assert.IsInstanceOfType(createUser(), typeof(User), $"Expected instance of {nameof(User)}");
-
-            try
-            {
-                EntityTypeMapper.GetTypeCreator("none");
-                Assert.Fail("Expected InvalidOperationException to be thrown.");
-            }
-            catch (InvalidOperationException)
-            { }
         }
 
         private static string ResponseContent => @"

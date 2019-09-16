@@ -71,26 +71,36 @@ namespace Intuit.TSheets.Client.RequestFlow.PipelineElements
                 string sectionName = ((JProperty)section).Name;
                 Func<IIdentifiable> createInstance = EntityTypeMapper.GetTypeCreator(sectionName);
 
-                // Get all of the items within the section
-                IEnumerable<JToken> items = document.SelectTokens($"{section.Path}.*");
-                foreach (JToken item in items)
+                if (createInstance != null)
                 {
-                    // Get a new object instance and "fill" it by deserializing from the json
-                    IIdentifiable entity = createInstance();
-                    JsonReader reader = ((JObject)item).CreateReader();
-
-                    serializer.Populate(reader, entity);
-
-                    // Write it to our set of all supplemental data objects
-                    context.ResultsMeta.SupplementalData.AddOrUpdate(entity);
-
-                    // Maintain some counts for logging purposes
-                    if (!sectionItemCount.ContainsKey(sectionName))
+                    // Get all of the items within the section
+                    IEnumerable<JToken> items = document.SelectTokens($"{section.Path}.*");
+                    foreach (JToken item in items)
                     {
-                        sectionItemCount.Add(sectionName, 0);
-                    }
+                        // Get a new object instance and "fill" it by deserializing from the json
+                        IIdentifiable entity = createInstance();
+                        JsonReader reader = ((JObject)item).CreateReader();
 
-                    sectionItemCount[sectionName]++;
+                        serializer.Populate(reader, entity);
+
+                        // Write it to our set of all supplemental data objects
+                        context.ResultsMeta.SupplementalData.AddOrUpdate(entity);
+
+                        // Maintain some counts for logging purposes
+                        if (!sectionItemCount.ContainsKey(sectionName))
+                        {
+                            sectionItemCount.Add(sectionName, 0);
+                        }
+
+                        sectionItemCount[sectionName]++;
+                    }
+                }
+                else
+                {
+                    // This would occur when a new supplemental data section has been added to the API.
+                    logger?.LogWarning(
+                        context.LogContext.EventId,
+                        $"Failed to deserialize unknown supplemental data section '{sectionName}'.");
                 }
             }
 
