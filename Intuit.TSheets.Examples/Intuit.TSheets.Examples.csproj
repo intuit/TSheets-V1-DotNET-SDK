@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -7,15 +7,15 @@
     <Company>Intuit</Company>
     <Description>Example code, demonstrating use of the C# .NET Standard SDK for the TSheets V1 API</Description>
     <Copyright>Copyright © 2019</Copyright>
-    <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/intuit/TSheets-V1-DotNET-SDK</PackageProjectUrl>
-    <PackageIconUrl>https://github.com/intuit/TSheets-V1-DotNET-SDK/images/tsheetsbyqb37.svg</PackageIconUrl>
+    <PackageIcon>Circle_T_web128px.png</PackageIcon>
     <RepositoryUrl>https://github.com/intuit/TSheets-V1-DotNET-SDK</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>tsheets, sdk, quickbooks, time, tracking, api-client, time-tracking, payroll-management</PackageTags>
     <PackageReleaseNotes />
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <Version>1.1.0</Version>
+    <AssemblyVersion>1.1.2.0</AssemblyVersion>
+    <Version>1.1.2</Version>
+    <FileVersion>1.1.2.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,6 +31,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Intuit.TSheets\Intuit.TSheets.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\images\Circle_T_web128px.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
