@@ -1,3 +1,9 @@
+# v1.1.2 (Tue. Sep 24th, 2019)
+
+#### Bugfix
+
+- Fixing issue #7: PackageLicenseUrl error (NuGet NU5035), causing a failure to build on VS2019.
+
 # v1.1.1 (Mon. Sep 16th, 2019)
 
 #### Minor Bugfix

@@ -9,15 +9,14 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Intuit</Authors>
     <PackageProjectUrl>https://github.com/intuit/TSheets-V1-DotNET-SDK</PackageProjectUrl>
-    <AssemblyVersion>1.1.1.0</AssemblyVersion>
-    <FileVersion>1.1.1.0</FileVersion>
-    <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+    <AssemblyVersion>1.1.2.0</AssemblyVersion>
+    <FileVersion>1.1.2.0</FileVersion>
     <RepositoryUrl>https://github.com/intuit/TSheets-V1-DotNET-SDK</RepositoryUrl>
-    <PackageIconUrl>https://github.com/intuit/TSheets-V1-DotNET-SDK/images/tsheetsbyqb37.svg</PackageIconUrl>
+    <PackageIcon>Circle_T_web128px.png</PackageIcon>
     <RepositoryType>Git</RepositoryType>
-    <PackageReleaseNotes>Bugfix: enable non-breaking introduction of new supplemental data sections.</PackageReleaseNotes>
+    <PackageReleaseNotes>Bugfix: Fixing NuGet packaging Error NU5035 &amp; Warning NU5048, causing a build failure on VS2019.</PackageReleaseNotes>
     <PackageTags>tsheets, sdk, quickbooks, time, tracking, api-client, time-tracking, payroll-management</PackageTags>
-    <Version>1.1.1</Version>
+    <Version>1.1.2</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -29,6 +28,10 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="NJsonSchema" Version="10.0.22" />
     <PackageReference Include="Polly" Version="7.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\images\Circle_T_web128px.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
