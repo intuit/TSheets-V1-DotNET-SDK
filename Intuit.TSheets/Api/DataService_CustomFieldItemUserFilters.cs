@@ -20,6 +20,7 @@
 namespace Intuit.TSheets.Api
 {
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -134,6 +135,28 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
+        /// Asynchronously Retrieve Custom Field Item User Filters, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a user or group,
+        /// with options to narrow down the results.
+        /// </remarks>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItemUserFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<CustomFieldItemUserFilter>, ResultsMeta)> GetCustomFieldItemUserFiltersAsync(
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
         /// Asynchronously Retrieve Custom Field Item User Filters.
         /// </summary>
         /// <remarks>
@@ -154,6 +177,32 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
+        /// Asynchronously Retrieve Custom Field Item User Filters, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a user or group,
+        /// with options to narrow down the results.
+        /// </remarks>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItemUserFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<CustomFieldItemUserFilter>, ResultsMeta)> GetCustomFieldItemUserFiltersAsync(
+            RequestOptions options,
+             CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
         /// Asynchronously Retrieve Custom Field Item User Filters.
         /// </summary>
         /// <remarks>
@@ -171,6 +220,32 @@ namespace Intuit.TSheets.Api
             CustomFieldItemUserFilterFilter filter)
         {
             return await GetCustomFieldItemUserFiltersAsync(filter, null).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Custom Field Item User Filters, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a user, user, or group,
+        /// with options to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="CustomFieldItemUserFilterFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItemUserFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<CustomFieldItemUserFilter>, ResultsMeta)> GetCustomFieldItemUserFiltersAsync(
+            CustomFieldItemUserFilterFilter filter,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -199,6 +274,36 @@ namespace Intuit.TSheets.Api
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Custom Field Item User Filters, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a user, user, or group,
+        /// with options to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="CustomFieldItemUserFilterFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItemUserFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<CustomFieldItemUserFilter>, ResultsMeta)> GetCustomFieldItemUserFiltersAsync(
+            CustomFieldItemUserFilterFilter filter,
+            RequestOptions options,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion

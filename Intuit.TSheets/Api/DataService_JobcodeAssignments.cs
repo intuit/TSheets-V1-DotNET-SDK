@@ -21,6 +21,7 @@ namespace Intuit.TSheets.Api
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -89,13 +90,39 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="JobcodeAssignment"/> assignments that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<JobcodeAssignment>, ResultsMeta)> CreateJobcodeAssignmentsAsync(IEnumerable<JobcodeAssignment> jobcodeAssignments)
+        public async Task<(IList<JobcodeAssignment>, ResultsMeta)> CreateJobcodeAssignmentsAsync(
+            IEnumerable<JobcodeAssignment> jobcodeAssignments)
         {
             var context = new CreateContext<JobcodeAssignment>(EndpointName.JobcodeAssignments, jobcodeAssignments);
 
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Jobcode Assignments, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more jobcode assignments to a user.
+        /// </remarks>
+        /// <param name="jobcodeAssignments">
+        /// The set of <see cref="JobcodeAssignment"/> assignments to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="JobcodeAssignment"/> assignments that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<JobcodeAssignment>, ResultsMeta)> CreateJobcodeAssignmentsAsync(
+            IEnumerable<JobcodeAssignment> jobcodeAssignments,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -111,11 +138,37 @@ namespace Intuit.TSheets.Api
         /// The <see cref="JobcodeAssignment"/> assignment that was created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(JobcodeAssignment, ResultsMeta)> CreateJobcodeAssignmentAsync(JobcodeAssignment jobcodeAssignment)
+        public async Task<(JobcodeAssignment, ResultsMeta)> CreateJobcodeAssignmentAsync(
+            JobcodeAssignment jobcodeAssignment)
         {
             (IList<JobcodeAssignment> jobcodeAssignments, ResultsMeta resultsMeta) = await CreateJobcodeAssignmentsAsync(new[] { jobcodeAssignment }).ConfigureAwait(false);
 
             return (jobcodeAssignments.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Jobcode Assignments, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add a single jobcode assignment to a user.
+        /// </remarks>
+        /// <param name="jobcodeAssignment">
+        /// The <see cref="JobcodeAssignment"/> assignment to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The <see cref="JobcodeAssignment"/> assignment that was created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(JobcodeAssignment, ResultsMeta)> CreateJobcodeAssignmentAsync(
+            JobcodeAssignment jobcodeAssignment,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -219,6 +272,28 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
+        /// Asynchronously Retrieve Jobcode Assignments, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcode assignments associated with users,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="JobcodeAssignment"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<JobcodeAssignment>, ResultsMeta)> GetJobcodeAssignmentsAsync(
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
         /// Asynchronously Retrieve Jobcode Assignments.
         /// </summary>
         /// <remarks>
@@ -239,6 +314,32 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
+        /// Asynchronously Retrieve Jobcode Assignments, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcode assignments associated with users,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="JobcodeAssignment"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<JobcodeAssignment>, ResultsMeta)> GetJobcodeAssignmentsAsync(
+            RequestOptions options,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
         /// Asynchronously Retrieve Jobcode Assignments.
         /// </summary>
         /// <remarks>
@@ -256,6 +357,32 @@ namespace Intuit.TSheets.Api
             JobcodeAssignmentFilter filter)
         {
             return await GetJobcodeAssignmentsAsync(filter, null).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Jobcode Assignments, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcode assignments associated with users,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="JobcodeAssignmentFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="JobcodeAssignment"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<JobcodeAssignment>, ResultsMeta)> GetJobcodeAssignmentsAsync(
+            JobcodeAssignmentFilter filter,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -284,6 +411,36 @@ namespace Intuit.TSheets.Api
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Jobcode Assignments, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcode assignments associated with users,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="JobcodeAssignmentFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="JobcodeAssignment"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<JobcodeAssignment>, ResultsMeta)> GetJobcodeAssignmentsAsync(
+            JobcodeAssignmentFilter filter,
+            RequestOptions options,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -359,9 +516,32 @@ namespace Intuit.TSheets.Api
         /// The <see cref="JobcodeAssignment"/> assignment object to be deleted.
         /// </param>
         /// <returns>The asynchronous task.</returns>
-        public async Task DeleteJobcodeAssignmentAsync(JobcodeAssignment jobcodeAssignment)
+        public async Task DeleteJobcodeAssignmentAsync(
+            JobcodeAssignment jobcodeAssignment)
         {
             await DeleteJobcodeAssignmentsAsync(new[] { jobcodeAssignment }).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Delete Jobcode Assignments, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Delete a single <see cref="JobcodeAssignment"/> assignment.
+        /// </remarks>
+        /// <param name="jobcodeAssignment">
+        /// The <see cref="JobcodeAssignment"/> assignment object to be deleted.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>The asynchronous task.</returns>
+        public async Task DeleteJobcodeAssignmentAsync(
+            JobcodeAssignment jobcodeAssignment,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -374,11 +554,34 @@ namespace Intuit.TSheets.Api
         /// The set of <see cref="JobcodeAssignment"/> assignment objects to be deleted.
         /// </param>
         /// <returns>The asynchronous task.</returns>
-        public async Task DeleteJobcodeAssignmentsAsync(IEnumerable<JobcodeAssignment> jobcodeAssignments)
+        public async Task DeleteJobcodeAssignmentsAsync(
+            IEnumerable<JobcodeAssignment> jobcodeAssignments)
         {
             IEnumerable<int> ids = jobcodeAssignments.Select(t => t.Id);
 
             await DeleteJobcodeAssignmentsAsync(ids).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Delete Jobcode Assignments, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Delete one or more <see cref="JobcodeAssignment"/> assignments.
+        /// </remarks>
+        /// <param name="jobcodeAssignments">
+        /// The set of <see cref="JobcodeAssignment"/> assignment objects to be deleted.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>The asynchronous task.</returns>
+        public async Task DeleteJobcodeAssignmentsAsync(
+            IEnumerable<JobcodeAssignment> jobcodeAssignments,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -391,9 +594,32 @@ namespace Intuit.TSheets.Api
         /// The id of the <see cref="JobcodeAssignment"/> assignment object to be deleted.
         /// </param>
         /// <returns>The asynchronous task.</returns>
-        public async Task DeleteJobcodeAssignmentAsync(int id)
+        public async Task DeleteJobcodeAssignmentAsync(
+            int id)
         {
             await DeleteJobcodeAssignmentsAsync(new[] { id }).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Delete Jobcode Assignments, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Delete a single <see cref="JobcodeAssignment"/> assignment, by id.
+        /// </remarks>
+        /// <param name="id">
+        /// The id of the <see cref="JobcodeAssignment"/> assignment object to be deleted.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>The asynchronous task.</returns>
+        public async Task DeleteJobcodeAssignmentAsync(
+            int id,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -406,11 +632,34 @@ namespace Intuit.TSheets.Api
         /// The set of ids for the <see cref="JobcodeAssignment"/> assignment objects to be deleted.
         /// </param>
         /// <returns>The asynchronous task.</returns>
-        public async Task DeleteJobcodeAssignmentsAsync(IEnumerable<int> ids)
+        public async Task DeleteJobcodeAssignmentsAsync(
+            IEnumerable<int> ids)
         {
             var context = new DeleteContext<JobcodeAssignment>(EndpointName.JobcodeAssignments, ids);
 
             await ExecuteOperationAsync(context).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Delete Jobcode Assignments, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Delete one or more <see cref="JobcodeAssignment"/> assignments, by id.
+        /// </remarks>
+        /// <param name="ids">
+        /// The set of ids for the <see cref="JobcodeAssignment"/> assignment objects to be deleted.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>The asynchronous task.</returns>
+        public async Task DeleteJobcodeAssignmentsAsync(
+            IEnumerable<int> ids,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion

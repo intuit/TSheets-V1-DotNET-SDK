@@ -20,6 +20,7 @@
 namespace Intuit.TSheets.Api
 {
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -92,6 +93,29 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
+        /// Asynchronously Retrieve the Current User, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves the user object for the currently authenticated user. This is the
+        /// user that authenticated to TSheets during the OAuth2 authentication process.
+        /// </remarks>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An instance of the <see cref="User"/> class, representing the current user, along
+        /// with an output instance of the <see cref="ResultsMeta"/> class containing additional
+        /// data.
+        /// </returns>
+        public async Task<(User, ResultsMeta)> GetCurrentUserAsync(
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
         /// Asynchronously Retrieve the Current User.
         /// </summary>
         /// <remarks>
@@ -114,6 +138,33 @@ namespace Intuit.TSheets.Api
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items.FirstOrDefault(), context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve the Current User, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves the user object for the currently authenticated user. This is the
+        /// user that authenticated to TSheets during the OAuth2 authentication process.
+        /// </remarks>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An instance of the <see cref="User"/> class, representing the current user, along
+        /// with an output instance of the <see cref="ResultsMeta"/> class containing additional
+        /// data.
+        /// </returns>
+        public async Task<(User, ResultsMeta)> GetCurrentUserAsync(
+            RequestOptions options,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion

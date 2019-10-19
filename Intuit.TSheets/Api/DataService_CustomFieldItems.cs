@@ -21,6 +21,7 @@ namespace Intuit.TSheets.Api
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -101,6 +102,31 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
+        /// Asynchronously Create Custom Field Items, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more <see cref="CustomFieldItem"/> objects to a <see cref="CustomField"/>.
+        /// </remarks>
+        /// <param name="customFieldItems">
+        /// The set of <see cref="CustomFieldItem"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItem"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<CustomFieldItem>, ResultsMeta resultsMeta)> CreateCustomFieldItemsAsync(
+            IEnumerable<CustomFieldItem> customFieldItems,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
         /// Asynchronously Create Custom Field Items.
         /// </summary>
         /// <remarks>
@@ -120,6 +146,31 @@ namespace Intuit.TSheets.Api
                 await CreateCustomFieldItemsAsync(new[] { customFieldItem }).ConfigureAwait(false);
 
             return (customFieldItems.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Custom Field Items, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add a single <see cref="CustomFieldItem"/> object to a <see cref="CustomField"/>.
+        /// </remarks>
+        /// <param name="customFieldItem">
+        /// The <see cref="CustomFieldItem"/> object to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The <see cref="CustomFieldItem"/> object that was created, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(CustomFieldItem, ResultsMeta)> CreateCustomFieldItemAsync(
+            CustomFieldItem customFieldItem,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -191,6 +242,32 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
+        /// Asynchronously Retrieve Custom Field Items, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field items associated with a custom field,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="Model.Filters.CustomFieldItemFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItem"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<CustomFieldItem>, ResultsMeta)> GetCustomFieldItemsAsync(
+            Model.Filters.CustomFieldItemFilter filter,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
         /// Asynchronously Retrieve Custom Field Items.
         /// </summary>
         /// <remarks>
@@ -216,6 +293,36 @@ namespace Intuit.TSheets.Api
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Custom Field Items, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field items associated with a custom field,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="Model.Filters.CustomFieldItemFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItem"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<CustomFieldItem>, ResultsMeta)> GetCustomFieldItemsAsync(
+            Model.Filters.CustomFieldItemFilter filter,
+            RequestOptions options,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -287,6 +394,31 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
+        /// Asynchronously Update Custom Field Items, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Update one or more <see cref="CustomFieldItem"/> objects on a <see cref="CustomField"/>.
+        /// </remarks>
+        /// <param name="customFieldItems">
+        /// The set of <see cref="CustomFieldItem"/> objects to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItem"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<CustomFieldItem>, ResultsMeta resultsMeta)> UpdateCustomFieldItemsAsync(
+            IEnumerable<CustomFieldItem> customFieldItems,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
         /// Asynchronously Update Custom Field Items.
         /// </summary>
         /// <remarks>
@@ -306,6 +438,31 @@ namespace Intuit.TSheets.Api
                 await UpdateCustomFieldItemsAsync(new[] { customFieldItem }).ConfigureAwait(false);
 
             return (customFieldItems.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Update Custom Field Items, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add a single <see cref="CustomFieldItem"/> object to a <see cref="CustomField"/>.
+        /// </remarks>
+        /// <param name="customFieldItem">
+        /// The <see cref="CustomFieldItem"/> object to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The <see cref="CustomFieldItem"/> object that was updated, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(CustomFieldItem, ResultsMeta)> UpdateCustomFieldItemAsync(
+            CustomFieldItem customFieldItem,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion

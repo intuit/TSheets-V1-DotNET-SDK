@@ -21,6 +21,7 @@ namespace Intuit.TSheets.Api
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -80,13 +81,36 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Geolocation"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<Geolocation>, ResultsMeta)> CreateGeolocationsAsync(IEnumerable<Geolocation> geolocations)
+        public async Task<(IList<Geolocation>, ResultsMeta)> CreateGeolocationsAsync(
+            IEnumerable<Geolocation> geolocations)
         {
             var context = new CreateContext<Geolocation>(EndpointName.Geolocations, geolocations);
 
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Geolocations, with support for cancellation.
+        /// </summary>
+        /// <param name="geolocations">
+        /// The set of <see cref="Geolocation"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Geolocation"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Geolocation>, ResultsMeta)> CreateGeolocationsAsync(
+            IEnumerable<Geolocation> geolocations,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -99,11 +123,34 @@ namespace Intuit.TSheets.Api
         /// The <see cref="Geolocation"/> object that was created, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(Geolocation, ResultsMeta)> CreateGeolocationAsync(Geolocation geolocation)
+        public async Task<(Geolocation, ResultsMeta)> CreateGeolocationAsync(
+            Geolocation geolocation)
         {
             (IList<Geolocation> geolocations, ResultsMeta resultsMeta) = await CreateGeolocationsAsync(new[] { geolocation }).ConfigureAwait(false);
 
             return (geolocations.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Geolocations, with support for cancellation.
+        /// </summary>
+        /// <param name="geolocation">
+        /// The <see cref="Geolocation"/> object to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Geolocation"/> object that was created, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(Geolocation, ResultsMeta)> CreateGeolocationAsync(
+            Geolocation geolocation,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -175,6 +222,32 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
+        /// Asynchronously Retrieve Geolocations, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of geolocations associated with your company, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="GeolocationFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Geolocation"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Geolocation>, ResultsMeta)> GetGeolocationsAsync(
+            GeolocationFilter filter,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
         /// Asynchronously Retrieve Geolocations.
         /// </summary>
         /// <remarks>
@@ -200,6 +273,36 @@ namespace Intuit.TSheets.Api
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Geolocations, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of geolocations associated with your company, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="GeolocationFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Geolocation"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Geolocation>, ResultsMeta)> GetGeolocationsAsync(
+            GeolocationFilter filter,
+            RequestOptions options,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion

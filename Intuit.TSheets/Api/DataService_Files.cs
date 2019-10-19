@@ -21,6 +21,7 @@ namespace Intuit.TSheets.Api
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -51,7 +52,8 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="File"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public (IList<File>, ResultsMeta resultsMeta) UploadFiles(IEnumerable<File> files)
+        public (IList<File>, ResultsMeta resultsMeta) UploadFiles(
+            IEnumerable<File> files)
         {
             return AsyncUtil.RunSync(() => UploadFilesAsync(files));
         }
@@ -69,7 +71,8 @@ namespace Intuit.TSheets.Api
         /// The <see cref="CustomFieldItem"/> object that was created, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public (File, ResultsMeta) UploadFile(File file)
+        public (File, ResultsMeta) UploadFile(
+            File file)
         {
             (IList<File> files, ResultsMeta resultsMeta) = UploadFiles(new[] { file });
 
@@ -89,13 +92,39 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="File"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<File>, ResultsMeta)> UploadFilesAsync(IEnumerable<File> files)
+        public async Task<(IList<File>, ResultsMeta)> UploadFilesAsync(
+            IEnumerable<File> files)
         {
             var context = new CreateContext<File>(EndpointName.Files, files);
 
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Upload Files, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more <see cref="File"/> objects that can be attached to timesheets.
+        /// </remarks>
+        /// <param name="files">
+        /// The set of <see cref="File"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="File"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<File>, ResultsMeta)> UploadFilesAsync(
+            IEnumerable<File> files,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -111,11 +140,38 @@ namespace Intuit.TSheets.Api
         /// The <see cref="CustomFieldItem"/> object that was created, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(File, ResultsMeta)> UploadFileAsync(File file)
+        public async Task<(File, ResultsMeta)> UploadFileAsync(
+            File file)
         {
             (IList<File> files, ResultsMeta resultsMeta) = await UploadFilesAsync(new[] { file }).ConfigureAwait(false);
 
             return (files.FirstOrDefault(), resultsMeta);
+        }
+
+
+        /// <summary>
+        /// Asynchronously Upload Files, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add a single <see cref="File"/> object that can be attached to a timesheet.
+        /// </remarks>
+        /// <param name="file">
+        /// The set of <see cref="File"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The <see cref="CustomFieldItem"/> object that was created, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(File, ResultsMeta)> UploadFileAsync(
+            File file,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -219,6 +275,28 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
+        /// Asynchronously Retrieve Files, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all uploaded files, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="File"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<File>, ResultsMeta)> GetFilesAsync(
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
         /// Asynchronously Retrieve Files.
         /// </summary>
         /// <remarks>
@@ -239,6 +317,32 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
+        /// Asynchronously Retrieve Files, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all uploaded files, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="File"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<File>, ResultsMeta)> GetFilesAsync(
+            RequestOptions options,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
         /// Asynchronously Retrieve Files.
         /// </summary>
         /// <remarks>
@@ -256,6 +360,32 @@ namespace Intuit.TSheets.Api
             FileFilter filter)
         {
             return await GetFilesAsync(filter, null).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Files, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all uploaded files, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="FileFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="File"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<File>, ResultsMeta)> GetFilesAsync(
+            FileFilter filter,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -284,6 +414,36 @@ namespace Intuit.TSheets.Api
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Files, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all uploaded files, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="FileFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="File"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<File>, ResultsMeta)> GetFilesAsync(
+            FileFilter filter,
+            RequestOptions options,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -342,13 +502,39 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="File"/> objects that were updated, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<File>, ResultsMeta)> UpdateFilesAsync(IEnumerable<File> files)
+        public async Task<(IList<File>, ResultsMeta)> UpdateFilesAsync(
+            IEnumerable<File> files)
         {
             var context = new UpdateContext<File>(EndpointName.Files, files);
 
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Update Files, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Update one or more <see cref="File"/> objects that are/can be attached to timesheets.
+        /// </remarks>
+        /// <param name="files">
+        /// The set of <see cref="File"/> objects to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="File"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<File>, ResultsMeta)> UpdateFilesAsync(
+            IEnumerable<File> files,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -364,11 +550,37 @@ namespace Intuit.TSheets.Api
         /// The <see cref="CustomFieldItem"/> object that was updated, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(File, ResultsMeta)> UpdateFileAsync(File file)
+        public async Task<(File, ResultsMeta)> UpdateFileAsync(
+            File file)
         {
             (IList<File> files, ResultsMeta resultsMeta) = await UpdateFilesAsync(new[] { file }).ConfigureAwait(false);
 
             return (files.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Update Files, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Update a single <see cref="File"/> object that is/can be attached to a timesheet.
+        /// </remarks>
+        /// <param name="file">
+        /// The set of <see cref="File"/> objects to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The <see cref="CustomFieldItem"/> object that was updated, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(File, ResultsMeta)> UpdateFileAsync(
+            File file,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -390,13 +602,31 @@ namespace Intuit.TSheets.Api
         /// </summary>
         /// <param name="id">The id the of the image file to download.</param>
         /// <returns>An array of bytes, representing the image content.</returns>
-        public async Task<byte[]> DownloadFileAsync(int id)
+        public async Task<byte[]> DownloadFileAsync(
+            int id)
         {
             var context = new DownloadContext<File>(EndpointName.FilesRaw, new FileDownloadFilter(id));
 
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return context.RawResponseContent;
+        }
+
+        /// <summary>
+        /// Asynchronously download the raw bytes of an image file, with support for cancellation.
+        /// </summary>
+        /// <param name="id">The id the of the image file to download.</param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>An array of bytes, representing the image content.</returns>
+        public async Task<byte[]> DownloadFileAsync(
+            int id,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -471,9 +701,32 @@ namespace Intuit.TSheets.Api
         /// The <see cref="File"/> object to be deleted.
         /// </param>
         /// <returns>The asynchronous task.</returns>
-        public async Task DeleteFileAsync(File file)
+        public async Task DeleteFileAsync(
+            File file)
         {
             await DeleteFilesAsync(new[] { file }).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Delete Files, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Delete a single <see cref="File"/> object.
+        /// </remarks>
+        /// <param name="file">
+        /// The <see cref="File"/> object to be deleted.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>The asynchronous task.</returns>
+        public async Task DeleteFileAsync(
+            File file,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -486,11 +739,34 @@ namespace Intuit.TSheets.Api
         /// The set of <see cref="File"/> objects to be deleted.
         /// </param>
         /// <returns>The asynchronous task.</returns>
-        public async Task DeleteFilesAsync(IEnumerable<File> files)
+        public async Task DeleteFilesAsync(
+            IEnumerable<File> files)
         {
             IEnumerable<int> ids = files?.Select(t => t.Id);
 
             await DeleteFilesAsync(ids).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Delete Files, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Delete one or more <see cref="File"/> objects.
+        /// </remarks>
+        /// <param name="files">
+        /// The set of <see cref="File"/> objects to be deleted.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>The asynchronous task.</returns>
+        public async Task DeleteFilesAsync(
+            IEnumerable<File> files,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -503,9 +779,32 @@ namespace Intuit.TSheets.Api
         /// The id of the <see cref="File"/> object to be deleted.
         /// </param>
         /// <returns>The asynchronous task.</returns>
-        public async Task DeleteFileAsync(int id)
+        public async Task DeleteFileAsync(
+            int id)
         {
             await DeleteFilesAsync(new[] { id }).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Delete Files, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Delete a single <see cref="File"/> object, by id.
+        /// </remarks>
+        /// <param name="id">
+        /// The id of the <see cref="File"/> object to be deleted.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>The asynchronous task.</returns>
+        public async Task DeleteFileAsync(
+            int id,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -518,11 +817,34 @@ namespace Intuit.TSheets.Api
         /// The set of ids for the <see cref="File"/> objects to be deleted.
         /// </param>
         /// <returns>The asynchronous task.</returns>
-        public async Task DeleteFilesAsync(IEnumerable<int> ids)
+        public async Task DeleteFilesAsync(
+            IEnumerable<int> ids)
         {
             var context = new DeleteContext<File>(EndpointName.Files, ids);
 
             await ExecuteOperationAsync(context).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Delete Files, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Delete one or more <see cref="File"/> objects, by id.
+        /// </remarks>
+        /// <param name="ids">
+        /// The set of ids for the <see cref="File"/> objects to be deleted.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>The asynchronous task.</returns>
+        public async Task DeleteFilesAsync(
+            IEnumerable<int> ids,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
