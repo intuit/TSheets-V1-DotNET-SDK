@@ -129,6 +129,22 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of all notifications associated with your company,
         /// with optional filters to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="Notification"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<Notification>, ResultsMeta) GetNotifications()
+        {
+            return AsyncUtil.RunSync(() => GetNotificationsAsync());
+        }
+
+        /// <summary>
+        /// Retrieve Notifications.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all notifications associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -136,9 +152,30 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="Notification"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        public (IList<Notification>, ResultsMeta) GetNotifications(RequestOptions options = null)
+        public (IList<Notification>, ResultsMeta) GetNotifications(
+            RequestOptions options)
         {
-            return GetNotifications(null, options);
+            return AsyncUtil.RunSync(() => GetNotificationsAsync(options));
+        }
+
+        /// <summary>
+        /// Retrieve Notifications.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all notifications associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="NotificationFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Notification"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<Notification>, ResultsMeta) GetNotifications(
+            NotificationFilter filter)
+        {
+            return AsyncUtil.RunSync(() => GetNotificationsAsync(filter));
         }
 
         /// <summary>
@@ -160,9 +197,25 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public (IList<Notification>, ResultsMeta) GetNotifications(
             NotificationFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             return AsyncUtil.RunSync(() => GetNotificationsAsync(filter, options));
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Notifications.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all notifications associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="Notification"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Notification>, ResultsMeta)> GetNotificationsAsync()
+        {
+            return await GetNotificationsAsync(null, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -179,9 +232,30 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="Notification"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        public async Task<(IList<Notification>, ResultsMeta)> GetNotificationsAsync(RequestOptions options = null)
+        public async Task<(IList<Notification>, ResultsMeta)> GetNotificationsAsync(
+            RequestOptions options)
         {
             return await GetNotificationsAsync(null, options).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Notifications.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all notifications associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="NotificationFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Notification"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Notification>, ResultsMeta)> GetNotificationsAsync(
+            NotificationFilter filter)
+        {
+            return await GetNotificationsAsync(filter, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -203,7 +277,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<Notification>, ResultsMeta)> GetNotificationsAsync(
             NotificationFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             var context = new GetContext<Notification>(EndpointName.Notifications, filter, options);
 

@@ -132,6 +132,26 @@ namespace Intuit.TSheets.Api
         /// <param name="filter">
         /// An instance of the <see cref="ScheduleEventFilter"/> class, for narrowing down the results.
         /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="ScheduleEvent"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<ScheduleEvent>, ResultsMeta) GetScheduleEvents(
+            ScheduleEventFilter filter)
+        {
+            return AsyncUtil.RunSync(() => GetScheduleEventsAsync(filter));
+        }
+
+        /// <summary>
+        /// Retrieve Schedule Events.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all schedule events associated with your employees
+        /// or company, with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="ScheduleEventFilter"/> class, for narrowing down the results.
+        /// </param>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -141,9 +161,29 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public (IList<ScheduleEvent>, ResultsMeta) GetScheduleEvents(
             ScheduleEventFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             return AsyncUtil.RunSync(() => GetScheduleEventsAsync(filter, options));
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Schedule Events.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all schedule events associated with your employees
+        /// or company, with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="ScheduleEventFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="ScheduleEvent"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<ScheduleEvent>, ResultsMeta)> GetScheduleEventsAsync(
+            ScheduleEventFilter filter)
+        {
+            return await GetScheduleEventsAsync(filter, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -165,7 +205,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<ScheduleEvent>, ResultsMeta)> GetScheduleEventsAsync(
             ScheduleEventFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             var context = new GetContext<ScheduleEvent>(EndpointName.ScheduleEvents, filter, options);
 

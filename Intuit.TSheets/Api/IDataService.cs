@@ -39,6 +39,20 @@ namespace Intuit.TSheets.Api
         /// Retrieves the user object for the currently authenticated user. This is the
         /// user that authenticated to TSheets during the OAuth2 authentication process.
         /// </remarks>
+        /// <returns>
+        /// An instance of the <see cref="User"/> class, representing the current user, along
+        /// with an output instance of the <see cref="ResultsMeta"/> class containing additional
+        /// data.
+        /// </returns>
+        (User, ResultsMeta) GetCurrentUser();
+
+        /// <summary>
+        /// Retrieve the Current User.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves the user object for the currently authenticated user. This is the
+        /// user that authenticated to TSheets during the OAuth2 authentication process.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -47,7 +61,22 @@ namespace Intuit.TSheets.Api
         /// with an output instance of the <see cref="ResultsMeta"/> class containing additional
         /// data.
         /// </returns>
-        (User, ResultsMeta) GetCurrentUser(RequestOptions options = null);
+        (User, ResultsMeta) GetCurrentUser(
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve the Current User.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves the user object for the currently authenticated user. This is the
+        /// user that authenticated to TSheets during the OAuth2 authentication process.
+        /// </remarks>
+        /// <returns>
+        /// An instance of the <see cref="User"/> class, representing the current user, along
+        /// with an output instance of the <see cref="ResultsMeta"/> class containing additional
+        /// data.
+        /// </returns>
+        Task<(User, ResultsMeta)> GetCurrentUserAsync();
 
         /// <summary>
         /// Asynchronously Retrieve the Current User.
@@ -64,7 +93,8 @@ namespace Intuit.TSheets.Api
         /// with an output instance of the <see cref="ResultsMeta"/> class containing additional
         /// data.
         /// </returns>
-        Task<(User, ResultsMeta)> GetCurrentUserAsync(RequestOptions options = null);
+        Task<(User, ResultsMeta)> GetCurrentUserAsync(
+            RequestOptions options);
 
         #endregion
 
@@ -77,6 +107,19 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of all custom fields associated with your company,
         /// with filters to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="CustomField"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<CustomField>, ResultsMeta) GetCustomFields();
+
+        /// <summary>
+        /// Retrieve Custom Fields.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom fields associated with your company,
+        /// with filters to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -85,7 +128,24 @@ namespace Intuit.TSheets.Api
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
         (IList<CustomField>, ResultsMeta) GetCustomFields(
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Retrieve Custom Fields.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom fields associated with your company,
+        /// with filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="CustomFieldFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="CustomField"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<CustomField>, ResultsMeta) GetCustomFields(
+            CustomFieldFilter filter);
 
         /// <summary>
         /// Retrieve Custom Fields.
@@ -106,7 +166,20 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         (IList<CustomField>, ResultsMeta) GetCustomFields(
             CustomFieldFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Custom Fields.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom fields associated with your company,
+        /// with filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="CustomField"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<CustomField>, ResultsMeta)> GetCustomFieldsAsync();
 
         /// <summary>
         /// Asynchronously Retrieve Custom Fields.
@@ -123,7 +196,24 @@ namespace Intuit.TSheets.Api
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
         Task<(IList<CustomField>, ResultsMeta)> GetCustomFieldsAsync(
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Custom Fields.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom fields associated with your company,
+        /// with filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="CustomFieldFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="CustomField"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<CustomField>, ResultsMeta)> GetCustomFieldsAsync(
+            CustomFieldFilter filter);
 
         /// <summary>
         /// Asynchronously Retrieve Custom Fields.
@@ -144,7 +234,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         Task<(IList<CustomField>, ResultsMeta)> GetCustomFieldsAsync(
             CustomFieldFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
 
         #endregion
 
@@ -223,6 +313,23 @@ namespace Intuit.TSheets.Api
         /// <param name="filter">
         /// An instance of the <see cref="Model.Filters.CustomFieldItemFilter"/> class, for narrowing down the results.
         /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItem"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        (IList<CustomFieldItem>, ResultsMeta) GetCustomFieldItems(
+            Model.Filters.CustomFieldItemFilter filter);
+
+        /// <summary>
+        /// Retrieve Custom Field Items.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field items associated with a custom field,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="Model.Filters.CustomFieldItemFilter"/> class, for narrowing down the results.
+        /// </param>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -232,7 +339,24 @@ namespace Intuit.TSheets.Api
         /// </returns>
         (IList<CustomFieldItem>, ResultsMeta) GetCustomFieldItems(
             Model.Filters.CustomFieldItemFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Custom Field Items.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field items associated with a custom field,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="Model.Filters.CustomFieldItemFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItem"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<CustomFieldItem>, ResultsMeta)> GetCustomFieldItemsAsync(
+            Model.Filters.CustomFieldItemFilter filter);
 
         /// <summary>
         /// Asynchronously Retrieve Custom Field Items.
@@ -253,7 +377,7 @@ namespace Intuit.TSheets.Api
         /// </returns>
         Task<(IList<CustomFieldItem>, ResultsMeta)> GetCustomFieldItemsAsync(
             Model.Filters.CustomFieldItemFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
 
         /// <summary>
         /// Update Custom Field Items.
@@ -330,6 +454,19 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of all custom field item filters associated with a jobcode, user, or group,
         /// with options to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// The set of the <see cref="Model.CustomFieldItemFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        (IList<CustomFieldItemFilter>, ResultsMeta) GetCustomFieldItemFilters();
+
+        /// <summary>
+        /// Retrieve Custom Field Item Filters.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a jobcode, user, or group,
+        /// with options to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -337,7 +474,25 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Model.CustomFieldItemFilter"/> objects retrieved, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        (IList<CustomFieldItemFilter>, ResultsMeta) GetCustomFieldItemFilters(RequestOptions options = null);
+        (IList<CustomFieldItemFilter>, ResultsMeta) GetCustomFieldItemFilters(
+            RequestOptions options);
+
+        /// <summary>
+        /// Retrieve Custom Field Item Filters.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a jobcode, user, or group,
+        /// with options to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="CustomFieldItemFilterFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItemFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        (IList<CustomFieldItemFilter>, ResultsMeta) GetCustomFieldItemFilters(
+            CustomFieldItemFilterFilter filter);
 
         /// <summary>
         /// Retrieve Custom Field Item Filters.
@@ -358,7 +513,20 @@ namespace Intuit.TSheets.Api
         /// </returns>
         (IList<CustomFieldItemFilter>, ResultsMeta) GetCustomFieldItemFilters(
             CustomFieldItemFilterFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Custom Field Item Filters.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a jobcode, user, or group,
+        /// with options to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItemFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<CustomFieldItemFilter>, ResultsMeta)> GetCustomFieldItemFiltersAsync();
 
         /// <summary>
         /// Asynchronously Retrieve Custom Field Item Filters.
@@ -375,7 +543,24 @@ namespace Intuit.TSheets.Api
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
         Task<(IList<CustomFieldItemFilter>, ResultsMeta)> GetCustomFieldItemFiltersAsync(
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Custom Field Item Filters.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a jobcode, user, or group,
+        /// with options to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="CustomFieldItemFilterFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItemFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<CustomFieldItemFilter>, ResultsMeta)> GetCustomFieldItemFiltersAsync(
+            CustomFieldItemFilterFilter filter);
 
         /// <summary>
         /// Asynchronously Retrieve Custom Field Item Filters.
@@ -396,11 +581,24 @@ namespace Intuit.TSheets.Api
         /// </returns>
         Task<(IList<CustomFieldItemFilter>, ResultsMeta)> GetCustomFieldItemFiltersAsync(
             CustomFieldItemFilterFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
 
         #endregion
 
         #region CustomFieldItemJobcodeFilters
+
+        /// <summary>
+        /// Retrieve Custom Field Item Jobcode Filters.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a user or group,
+        /// with options to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItemJobcodeFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        (IList<CustomFieldItemJobcodeFilter>, ResultsMeta) GetCustomFieldItemJobcodeFilters();
 
         /// <summary>
         /// Retrieve Custom Field Item Jobcode Filters.
@@ -416,7 +614,25 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="CustomFieldItemJobcodeFilter"/> objects retrieved, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        (IList<CustomFieldItemJobcodeFilter>, ResultsMeta) GetCustomFieldItemJobcodeFilters(RequestOptions options = null);
+        (IList<CustomFieldItemJobcodeFilter>, ResultsMeta) GetCustomFieldItemJobcodeFilters(
+            RequestOptions options);
+
+        /// <summary>
+        /// Retrieve Custom Field Item Jobcode Filters.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a user or group,
+        /// with options to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="CustomFieldItemJobcodeFilterFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItemJobcodeFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        (IList<CustomFieldItemJobcodeFilter>, ResultsMeta) GetCustomFieldItemJobcodeFilters(
+            CustomFieldItemJobcodeFilterFilter filter);
 
         /// <summary>
         /// Retrieve Custom Field Item Jobcode Filters.
@@ -437,7 +653,20 @@ namespace Intuit.TSheets.Api
         /// </returns>
         (IList<CustomFieldItemJobcodeFilter>, ResultsMeta) GetCustomFieldItemJobcodeFilters(
             CustomFieldItemJobcodeFilterFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Custom Field Item Jobcode Filters.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a user or group,
+        /// with options to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItemJobcodeFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<CustomFieldItemJobcodeFilter>, ResultsMeta)> GetCustomFieldItemJobcodeFiltersAsync();
 
         /// <summary>
         /// Asynchronously Retrieve Custom Field Item Jobcode Filters.
@@ -454,7 +683,24 @@ namespace Intuit.TSheets.Api
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
         Task<(IList<CustomFieldItemJobcodeFilter>, ResultsMeta)> GetCustomFieldItemJobcodeFiltersAsync(
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Custom Field Item Jobcode Filters.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a user or group,
+        /// with options to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="CustomFieldItemJobcodeFilterFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItemJobcodeFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<CustomFieldItemJobcodeFilter>, ResultsMeta)> GetCustomFieldItemJobcodeFiltersAsync(
+            CustomFieldItemJobcodeFilterFilter filter);
 
         /// <summary>
         /// Asynchronously Retrieve Custom Field Item Jobcode Filters.
@@ -475,11 +721,24 @@ namespace Intuit.TSheets.Api
         /// </returns>
         Task<(IList<CustomFieldItemJobcodeFilter>, ResultsMeta)> GetCustomFieldItemJobcodeFiltersAsync(
             CustomFieldItemJobcodeFilterFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
 
         #endregion
 
         #region CustomFieldItemUserFilters
+
+        /// <summary>
+        /// Retrieve Custom Field Item User Filters.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a user or group,
+        /// with options to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItemUserFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        (IList<CustomFieldItemUserFilter>, ResultsMeta) GetCustomFieldItemUserFilters();
 
         /// <summary>
         /// Retrieve Custom Field Item User Filters.
@@ -495,7 +754,25 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="CustomFieldItemUserFilter"/> objects retrieved, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        (IList<CustomFieldItemUserFilter>, ResultsMeta) GetCustomFieldItemUserFilters(RequestOptions options = null);
+        (IList<CustomFieldItemUserFilter>, ResultsMeta) GetCustomFieldItemUserFilters(
+            RequestOptions options);
+
+        /// <summary>
+        /// Retrieve Custom Field Item User Filters.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a user or group,
+        /// with options to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="CustomFieldItemUserFilterFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItemUserFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        (IList<CustomFieldItemUserFilter>, ResultsMeta) GetCustomFieldItemUserFilters(
+            CustomFieldItemUserFilterFilter filter);
 
         /// <summary>
         /// Retrieve Custom Field Item User Filters.
@@ -516,7 +793,20 @@ namespace Intuit.TSheets.Api
         /// </returns>
         (IList<CustomFieldItemUserFilter>, ResultsMeta) GetCustomFieldItemUserFilters(
             CustomFieldItemUserFilterFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Custom Field Item User Filters.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a user or group,
+        /// with options to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItemUserFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<CustomFieldItemUserFilter>, ResultsMeta)> GetCustomFieldItemUserFiltersAsync();
 
         /// <summary>
         /// Asynchronously Retrieve Custom Field Item User Filters.
@@ -533,7 +823,24 @@ namespace Intuit.TSheets.Api
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
         Task<(IList<CustomFieldItemUserFilter>, ResultsMeta)> GetCustomFieldItemUserFiltersAsync(
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Custom Field Item User Filters.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a user, user, or group,
+        /// with options to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="CustomFieldItemUserFilterFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItemUserFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<CustomFieldItemUserFilter>, ResultsMeta)> GetCustomFieldItemUserFiltersAsync(
+            CustomFieldItemUserFilterFilter filter);
 
         /// <summary>
         /// Asynchronously Retrieve Custom Field Item User Filters.
@@ -554,7 +861,7 @@ namespace Intuit.TSheets.Api
         /// </returns>
         Task<(IList<CustomFieldItemUserFilter>, ResultsMeta)> GetCustomFieldItemUserFiltersAsync(
             CustomFieldItemUserFilterFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
 
         #endregion
 
@@ -685,6 +992,19 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of all uploaded files, with
         /// optional filters to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="File"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<File>, ResultsMeta) GetFiles();
+
+        /// <summary>
+        /// Retrieve Files.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all uploaded files, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -692,7 +1012,25 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="File"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        (IList<File>, ResultsMeta) GetFiles(RequestOptions options = null);
+        (IList<File>, ResultsMeta) GetFiles(
+            RequestOptions options);
+
+        /// <summary>
+        /// Retrieve Files.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all uploaded files, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="FileFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="File"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<File>, ResultsMeta) GetFiles(
+            FileFilter filter);
 
         /// <summary>
         /// Retrieve Files.
@@ -713,7 +1051,20 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         (IList<File>, ResultsMeta) GetFiles(
             FileFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Files.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all uploaded files, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="File"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<File>, ResultsMeta)> GetFilesAsync();
 
         /// <summary>
         /// Asynchronously Retrieve Files.
@@ -729,7 +1080,25 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="File"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        Task<(IList<File>, ResultsMeta)> GetFilesAsync(RequestOptions options = null);
+        Task<(IList<File>, ResultsMeta)> GetFilesAsync(
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Files.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all uploaded files, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="FileFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="File"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<File>, ResultsMeta)> GetFilesAsync(
+            FileFilter filter);
 
         /// <summary>
         /// Asynchronously Retrieve Files.
@@ -750,7 +1119,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         Task<(IList<File>, ResultsMeta)> GetFilesAsync(
             FileFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
 
         /// <summary>
         /// Update Files.
@@ -930,6 +1299,19 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of all geofence configurations, with
         /// optional filters to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="GeofenceConfig"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<GeofenceConfig>, ResultsMeta) GetGeofenceConfigs();
+
+        /// <summary>
+        /// Retrieve Geofence Configurations.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all geofence configurations, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -937,7 +1319,25 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="GeofenceConfig"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        (IList<GeofenceConfig>, ResultsMeta) GetGeofenceConfigs(RequestOptions options = null);
+        (IList<GeofenceConfig>, ResultsMeta) GetGeofenceConfigs(
+            RequestOptions options);
+
+        /// <summary>
+        /// Retrieve Geofence Configurations.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all geofence configurations, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="GeofenceConfigFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="GeofenceConfig"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<GeofenceConfig>, ResultsMeta) GetGeofenceConfigs(
+            GeofenceConfigFilter filter);
 
         /// <summary>
         /// Retrieve Geofence Configurations.
@@ -958,7 +1358,20 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         (IList<GeofenceConfig>, ResultsMeta) GetGeofenceConfigs(
             GeofenceConfigFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Geofence Configurations.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all geofence configurations, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="GeofenceConfig"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<GeofenceConfig>, ResultsMeta)> GetGeofenceConfigsAsync();
 
         /// <summary>
         /// Asynchronously Retrieve Geofence Configurations.
@@ -974,7 +1387,25 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="GeofenceConfig"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        Task<(IList<GeofenceConfig>, ResultsMeta)> GetGeofenceConfigsAsync(RequestOptions options = null);
+        Task<(IList<GeofenceConfig>, ResultsMeta)> GetGeofenceConfigsAsync(
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Geofence Configurations.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all geofence configurations, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="GeofenceConfigFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="GeofenceConfig"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<GeofenceConfig>, ResultsMeta)> GetGeofenceConfigsAsync(
+            GeofenceConfigFilter filter);
 
         /// <summary>
         /// Asynchronously Retrieve Geofence Configurations.
@@ -995,7 +1426,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         Task<(IList<GeofenceConfig>, ResultsMeta)> GetGeofenceConfigsAsync(
             GeofenceConfigFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
 
         #endregion
 
@@ -1059,6 +1490,23 @@ namespace Intuit.TSheets.Api
         /// <param name="filter">
         /// An instance of the <see cref="GeolocationFilter"/> class, for narrowing down the results.
         /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Geolocation"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<Geolocation>, ResultsMeta) GetGeolocations(
+            GeolocationFilter filter);
+
+        /// <summary>
+        /// Retrieve Geolocations.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of geolocations associated with your company, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="GeolocationFilter"/> class, for narrowing down the results.
+        /// </param>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -1068,7 +1516,24 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         (IList<Geolocation>, ResultsMeta) GetGeolocations(
             GeolocationFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Geolocations.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of geolocations associated with your company, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="GeolocationFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Geolocation"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<Geolocation>, ResultsMeta)> GetGeolocationsAsync(
+            GeolocationFilter filter);
 
         /// <summary>
         /// Asynchronously Retrieve Geolocations.
@@ -1089,7 +1554,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         Task<(IList<Geolocation>, ResultsMeta)> GetGeolocationsAsync(
             GeolocationFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
 
         #endregion
 
@@ -1162,6 +1627,19 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of groups associated with your company, with
         /// optional filters to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="Group"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<Group>, ResultsMeta) GetGroups();
+
+        /// <summary>
+        /// Retrieve Groups.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of groups associated with your company, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -1169,7 +1647,25 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="Group"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        (IList<Group>, ResultsMeta) GetGroups(RequestOptions options = null);
+        (IList<Group>, ResultsMeta) GetGroups(
+            RequestOptions options);
+
+        /// <summary>
+        /// Retrieve Groups.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of groups associated with your company, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="GroupFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Group"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<Group>, ResultsMeta) GetGroups(
+            GroupFilter filter);
 
         /// <summary>
         /// Retrieve Groups.
@@ -1190,7 +1686,20 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         (IList<Group>, ResultsMeta) GetGroups(
             GroupFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Groups.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of groups associated with your company, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="Group"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<Group>, ResultsMeta)> GetGroupsAsync();
 
         /// <summary>
         /// Asynchronously Retrieve Groups.
@@ -1206,7 +1715,25 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="Group"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        Task<(IList<Group>, ResultsMeta)> GetGroupsAsync(RequestOptions options = null);
+        Task<(IList<Group>, ResultsMeta)> GetGroupsAsync(
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Groups.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of groups associated with your company, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="GroupFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Group"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<Group>, ResultsMeta)> GetGroupsAsync(
+            GroupFilter filter);
 
         /// <summary>
         /// Asynchronously Retrieve Groups.
@@ -1227,7 +1754,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         Task<(IList<Group>, ResultsMeta)> GetGroupsAsync(
             GroupFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
 
         /// <summary>
         /// Update Groups.
@@ -1424,6 +1951,19 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of all jobcodes associated with your company,
         /// with optional filters to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="Jobcode"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<Jobcode>, ResultsMeta) GetJobcodes();
+
+        /// <summary>
+        /// Retrieve Jobcodes.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcodes associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -1431,7 +1971,25 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="Jobcode"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        (IList<Jobcode>, ResultsMeta) GetJobcodes(RequestOptions options = null);
+        (IList<Jobcode>, ResultsMeta) GetJobcodes(
+            RequestOptions options);
+
+        /// <summary>
+        /// Retrieve Jobcodes.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcodes associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="JobcodeFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Jobcode"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<Jobcode>, ResultsMeta) GetJobcodes(
+            JobcodeFilter filter);
 
         /// <summary>
         /// Retrieve Jobcodes.
@@ -1452,7 +2010,20 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         (IList<Jobcode>, ResultsMeta) GetJobcodes(
             JobcodeFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Jobcodes.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcodes associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="Jobcode"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<Jobcode>, ResultsMeta)> GetJobcodesAsync();
 
         /// <summary>
         /// Asynchronously Retrieve Jobcodes.
@@ -1468,7 +2039,25 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="Jobcode"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        Task<(IList<Jobcode>, ResultsMeta)> GetJobcodesAsync(RequestOptions options = null);
+        Task<(IList<Jobcode>, ResultsMeta)> GetJobcodesAsync(
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Jobcodes.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcodes associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="JobcodeFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Jobcode"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<Jobcode>, ResultsMeta)> GetJobcodesAsync(
+            JobcodeFilter filter);
 
         /// <summary>
         /// Asynchronously Retrieve Jobcodes.
@@ -1489,7 +2078,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         Task<(IList<Jobcode>, ResultsMeta)> GetJobcodesAsync(
             JobcodeFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
 
         /// <summary>
         /// Update Jobcodes.
@@ -1623,6 +2212,19 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of all jobcode assignments associated with users,
         /// with optional filters to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="JobcodeAssignment"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<JobcodeAssignment>, ResultsMeta) GetJobcodeAssignments();
+
+        /// <summary>
+        /// Retrieve Jobcode Assignments.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcode assignments associated with users,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -1630,7 +2232,25 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="JobcodeAssignment"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        (IList<JobcodeAssignment>, ResultsMeta) GetJobcodeAssignments(RequestOptions options = null);
+        (IList<JobcodeAssignment>, ResultsMeta) GetJobcodeAssignments(
+            RequestOptions options);
+
+        /// <summary>
+        /// Retrieve Jobcode Assignments.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcode assignments associated with users,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="JobcodeAssignmentFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="JobcodeAssignment"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<JobcodeAssignment>, ResultsMeta) GetJobcodeAssignments(
+            JobcodeAssignmentFilter filter);
 
         /// <summary>
         /// Retrieve Jobcode Assignments.
@@ -1651,7 +2271,20 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         (IList<JobcodeAssignment>, ResultsMeta) GetJobcodeAssignments(
             JobcodeAssignmentFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Jobcode Assignments.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcode assignments associated with users,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="JobcodeAssignment"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<JobcodeAssignment>, ResultsMeta)> GetJobcodeAssignmentsAsync();
 
         /// <summary>
         /// Asynchronously Retrieve Jobcode Assignments.
@@ -1667,7 +2300,25 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="JobcodeAssignment"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        Task<(IList<JobcodeAssignment>, ResultsMeta)> GetJobcodeAssignmentsAsync(RequestOptions options = null);
+        Task<(IList<JobcodeAssignment>, ResultsMeta)> GetJobcodeAssignmentsAsync(
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Jobcode Assignments.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcode assignments associated with users,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="JobcodeAssignmentFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="JobcodeAssignment"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<JobcodeAssignment>, ResultsMeta)> GetJobcodeAssignmentsAsync(
+            JobcodeAssignmentFilter filter);
 
         /// <summary>
         /// Asynchronously Retrieve Jobcode Assignments.
@@ -1688,7 +2339,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         Task<(IList<JobcodeAssignment>, ResultsMeta)> GetJobcodeAssignmentsAsync(
             JobcodeAssignmentFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
 
         /// <summary>
         /// Delete Jobcode Assignments.
@@ -1908,6 +2559,19 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of all locations associated with your company,
         /// with optional filters to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="Location"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<Location>, ResultsMeta) GetLocations();
+
+        /// <summary>
+        /// Retrieve Locations.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locations associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -1915,7 +2579,25 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="Location"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        (IList<Location>, ResultsMeta) GetLocations(RequestOptions options = null);
+        (IList<Location>, ResultsMeta) GetLocations(
+            RequestOptions options);
+
+        /// <summary>
+        /// Retrieve Locations.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locations associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="LocationFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Location"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<Location>, ResultsMeta) GetLocations(
+            LocationFilter filter);
 
         /// <summary>
         /// Retrieve Locations.
@@ -1936,7 +2618,20 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         (IList<Location>, ResultsMeta) GetLocations(
             LocationFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Locations.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locations associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="Location"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<Location>, ResultsMeta)> GetLocationsAsync();
 
         /// <summary>
         /// Asynchronously Retrieve Locations.
@@ -1952,7 +2647,25 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="Location"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        Task<(IList<Location>, ResultsMeta)> GetLocationsAsync(RequestOptions options = null);
+        Task<(IList<Location>, ResultsMeta)> GetLocationsAsync(
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Locations.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locations associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="LocationFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Location"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<Location>, ResultsMeta)> GetLocationsAsync(
+            LocationFilter filter);
 
         /// <summary>
         /// Asynchronously Retrieve Locations.
@@ -1973,7 +2686,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         Task<(IList<Location>, ResultsMeta)> GetLocationsAsync(
             LocationFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
 
         /// <summary>
         /// Update Locations.
@@ -2046,6 +2759,19 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of all locations maps associated with your company,
         /// with optional filters to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="LocationsMap"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<LocationsMap>, ResultsMeta) GetLocationsMaps();
+
+        /// <summary>
+        /// Retrieve Locations Maps.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locations maps associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -2053,7 +2779,25 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="LocationsMap"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        (IList<LocationsMap>, ResultsMeta) GetLocationsMaps(RequestOptions options = null);
+        (IList<LocationsMap>, ResultsMeta) GetLocationsMaps(
+            RequestOptions options);
+
+        /// <summary>
+        /// Retrieve Locations Maps.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locations maps associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="LocationsMapFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="LocationsMap"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<LocationsMap>, ResultsMeta) GetLocationsMaps(
+            LocationsMapFilter filter);
 
         /// <summary>
         /// Retrieve Locations Maps.
@@ -2074,7 +2818,20 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         (IList<LocationsMap>, ResultsMeta) GetLocationsMaps(
             LocationsMapFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve LocationsMaps.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locationsMaps associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="Location"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<LocationsMap>, ResultsMeta)> GetLocationsMapsAsync();
 
         /// <summary>
         /// Asynchronously Retrieve LocationsMaps.
@@ -2090,7 +2847,25 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="Location"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        Task<(IList<LocationsMap>, ResultsMeta)> GetLocationsMapsAsync(RequestOptions options = null);
+        Task<(IList<LocationsMap>, ResultsMeta)> GetLocationsMapsAsync(
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve LocationsMaps.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locationsMaps associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="LocationFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Location"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<LocationsMap>, ResultsMeta)> GetLocationsMapsAsync(
+            LocationsMapFilter filter);
 
         /// <summary>
         /// Asynchronously Retrieve LocationsMaps.
@@ -2111,11 +2886,24 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         Task<(IList<LocationsMap>, ResultsMeta)> GetLocationsMapsAsync(
             LocationsMapFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
 
         #endregion
 
         #region ManagedClients
+
+        /// <summary>
+        /// Retrieve Managed Clients.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of managed clients available from your account,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="ManagedClient"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<ManagedClient>, ResultsMeta) GetManagedClients();
 
         /// <summary>
         /// Retrieve Managed Clients.
@@ -2131,7 +2919,25 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="ManagedClient"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        (IList<ManagedClient>, ResultsMeta) GetManagedClients(RequestOptions options = null);
+        (IList<ManagedClient>, ResultsMeta) GetManagedClients(
+            RequestOptions options);
+
+        /// <summary>
+        /// Retrieve Managed Clients.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of managed clients available from your account,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="ManagedClientFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="ManagedClient"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<ManagedClient>, ResultsMeta) GetManagedClients(
+            ManagedClientFilter filter);
 
         /// <summary>
         /// Retrieve Managed Clients.
@@ -2152,7 +2958,20 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         (IList<ManagedClient>, ResultsMeta) GetManagedClients(
             ManagedClientFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Managed Clients.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of managed clients available from your account,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="ManagedClient"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<ManagedClient>, ResultsMeta)> GetManagedClientsAsync();
 
         /// <summary>
         /// Asynchronously Retrieve Managed Clients.
@@ -2168,7 +2987,25 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="ManagedClient"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        Task<(IList<ManagedClient>, ResultsMeta)> GetManagedClientsAsync(RequestOptions options = null);
+        Task<(IList<ManagedClient>, ResultsMeta)> GetManagedClientsAsync(
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Managed Clients.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of managed clients available from your account,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="ManagedClientFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="ManagedClient"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<ManagedClient>, ResultsMeta)> GetManagedClientsAsync(
+            ManagedClientFilter filter);
 
         /// <summary>
         /// Asynchronously Retrieve Managed Clients.
@@ -2189,7 +3026,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         Task<(IList<ManagedClient>, ResultsMeta)> GetManagedClientsAsync(
             ManagedClientFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
 
         #endregion
 
@@ -2262,6 +3099,19 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of all notifications associated with your company,
         /// with optional filters to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="Notification"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<Notification>, ResultsMeta) GetNotifications();
+
+        /// <summary>
+        /// Retrieve Notifications.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all notifications associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -2269,7 +3119,25 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="Notification"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        (IList<Notification>, ResultsMeta) GetNotifications(RequestOptions options = null);
+        (IList<Notification>, ResultsMeta) GetNotifications(
+            RequestOptions options);
+
+        /// <summary>
+        /// Retrieve Notifications.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all notifications associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="NotificationFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Notification"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<Notification>, ResultsMeta) GetNotifications(
+            NotificationFilter filter);
 
         /// <summary>
         /// Retrieve Notifications.
@@ -2290,7 +3158,20 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         (IList<Notification>, ResultsMeta) GetNotifications(
             NotificationFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Notifications.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all notifications associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="Notification"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<Notification>, ResultsMeta)> GetNotificationsAsync();
 
         /// <summary>
         /// Asynchronously Retrieve Notifications.
@@ -2306,7 +3187,25 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="Notification"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        Task<(IList<Notification>, ResultsMeta)> GetNotificationsAsync(RequestOptions options = null);
+        Task<(IList<Notification>, ResultsMeta)> GetNotificationsAsync(
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Notifications.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all notifications associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="NotificationFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Notification"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<Notification>, ResultsMeta)> GetNotificationsAsync(
+            NotificationFilter filter);
 
         /// <summary>
         /// Asynchronously Retrieve Notifications.
@@ -2327,7 +3226,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         Task<(IList<Notification>, ResultsMeta)> GetNotificationsAsync(
             NotificationFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
 
         /// <summary>
         /// Delete Notifications.
@@ -2495,6 +3394,23 @@ namespace Intuit.TSheets.Api
         /// <param name="filter">
         /// An instance of the <see cref="ReminderFilter"/> class, for narrowing down the results.
         /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Reminder"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<Reminder>, ResultsMeta) GetReminders(
+            ReminderFilter filter);
+
+        /// <summary>
+        /// Retrieve Reminders.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all reminders associated with your employees
+        /// or company, with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="ReminderFilter"/> class, for narrowing down the results.
+        /// </param>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -2504,7 +3420,24 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         (IList<Reminder>, ResultsMeta) GetReminders(
             ReminderFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Reminders.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all reminders associated with your employees
+        /// or company, with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="ReminderFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Reminder"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<Reminder>, ResultsMeta)> GetRemindersAsync(
+            ReminderFilter filter);
 
         /// <summary>
         /// Asynchronously Retrieve Reminders.
@@ -2525,7 +3458,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         Task<(IList<Reminder>, ResultsMeta)> GetRemindersAsync(
             ReminderFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
 
         /// <summary>
         /// Update Reminders.
@@ -2766,6 +3699,19 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of all schedule calendars associated with your
         /// employees, with optional filters to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="ScheduleCalendar"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<ScheduleCalendar>, ResultsMeta) GetScheduleCalendars();
+
+        /// <summary>
+        /// Retrieve Schedule Calendars.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all schedule calendars associated with your
+        /// employees, with optional filters to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -2773,7 +3719,25 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="ScheduleCalendar"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        (IList<ScheduleCalendar>, ResultsMeta) GetScheduleCalendars(RequestOptions options = null);
+        (IList<ScheduleCalendar>, ResultsMeta) GetScheduleCalendars(
+            RequestOptions options);
+
+        /// <summary>
+        /// Retrieve Schedule Calendars.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all schedule calendars associated with your
+        /// employees, with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="ScheduleCalendarFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="ScheduleCalendar"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<ScheduleCalendar>, ResultsMeta) GetScheduleCalendars(
+            ScheduleCalendarFilter filter);
 
         /// <summary>
         /// Retrieve Schedule Calendars.
@@ -2794,7 +3758,20 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         (IList<ScheduleCalendar>, ResultsMeta) GetScheduleCalendars(
             ScheduleCalendarFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Schedule Calendars.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all schedule calendars associated with your
+        /// employees, with optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="ScheduleCalendar"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<ScheduleCalendar>, ResultsMeta)> GetScheduleCalendarsAsync();
 
         /// <summary>
         /// Asynchronously Retrieve Schedule Calendars.
@@ -2810,7 +3787,25 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="ScheduleCalendar"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        Task<(IList<ScheduleCalendar>, ResultsMeta)> GetScheduleCalendarsAsync(RequestOptions options = null);
+        Task<(IList<ScheduleCalendar>, ResultsMeta)> GetScheduleCalendarsAsync(
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Schedule Calendars.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all schedule calendars associated with your
+        /// employees, with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="ScheduleCalendarFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="ScheduleCalendar"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<ScheduleCalendar>, ResultsMeta)> GetScheduleCalendarsAsync(
+            ScheduleCalendarFilter filter);
 
         /// <summary>
         /// Asynchronously Retrieve Schedule Calendars.
@@ -2831,7 +3826,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         Task<(IList<ScheduleCalendar>, ResultsMeta)> GetScheduleCalendarsAsync(
             ScheduleCalendarFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
 
         #endregion
 
@@ -2907,6 +3902,23 @@ namespace Intuit.TSheets.Api
         /// <param name="filter">
         /// An instance of the <see cref="ScheduleEventFilter"/> class, for narrowing down the results.
         /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="ScheduleEvent"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<ScheduleEvent>, ResultsMeta) GetScheduleEvents(
+            ScheduleEventFilter filter);
+
+        /// <summary>
+        /// Retrieve Schedule Events.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all schedule events associated with your employees
+        /// or company, with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="ScheduleEventFilter"/> class, for narrowing down the results.
+        /// </param>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -2916,7 +3928,24 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         (IList<ScheduleEvent>, ResultsMeta) GetScheduleEvents(
             ScheduleEventFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Schedule Events.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all schedule events associated with your employees
+        /// or company, with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="ScheduleEventFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="ScheduleEvent"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<ScheduleEvent>, ResultsMeta)> GetScheduleEventsAsync(
+            ScheduleEventFilter filter);
 
         /// <summary>
         /// Asynchronously Retrieve Schedule Events.
@@ -2937,7 +3966,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         Task<(IList<ScheduleEvent>, ResultsMeta)> GetScheduleEventsAsync(
             ScheduleEventFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
 
         /// <summary>
         /// Update Schedule Events.
@@ -3076,6 +4105,23 @@ namespace Intuit.TSheets.Api
         /// <param name="filter">
         /// An instance of the <see cref="TimesheetFilter"/> class, for narrowing down the results.
         /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Timesheet"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<Timesheet>, ResultsMeta) GetTimesheets(
+            TimesheetFilter filter);
+
+        /// <summary>
+        /// Retrieve Timesheets.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all timesheets associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="TimesheetFilter"/> class, for narrowing down the results.
+        /// </param>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -3085,7 +4131,24 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         (IList<Timesheet>, ResultsMeta) GetTimesheets(
             TimesheetFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Timesheets.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all timesheets associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="TimesheetFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Timesheet"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<Timesheet>, ResultsMeta)> GetTimesheetsAsync(
+            TimesheetFilter filter);
 
         /// <summary>
         /// Asynchronously Retrieve Timesheets.
@@ -3106,7 +4169,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         Task<(IList<Timesheet>, ResultsMeta)> GetTimesheetsAsync(
             TimesheetFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
 
         /// <summary>
         /// Update Timesheets.
@@ -3277,6 +4340,23 @@ namespace Intuit.TSheets.Api
         /// <param name="filter">
         /// An instance of the <see cref="TimesheetsDeletedFilter"/> class, for narrowing down the results.
         /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="TimesheetsDeleted"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<TimesheetsDeleted>, ResultsMeta) GetTimesheetsDeleted(
+            TimesheetsDeletedFilter filter);
+
+        /// <summary>
+        /// Retrieve Deleted Timesheets.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all deleted timesheets associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="TimesheetsDeletedFilter"/> class, for narrowing down the results.
+        /// </param>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -3286,7 +4366,24 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         (IList<TimesheetsDeleted>, ResultsMeta) GetTimesheetsDeleted(
             TimesheetsDeletedFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Retrieve Deleted Timesheets.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all deleted timesheets associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="TimesheetsDeletedFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="TimesheetsDeleted"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<TimesheetsDeleted>, ResultsMeta)> GetTimesheetsDeletedAsync(
+            TimesheetsDeletedFilter filter);
 
         /// <summary>
         /// Retrieve Deleted Timesheets.
@@ -3307,7 +4404,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         Task<(IList<TimesheetsDeleted>, ResultsMeta)> GetTimesheetsDeletedAsync(
             TimesheetsDeletedFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
 
         #endregion
 
@@ -3380,6 +4477,19 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of all users associated with your company,
         /// with optional filters to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="User"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<User>, ResultsMeta) GetUsers();
+
+        /// <summary>
+        /// Retrieve Users.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all users associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -3387,7 +4497,25 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="User"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        (IList<User>, ResultsMeta) GetUsers(RequestOptions options = null);
+        (IList<User>, ResultsMeta) GetUsers(
+            RequestOptions options);
+
+        /// <summary>
+        /// Retrieve Users.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all users associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="UserFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="User"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        (IList<User>, ResultsMeta) GetUsers(
+            UserFilter filter);
 
         /// <summary>
         /// Retrieve Users.
@@ -3408,7 +4536,20 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         (IList<User>, ResultsMeta) GetUsers(
             UserFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Users.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all users associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="User"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<User>, ResultsMeta)> GetUsersAsync();
 
         /// <summary>
         /// Asynchronously Retrieve Users.
@@ -3424,7 +4565,25 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="User"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        Task<(IList<User>, ResultsMeta)> GetUsersAsync(RequestOptions options = null);
+        Task<(IList<User>, ResultsMeta)> GetUsersAsync(
+            RequestOptions options);
+
+        /// <summary>
+        /// Asynchronously Retrieve Users.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all users associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="UserFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="User"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        Task<(IList<User>, ResultsMeta)> GetUsersAsync(
+            UserFilter filter);
 
         /// <summary>
         /// Asynchronously Retrieve Users.
@@ -3445,7 +4604,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         Task<(IList<User>, ResultsMeta)> GetUsersAsync(
             UserFilter filter,
-            RequestOptions options = null);
+            RequestOptions options);
 
         /// <summary>
         /// Update Users.

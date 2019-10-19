@@ -132,6 +132,26 @@ namespace Intuit.TSheets.Api
         /// <param name="filter">
         /// An instance of the <see cref="ReminderFilter"/> class, for narrowing down the results.
         /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Reminder"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<Reminder>, ResultsMeta) GetReminders(
+            ReminderFilter filter)
+        {
+            return AsyncUtil.RunSync(() => GetRemindersAsync(filter));
+        }
+
+        /// <summary>
+        /// Retrieve Reminders.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all reminders associated with your employees
+        /// or company, with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="ReminderFilter"/> class, for narrowing down the results.
+        /// </param>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -141,9 +161,29 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public (IList<Reminder>, ResultsMeta) GetReminders(
             ReminderFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             return AsyncUtil.RunSync(() => GetRemindersAsync(filter, options));
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Reminders.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all reminders associated with your employees
+        /// or company, with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="ReminderFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Reminder"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Reminder>, ResultsMeta)> GetRemindersAsync(
+            ReminderFilter filter)
+        {
+            return await GetRemindersAsync(filter, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -165,7 +205,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<Reminder>, ResultsMeta)> GetRemindersAsync(
             ReminderFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             var context = new GetContext<Reminder>(EndpointName.Reminders, filter, options);
 

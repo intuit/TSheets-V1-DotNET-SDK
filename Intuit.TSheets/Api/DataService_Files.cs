@@ -129,6 +129,22 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of all uploaded files, with
         /// optional filters to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="File"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<File>, ResultsMeta) GetFiles()
+        {
+            return AsyncUtil.RunSync(() => GetFilesAsync());
+        }
+
+        /// <summary>
+        /// Retrieve Files.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all uploaded files, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -136,9 +152,30 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="File"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        public (IList<File>, ResultsMeta) GetFiles(RequestOptions options = null)
+        public (IList<File>, ResultsMeta) GetFiles(
+            RequestOptions options)
         {
-            return GetFiles(null, options);
+            return AsyncUtil.RunSync(() => GetFilesAsync(options));
+        }
+
+        /// <summary>
+        /// Retrieve Files.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all uploaded files, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="FileFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="File"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<File>, ResultsMeta) GetFiles(
+            FileFilter filter)
+        {
+            return AsyncUtil.RunSync(() => GetFilesAsync(filter));
         }
 
         /// <summary>
@@ -160,9 +197,25 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public (IList<File>, ResultsMeta) GetFiles(
             FileFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             return AsyncUtil.RunSync(() => GetFilesAsync(filter, options));
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Files.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all uploaded files, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="File"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<File>, ResultsMeta)> GetFilesAsync()
+        {
+            return await GetFilesAsync(null, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -179,9 +232,30 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="File"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        public async Task<(IList<File>, ResultsMeta)> GetFilesAsync(RequestOptions options = null)
+        public async Task<(IList<File>, ResultsMeta)> GetFilesAsync(
+            RequestOptions options)
         {
             return await GetFilesAsync(null, options).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Files.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all uploaded files, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="FileFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="File"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<File>, ResultsMeta)> GetFilesAsync(
+            FileFilter filter)
+        {
+            return await GetFilesAsync(filter, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -203,7 +277,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<File>, ResultsMeta)> GetFilesAsync(
             FileFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             var context = new GetContext<File>(EndpointName.Files, filter, options);
 

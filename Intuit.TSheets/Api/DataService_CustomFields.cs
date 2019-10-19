@@ -44,6 +44,22 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of all custom fields associated with your company,
         /// with filters to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="CustomField"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<CustomField>, ResultsMeta) GetCustomFields()
+        {
+            return AsyncUtil.RunSync(() => GetCustomFieldsAsync());
+        }
+
+        /// <summary>
+        /// Retrieve Custom Fields.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom fields associated with your company,
+        /// with filters to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -52,9 +68,29 @@ namespace Intuit.TSheets.Api
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
         public (IList<CustomField>, ResultsMeta) GetCustomFields(
-            RequestOptions options = null)
+            RequestOptions options)
         {
-            return GetCustomFields(null, options);
+            return AsyncUtil.RunSync(() => GetCustomFieldsAsync(options));
+        }
+
+        /// <summary>
+        /// Retrieve Custom Fields.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom fields associated with your company,
+        /// with filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="CustomFieldFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="CustomField"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<CustomField>, ResultsMeta) GetCustomFields(
+            CustomFieldFilter filter)
+        {
+            return AsyncUtil.RunSync(() => GetCustomFieldsAsync(filter));
         }
 
         /// <summary>
@@ -76,9 +112,25 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public (IList<CustomField>, ResultsMeta) GetCustomFields(
             CustomFieldFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             return AsyncUtil.RunSync(() => GetCustomFieldsAsync(filter, options));
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Custom Fields.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom fields associated with your company,
+        /// with filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="CustomField"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<CustomField>, ResultsMeta)> GetCustomFieldsAsync()
+        {
+            return await GetCustomFieldsAsync(null, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -96,9 +148,29 @@ namespace Intuit.TSheets.Api
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
         public async Task<(IList<CustomField>, ResultsMeta)> GetCustomFieldsAsync(
-            RequestOptions options = null)
+            RequestOptions options)
         {
             return await GetCustomFieldsAsync(null, options).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Custom Fields.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom fields associated with your company,
+        /// with filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="CustomFieldFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="CustomField"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<CustomField>, ResultsMeta)> GetCustomFieldsAsync(
+            CustomFieldFilter filter)
+        {
+            return await GetCustomFieldsAsync(filter, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -120,7 +192,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<CustomField>, ResultsMeta)> GetCustomFieldsAsync(
             CustomFieldFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             var context = new GetContext<CustomField>(EndpointName.CustomFields, filter, options);
 

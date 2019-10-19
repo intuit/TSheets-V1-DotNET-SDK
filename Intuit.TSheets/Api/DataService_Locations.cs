@@ -129,6 +129,22 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of all locations associated with your company,
         /// with optional filters to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="Location"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<Location>, ResultsMeta) GetLocations()
+        {
+            return AsyncUtil.RunSync(() => GetLocationsAsync());
+        }
+
+        /// <summary>
+        /// Retrieve Locations.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locations associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -136,9 +152,30 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="Location"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        public (IList<Location>, ResultsMeta) GetLocations(RequestOptions options = null)
+        public (IList<Location>, ResultsMeta) GetLocations(
+            RequestOptions options)
         {
-            return GetLocations(null, options);
+            return AsyncUtil.RunSync(() => GetLocationsAsync(options));
+        }
+
+        /// <summary>
+        /// Retrieve Locations.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locations associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="LocationFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Location"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<Location>, ResultsMeta) GetLocations(
+            LocationFilter filter)
+        {
+            return AsyncUtil.RunSync(() => GetLocationsAsync(filter));
         }
 
         /// <summary>
@@ -160,9 +197,25 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public (IList<Location>, ResultsMeta) GetLocations(
             LocationFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             return AsyncUtil.RunSync(() => GetLocationsAsync(filter, options));
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Locations.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locations associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="Location"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Location>, ResultsMeta)> GetLocationsAsync()
+        {
+            return await GetLocationsAsync(null, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -179,9 +232,30 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="Location"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        public async Task<(IList<Location>, ResultsMeta)> GetLocationsAsync(RequestOptions options = null)
+        public async Task<(IList<Location>, ResultsMeta)> GetLocationsAsync(
+            RequestOptions options)
         {
             return await GetLocationsAsync(null, options).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Locations.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locations associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="LocationFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Location"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Location>, ResultsMeta)> GetLocationsAsync(
+            LocationFilter filter)
+        {
+            return await GetLocationsAsync(filter, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -203,7 +277,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<Location>, ResultsMeta)> GetLocationsAsync(
             LocationFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             var context = new GetContext<Location>(EndpointName.Locations, filter, options);
 

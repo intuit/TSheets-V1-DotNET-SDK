@@ -44,6 +44,22 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of all schedule calendars associated with your
         /// employees, with optional filters to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="ScheduleCalendar"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<ScheduleCalendar>, ResultsMeta) GetScheduleCalendars()
+        {
+            return AsyncUtil.RunSync(() => GetScheduleCalendarsAsync());
+        }
+
+        /// <summary>
+        /// Retrieve Schedule Calendars.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all schedule calendars associated with your
+        /// employees, with optional filters to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -51,9 +67,30 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="ScheduleCalendar"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        public (IList<ScheduleCalendar>, ResultsMeta) GetScheduleCalendars(RequestOptions options = null)
+        public (IList<ScheduleCalendar>, ResultsMeta) GetScheduleCalendars(
+            RequestOptions options)
         {
-            return GetScheduleCalendars(null, options);
+            return AsyncUtil.RunSync(() => GetScheduleCalendarsAsync(options));
+        }
+
+        /// <summary>
+        /// Retrieve Schedule Calendars.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all schedule calendars associated with your
+        /// employees, with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="ScheduleCalendarFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="ScheduleCalendar"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<ScheduleCalendar>, ResultsMeta) GetScheduleCalendars(
+            ScheduleCalendarFilter filter)
+        {
+            return AsyncUtil.RunSync(() => GetScheduleCalendarsAsync(filter));
         }
 
         /// <summary>
@@ -75,9 +112,25 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public (IList<ScheduleCalendar>, ResultsMeta) GetScheduleCalendars(
             ScheduleCalendarFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             return AsyncUtil.RunSync(() => GetScheduleCalendarsAsync(filter, options));
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Schedule Calendars.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all schedule calendars associated with your
+        /// employees, with optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="ScheduleCalendar"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<ScheduleCalendar>, ResultsMeta)> GetScheduleCalendarsAsync()
+        {
+            return await GetScheduleCalendarsAsync(null, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -94,9 +147,30 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="ScheduleCalendar"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        public async Task<(IList<ScheduleCalendar>, ResultsMeta)> GetScheduleCalendarsAsync(RequestOptions options = null)
+        public async Task<(IList<ScheduleCalendar>, ResultsMeta)> GetScheduleCalendarsAsync(
+            RequestOptions options)
         {
             return await GetScheduleCalendarsAsync(null, options).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Schedule Calendars.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all schedule calendars associated with your
+        /// employees, with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="ScheduleCalendarFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="ScheduleCalendar"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<ScheduleCalendar>, ResultsMeta)> GetScheduleCalendarsAsync(
+            ScheduleCalendarFilter filter)
+        {
+            return await GetScheduleCalendarsAsync(filter, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -118,7 +192,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<ScheduleCalendar>, ResultsMeta)> GetScheduleCalendarsAsync(
             ScheduleCalendarFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             var context = new GetContext<ScheduleCalendar>(EndpointName.ScheduleCalendars, filter, options);
 

@@ -129,6 +129,22 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of all jobcode assignments associated with users,
         /// with optional filters to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="JobcodeAssignment"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<JobcodeAssignment>, ResultsMeta) GetJobcodeAssignments()
+        {
+            return AsyncUtil.RunSync(() => GetJobcodeAssignmentsAsync());
+        }
+
+        /// <summary>
+        /// Retrieve Jobcode Assignments.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcode assignments associated with users,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -136,9 +152,30 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="JobcodeAssignment"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        public (IList<JobcodeAssignment>, ResultsMeta) GetJobcodeAssignments(RequestOptions options = null)
+        public (IList<JobcodeAssignment>, ResultsMeta) GetJobcodeAssignments(
+            RequestOptions options)
         {
-            return GetJobcodeAssignments(null, options);
+            return AsyncUtil.RunSync(() => GetJobcodeAssignmentsAsync(options));
+        }
+
+        /// <summary>
+        /// Retrieve Jobcode Assignments.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcode assignments associated with users,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="JobcodeAssignmentFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="JobcodeAssignment"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<JobcodeAssignment>, ResultsMeta) GetJobcodeAssignments(
+            JobcodeAssignmentFilter filter)
+        {
+            return AsyncUtil.RunSync(() => GetJobcodeAssignmentsAsync(filter));
         }
 
         /// <summary>
@@ -160,9 +197,25 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public (IList<JobcodeAssignment>, ResultsMeta) GetJobcodeAssignments(
             JobcodeAssignmentFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             return AsyncUtil.RunSync(() => GetJobcodeAssignmentsAsync(filter, options));
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Jobcode Assignments.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcode assignments associated with users,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="JobcodeAssignment"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<JobcodeAssignment>, ResultsMeta)> GetJobcodeAssignmentsAsync()
+        {
+            return await GetJobcodeAssignmentsAsync(null, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -179,9 +232,30 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="JobcodeAssignment"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        public async Task<(IList<JobcodeAssignment>, ResultsMeta)> GetJobcodeAssignmentsAsync(RequestOptions options = null)
+        public async Task<(IList<JobcodeAssignment>, ResultsMeta)> GetJobcodeAssignmentsAsync(
+            RequestOptions options)
         {
             return await GetJobcodeAssignmentsAsync(null, options).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Jobcode Assignments.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcode assignments associated with users,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="JobcodeAssignmentFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="JobcodeAssignment"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<JobcodeAssignment>, ResultsMeta)> GetJobcodeAssignmentsAsync(
+            JobcodeAssignmentFilter filter)
+        {
+            return await GetJobcodeAssignmentsAsync(filter, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -203,7 +277,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<JobcodeAssignment>, ResultsMeta)> GetJobcodeAssignmentsAsync(
             JobcodeAssignmentFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             var context = new GetContext<JobcodeAssignment>(EndpointName.JobcodeAssignments, filter, options);
 

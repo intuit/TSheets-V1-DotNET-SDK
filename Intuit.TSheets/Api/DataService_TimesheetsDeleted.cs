@@ -47,6 +47,26 @@ namespace Intuit.TSheets.Api
         /// <param name="filter">
         /// An instance of the <see cref="TimesheetsDeletedFilter"/> class, for narrowing down the results.
         /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="TimesheetsDeleted"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<TimesheetsDeleted>, ResultsMeta) GetTimesheetsDeleted(
+            TimesheetsDeletedFilter filter)
+        {
+            return AsyncUtil.RunSync(() => GetTimesheetsDeletedAsync(filter));
+        }
+
+        /// <summary>
+        /// Retrieve Deleted Timesheets.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all deleted timesheets associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="TimesheetsDeletedFilter"/> class, for narrowing down the results.
+        /// </param>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -56,9 +76,29 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public (IList<TimesheetsDeleted>, ResultsMeta) GetTimesheetsDeleted(
             TimesheetsDeletedFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             return AsyncUtil.RunSync(() => GetTimesheetsDeletedAsync(filter, options));
+        }
+
+        /// <summary>
+        /// Retrieve Deleted Timesheets.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all deleted timesheets associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="TimesheetsDeletedFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="TimesheetsDeleted"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<TimesheetsDeleted>, ResultsMeta)> GetTimesheetsDeletedAsync(
+            TimesheetsDeletedFilter filter)
+        {
+            return await GetTimesheetsDeletedAsync(filter, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -80,7 +120,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<TimesheetsDeleted>, ResultsMeta)> GetTimesheetsDeletedAsync(
             TimesheetsDeletedFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             var context = new GetContext<TimesheetsDeleted>(EndpointName.TimesheetsDeleted, filter, options);
 

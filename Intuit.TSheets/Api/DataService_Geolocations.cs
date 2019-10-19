@@ -120,6 +120,26 @@ namespace Intuit.TSheets.Api
         /// <param name="filter">
         /// An instance of the <see cref="GeolocationFilter"/> class, for narrowing down the results.
         /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Geolocation"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<Geolocation>, ResultsMeta) GetGeolocations(
+            GeolocationFilter filter)
+        {
+            return AsyncUtil.RunSync(() => GetGeolocationsAsync(filter));
+        }
+
+        /// <summary>
+        /// Retrieve Geolocations.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of geolocations associated with your company, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="GeolocationFilter"/> class, for narrowing down the results.
+        /// </param>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -129,9 +149,29 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public (IList<Geolocation>, ResultsMeta) GetGeolocations(
             GeolocationFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             return AsyncUtil.RunSync(() => GetGeolocationsAsync(filter, options));
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Geolocations.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of geolocations associated with your company, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="GeolocationFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Geolocation"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Geolocation>, ResultsMeta)> GetGeolocationsAsync(
+            GeolocationFilter filter)
+        {
+            return await GetGeolocationsAsync(filter, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -153,7 +193,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<Geolocation>, ResultsMeta)> GetGeolocationsAsync(
             GeolocationFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             var context = new GetContext<Geolocation>(EndpointName.Geolocations, filter, options);
 

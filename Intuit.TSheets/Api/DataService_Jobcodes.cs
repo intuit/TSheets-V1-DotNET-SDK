@@ -129,6 +129,22 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of all jobcodes associated with your company,
         /// with optional filters to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="Jobcode"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<Jobcode>, ResultsMeta) GetJobcodes()
+        {
+            return AsyncUtil.RunSync(() => GetJobcodesAsync());
+        }
+
+        /// <summary>
+        /// Retrieve Jobcodes.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcodes associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -136,9 +152,30 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="Jobcode"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        public (IList<Jobcode>, ResultsMeta) GetJobcodes(RequestOptions options = null)
+        public (IList<Jobcode>, ResultsMeta) GetJobcodes(
+            RequestOptions options)
         {
-            return GetJobcodes(null, options);
+            return AsyncUtil.RunSync(() => GetJobcodesAsync(options));
+        }
+
+        /// <summary>
+        /// Retrieve Jobcodes.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcodes associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="JobcodeFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Jobcode"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<Jobcode>, ResultsMeta) GetJobcodes(
+            JobcodeFilter filter)
+        {
+            return AsyncUtil.RunSync(() => GetJobcodesAsync(filter));
         }
 
         /// <summary>
@@ -160,9 +197,25 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public (IList<Jobcode>, ResultsMeta) GetJobcodes(
             JobcodeFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             return AsyncUtil.RunSync(() => GetJobcodesAsync(filter, options));
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Jobcodes.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcodes associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="Jobcode"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Jobcode>, ResultsMeta)> GetJobcodesAsync()
+        {
+            return await GetJobcodesAsync(null, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -179,9 +232,30 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="Jobcode"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        public async Task<(IList<Jobcode>, ResultsMeta)> GetJobcodesAsync(RequestOptions options = null)
+        public async Task<(IList<Jobcode>, ResultsMeta)> GetJobcodesAsync(
+            RequestOptions options)
         {
             return await GetJobcodesAsync(null, options).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Jobcodes.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcodes associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="JobcodeFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Jobcode"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Jobcode>, ResultsMeta)> GetJobcodesAsync(
+            JobcodeFilter filter)
+        {
+            return await GetJobcodesAsync(filter, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -203,7 +277,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<Jobcode>, ResultsMeta)> GetJobcodesAsync(
             JobcodeFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             var context = new GetContext<Jobcode>(EndpointName.Jobcodes, filter, options);
 

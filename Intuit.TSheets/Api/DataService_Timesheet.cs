@@ -132,6 +132,26 @@ namespace Intuit.TSheets.Api
         /// <param name="filter">
         /// An instance of the <see cref="TimesheetFilter"/> class, for narrowing down the results.
         /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Timesheet"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<Timesheet>, ResultsMeta) GetTimesheets(
+            TimesheetFilter filter)
+        {
+            return AsyncUtil.RunSync(() => GetTimesheetsAsync(filter));
+        }
+
+        /// <summary>
+        /// Retrieve Timesheets.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all timesheets associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="TimesheetFilter"/> class, for narrowing down the results.
+        /// </param>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -141,9 +161,29 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public (IList<Timesheet>, ResultsMeta) GetTimesheets(
             TimesheetFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             return AsyncUtil.RunSync(() => GetTimesheetsAsync(filter, options));
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Timesheets.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all timesheets associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="TimesheetFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Timesheet"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Timesheet>, ResultsMeta)> GetTimesheetsAsync(
+            TimesheetFilter filter)
+        {
+            return await GetTimesheetsAsync(filter, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -165,7 +205,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<Timesheet>, ResultsMeta)> GetTimesheetsAsync(
             TimesheetFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             var context = new GetContext<Timesheet>(EndpointName.Timesheets, filter, options);
 

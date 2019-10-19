@@ -129,6 +129,22 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of groups associated with your company, with
         /// optional filters to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="Group"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<Group>, ResultsMeta) GetGroups()
+        {
+            return AsyncUtil.RunSync(() => GetGroupsAsync());
+        }
+
+        /// <summary>
+        /// Retrieve Groups.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of groups associated with your company, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -136,9 +152,30 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="Group"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        public (IList<Group>, ResultsMeta) GetGroups(RequestOptions options = null)
+        public (IList<Group>, ResultsMeta) GetGroups(
+            RequestOptions options)
         {
-            return GetGroups(null, options);
+            return AsyncUtil.RunSync(() => GetGroupsAsync(options));
+        }
+
+        /// <summary>
+        /// Retrieve Groups.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of groups associated with your company, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="GroupFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Group"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<Group>, ResultsMeta) GetGroups(
+            GroupFilter filter)
+        {
+            return AsyncUtil.RunSync(() => GetGroupsAsync(filter));
         }
 
         /// <summary>
@@ -160,9 +197,25 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public (IList<Group>, ResultsMeta) GetGroups(
             GroupFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             return AsyncUtil.RunSync(() => GetGroupsAsync(filter, options));
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Groups.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of groups associated with your company, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="Group"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Group>, ResultsMeta)> GetGroupsAsync()
+        {
+            return await GetGroupsAsync(null, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -179,9 +232,30 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="Group"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        public async Task<(IList<Group>, ResultsMeta)> GetGroupsAsync(RequestOptions options = null)
+        public async Task<(IList<Group>, ResultsMeta)> GetGroupsAsync(
+            RequestOptions options)
         {
             return await GetGroupsAsync(null, options).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Groups.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of groups associated with your company, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="GroupFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Group"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Group>, ResultsMeta)> GetGroupsAsync(
+            GroupFilter filter)
+        {
+            return await GetGroupsAsync(filter, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -203,7 +277,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<Group>, ResultsMeta)> GetGroupsAsync(
             GroupFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             var context = new GetContext<Group>(EndpointName.Groups, filter, options);
 

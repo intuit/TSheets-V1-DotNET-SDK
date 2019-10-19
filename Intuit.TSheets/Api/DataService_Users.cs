@@ -129,6 +129,22 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of all users associated with your company,
         /// with optional filters to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="User"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<User>, ResultsMeta) GetUsers()
+        {
+            return AsyncUtil.RunSync(() => GetUsersAsync());
+        }
+
+        /// <summary>
+        /// Retrieve Users.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all users associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -136,9 +152,30 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="User"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        public (IList<User>, ResultsMeta) GetUsers(RequestOptions options = null)
+        public (IList<User>, ResultsMeta) GetUsers(
+            RequestOptions options)
         {
-            return GetUsers(null, options);
+            return AsyncUtil.RunSync(() => GetUsersAsync(options));
+        }
+
+        /// <summary>
+        /// Retrieve Users.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all users associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="UserFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="User"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<User>, ResultsMeta) GetUsers(
+            UserFilter filter)
+        {
+            return AsyncUtil.RunSync(() => GetUsersAsync(filter));
         }
 
         /// <summary>
@@ -160,9 +197,25 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public (IList<User>, ResultsMeta) GetUsers(
             UserFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             return AsyncUtil.RunSync(() => GetUsersAsync(filter, options));
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Users.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all users associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="User"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<User>, ResultsMeta)> GetUsersAsync()
+        {
+            return await GetUsersAsync(null, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -179,9 +232,30 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="User"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        public async Task<(IList<User>, ResultsMeta)> GetUsersAsync(RequestOptions options = null)
+        public async Task<(IList<User>, ResultsMeta)> GetUsersAsync(
+            RequestOptions options)
         {
             return await GetUsersAsync(null, options).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Users.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all users associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="UserFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="User"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<User>, ResultsMeta)> GetUsersAsync(
+            UserFilter filter)
+        {
+            return await GetUsersAsync(filter, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -203,7 +277,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<User>, ResultsMeta)> GetUsersAsync(
             UserFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             var context = new GetContext<User>(EndpointName.Users, filter, options);
 
