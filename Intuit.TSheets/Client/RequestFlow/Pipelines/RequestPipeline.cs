@@ -1,4 +1,5 @@
-﻿// *******************************************************************************
+﻿
+// *******************************************************************************
 // <copyright file="RequestPipeline.cs" company="Intuit">
 // Copyright (c) 2019 Intuit
 //
@@ -69,6 +70,8 @@ namespace Intuit.TSheets.Client.RequestFlow.Pipelines
         {
             foreach (IPipelineElement pipelineElement in PipelineElements)
             {
+                cancellationToken.ThrowIfCancellationRequested();
+
                 await pipelineElement.ProcessAsync(context, logger, cancellationToken).ConfigureAwait(false);
             }
         }

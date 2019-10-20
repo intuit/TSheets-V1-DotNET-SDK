@@ -181,7 +181,7 @@ namespace Intuit.TSheets.Api
         /// <returns>The asynchronous task.</returns>
         internal async Task ExecuteOperationAsync<T>(
             PipelineContext<T> context,
-            CancellationToken cancellationToken = default)
+            CancellationToken cancellationToken)
         {
             try
             {
@@ -194,7 +194,7 @@ namespace Intuit.TSheets.Api
             {
                 LogException(context, ex);
 
-                if (ex is ApiException)
+                if (ex is ApiException || ex is OperationCanceledException)
                 {
                     throw;
                 }

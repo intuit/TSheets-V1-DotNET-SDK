@@ -43,24 +43,6 @@ namespace Intuit.TSheets.Api
         /// Create Jobcodes.
         /// </summary>
         /// <remarks>
-        /// Add one or more jobcodes to your company.
-        /// </remarks>
-        /// <param name="jobcodes">
-        /// The set of <see cref="Jobcode"/> objects to be created.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Jobcode"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public (IList<Jobcode>, ResultsMeta) CreateJobcodes(IEnumerable<Jobcode> jobcodes)
-        {
-            return AsyncUtil.RunSync(() => CreateJobcodesAsync(jobcodes));
-        }
-
-        /// <summary>
-        /// Create Jobcodes.
-        /// </summary>
-        /// <remarks>
         /// Add a single jobcode to your company.
         /// </remarks>
         /// <param name="jobcode">
@@ -78,7 +60,7 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
-        /// Asynchronously Create Jobcodes.
+        /// Create Jobcodes.
         /// </summary>
         /// <remarks>
         /// Add one or more jobcodes to your company.
@@ -90,39 +72,9 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Jobcode"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<Jobcode>, ResultsMeta)> CreateJobcodesAsync(
-            IEnumerable<Jobcode> jobcodes)
+        public (IList<Jobcode>, ResultsMeta) CreateJobcodes(IEnumerable<Jobcode> jobcodes)
         {
-            var context = new CreateContext<Jobcode>(EndpointName.Jobcodes, jobcodes);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
-        }
-
-        /// <summary>
-        /// Asynchronously Create Jobcodes, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Add one or more jobcodes to your company.
-        /// </remarks>
-        /// <param name="jobcodes">
-        /// The set of <see cref="Jobcode"/> objects to be created.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Jobcode"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public async Task<(IList<Jobcode>, ResultsMeta)> CreateJobcodesAsync(
-            IEnumerable<Jobcode> jobcodes,
-            CancellationToken cancellationToken)
-        {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return AsyncUtil.RunSync(() => CreateJobcodesAsync(jobcodes));
         }
 
         /// <summary>
@@ -141,7 +93,7 @@ namespace Intuit.TSheets.Api
         public async Task<(Jobcode, ResultsMeta)> CreateJobcodeAsync(
             Jobcode jobcode)
         {
-            (IList<Jobcode> jobcodes, ResultsMeta resultsMeta) = await CreateJobcodesAsync(new[] { jobcode }).ConfigureAwait(false);
+            (IList<Jobcode> jobcodes, ResultsMeta resultsMeta) = await CreateJobcodesAsync(new[] { jobcode }, default).ConfigureAwait(false);
 
             return (jobcodes.FirstOrDefault(), resultsMeta);
         }
@@ -166,9 +118,55 @@ namespace Intuit.TSheets.Api
             Jobcode jobcode,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            (IList<Jobcode> jobcodes, ResultsMeta resultsMeta) = await CreateJobcodesAsync(new[] { jobcode }, cancellationToken).ConfigureAwait(false);
+
+            return (jobcodes.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Jobcodes.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more jobcodes to your company.
+        /// </remarks>
+        /// <param name="jobcodes">
+        /// The set of <see cref="Jobcode"/> objects to be created.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Jobcode"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Jobcode>, ResultsMeta)> CreateJobcodesAsync(
+            IEnumerable<Jobcode> jobcodes)
+        {
+            return await CreateJobcodesAsync(jobcodes, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Jobcodes, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more jobcodes to your company.
+        /// </remarks>
+        /// <param name="jobcodes">
+        /// The set of <see cref="Jobcode"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Jobcode"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Jobcode>, ResultsMeta)> CreateJobcodesAsync(
+            IEnumerable<Jobcode> jobcodes,
+            CancellationToken cancellationToken)
+        {
+            var context = new CreateContext<Jobcode>(EndpointName.Jobcodes, jobcodes);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion
@@ -268,7 +266,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<Jobcode>, ResultsMeta)> GetJobcodesAsync()
         {
-            return await GetJobcodesAsync(null, null).ConfigureAwait(false);
+            return await GetJobcodesAsync(null, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -288,9 +286,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<Jobcode>, ResultsMeta)> GetJobcodesAsync(
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetJobcodesAsync(null, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -310,7 +306,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<Jobcode>, ResultsMeta)> GetJobcodesAsync(
             RequestOptions options)
         {
-            return await GetJobcodesAsync(null, options).ConfigureAwait(false);
+            return await GetJobcodesAsync(null, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -334,9 +330,7 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetJobcodesAsync(null, options, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -356,7 +350,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<Jobcode>, ResultsMeta)> GetJobcodesAsync(
             JobcodeFilter filter)
         {
-            return await GetJobcodesAsync(filter, null).ConfigureAwait(false);
+            return await GetJobcodesAsync(filter, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -380,9 +374,7 @@ namespace Intuit.TSheets.Api
             JobcodeFilter filter,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetJobcodesAsync(filter, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -406,11 +398,7 @@ namespace Intuit.TSheets.Api
             JobcodeFilter filter,
             RequestOptions options)
         {
-            var context = new GetContext<Jobcode>(EndpointName.Jobcodes, filter, options);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
+            return await GetJobcodesAsync(filter, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -438,33 +426,16 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            var context = new GetContext<Jobcode>(EndpointName.Jobcodes, filter, options);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion
 
         #region Update methods
-
-        /// <summary>
-        /// Update Jobcodes.
-        /// </summary>
-        /// <remarks>
-        /// Edit one or more jobcodes in your company.
-        /// </remarks>
-        /// <param name="jobcodes">
-        /// The set of <see cref="Jobcode"/> objects to be updated.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Jobcode"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public (IList<Jobcode>, ResultsMeta) UpdateJobcodes(
-            IEnumerable<Jobcode> jobcodes)
-        {
-            return AsyncUtil.RunSync(() => UpdateJobcodesAsync(jobcodes));
-        }
 
         /// <summary>
         /// Update Jobcodes.
@@ -488,7 +459,7 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
-        /// Asynchronously Update Jobcodes.
+        /// Update Jobcodes.
         /// </summary>
         /// <remarks>
         /// Edit one or more jobcodes in your company.
@@ -500,39 +471,10 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Jobcode"/> objects that were updated, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<Jobcode>, ResultsMeta)> UpdateJobcodesAsync(
+        public (IList<Jobcode>, ResultsMeta) UpdateJobcodes(
             IEnumerable<Jobcode> jobcodes)
         {
-            var context = new UpdateContext<Jobcode>(EndpointName.Jobcodes, jobcodes);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
-        }
-
-        /// <summary>
-        /// Asynchronously Update Jobcodes, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Edit one or more jobcodes in your company.
-        /// </remarks>
-        /// <param name="jobcodes">
-        /// The set of <see cref="Jobcode"/> objects to be updated.
-        /// </param>
-        /// <returns>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// The set of the <see cref="Jobcode"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public async Task<(IList<Jobcode>, ResultsMeta)> UpdateJobcodesAsync(
-            IEnumerable<Jobcode> jobcodes,
-            CancellationToken cancellationToken)
-        {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return AsyncUtil.RunSync(() => UpdateJobcodesAsync(jobcodes));
         }
 
         /// <summary>
@@ -552,7 +494,7 @@ namespace Intuit.TSheets.Api
             Jobcode jobcode)
         {
             (IList<Jobcode> jobcodes, ResultsMeta resultsMeta) =
-                await UpdateJobcodesAsync(new[] { jobcode }).ConfigureAwait(false);
+                await UpdateJobcodesAsync(new[] { jobcode }, default).ConfigureAwait(false);
 
             return (jobcodes.FirstOrDefault(), resultsMeta);
         }
@@ -577,9 +519,56 @@ namespace Intuit.TSheets.Api
             Jobcode jobcode,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            (IList<Jobcode> jobcodes, ResultsMeta resultsMeta) =
+                await UpdateJobcodesAsync(new[] { jobcode }, cancellationToken).ConfigureAwait(false);
+
+            return (jobcodes.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Update Jobcodes.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more jobcodes in your company.
+        /// </remarks>
+        /// <param name="jobcodes">
+        /// The set of <see cref="Jobcode"/> objects to be updated.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Jobcode"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Jobcode>, ResultsMeta)> UpdateJobcodesAsync(
+            IEnumerable<Jobcode> jobcodes)
+        {
+            return await UpdateJobcodesAsync(jobcodes, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Update Jobcodes, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more jobcodes in your company.
+        /// </remarks>
+        /// <param name="jobcodes">
+        /// The set of <see cref="Jobcode"/> objects to be updated.
+        /// </param>
+        /// <returns>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// The set of the <see cref="Jobcode"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Jobcode>, ResultsMeta)> UpdateJobcodesAsync(
+            IEnumerable<Jobcode> jobcodes,
+            CancellationToken cancellationToken)
+        {
+            var context = new UpdateContext<Jobcode>(EndpointName.Jobcodes, jobcodes);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion

@@ -89,7 +89,7 @@ namespace Intuit.TSheets.Api
         /// </returns>
         public async Task<(User, ResultsMeta)> GetCurrentUserAsync()
         {
-            return await GetCurrentUserAsync(null).ConfigureAwait(false);
+            return await GetCurrentUserAsync(null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -110,9 +110,7 @@ namespace Intuit.TSheets.Api
         public async Task<(User, ResultsMeta)> GetCurrentUserAsync(
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetCurrentUserAsync(null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -133,11 +131,7 @@ namespace Intuit.TSheets.Api
         public async Task<(User, ResultsMeta)> GetCurrentUserAsync(
             RequestOptions options)
         {
-            var context = new GetContext<User>(EndpointName.CurrentUser, options);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items.FirstOrDefault(), context.ResultsMeta);
+            return await GetCurrentUserAsync(options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -162,9 +156,11 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            var context = new GetContext<User>(EndpointName.CurrentUser, options);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items.FirstOrDefault(), context.ResultsMeta);
         }
 
         #endregion

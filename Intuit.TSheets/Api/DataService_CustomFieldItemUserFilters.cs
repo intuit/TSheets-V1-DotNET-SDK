@@ -131,7 +131,7 @@ namespace Intuit.TSheets.Api
         /// </returns>
         public async Task<(IList<CustomFieldItemUserFilter>, ResultsMeta)> GetCustomFieldItemUserFiltersAsync()
         {
-            return await GetCustomFieldItemUserFiltersAsync(null, null).ConfigureAwait(false);
+            return await GetCustomFieldItemUserFiltersAsync(null, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -151,9 +151,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<CustomFieldItemUserFilter>, ResultsMeta)> GetCustomFieldItemUserFiltersAsync(
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetCustomFieldItemUserFiltersAsync(null, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -173,7 +171,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<CustomFieldItemUserFilter>, ResultsMeta)> GetCustomFieldItemUserFiltersAsync(
             RequestOptions options)
         {
-            return await GetCustomFieldItemUserFiltersAsync(null, options).ConfigureAwait(false);
+            return await GetCustomFieldItemUserFiltersAsync(null, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -195,11 +193,9 @@ namespace Intuit.TSheets.Api
         /// </returns>
         public async Task<(IList<CustomFieldItemUserFilter>, ResultsMeta)> GetCustomFieldItemUserFiltersAsync(
             RequestOptions options,
-             CancellationToken cancellationToken)
+            CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetCustomFieldItemUserFiltersAsync(null, options, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -219,7 +215,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<CustomFieldItemUserFilter>, ResultsMeta)> GetCustomFieldItemUserFiltersAsync(
             CustomFieldItemUserFilterFilter filter)
         {
-            return await GetCustomFieldItemUserFiltersAsync(filter, null).ConfigureAwait(false);
+            return await GetCustomFieldItemUserFiltersAsync(filter, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -243,9 +239,7 @@ namespace Intuit.TSheets.Api
             CustomFieldItemUserFilterFilter filter,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetCustomFieldItemUserFiltersAsync(filter, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -269,11 +263,7 @@ namespace Intuit.TSheets.Api
             CustomFieldItemUserFilterFilter filter,
             RequestOptions options)
         {
-            var context = new GetContext<CustomFieldItemUserFilter>(EndpointName.CustomFieldItemUserFilters, filter, options);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
+            return await GetCustomFieldItemUserFiltersAsync(filter, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -301,9 +291,11 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            var context = new GetContext<CustomFieldItemUserFilter>(EndpointName.CustomFieldItemUserFilters, filter, options);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion

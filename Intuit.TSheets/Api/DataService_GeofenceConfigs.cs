@@ -131,7 +131,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<GeofenceConfig>, ResultsMeta)> GetGeofenceConfigsAsync()
         {
-            return await GetGeofenceConfigsAsync(null, null).ConfigureAwait(false);
+            return await GetGeofenceConfigsAsync(null, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -151,9 +151,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<GeofenceConfig>, ResultsMeta)> GetGeofenceConfigsAsync(
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetGeofenceConfigsAsync(null, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -173,7 +171,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<GeofenceConfig>, ResultsMeta)> GetGeofenceConfigsAsync(
             RequestOptions options)
         {
-            return await GetGeofenceConfigsAsync(null, options).ConfigureAwait(false);
+            return await GetGeofenceConfigsAsync(null, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -197,9 +195,7 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetGeofenceConfigsAsync(null, options, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -219,7 +215,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<GeofenceConfig>, ResultsMeta)> GetGeofenceConfigsAsync(
             GeofenceConfigFilter filter)
         {
-            return await GetGeofenceConfigsAsync(filter, null).ConfigureAwait(false);
+            return await GetGeofenceConfigsAsync(filter, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -243,9 +239,7 @@ namespace Intuit.TSheets.Api
             GeofenceConfigFilter filter,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetGeofenceConfigsAsync(filter, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -269,11 +263,7 @@ namespace Intuit.TSheets.Api
             GeofenceConfigFilter filter,
             RequestOptions options)
         {
-            var context = new GetContext<GeofenceConfig>(EndpointName.GeofenceConfigs, filter, options);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
+            return await GetGeofenceConfigsAsync(filter, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -301,9 +291,11 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            var context = new GetContext<GeofenceConfig>(EndpointName.GeofenceConfigs, filter, options);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion

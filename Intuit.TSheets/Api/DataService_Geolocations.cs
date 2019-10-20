@@ -42,21 +42,6 @@ namespace Intuit.TSheets.Api
         /// <summary>
         /// Create Geolocations.
         /// </summary>
-        /// <param name="geolocations">
-        /// The set of <see cref="Geolocation"/> objects to be created.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Geolocation"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public (IList<Geolocation>, ResultsMeta) CreateGeolocations(IEnumerable<Geolocation> geolocations)
-        {
-            return AsyncUtil.RunSync(() => CreateGeolocationsAsync(geolocations));
-        }
-
-        /// <summary>
-        /// Create Geolocations.
-        /// </summary>
         /// <param name="geolocation">
         /// The <see cref="Geolocation"/> object to be created.
         /// </param>
@@ -72,7 +57,7 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
-        /// Asynchronously Create Geolocations.
+        /// Create Geolocations.
         /// </summary>
         /// <param name="geolocations">
         /// The set of <see cref="Geolocation"/> objects to be created.
@@ -81,36 +66,9 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Geolocation"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<Geolocation>, ResultsMeta)> CreateGeolocationsAsync(
-            IEnumerable<Geolocation> geolocations)
+        public (IList<Geolocation>, ResultsMeta) CreateGeolocations(IEnumerable<Geolocation> geolocations)
         {
-            var context = new CreateContext<Geolocation>(EndpointName.Geolocations, geolocations);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
-        }
-
-        /// <summary>
-        /// Asynchronously Create Geolocations, with support for cancellation.
-        /// </summary>
-        /// <param name="geolocations">
-        /// The set of <see cref="Geolocation"/> objects to be created.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Geolocation"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public async Task<(IList<Geolocation>, ResultsMeta)> CreateGeolocationsAsync(
-            IEnumerable<Geolocation> geolocations,
-            CancellationToken cancellationToken)
-        {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return AsyncUtil.RunSync(() => CreateGeolocationsAsync(geolocations));
         }
 
         /// <summary>
@@ -126,7 +84,7 @@ namespace Intuit.TSheets.Api
         public async Task<(Geolocation, ResultsMeta)> CreateGeolocationAsync(
             Geolocation geolocation)
         {
-            (IList<Geolocation> geolocations, ResultsMeta resultsMeta) = await CreateGeolocationsAsync(new[] { geolocation }).ConfigureAwait(false);
+            (IList<Geolocation> geolocations, ResultsMeta resultsMeta) = await CreateGeolocationsAsync(new[] { geolocation }, default).ConfigureAwait(false);
 
             return (geolocations.FirstOrDefault(), resultsMeta);
         }
@@ -148,9 +106,49 @@ namespace Intuit.TSheets.Api
             Geolocation geolocation,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            (IList<Geolocation> geolocations, ResultsMeta resultsMeta) = await CreateGeolocationsAsync(new[] { geolocation }, cancellationToken).ConfigureAwait(false);
+
+            return (geolocations.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Geolocations.
+        /// </summary>
+        /// <param name="geolocations">
+        /// The set of <see cref="Geolocation"/> objects to be created.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Geolocation"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Geolocation>, ResultsMeta)> CreateGeolocationsAsync(
+            IEnumerable<Geolocation> geolocations)
+        {
+            return await CreateGeolocationsAsync(geolocations, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Geolocations, with support for cancellation.
+        /// </summary>
+        /// <param name="geolocations">
+        /// The set of <see cref="Geolocation"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Geolocation"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Geolocation>, ResultsMeta)> CreateGeolocationsAsync(
+            IEnumerable<Geolocation> geolocations,
+            CancellationToken cancellationToken)
+        {
+            var context = new CreateContext<Geolocation>(EndpointName.Geolocations, geolocations);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion
@@ -218,7 +216,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<Geolocation>, ResultsMeta)> GetGeolocationsAsync(
             GeolocationFilter filter)
         {
-            return await GetGeolocationsAsync(filter, null).ConfigureAwait(false);
+            return await GetGeolocationsAsync(filter, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -242,9 +240,7 @@ namespace Intuit.TSheets.Api
             GeolocationFilter filter,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetGeolocationsAsync(filter, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -268,11 +264,7 @@ namespace Intuit.TSheets.Api
             GeolocationFilter filter,
             RequestOptions options)
         {
-            var context = new GetContext<Geolocation>(EndpointName.Geolocations, filter, options);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
+            return await GetGeolocationsAsync(filter, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -300,9 +292,11 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            var context = new GetContext<Geolocation>(EndpointName.Geolocations, filter, options);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion

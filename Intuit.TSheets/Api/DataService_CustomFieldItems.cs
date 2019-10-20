@@ -42,25 +42,6 @@ namespace Intuit.TSheets.Api
         /// Create Custom Field Items.
         /// </summary>
         /// <remarks>
-        /// Add one or more <see cref="CustomFieldItem"/> objects to a <see cref="CustomField"/>.
-        /// </remarks>
-        /// <param name="customFieldItems">
-        /// The set of <see cref="CustomFieldItem"/> objects to be created.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="CustomFieldItem"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public (IList<CustomFieldItem>, ResultsMeta resultsMeta) CreateCustomFieldItems(
-            IEnumerable<CustomFieldItem> customFieldItems)
-        {
-            return AsyncUtil.RunSync(() => CreateCustomFieldItemsAsync(customFieldItems));
-        }
-
-        /// <summary>
-        /// Create Custom Field Items.
-        /// </summary>
-        /// <remarks>
         /// Add a single <see cref="CustomFieldItem"/> object to a <see cref="CustomField"/>.
         /// </remarks>
         /// <param name="customFieldItem">
@@ -79,7 +60,7 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
-        /// Asynchronously Create Custom Field Items.
+        /// Create Custom Field Items.
         /// </summary>
         /// <remarks>
         /// Add one or more <see cref="CustomFieldItem"/> objects to a <see cref="CustomField"/>.
@@ -91,39 +72,10 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="CustomFieldItem"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<CustomFieldItem>, ResultsMeta resultsMeta)> CreateCustomFieldItemsAsync(
+        public (IList<CustomFieldItem>, ResultsMeta resultsMeta) CreateCustomFieldItems(
             IEnumerable<CustomFieldItem> customFieldItems)
         {
-            var context = new CreateContext<CustomFieldItem>(EndpointName.CustomFieldItems, customFieldItems);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
-        }
-
-        /// <summary>
-        /// Asynchronously Create Custom Field Items, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Add one or more <see cref="CustomFieldItem"/> objects to a <see cref="CustomField"/>.
-        /// </remarks>
-        /// <param name="customFieldItems">
-        /// The set of <see cref="CustomFieldItem"/> objects to be created.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="CustomFieldItem"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public async Task<(IList<CustomFieldItem>, ResultsMeta resultsMeta)> CreateCustomFieldItemsAsync(
-            IEnumerable<CustomFieldItem> customFieldItems,
-            CancellationToken cancellationToken)
-        {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return AsyncUtil.RunSync(() => CreateCustomFieldItemsAsync(customFieldItems));
         }
 
         /// <summary>
@@ -143,7 +95,7 @@ namespace Intuit.TSheets.Api
             CustomFieldItem customFieldItem)
         {
             (IList<CustomFieldItem> customFieldItems, ResultsMeta resultsMeta) =
-                await CreateCustomFieldItemsAsync(new[] { customFieldItem }).ConfigureAwait(false);
+                await CreateCustomFieldItemsAsync(new[] { customFieldItem }, default).ConfigureAwait(false);
 
             return (customFieldItems.FirstOrDefault(), resultsMeta);
         }
@@ -168,9 +120,56 @@ namespace Intuit.TSheets.Api
             CustomFieldItem customFieldItem,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            (IList<CustomFieldItem> customFieldItems, ResultsMeta resultsMeta) =
+                await CreateCustomFieldItemsAsync(new[] { customFieldItem }, cancellationToken).ConfigureAwait(false);
+
+            return (customFieldItems.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Custom Field Items.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more <see cref="CustomFieldItem"/> objects to a <see cref="CustomField"/>.
+        /// </remarks>
+        /// <param name="customFieldItems">
+        /// The set of <see cref="CustomFieldItem"/> objects to be created.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItem"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<CustomFieldItem>, ResultsMeta resultsMeta)> CreateCustomFieldItemsAsync(
+            IEnumerable<CustomFieldItem> customFieldItems)
+        {
+            return await CreateCustomFieldItemsAsync(customFieldItems, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Custom Field Items, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more <see cref="CustomFieldItem"/> objects to a <see cref="CustomField"/>.
+        /// </remarks>
+        /// <param name="customFieldItems">
+        /// The set of <see cref="CustomFieldItem"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItem"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<CustomFieldItem>, ResultsMeta resultsMeta)> CreateCustomFieldItemsAsync(
+            IEnumerable<CustomFieldItem> customFieldItems,
+            CancellationToken cancellationToken)
+        {
+            var context = new CreateContext<CustomFieldItem>(EndpointName.CustomFieldItems, customFieldItems);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion
@@ -238,7 +237,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<CustomFieldItem>, ResultsMeta)> GetCustomFieldItemsAsync(
             Model.Filters.CustomFieldItemFilter filter)
         {
-            return await GetCustomFieldItemsAsync(filter, null).ConfigureAwait(false);
+            return await GetCustomFieldItemsAsync(filter, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -262,9 +261,7 @@ namespace Intuit.TSheets.Api
             Model.Filters.CustomFieldItemFilter filter,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetCustomFieldItemsAsync(filter, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -288,11 +285,7 @@ namespace Intuit.TSheets.Api
             Model.Filters.CustomFieldItemFilter filter,
             RequestOptions options)
         {
-            var context = new GetContext<CustomFieldItem>(EndpointName.CustomFieldItems, filter, options);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
+            return await GetCustomFieldItemsAsync(filter, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -320,33 +313,16 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            var context = new GetContext<CustomFieldItem>(EndpointName.CustomFieldItems, filter, options);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion
 
         #region Update Methods
-
-        /// <summary>
-        /// Update Custom Field Items.
-        /// </summary>
-        /// <remarks>
-        /// Update one or more <see cref="CustomFieldItem"/> objects on a <see cref="CustomField"/>.
-        /// </remarks>
-        /// <param name="customFieldItems">
-        /// The set of <see cref="CustomFieldItem"/> objects to be updated.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="CustomFieldItem"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public (IList<CustomFieldItem>, ResultsMeta resultsMeta) UpdateCustomFieldItems(
-            IEnumerable<CustomFieldItem> customFieldItems)
-        {
-            return AsyncUtil.RunSync(() => UpdateCustomFieldItemsAsync(customFieldItems));
-        }
 
         /// <summary>
         /// Update Custom Field Items.
@@ -371,7 +347,7 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
-        /// Asynchronously Update Custom Field Items.
+        /// Update Custom Field Items.
         /// </summary>
         /// <remarks>
         /// Update one or more <see cref="CustomFieldItem"/> objects on a <see cref="CustomField"/>.
@@ -383,39 +359,10 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="CustomFieldItem"/> objects that were updated, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<CustomFieldItem>, ResultsMeta resultsMeta)> UpdateCustomFieldItemsAsync(
+        public (IList<CustomFieldItem>, ResultsMeta resultsMeta) UpdateCustomFieldItems(
             IEnumerable<CustomFieldItem> customFieldItems)
         {
-            var context = new UpdateContext<CustomFieldItem>(EndpointName.CustomFieldItems, customFieldItems);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
-        }
-
-        /// <summary>
-        /// Asynchronously Update Custom Field Items, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Update one or more <see cref="CustomFieldItem"/> objects on a <see cref="CustomField"/>.
-        /// </remarks>
-        /// <param name="customFieldItems">
-        /// The set of <see cref="CustomFieldItem"/> objects to be updated.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="CustomFieldItem"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public async Task<(IList<CustomFieldItem>, ResultsMeta resultsMeta)> UpdateCustomFieldItemsAsync(
-            IEnumerable<CustomFieldItem> customFieldItems,
-            CancellationToken cancellationToken)
-        {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return AsyncUtil.RunSync(() => UpdateCustomFieldItemsAsync(customFieldItems));
         }
 
         /// <summary>
@@ -435,7 +382,7 @@ namespace Intuit.TSheets.Api
             CustomFieldItem customFieldItem)
         {
             (IList<CustomFieldItem> customFieldItems, ResultsMeta resultsMeta) =
-                await UpdateCustomFieldItemsAsync(new[] { customFieldItem }).ConfigureAwait(false);
+                await UpdateCustomFieldItemsAsync(new[] { customFieldItem }, default).ConfigureAwait(false);
 
             return (customFieldItems.FirstOrDefault(), resultsMeta);
         }
@@ -460,9 +407,56 @@ namespace Intuit.TSheets.Api
             CustomFieldItem customFieldItem,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            (IList<CustomFieldItem> customFieldItems, ResultsMeta resultsMeta) =
+                await UpdateCustomFieldItemsAsync(new[] { customFieldItem }, cancellationToken).ConfigureAwait(false);
+
+            return (customFieldItems.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Update Custom Field Items.
+        /// </summary>
+        /// <remarks>
+        /// Update one or more <see cref="CustomFieldItem"/> objects on a <see cref="CustomField"/>.
+        /// </remarks>
+        /// <param name="customFieldItems">
+        /// The set of <see cref="CustomFieldItem"/> objects to be updated.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItem"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<CustomFieldItem>, ResultsMeta resultsMeta)> UpdateCustomFieldItemsAsync(
+            IEnumerable<CustomFieldItem> customFieldItems)
+        {
+            return await UpdateCustomFieldItemsAsync(customFieldItems, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Update Custom Field Items, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Update one or more <see cref="CustomFieldItem"/> objects on a <see cref="CustomField"/>.
+        /// </remarks>
+        /// <param name="customFieldItems">
+        /// The set of <see cref="CustomFieldItem"/> objects to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItem"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<CustomFieldItem>, ResultsMeta resultsMeta)> UpdateCustomFieldItemsAsync(
+            IEnumerable<CustomFieldItem> customFieldItems,
+            CancellationToken cancellationToken)
+        {
+            var context = new UpdateContext<CustomFieldItem>(EndpointName.CustomFieldItems, customFieldItems);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion

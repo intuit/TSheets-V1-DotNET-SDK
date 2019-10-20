@@ -42,24 +42,6 @@ namespace Intuit.TSheets.Api
         /// Create Invitations.
         /// </summary>
         /// <remarks>
-        /// Invite one or more users to your company.
-        /// </remarks>
-        /// <param name="invitations">
-        /// The set of <see cref="Invitation"/> objects to be created.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Invitation"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public (IList<Invitation>, ResultsMeta) CreateInvitations(IEnumerable<Invitation> invitations)
-        {
-            return AsyncUtil.RunSync(() => CreateInvitationsAsync(invitations));
-        }
-
-        /// <summary>
-        /// Create Invitations.
-        /// </summary>
-        /// <remarks>
         /// Invite a single user to your company.
         /// </remarks> 
         /// <param name="invitation">
@@ -77,7 +59,7 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
-        /// Asynchronously Create Invitations.
+        /// Create Invitations.
         /// </summary>
         /// <remarks>
         /// Invite one or more users to your company.
@@ -89,39 +71,9 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Invitation"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<Invitation>, ResultsMeta)> CreateInvitationsAsync(
-            IEnumerable<Invitation> invitations)
+        public (IList<Invitation>, ResultsMeta) CreateInvitations(IEnumerable<Invitation> invitations)
         {
-            var context = new CreateContext<Invitation>(EndpointName.Invitations, invitations);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
-        }
-
-        /// <summary>
-        /// Asynchronously Create Invitations, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Invite one or more users to your company.
-        /// </remarks>
-        /// <param name="invitations">
-        /// The set of <see cref="Invitation"/> objects to be created.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Invitation"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public async Task<(IList<Invitation>, ResultsMeta)> CreateInvitationsAsync(
-            IEnumerable<Invitation> invitations,
-            CancellationToken cancellationToken)
-        {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return AsyncUtil.RunSync(() => CreateInvitationsAsync(invitations));
         }
 
         /// <summary>
@@ -140,7 +92,7 @@ namespace Intuit.TSheets.Api
         public async Task<(Invitation, ResultsMeta)> CreateInvitationAsync(
             Invitation invitation)
         {
-            (IList<Invitation> invitations, ResultsMeta resultsMeta) = await CreateInvitationsAsync(new[] { invitation }).ConfigureAwait(false);
+            (IList<Invitation> invitations, ResultsMeta resultsMeta) = await CreateInvitationsAsync(new[] { invitation }, default).ConfigureAwait(false);
 
             return (invitations.FirstOrDefault(), resultsMeta);
         }
@@ -165,9 +117,55 @@ namespace Intuit.TSheets.Api
             Invitation invitation,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            (IList<Invitation> invitations, ResultsMeta resultsMeta) = await CreateInvitationsAsync(new[] { invitation }, cancellationToken).ConfigureAwait(false);
+
+            return (invitations.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Invitations.
+        /// </summary>
+        /// <remarks>
+        /// Invite one or more users to your company.
+        /// </remarks>
+        /// <param name="invitations">
+        /// The set of <see cref="Invitation"/> objects to be created.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Invitation"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Invitation>, ResultsMeta)> CreateInvitationsAsync(
+            IEnumerable<Invitation> invitations)
+        {
+            return await CreateInvitationsAsync(invitations, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Invitations, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Invite one or more users to your company.
+        /// </remarks>
+        /// <param name="invitations">
+        /// The set of <see cref="Invitation"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Invitation"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Invitation>, ResultsMeta)> CreateInvitationsAsync(
+            IEnumerable<Invitation> invitations,
+            CancellationToken cancellationToken)
+        {
+            var context = new CreateContext<Invitation>(EndpointName.Invitations, invitations);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion

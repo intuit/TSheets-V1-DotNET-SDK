@@ -131,7 +131,7 @@ namespace Intuit.TSheets.Api
         /// </returns>
         public async Task<(IList<CustomFieldItemJobcodeFilter>, ResultsMeta)> GetCustomFieldItemJobcodeFiltersAsync()
         {
-            return await GetCustomFieldItemJobcodeFiltersAsync(null, null).ConfigureAwait(false);
+            return await GetCustomFieldItemJobcodeFiltersAsync(null, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -151,9 +151,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<CustomFieldItemJobcodeFilter>, ResultsMeta)> GetCustomFieldItemJobcodeFiltersAsync(
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetCustomFieldItemJobcodeFiltersAsync(null, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -173,7 +171,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<CustomFieldItemJobcodeFilter>, ResultsMeta)> GetCustomFieldItemJobcodeFiltersAsync(
             RequestOptions options)
         {
-            return await GetCustomFieldItemJobcodeFiltersAsync(null, options).ConfigureAwait(false);
+            return await GetCustomFieldItemJobcodeFiltersAsync(null, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -197,9 +195,7 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetCustomFieldItemJobcodeFiltersAsync(null, options, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -219,7 +215,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<CustomFieldItemJobcodeFilter>, ResultsMeta)> GetCustomFieldItemJobcodeFiltersAsync(
             CustomFieldItemJobcodeFilterFilter filter)
         {
-            return await GetCustomFieldItemJobcodeFiltersAsync(filter, null).ConfigureAwait(false);
+            return await GetCustomFieldItemJobcodeFiltersAsync(filter, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -243,9 +239,7 @@ namespace Intuit.TSheets.Api
             CustomFieldItemJobcodeFilterFilter filter,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetCustomFieldItemJobcodeFiltersAsync(filter, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -269,11 +263,7 @@ namespace Intuit.TSheets.Api
             CustomFieldItemJobcodeFilterFilter filter,
             RequestOptions options)
         {
-            var context = new GetContext<CustomFieldItemJobcodeFilter>(EndpointName.CustomFieldItemJobcodeFilters, filter, options);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
+            return await GetCustomFieldItemJobcodeFiltersAsync(filter, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -301,9 +291,11 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            var context = new GetContext<CustomFieldItemJobcodeFilter>(EndpointName.CustomFieldItemJobcodeFilters, filter, options);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion

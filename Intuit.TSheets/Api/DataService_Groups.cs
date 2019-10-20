@@ -43,24 +43,6 @@ namespace Intuit.TSheets.Api
         /// Create Groups.
         /// </summary>
         /// <remarks>
-        /// Add one or more groups to your company.
-        /// </remarks>
-        /// <param name="groups">
-        /// The set of <see cref="Group"/> objects to be created.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Group"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public (IList<Group>, ResultsMeta) CreateGroups(IEnumerable<Group> groups)
-        {
-            return AsyncUtil.RunSync(() => CreateGroupsAsync(groups));
-        }
-
-        /// <summary>
-        /// Create Groups.
-        /// </summary>
-        /// <remarks>
         /// Add a single group to your company.
         /// </remarks> 
         /// <param name="group">
@@ -78,7 +60,7 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
-        /// Asynchronously Create Groups.
+        /// Create Groups.
         /// </summary>
         /// <remarks>
         /// Add one or more groups to your company.
@@ -90,39 +72,9 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Group"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<Group>, ResultsMeta)> CreateGroupsAsync(
-            IEnumerable<Group> groups)
+        public (IList<Group>, ResultsMeta) CreateGroups(IEnumerable<Group> groups)
         {
-            var context = new CreateContext<Group>(EndpointName.Groups, groups);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
-        }
-
-        /// <summary>
-        /// Asynchronously Create Groups, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Add one or more groups to your company.
-        /// </remarks>
-        /// <param name="groups">
-        /// The set of <see cref="Group"/> objects to be created.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Group"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public async Task<(IList<Group>, ResultsMeta)> CreateGroupsAsync(
-            IEnumerable<Group> groups,
-            CancellationToken cancellationToken)
-        {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return AsyncUtil.RunSync(() => CreateGroupsAsync(groups));
         }
 
         /// <summary>
@@ -141,7 +93,7 @@ namespace Intuit.TSheets.Api
         public async Task<(Group, ResultsMeta)> CreateGroupAsync(
             Group group)
         {
-            (IList<Group> groups, ResultsMeta resultsMeta) = await CreateGroupsAsync(new[] { group }).ConfigureAwait(false);
+            (IList<Group> groups, ResultsMeta resultsMeta) = await CreateGroupsAsync(new[] { group }, default).ConfigureAwait(false);
 
             return (groups.FirstOrDefault(), resultsMeta);
         }
@@ -166,9 +118,55 @@ namespace Intuit.TSheets.Api
             Group group,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            (IList<Group> groups, ResultsMeta resultsMeta) = await CreateGroupsAsync(new[] { group }, cancellationToken).ConfigureAwait(false);
+
+            return (groups.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Groups.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more groups to your company.
+        /// </remarks>
+        /// <param name="groups">
+        /// The set of <see cref="Group"/> objects to be created.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Group"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Group>, ResultsMeta)> CreateGroupsAsync(
+            IEnumerable<Group> groups)
+        {
+            return await CreateGroupsAsync(groups, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Groups, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more groups to your company.
+        /// </remarks>
+        /// <param name="groups">
+        /// The set of <see cref="Group"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Group"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Group>, ResultsMeta)> CreateGroupsAsync(
+            IEnumerable<Group> groups,
+            CancellationToken cancellationToken)
+        {
+            var context = new CreateContext<Group>(EndpointName.Groups, groups);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion
@@ -268,7 +266,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<Group>, ResultsMeta)> GetGroupsAsync()
         {
-            return await GetGroupsAsync(null, null).ConfigureAwait(false);
+            return await GetGroupsAsync(null, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -288,9 +286,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<Group>, ResultsMeta)> GetGroupsAsync(
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetGroupsAsync(null, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -310,7 +306,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<Group>, ResultsMeta)> GetGroupsAsync(
             RequestOptions options)
         {
-            return await GetGroupsAsync(null, options).ConfigureAwait(false);
+            return await GetGroupsAsync(null, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -334,9 +330,7 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetGroupsAsync(null, options, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -356,7 +350,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<Group>, ResultsMeta)> GetGroupsAsync(
             GroupFilter filter)
         {
-            return await GetGroupsAsync(filter, null).ConfigureAwait(false);
+            return await GetGroupsAsync(filter, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -380,9 +374,7 @@ namespace Intuit.TSheets.Api
             GroupFilter filter,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetGroupsAsync(filter, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -406,11 +398,7 @@ namespace Intuit.TSheets.Api
             GroupFilter filter,
             RequestOptions options)
         {
-            var context = new GetContext<Group>(EndpointName.Groups, filter, options);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
+            return await GetGroupsAsync(filter, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -438,32 +426,16 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            var context = new GetContext<Group>(EndpointName.Groups, filter, options);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion
 
         #region Update Methods
-
-        /// <summary>
-        /// Update Groups.
-        /// </summary>
-        /// <remarks>
-        /// Edit one or more groups in your company.
-        /// </remarks>
-        /// <param name="groups">
-        /// The set of <see cref="Group"/> objects to be updated.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Group"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public (IList<Group>, ResultsMeta) UpdateGroups(IEnumerable<Group> groups)
-        {
-            return AsyncUtil.RunSync(() => UpdateGroupsAsync(groups));
-        }
 
         /// <summary>
         /// Update Groups.
@@ -486,7 +458,7 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
-        /// Asynchronously Update Groups.
+        /// Update Groups.
         /// </summary>
         /// <remarks>
         /// Edit one or more groups in your company.
@@ -498,39 +470,9 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Group"/> objects that were updated, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<Group>, ResultsMeta)> UpdateGroupsAsync(
-            IEnumerable<Group> groups)
+        public (IList<Group>, ResultsMeta) UpdateGroups(IEnumerable<Group> groups)
         {
-            var context = new UpdateContext<Group>(EndpointName.Groups, groups);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
-        }
-
-        /// <summary>
-        /// Asynchronously Update Groups, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Edit one or more groups in your company.
-        /// </remarks>
-        /// <param name="groups">
-        /// The set of <see cref="Group"/> objects to be updated.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Group"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public async Task<(IList<Group>, ResultsMeta)> UpdateGroupsAsync(
-            IEnumerable<Group> groups,
-            CancellationToken cancellationToken)
-        {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return AsyncUtil.RunSync(() => UpdateGroupsAsync(groups));
         }
 
         /// <summary>
@@ -550,7 +492,7 @@ namespace Intuit.TSheets.Api
             Group group)
         {
             (IList<Group> groups, ResultsMeta resultsMeta) =
-                await UpdateGroupsAsync(new[] { group }).ConfigureAwait(false);
+                await UpdateGroupsAsync(new[] { group }, default).ConfigureAwait(false);
 
             return (groups.FirstOrDefault(), resultsMeta);
         }
@@ -575,9 +517,56 @@ namespace Intuit.TSheets.Api
             Group group,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            (IList<Group> groups, ResultsMeta resultsMeta) =
+                await UpdateGroupsAsync(new[] { group }, cancellationToken).ConfigureAwait(false);
+
+            return (groups.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Update Groups.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more groups in your company.
+        /// </remarks>
+        /// <param name="groups">
+        /// The set of <see cref="Group"/> objects to be updated.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Group"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Group>, ResultsMeta)> UpdateGroupsAsync(
+            IEnumerable<Group> groups)
+        {
+            return await UpdateGroupsAsync(groups, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Update Groups, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more groups in your company.
+        /// </remarks>
+        /// <param name="groups">
+        /// The set of <see cref="Group"/> objects to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Group"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Group>, ResultsMeta)> UpdateGroupsAsync(
+            IEnumerable<Group> groups,
+            CancellationToken cancellationToken)
+        {
+            var context = new UpdateContext<Group>(EndpointName.Groups, groups);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion

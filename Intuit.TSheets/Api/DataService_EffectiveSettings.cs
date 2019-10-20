@@ -83,7 +83,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<EffectiveSettings> GetEffectiveSettingsAsync()
         {
-            return await GetEffectiveSettingsAsync(null).ConfigureAwait(false);
+            return await GetEffectiveSettingsAsync(null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -102,9 +102,7 @@ namespace Intuit.TSheets.Api
         public async Task<EffectiveSettings> GetEffectiveSettingsAsync(
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetEffectiveSettingsAsync(null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -123,11 +121,7 @@ namespace Intuit.TSheets.Api
         public async Task<EffectiveSettings> GetEffectiveSettingsAsync(
             EffectiveSettingsFilter filter)
         {
-            var context = new GetContext<EffectiveSettings>(EndpointName.EffectiveSettings, filter);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return context.Results.Items.FirstOrDefault();
+            return await GetEffectiveSettingsAsync(filter, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -150,9 +144,11 @@ namespace Intuit.TSheets.Api
             EffectiveSettingsFilter filter,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            var context = new GetContext<EffectiveSettings>(EndpointName.EffectiveSettings, filter);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return context.Results.Items.FirstOrDefault();
         }
 
         #endregion

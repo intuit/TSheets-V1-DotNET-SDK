@@ -131,7 +131,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<CustomField>, ResultsMeta)> GetCustomFieldsAsync()
         {
-            return await GetCustomFieldsAsync(null, null).ConfigureAwait(false);
+            return await GetCustomFieldsAsync(null, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -151,9 +151,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<CustomField>, ResultsMeta)> GetCustomFieldsAsync(
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetCustomFieldsAsync(null, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -173,7 +171,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<CustomField>, ResultsMeta)> GetCustomFieldsAsync(
             RequestOptions options)
         {
-            return await GetCustomFieldsAsync(null, options).ConfigureAwait(false);
+            return await GetCustomFieldsAsync(null, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -197,9 +195,7 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetCustomFieldsAsync(null, options, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -219,7 +215,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<CustomField>, ResultsMeta)> GetCustomFieldsAsync(
             CustomFieldFilter filter)
         {
-            return await GetCustomFieldsAsync(filter, null).ConfigureAwait(false);
+            return await GetCustomFieldsAsync(filter, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -243,9 +239,7 @@ namespace Intuit.TSheets.Api
             CustomFieldFilter filter,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetCustomFieldsAsync(filter, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -269,11 +263,7 @@ namespace Intuit.TSheets.Api
             CustomFieldFilter filter,
             RequestOptions options)
         {
-            var context = new GetContext<CustomField>(EndpointName.CustomFields, filter, options);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
+            return await GetCustomFieldsAsync(filter, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -301,9 +291,11 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            var context = new GetContext<CustomField>(EndpointName.CustomFields, filter, options);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion
