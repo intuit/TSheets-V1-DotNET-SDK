@@ -21,6 +21,7 @@ namespace Intuit.TSheets.Api
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -89,13 +90,39 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="ScheduleEvent"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<ScheduleEvent>, ResultsMeta)> CreateScheduleEventsAsync(IEnumerable<ScheduleEvent> scheduleEvents)
+        public async Task<(IList<ScheduleEvent>, ResultsMeta)> CreateScheduleEventsAsync(
+            IEnumerable<ScheduleEvent> scheduleEvents)
         {
             var context = new CreateContext<ScheduleEvent>(EndpointName.ScheduleEvents, scheduleEvents);
 
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Schedule Events.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more schedule events.
+        /// </remarks>
+        /// <param name="scheduleEvents">
+        /// The set of <see cref="ScheduleEvent"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="ScheduleEvent"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<ScheduleEvent>, ResultsMeta)> CreateScheduleEventsAsync(
+            IEnumerable<ScheduleEvent> scheduleEvents,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -111,11 +138,37 @@ namespace Intuit.TSheets.Api
         /// The <see cref="ScheduleEvent"/> object that was created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(ScheduleEvent, ResultsMeta)> CreateScheduleEventAsync(ScheduleEvent scheduleEvent)
+        public async Task<(ScheduleEvent, ResultsMeta)> CreateScheduleEventAsync(
+            ScheduleEvent scheduleEvent)
         {
             (IList<ScheduleEvent> scheduleEvents, ResultsMeta resultsMeta) = await CreateScheduleEventsAsync(new[] { scheduleEvent }).ConfigureAwait(false);
 
             return (scheduleEvents.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create ScheduleEvents, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add a single schedule event.
+        /// </remarks>
+        /// <param name="scheduleEvent">
+        /// The <see cref="ScheduleEvent"/> object to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The <see cref="ScheduleEvent"/> object that was created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(ScheduleEvent, ResultsMeta)> CreateScheduleEventAsync(
+            ScheduleEvent scheduleEvent,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -187,6 +240,32 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
+        /// Asynchronously Retrieve Schedule Events, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all schedule events associated with your employees
+        /// or company, with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="ScheduleEventFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="ScheduleEvent"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<ScheduleEvent>, ResultsMeta)> GetScheduleEventsAsync(
+            ScheduleEventFilter filter,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
         /// Asynchronously Retrieve Schedule Events.
         /// </summary>
         /// <remarks>
@@ -212,6 +291,36 @@ namespace Intuit.TSheets.Api
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Schedule Events, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all schedule events associated with your employees
+        /// or company, with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="ScheduleEventFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="ScheduleEvent"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<ScheduleEvent>, ResultsMeta)> GetScheduleEventsAsync(
+            ScheduleEventFilter filter,
+            RequestOptions options,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -282,6 +391,31 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
+        /// Asynchronously Update ScheduleEvents, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more schedule events.
+        /// </remarks>
+        /// <param name="scheduleEvents">
+        /// The set of <see cref="ScheduleEvent"/> objects to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="ScheduleEvent"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<ScheduleEvent>, ResultsMeta)> UpdateScheduleEventsAsync(
+            IEnumerable<ScheduleEvent> scheduleEvents,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
         /// Asynchronously Update ScheduleEvents.
         /// </summary>
         /// <remarks>
@@ -301,6 +435,31 @@ namespace Intuit.TSheets.Api
                 await UpdateScheduleEventsAsync(new[] { scheduleEvent }).ConfigureAwait(false);
 
             return (scheduleEvents.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Update ScheduleEvents, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Edit a single schedule event.
+        /// </remarks>
+        /// <param name="scheduleEvent">
+        /// The <see cref="ScheduleEvent"/> object to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The <see cref="ScheduleEvent"/> object that was updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(ScheduleEvent, ResultsMeta)> UpdateScheduleEventAsync(
+            ScheduleEvent scheduleEvent,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion

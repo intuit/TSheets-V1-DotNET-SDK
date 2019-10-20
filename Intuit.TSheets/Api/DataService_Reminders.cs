@@ -21,6 +21,7 @@ namespace Intuit.TSheets.Api
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -89,13 +90,39 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Reminder"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<Reminder>, ResultsMeta)> CreateRemindersAsync(IEnumerable<Reminder> reminders)
+        public async Task<(IList<Reminder>, ResultsMeta)> CreateRemindersAsync(
+            IEnumerable<Reminder> reminders)
         {
             var context = new CreateContext<Reminder>(EndpointName.Reminders, reminders);
 
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Reminders, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more user-specific or company-wide reminders.
+        /// </remarks>
+        /// <param name="reminders">
+        /// The set of <see cref="Reminder"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Reminder"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Reminder>, ResultsMeta)> CreateRemindersAsync(
+            IEnumerable<Reminder> reminders,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -111,11 +138,37 @@ namespace Intuit.TSheets.Api
         /// The <see cref="Reminder"/> object that was created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(Reminder, ResultsMeta)> CreateReminderAsync(Reminder reminder)
+        public async Task<(Reminder, ResultsMeta)> CreateReminderAsync(
+            Reminder reminder)
         {
             (IList<Reminder> reminders, ResultsMeta resultsMeta) = await CreateRemindersAsync(new[] { reminder }).ConfigureAwait(false);
 
             return (reminders.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Reminders, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add a single user-specific or company-wide reminder.
+        /// </remarks>
+        /// <param name="reminder">
+        /// The <see cref="Reminder"/> object to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Reminder"/> object that was created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(Reminder, ResultsMeta)> CreateReminderAsync(
+            Reminder reminder,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -187,6 +240,32 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
+        /// Asynchronously Retrieve Reminders, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all reminders associated with your employees
+        /// or company, with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="ReminderFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Reminder"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Reminder>, ResultsMeta)> GetRemindersAsync(
+            ReminderFilter filter,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
         /// Asynchronously Retrieve Reminders.
         /// </summary>
         /// <remarks>
@@ -212,6 +291,36 @@ namespace Intuit.TSheets.Api
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Reminders, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all reminders associated with your employees
+        /// or company, with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="ReminderFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Reminder"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Reminder>, ResultsMeta)> GetRemindersAsync(
+            ReminderFilter filter,
+            RequestOptions options,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -281,6 +390,31 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
+        /// Asynchronously Update Reminders, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more reminders for employees within your company.
+        /// </remarks>
+        /// <param name="reminders">
+        /// The set of <see cref="Reminder"/> objects to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Reminder"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Reminder>, ResultsMeta)> UpdateRemindersAsync(
+            IEnumerable<Reminder> reminders,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
         /// Asynchronously Update Reminders.
         /// </summary>
         /// <remarks>
@@ -293,12 +427,38 @@ namespace Intuit.TSheets.Api
         /// The <see cref="Reminder"/> object that was updated, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(Reminder, ResultsMeta)> UpdateReminderAsync(Reminder reminder)
+        public async Task<(Reminder, ResultsMeta)> UpdateReminderAsync(
+            Reminder reminder)
         {
             (IList<Reminder> reminders, ResultsMeta resultsMeta) =
                 await UpdateRemindersAsync(new[] { reminder }).ConfigureAwait(false);
 
             return (reminders.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Update Reminders, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Edit a single reminder for employees within your company.
+        /// </remarks>
+        /// <param name="reminder">
+        /// The <see cref="Reminder"/> object to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Reminder"/> object that was updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(Reminder, ResultsMeta)> UpdateReminderAsync(
+            Reminder reminder,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion

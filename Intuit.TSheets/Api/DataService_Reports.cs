@@ -19,6 +19,7 @@
 
 namespace Intuit.TSheets.Api
 {
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -88,6 +89,28 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
+        /// Asynchronously Retrieve Current Totals Report, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a snapshot report for the current totals (shift and day) along with additional
+        /// information provided for those who are currently on the clock.
+        /// </remarks>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An instance of the <see cref="CurrentTotalsReport"/> class, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(CurrentTotalsReport, ResultsMeta)> GetCurrentTotalsReportAsync(
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
         /// Asynchronously Retrieve Current Totals Report.
         /// </summary>
         /// <remarks>
@@ -101,13 +124,40 @@ namespace Intuit.TSheets.Api
         /// An instance of the <see cref="CurrentTotalsReport"/> class, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(CurrentTotalsReport, ResultsMeta)> GetCurrentTotalsReportAsync(CurrentTotalsReportFilter filter)
+        public async Task<(CurrentTotalsReport, ResultsMeta)> GetCurrentTotalsReportAsync(
+            CurrentTotalsReportFilter filter)
         {
             var context = new GetReportContext<CurrentTotalsReport>(EndpointName.CurrentTotalsReports, filter);
 
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Current Totals Report, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a snapshot report for the current totals (shift and day) along with additional
+        /// information provided for those who are currently on the clock.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="CurrentTotalsReportFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An instance of the <see cref="CurrentTotalsReport"/> class, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(CurrentTotalsReport, ResultsMeta)> GetCurrentTotalsReportAsync(
+            CurrentTotalsReportFilter filter,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -147,13 +197,40 @@ namespace Intuit.TSheets.Api
         /// An instance of the <see cref="PayrollReport"/> class, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(PayrollReport, ResultsMeta)> GetPayrollReportAsync(PayrollReportFilter filter)
+        public async Task<(PayrollReport, ResultsMeta)> GetPayrollReportAsync(
+            PayrollReportFilter filter)
         {
             var context = new GetReportContext<PayrollReport>(EndpointName.PayrollReports, filter);
 
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Payroll Report, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a payroll report associated with a time frame,
+        /// with filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="PayrollReportFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An instance of the <see cref="PayrollReport"/> class, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(PayrollReport, ResultsMeta)> GetPayrollReportAsync(
+            PayrollReportFilter filter,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -193,13 +270,40 @@ namespace Intuit.TSheets.Api
         /// An instance of the <see cref="PayrollByJobcodeReport"/> class, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(PayrollByJobcodeReport, ResultsMeta)> GetPayrollByJobcodeReportAsync(PayrollByJobcodeReportFilter filter)
+        public async Task<(PayrollByJobcodeReport, ResultsMeta)> GetPayrollByJobcodeReportAsync(
+            PayrollByJobcodeReportFilter filter)
         {
             var context = new GetReportContext<PayrollByJobcodeReport>(EndpointName.PayrollByJobcodeReports, filter);
 
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Payroll by Jobcode Report, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a payroll report, broken down by jobcode,
+        /// with filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="PayrollByJobcodeReportFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An instance of the <see cref="PayrollByJobcodeReport"/> class, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(PayrollByJobcodeReport, ResultsMeta)> GetPayrollByJobcodeReportAsync(
+            PayrollByJobcodeReportFilter filter,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -237,13 +341,39 @@ namespace Intuit.TSheets.Api
         /// An instance of the <see cref="ProjectReport"/> class, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(ProjectReport, ResultsMeta)> GetProjectReportAsync(ProjectReportFilter filter)
+        public async Task<(ProjectReport, ResultsMeta)> GetProjectReportAsync(
+            ProjectReportFilter filter)
         {
             var context = new GetReportContext<ProjectReport>(EndpointName.ProjectReports, filter);
 
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Project Report, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a project report with filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="ProjectReportFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An instance of the <see cref="ProjectReport"/> class, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(ProjectReport, ResultsMeta)> GetProjectReportAsync(
+            ProjectReportFilter filter,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion

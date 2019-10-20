@@ -21,6 +21,7 @@ namespace Intuit.TSheets.Api
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -89,13 +90,39 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Location"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<Location>, ResultsMeta)> CreateLocationsAsync(IEnumerable<Location> locations)
+        public async Task<(IList<Location>, ResultsMeta)> CreateLocationsAsync(
+            IEnumerable<Location> locations)
         {
             var context = new CreateContext<Location>(EndpointName.Locations, locations);
 
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Locations, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more locations to your company.
+        /// </remarks>
+        /// <param name="locations">
+        /// The set of <see cref="Location"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Location"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Location>, ResultsMeta)> CreateLocationsAsync(
+            IEnumerable<Location> locations,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -111,11 +138,37 @@ namespace Intuit.TSheets.Api
         /// The <see cref="Location"/> object that was created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(Location, ResultsMeta)> CreateLocationAsync(Location location)
+        public async Task<(Location, ResultsMeta)> CreateLocationAsync(
+            Location location)
         {
             (IList<Location> locations, ResultsMeta resultsMeta) = await CreateLocationsAsync(new[] { location }).ConfigureAwait(false);
 
             return (locations.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Locations, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add a single location to your company.
+        /// </remarks>
+        /// <param name="location">
+        /// The <see cref="Location"/> object to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Location"/> object that was created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(Location, ResultsMeta)> CreateLocationAsync(
+            Location location,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -219,6 +272,28 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
+        /// Asynchronously Retrieve Locations, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locations associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Location"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Location>, ResultsMeta)> GetLocationsAsync(
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
         /// Asynchronously Retrieve Locations.
         /// </summary>
         /// <remarks>
@@ -239,6 +314,32 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
+        /// Asynchronously Retrieve Locations, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locations associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Location"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Location>, ResultsMeta)> GetLocationsAsync(
+            RequestOptions options,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
         /// Asynchronously Retrieve Locations.
         /// </summary>
         /// <remarks>
@@ -256,6 +357,32 @@ namespace Intuit.TSheets.Api
             LocationFilter filter)
         {
             return await GetLocationsAsync(filter, null).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Locations, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locations associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="LocationFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Location"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Location>, ResultsMeta)> GetLocationsAsync(
+            LocationFilter filter,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -284,6 +411,36 @@ namespace Intuit.TSheets.Api
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Locations, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locations associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="LocationFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Location"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Location>, ResultsMeta)> GetLocationsAsync(
+            LocationFilter filter,
+            RequestOptions options,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -342,13 +499,39 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Location"/> objects that were updated, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<Location>, ResultsMeta)> UpdateLocationsAsync(IEnumerable<Location> locations)
+        public async Task<(IList<Location>, ResultsMeta)> UpdateLocationsAsync(
+            IEnumerable<Location> locations)
         {
             var context = new UpdateContext<Location>(EndpointName.Locations, locations);
 
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Update Locations, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more locations in your company.
+        /// </remarks>
+        /// <param name="locations">
+        /// The set of <see cref="Location"/> objects to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Location"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Location>, ResultsMeta)> UpdateLocationsAsync(
+            IEnumerable<Location> locations,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -364,12 +547,38 @@ namespace Intuit.TSheets.Api
         /// The <see cref="Location"/> object that was updated, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(Location, ResultsMeta)> UpdateLocationAsync(Location location)
+        public async Task<(Location, ResultsMeta)> UpdateLocationAsync(
+            Location location)
         {
             (IList<Location> locations, ResultsMeta resultsMeta) =
                 await UpdateLocationsAsync(new[] { location }).ConfigureAwait(false);
 
             return (locations.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Update Locations, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Edit a single location in your company.
+        /// </remarks>
+        /// <param name="location">
+        /// The <see cref="Location"/> object to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Location"/> object that was updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(Location, ResultsMeta)> UpdateLocationAsync(
+            Location location,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion

@@ -20,6 +20,7 @@
 namespace Intuit.TSheets.Api
 {
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -82,7 +83,7 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
-        /// Retrieve Deleted Timesheets.
+        /// Asynchronously Retrieve Deleted Timesheets.
         /// </summary>
         /// <remarks>
         /// Retrieves a list of all deleted timesheets associated with your company,
@@ -102,7 +103,33 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
-        /// Retrieve Deleted Timesheets.
+        /// Asynchronously Retrieve Deleted Timesheets, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all deleted timesheets associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="TimesheetsDeletedFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="TimesheetsDeleted"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<TimesheetsDeleted>, ResultsMeta)> GetTimesheetsDeletedAsync(
+            TimesheetsDeletedFilter filter,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Deleted Timesheets.
         /// </summary>
         /// <remarks>
         /// Retrieves a list of all deleted timesheets associated with your company,
@@ -127,6 +154,36 @@ namespace Intuit.TSheets.Api
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Deleted Timesheets, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all deleted timesheets associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="TimesheetsDeletedFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="TimesheetsDeleted"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<TimesheetsDeleted>, ResultsMeta)> GetTimesheetsDeletedAsync(
+            TimesheetsDeletedFilter filter,
+            RequestOptions options,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion

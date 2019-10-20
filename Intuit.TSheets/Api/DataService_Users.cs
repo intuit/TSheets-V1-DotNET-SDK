@@ -21,6 +21,7 @@ namespace Intuit.TSheets.Api
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -89,13 +90,39 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="User"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<User>, ResultsMeta)> CreateUsersAsync(IEnumerable<User> users)
+        public async Task<(IList<User>, ResultsMeta)> CreateUsersAsync(
+            IEnumerable<User> users)
         {
             var context = new CreateContext<User>(EndpointName.Users, users);
 
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Users, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more users to your company.
+        /// </remarks>
+        /// <param name="users">
+        /// The set of <see cref="User"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="User"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<User>, ResultsMeta)> CreateUsersAsync(
+            IEnumerable<User> users,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -111,11 +138,37 @@ namespace Intuit.TSheets.Api
         /// The <see cref="User"/> object that was created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(User, ResultsMeta)> CreateUserAsync(User user)
+        public async Task<(User, ResultsMeta)> CreateUserAsync(
+            User user)
         {
             (IList<User> users, ResultsMeta resultsMeta) = await CreateUsersAsync(new[] { user }).ConfigureAwait(false);
 
             return (users.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Users, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add a single user to your company.
+        /// </remarks>
+        /// <param name="user">
+        /// The <see cref="User"/> object to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The <see cref="User"/> object that was created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(User, ResultsMeta)> CreateUserAsync(
+            User user,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -219,6 +272,28 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
+        /// Asynchronously Retrieve Users, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all users associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="User"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<User>, ResultsMeta)> GetUsersAsync(
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
         /// Asynchronously Retrieve Users.
         /// </summary>
         /// <remarks>
@@ -239,6 +314,32 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
+        /// Asynchronously Retrieve Users, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all users associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="User"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<User>, ResultsMeta)> GetUsersAsync(
+            RequestOptions options,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
         /// Asynchronously Retrieve Users.
         /// </summary>
         /// <remarks>
@@ -256,6 +357,32 @@ namespace Intuit.TSheets.Api
             UserFilter filter)
         {
             return await GetUsersAsync(filter, null).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Users, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all users associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="UserFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="User"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<User>, ResultsMeta)> GetUsersAsync(
+            UserFilter filter,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -284,6 +411,36 @@ namespace Intuit.TSheets.Api
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Users, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all users associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="UserFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="User"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<User>, ResultsMeta)> GetUsersAsync(
+            UserFilter filter,
+            RequestOptions options,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -341,13 +498,39 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="User"/> objects that were updated, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<User>, ResultsMeta)> UpdateUsersAsync(IEnumerable<User> users)
+        public async Task<(IList<User>, ResultsMeta)> UpdateUsersAsync(
+            IEnumerable<User> users)
         {
             var context = new UpdateContext<User>(EndpointName.Users, users);
 
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Update Users, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more users in your company.
+        /// </remarks>
+        /// <param name="users">
+        /// The set of <see cref="User"/> objects to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="User"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<User>, ResultsMeta)> UpdateUsersAsync(
+            IEnumerable<User> users,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -363,11 +546,37 @@ namespace Intuit.TSheets.Api
         /// The <see cref="User"/> object that was updated, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(User, ResultsMeta)> UpdateUserAsync(User user)
+        public async Task<(User, ResultsMeta)> UpdateUserAsync(
+            User user)
         {
             (IList<User> users, ResultsMeta resultsMeta) = await UpdateUsersAsync(new[] { user }).ConfigureAwait(false);
 
             return (users.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Update Users, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Edit a single user in your company.
+        /// </remarks>
+        /// <param name="user">
+        /// The <see cref="User"/> object to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The <see cref="User"/> object that was updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(User, ResultsMeta)> UpdateUserAsync(
+            User user,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion

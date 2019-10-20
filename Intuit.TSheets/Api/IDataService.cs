@@ -7173,7 +7173,7 @@ namespace Intuit.TSheets.Api
             RequestOptions options);
 
         /// <summary>
-        /// Retrieve Deleted Timesheets.
+        /// Asynchronously Retrieve Deleted Timesheets.
         /// </summary>
         /// <remarks>
         /// Retrieves a list of all deleted timesheets associated with your company,
@@ -7190,7 +7190,7 @@ namespace Intuit.TSheets.Api
             TimesheetsDeletedFilter filter);
 
         /// <summary>
-        /// Retrieve Deleted Timesheets, with support for cancellation.
+        /// Asynchronously Retrieve Deleted Timesheets, with support for cancellation.
         /// </summary>
         /// <remarks>
         /// Retrieves a list of all deleted timesheets associated with your company,
@@ -7211,7 +7211,7 @@ namespace Intuit.TSheets.Api
             CancellationToken cancellationToken);
 
         /// <summary>
-        /// Retrieve Deleted Timesheets.
+        /// Asynchronously Retrieve Deleted Timesheets.
         /// </summary>
         /// <remarks>
         /// Retrieves a list of all deleted timesheets associated with your company,
@@ -7232,7 +7232,7 @@ namespace Intuit.TSheets.Api
             RequestOptions options);
 
         /// <summary>
-        /// Retrieve Deleted Timesheets, with support for cancellation.
+        /// Asynchronously Retrieve Deleted Timesheets, with support for cancellation.
         /// </summary>
         /// <remarks>
         /// Retrieves a list of all deleted timesheets associated with your company,

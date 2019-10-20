@@ -21,6 +21,7 @@ namespace Intuit.TSheets.Api
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -89,13 +90,39 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Jobcode"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<Jobcode>, ResultsMeta)> CreateJobcodesAsync(IEnumerable<Jobcode> jobcodes)
+        public async Task<(IList<Jobcode>, ResultsMeta)> CreateJobcodesAsync(
+            IEnumerable<Jobcode> jobcodes)
         {
             var context = new CreateContext<Jobcode>(EndpointName.Jobcodes, jobcodes);
 
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Jobcodes, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more jobcodes to your company.
+        /// </remarks>
+        /// <param name="jobcodes">
+        /// The set of <see cref="Jobcode"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Jobcode"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Jobcode>, ResultsMeta)> CreateJobcodesAsync(
+            IEnumerable<Jobcode> jobcodes,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -111,11 +138,37 @@ namespace Intuit.TSheets.Api
         /// The <see cref="Jobcode"/> object that was created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(Jobcode, ResultsMeta)> CreateJobcodeAsync(Jobcode jobcode)
+        public async Task<(Jobcode, ResultsMeta)> CreateJobcodeAsync(
+            Jobcode jobcode)
         {
             (IList<Jobcode> jobcodes, ResultsMeta resultsMeta) = await CreateJobcodesAsync(new[] { jobcode }).ConfigureAwait(false);
 
             return (jobcodes.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Jobcodes, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add a single jobcode to your company.
+        /// </remarks>
+        /// <param name="jobcode">
+        /// The <see cref="Jobcode"/> object to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Jobcode"/> object that was created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(Jobcode, ResultsMeta)> CreateJobcodeAsync(
+            Jobcode jobcode,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -219,6 +272,28 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
+        /// Asynchronously Retrieve Jobcodes, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcodes associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Jobcode"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Jobcode>, ResultsMeta)> GetJobcodesAsync(
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
         /// Asynchronously Retrieve Jobcodes.
         /// </summary>
         /// <remarks>
@@ -239,6 +314,32 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
+        /// Asynchronously Retrieve Jobcodes, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcodes associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Jobcode"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Jobcode>, ResultsMeta)> GetJobcodesAsync(
+            RequestOptions options,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
         /// Asynchronously Retrieve Jobcodes.
         /// </summary>
         /// <remarks>
@@ -256,6 +357,32 @@ namespace Intuit.TSheets.Api
             JobcodeFilter filter)
         {
             return await GetJobcodesAsync(filter, null).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Jobcodes, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcodes associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="JobcodeFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Jobcode"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Jobcode>, ResultsMeta)> GetJobcodesAsync(
+            JobcodeFilter filter,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -284,6 +411,36 @@ namespace Intuit.TSheets.Api
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Jobcodes, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all jobcodes associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="JobcodeFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Jobcode"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Jobcode>, ResultsMeta)> GetJobcodesAsync(
+            JobcodeFilter filter,
+            RequestOptions options,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -343,13 +500,39 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Jobcode"/> objects that were updated, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<Jobcode>, ResultsMeta)> UpdateJobcodesAsync(IEnumerable<Jobcode> jobcodes)
+        public async Task<(IList<Jobcode>, ResultsMeta)> UpdateJobcodesAsync(
+            IEnumerable<Jobcode> jobcodes)
         {
             var context = new UpdateContext<Jobcode>(EndpointName.Jobcodes, jobcodes);
 
             await ExecuteOperationAsync(context).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Update Jobcodes, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more jobcodes in your company.
+        /// </remarks>
+        /// <param name="jobcodes">
+        /// The set of <see cref="Jobcode"/> objects to be updated.
+        /// </param>
+        /// <returns>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// The set of the <see cref="Jobcode"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Jobcode>, ResultsMeta)> UpdateJobcodesAsync(
+            IEnumerable<Jobcode> jobcodes,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -365,12 +548,38 @@ namespace Intuit.TSheets.Api
         /// The <see cref="Jobcode"/> object that was updated, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(Jobcode, ResultsMeta)> UpdateJobcodeAsync(Jobcode jobcode)
+        public async Task<(Jobcode, ResultsMeta)> UpdateJobcodeAsync(
+            Jobcode jobcode)
         {
             (IList<Jobcode> jobcodes, ResultsMeta resultsMeta) =
                 await UpdateJobcodesAsync(new[] { jobcode }).ConfigureAwait(false);
 
             return (jobcodes.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Update Jobcodes, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Edit a single jobcode in your company.
+        /// </remarks>
+        /// <param name="jobcode">
+        /// The <see cref="Jobcode"/> object to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Jobcode"/> object that was updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(Jobcode, ResultsMeta)> UpdateJobcodeAsync(
+            Jobcode jobcode,
+            CancellationToken cancellationToken)
+        {
+            // TODO
+            await Task.Run(() => { });
+            throw new System.NotImplementedException();
         }
 
         #endregion
