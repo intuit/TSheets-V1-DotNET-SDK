@@ -20,6 +20,7 @@
 namespace Intuit.TSheets.Client.RequestFlow.PipelineElements
 {
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
     using Microsoft.Extensions.Logging;
@@ -39,8 +40,14 @@ namespace Intuit.TSheets.Client.RequestFlow.PipelineElements
         /// <typeparam name="T">The type of data entity.</typeparam>
         /// <param name="context">The object of state through the pipeline.</param>
         /// <param name="logger">The logging instance.</param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
         /// <returns>The asynchronous task.</returns>
-        protected override async Task _ProcessAsync<T>(PipelineContext<T> context, ILogger logger)
+        protected override async Task _ProcessAsync<T>(
+            PipelineContext<T> context,
+            ILogger logger,
+            CancellationToken cancellationToken)
         {
             var downloadContext = (DownloadContext<T>)context;
             Dictionary<string, string> filters = downloadContext.Filter.GetFilters();
@@ -48,7 +55,8 @@ namespace Intuit.TSheets.Client.RequestFlow.PipelineElements
             downloadContext.RawResponseContent = await downloadContext.RestClient.DownloadAsync(
                 downloadContext.Endpoint,
                 filters,
-                downloadContext.LogContext).ConfigureAwait(false);
+                downloadContext.LogContext,
+                cancellationToken).ConfigureAwait(false);
         }
     }
 }

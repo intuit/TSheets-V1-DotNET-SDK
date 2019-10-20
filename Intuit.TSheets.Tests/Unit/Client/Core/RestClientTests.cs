@@ -136,7 +136,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 mockHttpClient,
                 this.mockLogger.Object);
 
-            var actualResponse = await restClient.CreateAsync(EndpointName.Tests, "input data", new LogContext()).ConfigureAwait(false);
+            var actualResponse = await restClient.CreateAsync(EndpointName.Tests, "input data", new LogContext(), default).ConfigureAwait(false);
 
             Assert.AreEqual(expectedResponse, actualResponse);
         }
@@ -165,7 +165,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 mockHttpClient,
                 this.mockLogger.Object);
 
-            await restClient.CreateAsync(EndpointName.Tests, expectedRequest, new LogContext()).ConfigureAwait(false);
+            await restClient.CreateAsync(EndpointName.Tests, expectedRequest, new LogContext(), default).ConfigureAwait(false);
         }
 
         [TestMethod, TestCategory("Unit")]
@@ -186,7 +186,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 mockHttpClient,
                 this.mockLogger.Object);
 
-            var actualResponse = await restClient.CreateAsync(EndpointName.Tests, "input data", new LogContext()).ConfigureAwait(false);
+            var actualResponse = await restClient.CreateAsync(EndpointName.Tests, "input data", new LogContext(), default).ConfigureAwait(false);
         }
 
         [TestMethod, TestCategory("Unit")]
@@ -206,7 +206,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 mockHttpClient,
                 this.mockLogger.Object);
 
-            var actualResponse = await restClient.UpdateAsync(EndpointName.Tests, "input data", new LogContext()).ConfigureAwait(false);
+            var actualResponse = await restClient.UpdateAsync(EndpointName.Tests, "input data", new LogContext(), default).ConfigureAwait(false);
 
             Assert.AreEqual(expectedResponse, actualResponse);
         }
@@ -235,7 +235,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 mockHttpClient,
                 this.mockLogger.Object);
 
-            await restClient.UpdateAsync(EndpointName.Tests, expectedRequest, new LogContext()).ConfigureAwait(false);
+            await restClient.UpdateAsync(EndpointName.Tests, expectedRequest, new LogContext(), default).ConfigureAwait(false);
         }
 
         [TestMethod, TestCategory("Unit")]
@@ -256,7 +256,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 mockHttpClient,
                 this.mockLogger.Object);
 
-            var actualResponse = await restClient.UpdateAsync(EndpointName.Tests, "input data", new LogContext()).ConfigureAwait(false);
+            var actualResponse = await restClient.UpdateAsync(EndpointName.Tests, "input data", new LogContext(), default).ConfigureAwait(false);
         }
 
         [TestMethod, TestCategory("Unit")]
@@ -276,7 +276,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 mockHttpClient,
                 this.mockLogger.Object);
 
-            var actualResponse = await restClient.GetAsync(EndpointName.Tests, null, new LogContext()).ConfigureAwait(false);
+            var actualResponse = await restClient.GetAsync(EndpointName.Tests, null, new LogContext(), default).ConfigureAwait(false);
 
             Assert.AreEqual(expectedResponse, actualResponse);
         }
@@ -308,7 +308,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 mockHttpClient,
                 this.mockLogger.Object);
 
-            await restClient.GetAsync(EndpointName.Tests, filters, new LogContext()).ConfigureAwait(false);
+            await restClient.GetAsync(EndpointName.Tests, filters, new LogContext(), default).ConfigureAwait(false);
         }
 
         [TestMethod, TestCategory("Unit")]
@@ -333,7 +333,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 mockHttpClient,
                 this.mockLogger.Object);
 
-            var actualResponse = await restClient.GetAsync(EndpointName.Tests, filters, new LogContext()).ConfigureAwait(false);
+            var actualResponse = await restClient.GetAsync(EndpointName.Tests, filters, new LogContext(), default).ConfigureAwait(false);
         }
 
         [TestMethod, TestCategory("Unit")]
@@ -353,7 +353,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 mockHttpClient,
                 this.mockLogger.Object);
 
-            var actualResponse = await restClient.DownloadAsync(EndpointName.Tests, null, new LogContext()).ConfigureAwait(false);
+            var actualResponse = await restClient.DownloadAsync(EndpointName.Tests, null, new LogContext(), default).ConfigureAwait(false);
 
             Assert.IsTrue(expectedResponse.SequenceEqual(actualResponse));
         }
@@ -385,7 +385,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 mockHttpClient,
                 this.mockLogger.Object);
 
-            await restClient.DownloadAsync(EndpointName.Tests, filters, new LogContext()).ConfigureAwait(false);
+            await restClient.DownloadAsync(EndpointName.Tests, filters, new LogContext(), default).ConfigureAwait(false);
         }
 
         [TestMethod, TestCategory("Unit")]
@@ -410,7 +410,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 mockHttpClient,
                 this.mockLogger.Object);
 
-            var actualResponse = await restClient.DownloadAsync(EndpointName.Tests, filters, new LogContext()).ConfigureAwait(false);
+            var actualResponse = await restClient.DownloadAsync(EndpointName.Tests, filters, new LogContext(), default).ConfigureAwait(false);
         }
 
         [TestMethod, TestCategory("Unit")]
@@ -431,7 +431,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 mockHttpClient,
                 this.mockLogger.Object);
 
-            var actualResponse = await restClient.DeleteAsync(EndpointName.Tests, expectedRequest, new LogContext()).ConfigureAwait(false);
+            var actualResponse = await restClient.DeleteAsync(EndpointName.Tests, expectedRequest, new LogContext(), default).ConfigureAwait(false);
 
             Assert.AreEqual(expectedResponse, actualResponse);
         }
@@ -459,7 +459,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 mockHttpClient,
                 this.mockLogger.Object);
 
-            await restClient.DeleteAsync(EndpointName.Tests, expectedRequest, new LogContext()).ConfigureAwait(false);
+            await restClient.DeleteAsync(EndpointName.Tests, expectedRequest, new LogContext(), default).ConfigureAwait(false);
         }
 
         [TestMethod, TestCategory("Unit")]
@@ -480,7 +480,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 mockHttpClient,
                 this.mockLogger.Object);
 
-            var actualResponse = await restClient.DeleteAsync(EndpointName.Tests, expectedRequest, new LogContext()).ConfigureAwait(false);
+            var actualResponse = await restClient.DeleteAsync(EndpointName.Tests, expectedRequest, new LogContext(), default).ConfigureAwait(false);
         }
 
         private HttpClient GetMockHttpClient(

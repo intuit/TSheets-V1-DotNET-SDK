@@ -30,6 +30,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.Pipelines
     using Moq;
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Logging.Abstractions;
+    using System.Threading;
 
     [TestClass]
     public class RequestPipelineTests : UnitTestBase
@@ -74,18 +75,20 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.Pipelines
 
             pipelineElement1.Setup(h => h.ProcessAsync(
                 It.IsAny<PipelineContext<TestEntity>>(),
-                It.IsAny<ILogger>()))
-            .Callback((PipelineContext<TestEntity> c, ILogger l) => callSequence.Add(nameof(pipelineElement1)))
+                It.IsAny<ILogger>(),
+                It.IsAny<CancellationToken>()))
+            .Callback((PipelineContext<TestEntity> c, ILogger l, CancellationToken cancellationToken) => callSequence.Add(nameof(pipelineElement1)))
             .Returns(Task.CompletedTask);
 
             pipelineElement2.Setup(h => h.ProcessAsync(
                 It.IsAny<PipelineContext<TestEntity>>(),
-                It.IsAny<ILogger>()))
-            .Callback((PipelineContext<TestEntity> c, ILogger l) => callSequence.Add(nameof(pipelineElement2)))
+                It.IsAny<ILogger>(),
+                It.IsAny<CancellationToken>()))
+            .Callback((PipelineContext<TestEntity> c, ILogger l, CancellationToken cancellationToken) => callSequence.Add(nameof(pipelineElement2)))
             .Returns(Task.CompletedTask);
 
             this.requestPipeline.AddStage(pipelineElement1.Object, pipelineElement2.Object);
-            await this.requestPipeline.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+            await this.requestPipeline.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
 
             Assert.IsTrue(callSequence.First().Equals(nameof(pipelineElement1)), $"Expected {nameof(pipelineElement1)} to be called first.");
             Assert.IsTrue(callSequence.Last().Equals(nameof(pipelineElement2)), $"Expected {nameof(pipelineElement2)} to be called second.");

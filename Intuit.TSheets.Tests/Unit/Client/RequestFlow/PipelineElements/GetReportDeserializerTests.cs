@@ -45,7 +45,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
             var expectedItem1 = new TestReportItem(1237, "Mary", 90.5f);
 
             GetReportContext<TestReport> context = GetReportContext<TestReport>();
-            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
 
             const int expectedCount = 2;
             Assert.AreEqual(expectedCount, context.Results.Report.Count, $"Expected {expectedCount} items in the report.");

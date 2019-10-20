@@ -20,6 +20,7 @@
 namespace Intuit.TSheets.Client.RequestFlow.PipelineElements
 {
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
     using Intuit.TSheets.Client.Utilities;
@@ -53,8 +54,14 @@ namespace Intuit.TSheets.Client.RequestFlow.PipelineElements
         /// <typeparam name="T">The type of data entity.</typeparam>
         /// <param name="context">The object of state through the pipeline.</param>
         /// <param name="logger">The logging instance.</param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
         /// <returns>The asynchronous task.</returns>
-        public virtual async Task ProcessAsync<T>(PipelineContext<T> context, ILogger logger)
+        public virtual async Task ProcessAsync<T>(
+            PipelineContext<T> context,
+            ILogger logger,
+            CancellationToken cancellationToken)
         {
             try
             {
@@ -66,7 +73,7 @@ namespace Intuit.TSheets.Client.RequestFlow.PipelineElements
                     nameof(ProcessAsync));
 
                 // Call the derived class' overridden method to perform the "real" work.
-                await _ProcessAsync(context, logger).ConfigureAwait(false);
+                await _ProcessAsync(context, logger, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -115,7 +122,13 @@ namespace Intuit.TSheets.Client.RequestFlow.PipelineElements
         /// <typeparam name="T">The type of the data entity.</typeparam>
         /// <param name="context">Contextual information for the request.</param>
         /// <param name="log">The logger.</param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
         /// <returns>The asynchronous task.</returns>
-        protected abstract Task _ProcessAsync<T>(PipelineContext<T> context, ILogger log);
+        protected abstract Task _ProcessAsync<T>(
+            PipelineContext<T> context,
+            ILogger log,
+            CancellationToken cancellationToken);
     }
 }

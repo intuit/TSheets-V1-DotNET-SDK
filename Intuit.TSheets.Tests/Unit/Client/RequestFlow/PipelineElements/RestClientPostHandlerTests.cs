@@ -19,6 +19,7 @@
 
 namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
 {
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -51,13 +52,16 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
             // rest client Create() method is called with 3 parameters: 
             // the request id, the endpoint, and the serialized request string
             this.mockRestClient
-                .Setup(p => p.CreateAsync(It.Is<EndpointName>(t => t.Equals(EndpointName.Tests)),
-                    It.Is<string>(s => s.Equals(Request)), It.IsAny<LogContext>()))
+                .Setup(p => p.CreateAsync(
+                    It.Is<EndpointName>(t => t.Equals(EndpointName.Tests)),
+                    It.Is<string>(s => s.Equals(Request)),
+                    It.IsAny<LogContext>(),
+                    It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(Response));
 
             context.RestClient = this.mockRestClient.Object;
 
-            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
 
             this.mockRestClient.VerifyAll();
         }
@@ -68,13 +72,16 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
             CreateContext<TestEntity> context = GetCreateContext();
 
             this.mockRestClient
-                .Setup(p => p.CreateAsync(It.IsAny<EndpointName>(),
-                    It.IsAny<string>(), It.IsAny<LogContext>()))
+                .Setup(p => p.CreateAsync(
+                    It.IsAny<EndpointName>(),
+                    It.IsAny<string>(),
+                    It.IsAny<LogContext>(),
+                    It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(Response));
 
             context.RestClient = this.mockRestClient.Object;
 
-            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
 
             Assert.AreEqual(Response, context.ResponseContent, "Expected response content to be set.");
 

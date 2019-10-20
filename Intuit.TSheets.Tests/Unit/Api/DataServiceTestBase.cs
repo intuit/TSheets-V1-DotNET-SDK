@@ -21,6 +21,7 @@ namespace Intuit.TSheets.Tests.Unit.Api
 {
     using System;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Api;
     using Intuit.TSheets.Client.Core;
@@ -116,8 +117,8 @@ namespace Intuit.TSheets.Tests.Unit.Api
             where TContext : PipelineContext<TEntity>
         {
             this.mockPipeline
-                .Setup(f => f.ProcessAsync(It.IsAny<TContext>(), It.IsAny<ILogger>()))
-                .Callback((PipelineContext<TEntity> context, ILogger log) =>
+                .Setup(f => f.ProcessAsync(It.IsAny<TContext>(), It.IsAny<ILogger>(), It.IsAny<CancellationToken>()))
+                .Callback((PipelineContext<TEntity> context, ILogger log, CancellationToken cancellationToken) =>
                     Process(context, endpoint, expect))
                 .Returns(Task.CompletedTask);
 

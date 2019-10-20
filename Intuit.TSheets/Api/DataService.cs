@@ -20,6 +20,7 @@
 namespace Intuit.TSheets.Api
 {
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -174,15 +175,20 @@ namespace Intuit.TSheets.Api
         /// </summary>
         /// <typeparam name="T">The entity data type.</typeparam>
         /// <param name="context">Vehicle of state, <see cref="PipelineContext{T}"/></param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
         /// <returns>The asynchronous task.</returns>
-        internal async Task ExecuteOperationAsync<T>(PipelineContext<T> context)
+        internal async Task ExecuteOperationAsync<T>(
+            PipelineContext<T> context,
+            CancellationToken cancellationToken = default)
         {
             try
             {
                 context.RestClient = this.restClient;
 
                 IPipeline requestPipeline = this.pipelineFactory.GetPipeline(context);
-                await requestPipeline.ProcessAsync(context, this.logger).ConfigureAwait(false);
+                await requestPipeline.ProcessAsync(context, this.logger, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception ex)
             {

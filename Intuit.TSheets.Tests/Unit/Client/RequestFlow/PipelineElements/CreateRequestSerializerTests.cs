@@ -106,7 +106,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
         {
             CreateContext<T> context = GetCreateContext(entityToSerialize);
 
-            AsyncUtil.RunSync(() => this.pipelineElement.ProcessAsync(context, NullLogger.Instance));
+            AsyncUtil.RunSync(() => this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default));
 
             TestHelper.AssertJsonEqual(expectedSerialization, context.SerializedRequest);
         }

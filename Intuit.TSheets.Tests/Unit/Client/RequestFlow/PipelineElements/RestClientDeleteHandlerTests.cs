@@ -20,6 +20,7 @@
 namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
 {
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -51,8 +52,11 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
             // rest client Delete() method is called with 3 parameters: 
             // the request id, the endpoint, and the list of id's to delete
             this.mockRestClient
-                .Setup(p => p.DeleteAsync(It.Is<EndpointName>(t => t.Equals(EndpointName.Tests)),
-                    It.Is<IEnumerable<int>>(s => s.IsEqualTo(idsToDelete)), It.IsAny<LogContext>()))
+                .Setup(p => p.DeleteAsync(
+                    It.Is<EndpointName>(t => t.Equals(EndpointName.Tests)),
+                    It.Is<IEnumerable<int>>(s => s.IsEqualTo(idsToDelete)),
+                    It.IsAny<LogContext>(),
+                    It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(Response));
 
             var context = new DeleteContext<BasicTestEntity>(EndpointName.Tests, idsToDelete)
@@ -60,7 +64,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
                 RestClient = this.mockRestClient.Object
             };
 
-            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
 
             this.mockRestClient.VerifyAll();
         }
@@ -69,8 +73,11 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
         public async Task RestClientDeleteHandler_RestClientSetsResponseContentPropertyOfContextObjectAsync()
         {
             this.mockRestClient
-                .Setup(p => p.DeleteAsync(It.IsAny<EndpointName>(),
-                    It.IsAny<IEnumerable<int>>(), It.IsAny<LogContext>()))
+                .Setup(p => p.DeleteAsync(
+                    It.IsAny<EndpointName>(),
+                    It.IsAny<IEnumerable<int>>(),
+                    It.IsAny<LogContext>(),
+                    It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(Response));
 
             var context = new DeleteContext<BasicTestEntity>(EndpointName.Tests, new[] {1})
@@ -78,7 +85,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
                 RestClient = this.mockRestClient.Object
             };
 
-            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance);
+            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default);
 
             Assert.AreEqual(Response, context.ResponseContent, "Expected response content to be set.");
 

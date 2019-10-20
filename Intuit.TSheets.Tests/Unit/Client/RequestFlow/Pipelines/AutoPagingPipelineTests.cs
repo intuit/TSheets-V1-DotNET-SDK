@@ -19,6 +19,7 @@
 
 namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.Pipelines
 {
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow;
@@ -51,13 +52,14 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.Pipelines
             this.mockInnerPipeline
                 .Setup(h => h.ProcessAsync(
                     It.IsAny<PipelineContext<BasicTestEntity>>(),
-                    It.IsAny<ILogger>()))
-                .Callback((PipelineContext<BasicTestEntity> context, ILogger log) => MockHandleTwoPages(context))
+                    It.IsAny<ILogger>(),
+                    It.IsAny<CancellationToken>()))
+                .Callback((PipelineContext<BasicTestEntity> context, ILogger log, CancellationToken cancellationToken) => MockHandleTwoPages(context))
                 .Returns(Task.CompletedTask);
 
             this.pipeline.InnerPipeline = this.mockInnerPipeline.Object;
 
-            await this.pipeline.ProcessAsync(getContext, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipeline.ProcessAsync(getContext, NullLogger.Instance, default).ConfigureAwait(false);
 
             // inner pipeline should have been called twice
             const int expectedCount = 2;

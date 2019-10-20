@@ -19,6 +19,7 @@
 
 namespace Intuit.TSheets.Client.RequestFlow.PipelineElements
 {
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
     using Microsoft.Extensions.Logging;
@@ -34,7 +35,10 @@ namespace Intuit.TSheets.Client.RequestFlow.PipelineElements
         /// <typeparam name="T">The type of data entity.</typeparam>
         /// <param name="context">The object of state through the pipeline.</param>
         /// <param name="logger">An instance of a logging object.</param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
         /// <returns>The asynchronous Task.</returns>
-        Task ProcessAsync<T>(PipelineContext<T> context, ILogger logger);
+        Task ProcessAsync<T>(PipelineContext<T> context, ILogger logger, CancellationToken cancellationToken);
     }
 }

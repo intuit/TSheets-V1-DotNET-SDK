@@ -53,7 +53,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
                 }"
             };
 
-            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
 
             const int expectedCount = 0;
             Assert.AreEqual(expectedCount, context.ResultsMeta.SupplementalData.GetAll<TestEntity>().Count,
@@ -74,7 +74,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
                 }"
             };
 
-            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
 
             const int expectedCount = 0;
             Assert.AreEqual(expectedCount, context.ResultsMeta.SupplementalData.GetAll<TestEntity>().Count,
@@ -89,7 +89,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
                 ResponseContent = ResponseContent
             };
 
-            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
 
             const int expectedGroupItemCount = 2;
             Assert.AreEqual(expectedGroupItemCount, context.ResultsMeta.SupplementalData.GetAll<Group>().Count,

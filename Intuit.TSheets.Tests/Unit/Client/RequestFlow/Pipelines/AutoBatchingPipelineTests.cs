@@ -22,6 +22,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.Pipelines
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -62,13 +63,14 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.Pipelines
             this.mockInnerPipeline
                 .Setup(h => h.ProcessAsync(
                     It.IsAny<PipelineContext<BasicTestEntity>>(),
-                    It.IsAny<ILogger>()))
-                .Callback((PipelineContext<BasicTestEntity> context, ILogger log) => MockHandleTwoBatches(context))
+                    It.IsAny<ILogger>(),
+                    It.IsAny<CancellationToken>()))
+                .Callback((PipelineContext<BasicTestEntity> context, ILogger log, CancellationToken cancellationToken) => MockHandleTwoBatches(context))
                 .Returns(Task.CompletedTask);
 
             this.pipeline.InnerPipeline = this.mockInnerPipeline.Object;
 
-            await this.pipeline.ProcessAsync(getContext, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipeline.ProcessAsync(getContext, NullLogger.Instance, default).ConfigureAwait(false);
 
             // inner pipeline should have been called twice
             int expectedBatchCount = (int)Math.Ceiling((float)CountOfEntitiesToCreate / MaxBatchSize);

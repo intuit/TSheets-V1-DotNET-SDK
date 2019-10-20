@@ -45,7 +45,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
             var expectedResult1 = new BasicTestEntity(2, "Mary");
 
             GetContext<BasicTestEntity> context = GetContext<BasicTestEntity>();
-            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
 
             const int expectedCount = 2;
             Assert.AreEqual(expectedCount, context.Results.Items.Count, $"Expected {expectedCount} results.");
@@ -67,7 +67,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
                 }"
             };
 
-            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
 
             const int expectedCount = 0;
             Assert.AreEqual(expectedCount, context.Results.Items.Count, $"Expected {expectedCount} results.");
@@ -85,7 +85,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
                 }"
             };
 
-            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
 
             const int expectedCount = 0;
             Assert.AreEqual(expectedCount, context.Results.Items.Count, $"Expected {expectedCount} results.");

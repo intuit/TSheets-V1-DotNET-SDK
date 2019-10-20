@@ -19,6 +19,7 @@
 
 namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
 {
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
     using Intuit.TSheets.Client.RequestFlow.PipelineElements;
@@ -53,7 +54,10 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
             {
             }
 
-            protected override Task _ProcessAsync<T>(PipelineContext<T> context, ILogger logger)
+            protected override Task _ProcessAsync<T>(
+                PipelineContext<T> context,
+                ILogger logger,
+                CancellationToken cancellationToken)
             {
                 logger?.Log(LogLevel.Debug, InfoLogMessageAsync);
 

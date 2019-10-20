@@ -19,6 +19,7 @@
 
 namespace Intuit.TSheets.Client.RequestFlow.PipelineElements
 {
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
     using Microsoft.Extensions.Logging;
@@ -40,8 +41,14 @@ namespace Intuit.TSheets.Client.RequestFlow.PipelineElements
         /// <typeparam name="T">The type of report.</typeparam>
         /// <param name="context">The object of state through the pipeline.</param>
         /// <param name="logger">The logging instance.</param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
         /// <returns>The completed asynchronous task.</returns>
-        protected override Task _ProcessAsync<T>(PipelineContext<T> context, ILogger logger)
+        protected override Task _ProcessAsync<T>(
+            PipelineContext<T> context,
+            ILogger logger,
+            CancellationToken cancellationToken)
         {
             var reportContext = (GetReportContext<T>)context;
             var report = JsonConvert.DeserializeObject<Report<T>>(context.ResponseContent);

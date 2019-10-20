@@ -42,7 +42,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
         public async Task DeleteResultsSerializer_CorrectlyDeserializesSuccessfulResponseAsync()
         {
             DeleteContext<TestEntity> context = GetDeleteContext<TestEntity>();
-            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
 
             const int expectedCount = 0;
             Assert.AreEqual(expectedCount, context.Results.ErrorItems.Count, $"Expected {expectedCount} error results.");
@@ -52,7 +52,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
         public async Task DeleteResultsSerializer_CorrectlyDeserializesResponseWithErrorResultsAsync()
         {
             DeleteContext<TestEntity> context = GetDeleteContextWithErrorItems<TestEntity>();
-            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
 
             const int expectedCount = 2;
             Assert.AreEqual(expectedCount, context.Results.ErrorItems.Count, $"Expected {expectedCount} error results.");
