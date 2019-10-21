@@ -207,7 +207,18 @@ namespace Intuit.TSheets.Api
         {
             string methodType = context.MethodType.ToString().ToUpperInvariant();
 
-            if (ex is ApiException apiEx)
+            if (ex is OperationCanceledException)
+            {
+                logger?.LogDebug(
+                    context.LogContext.EventId,
+                    ex,
+                    "{CorrelationId} {Processor}::{Method}(): {HttpMethod} ERROR",
+                    context.LogContext.CorrelationId,
+                    nameof(DataService),
+                    nameof(ExecuteOperationAsync),
+                    methodType);
+            }
+            else if (ex is ApiException apiEx)
             {
                 logger?.LogError(
                     context.LogContext.EventId,

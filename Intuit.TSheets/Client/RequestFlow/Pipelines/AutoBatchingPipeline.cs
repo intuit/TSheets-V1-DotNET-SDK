@@ -79,7 +79,6 @@ namespace Intuit.TSheets.Client.RequestFlow.Pipelines
             CancellationToken cancellationToken)
         {
             var writeContext = (IWritableContext<T>)context;
-            string correlationId = context.LogContext.CorrelationId;
             string httpMethod = context.MethodType.ToString();
 
             var allResults = new Results<T>();

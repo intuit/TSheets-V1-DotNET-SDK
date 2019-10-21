@@ -52,13 +52,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.Pipelines
         [TestMethod, TestCategory("Unit")]
         public async Task AutoBatchingPipelineTests_CorrectlySplitsBatches()
         {
-            var entities = new List<BasicTestEntity>(CountOfEntitiesToCreate);
-            for (int i = 0; i < CountOfEntitiesToCreate; i++)
-            {
-                entities.Add((BasicTestEntity)AutoFixture.Create(typeof(BasicTestEntity)));
-            }
-
-            var getContext = new CreateContext<BasicTestEntity>(EndpointName.Tests, entities);
+            var getContext = GetContext();
 
             this.mockInnerPipeline
                 .Setup(h => h.ProcessAsync(
@@ -76,6 +70,43 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.Pipelines
             int expectedBatchCount = (int)Math.Ceiling((float)CountOfEntitiesToCreate / MaxBatchSize);
             Assert.AreEqual(expectedBatchCount, this.mockInnerPipeline.Invocations.Count,
                 $"Expected the inner pipeline to have been called {expectedBatchCount} times.");
+        }
+
+        [TestMethod, TestCategory("Unit")]
+        public async Task AutoBatchingPipelineTests_ThrowsWhenCancellationIsRequested()
+        {
+            var getContext = GetContext();
+
+            var tokenSource = new CancellationTokenSource();
+
+            // setup the inner pipeline element to cancel during processing of the first batch
+            this.mockInnerPipeline
+                .Setup(h => h.ProcessAsync(
+                    It.IsAny<PipelineContext<BasicTestEntity>>(),
+                    It.IsAny<ILogger>(),
+                    It.IsAny<CancellationToken>()))
+                .Callback((PipelineContext<BasicTestEntity> context, ILogger log, CancellationToken cancellationToken) => tokenSource.Cancel())
+                .Returns(Task.CompletedTask);
+
+            this.pipeline.InnerPipeline = this.mockInnerPipeline.Object;
+
+            try
+            {
+                await this.pipeline.ProcessAsync(getContext, NullLogger.Instance, tokenSource.Token).ConfigureAwait(false);
+                Assert.Fail($"Expected {nameof(OperationCanceledException)} to be thrown.");
+            }
+            catch (OperationCanceledException) { }
+        }
+
+        private static CreateContext<BasicTestEntity> GetContext()
+        {
+            var entities = new List<BasicTestEntity>(CountOfEntitiesToCreate);
+            for (int i = 0; i < CountOfEntitiesToCreate; i++)
+            {
+                entities.Add((BasicTestEntity)AutoFixture.Create(typeof(BasicTestEntity)));
+            }
+
+            return new CreateContext<BasicTestEntity>(EndpointName.Tests, entities);
         }
 
         private static void MockHandleTwoBatches(PipelineContext<BasicTestEntity> context)

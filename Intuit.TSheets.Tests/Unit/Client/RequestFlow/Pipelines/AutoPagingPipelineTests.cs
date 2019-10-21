@@ -19,6 +19,7 @@
 
 namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.Pipelines
 {
+    using System;
     using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
@@ -73,6 +74,35 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.Pipelines
 
             Assert.AreEqual(expectedCount, getContext.Options.Page,
                 $"Expected final page request to be for page {expectedCount}.");
+        }
+
+        [TestMethod, TestCategory("Unit")]
+        public async Task AutoPagingPipelineTests_ThrowsWhenCancellationIsRequested()
+        {
+            var getContext = new GetContext<BasicTestEntity>(EndpointName.Tests, null, null);
+
+            var tokenSource = new CancellationTokenSource();
+
+            // setup the inner pipeline element to cancel during retrieval of the first page
+            this.mockInnerPipeline
+                .Setup(h => h.ProcessAsync(
+                    It.IsAny<PipelineContext<BasicTestEntity>>(),
+                    It.IsAny<ILogger>(),
+                    It.IsAny<CancellationToken>()))
+                .Callback((PipelineContext<BasicTestEntity> context, ILogger log, CancellationToken cancellationToken) => {
+                    MockHandleTwoPages(context);
+                    tokenSource.Cancel();
+                 })
+                .Returns(Task.CompletedTask);
+
+            this.pipeline.InnerPipeline = this.mockInnerPipeline.Object;
+
+            try
+            {
+                await this.pipeline.ProcessAsync(getContext, NullLogger.Instance, tokenSource.Token).ConfigureAwait(false);
+                Assert.Fail($"Expected {nameof(OperationCanceledException)} to be thrown.");
+            }
+            catch (OperationCanceledException) { }
         }
 
         private static void MockHandleTwoPages(PipelineContext<BasicTestEntity> context)

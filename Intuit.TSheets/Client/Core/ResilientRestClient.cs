@@ -25,7 +25,6 @@ namespace Intuit.TSheets.Client.Core
     using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Api;
-    using Intuit.TSheets.Client.Extensions;
     using Intuit.TSheets.Client.Utilities;
     using Intuit.TSheets.Model.Exceptions;
     using Microsoft.Extensions.Logging;

@@ -36,6 +36,7 @@ namespace Intuit.TSheets.Examples
             this.appService = appService;
             this.logger = logger;
         }
+
         /// <summary>
         /// Runs the demonstration code in the app service.
         /// </summary>

@@ -80,7 +80,6 @@ namespace Intuit.TSheets.Client.RequestFlow.Pipelines
             CancellationToken cancellationToken)
         {
             var getContext = (GetContext<T>)context;
-            string correlationId = getContext.LogContext.CorrelationId;
             var consolidatedItems = new List<T>();
 
             do

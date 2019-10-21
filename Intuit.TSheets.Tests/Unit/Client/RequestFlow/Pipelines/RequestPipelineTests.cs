@@ -31,6 +31,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.Pipelines
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Logging.Abstractions;
     using System.Threading;
+    using System;
 
     [TestClass]
     public class RequestPipelineTests : UnitTestBase
@@ -77,14 +78,14 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.Pipelines
                 It.IsAny<PipelineContext<TestEntity>>(),
                 It.IsAny<ILogger>(),
                 It.IsAny<CancellationToken>()))
-            .Callback((PipelineContext<TestEntity> c, ILogger l, CancellationToken cancellationToken) => callSequence.Add(nameof(pipelineElement1)))
+            .Callback((PipelineContext<TestEntity> c, ILogger l, CancellationToken ct) => callSequence.Add(nameof(pipelineElement1)))
             .Returns(Task.CompletedTask);
 
             pipelineElement2.Setup(h => h.ProcessAsync(
                 It.IsAny<PipelineContext<TestEntity>>(),
                 It.IsAny<ILogger>(),
                 It.IsAny<CancellationToken>()))
-            .Callback((PipelineContext<TestEntity> c, ILogger l, CancellationToken cancellationToken) => callSequence.Add(nameof(pipelineElement2)))
+            .Callback((PipelineContext<TestEntity> c, ILogger l, CancellationToken ct) => callSequence.Add(nameof(pipelineElement2)))
             .Returns(Task.CompletedTask);
 
             this.requestPipeline.AddStage(pipelineElement1.Object, pipelineElement2.Object);
@@ -92,6 +93,33 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.Pipelines
 
             Assert.IsTrue(callSequence.First().Equals(nameof(pipelineElement1)), $"Expected {nameof(pipelineElement1)} to be called first.");
             Assert.IsTrue(callSequence.Last().Equals(nameof(pipelineElement2)), $"Expected {nameof(pipelineElement2)} to be called second.");
+        }
+
+        [TestMethod, TestCategory("Unit")]
+        public async Task Pipeline_ThrowsWhenCancellationIsRequested()
+        {
+            var context = new GetContext<TestEntity>(EndpointName.Tests, filter: null, options: null);
+            var pipelineElement1 = new Mock<IPipelineElement>(MockBehavior.Strict);
+            var pipelineElement2 = new Mock<IPipelineElement>(MockBehavior.Strict);
+
+            var tokenSource = new CancellationTokenSource();
+
+            // setup the pipeline element to cancel during operation
+            pipelineElement1.Setup(h => h.ProcessAsync(
+                It.IsAny<PipelineContext<TestEntity>>(),
+                It.IsAny<ILogger>(),
+                It.IsAny<CancellationToken>()))
+            .Callback((PipelineContext<TestEntity> c, ILogger l, CancellationToken ct) => tokenSource.Cancel())
+            .Returns(Task.CompletedTask);
+
+            this.requestPipeline.AddStage(pipelineElement1.Object, pipelineElement2.Object);
+
+            try
+            {
+                await this.requestPipeline.ProcessAsync(context, NullLogger.Instance, tokenSource.Token).ConfigureAwait(false);
+                Assert.Fail($"Expected {nameof(OperationCanceledException)} to be thrown.");
+            }
+            catch (OperationCanceledException) { }
         }
     }
 
