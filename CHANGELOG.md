@@ -1,3 +1,10 @@
+# v1.2.0 (Mon. Oct 21st, 2019)
+
+#### Minor Feature
+
+- Adding CancellationToken support for all asynchronous API methods.
+- Adding support for geofence_config object in supplemental data.
+
 # v1.1.2 (Tue. Sep 24th, 2019)
 
 #### Bugfix

@@ -9,14 +9,14 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Intuit</Authors>
     <PackageProjectUrl>https://github.com/intuit/TSheets-V1-DotNET-SDK</PackageProjectUrl>
-    <AssemblyVersion>1.1.2.0</AssemblyVersion>
-    <FileVersion>1.1.2.0</FileVersion>
+    <AssemblyVersion>1.2.0.0</AssemblyVersion>
+    <FileVersion>1.2.0.0</FileVersion>
     <RepositoryUrl>https://github.com/intuit/TSheets-V1-DotNET-SDK</RepositoryUrl>
     <PackageIcon>Circle_T_web128px.png</PackageIcon>
     <RepositoryType>Git</RepositoryType>
-    <PackageReleaseNotes>Bugfix: Fixing NuGet packaging Error NU5035 &amp; Warning NU5048, causing a build failure on VS2019.</PackageReleaseNotes>
+    <PackageReleaseNotes>Minor Feature: Adding CancellationToken support for all asynchronous API methods.</PackageReleaseNotes>
     <PackageTags>tsheets, sdk, quickbooks, time, tracking, api-client, time-tracking, payroll-management</PackageTags>
-    <Version>1.1.2</Version>
+    <Version>1.2.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
