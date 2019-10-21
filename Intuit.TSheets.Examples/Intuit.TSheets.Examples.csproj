@@ -16,6 +16,7 @@
     <AssemblyVersion>1.2.0.0</AssemblyVersion>
     <Version>1.2.0</Version>
     <FileVersion>1.2.0.0</FileVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
