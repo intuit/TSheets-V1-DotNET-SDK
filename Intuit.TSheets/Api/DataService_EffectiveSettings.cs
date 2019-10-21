@@ -20,6 +20,7 @@
 namespace Intuit.TSheets.Api
 {
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -82,7 +83,26 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<EffectiveSettings> GetEffectiveSettingsAsync()
         {
-            return await GetEffectiveSettingsAsync(null).ConfigureAwait(false);
+            return await GetEffectiveSettingsAsync(null, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Effective Settings, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all effective settings associated with a single user,
+        /// with filters to narrow down the results.
+        /// </remarks>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An instance of the <see cref="EffectiveSettings"/> class.
+        /// </returns> 
+        public async Task<EffectiveSettings> GetEffectiveSettingsAsync(
+            CancellationToken cancellationToken)
+        {
+            return await GetEffectiveSettingsAsync(null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -98,11 +118,35 @@ namespace Intuit.TSheets.Api
         /// <returns>
         /// An instance of the <see cref="EffectiveSettings"/> class.
         /// </returns> 
-        public async Task<EffectiveSettings> GetEffectiveSettingsAsync(EffectiveSettingsFilter filter)
+        public async Task<EffectiveSettings> GetEffectiveSettingsAsync(
+            EffectiveSettingsFilter filter)
+        {
+            return await GetEffectiveSettingsAsync(filter, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Effective Settings, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all effective settings associated with a single user,
+        /// with filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="EffectiveSettingsFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An instance of the <see cref="EffectiveSettings"/> class.
+        /// </returns> 
+        public async Task<EffectiveSettings> GetEffectiveSettingsAsync(
+            EffectiveSettingsFilter filter,
+            CancellationToken cancellationToken)
         {
             var context = new GetContext<EffectiveSettings>(EndpointName.EffectiveSettings, filter);
 
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
 
             return context.Results.Items.FirstOrDefault();
         }

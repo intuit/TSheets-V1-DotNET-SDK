@@ -20,6 +20,7 @@
 namespace Intuit.TSheets.Api
 {
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -44,6 +45,22 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of all geofence configurations, with
         /// optional filters to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="GeofenceConfig"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<GeofenceConfig>, ResultsMeta) GetGeofenceConfigs()
+        {
+            return AsyncUtil.RunSync(() => GetGeofenceConfigsAsync());
+        }
+
+        /// <summary>
+        /// Retrieve Geofence Configurations.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all geofence configurations, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -51,9 +68,30 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="GeofenceConfig"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        public (IList<GeofenceConfig>, ResultsMeta) GetGeofenceConfigs(RequestOptions options = null)
+        public (IList<GeofenceConfig>, ResultsMeta) GetGeofenceConfigs(
+            RequestOptions options)
         {
-            return GetGeofenceConfigs(null, options);
+            return AsyncUtil.RunSync(() => GetGeofenceConfigsAsync(options));
+        }
+
+        /// <summary>
+        /// Retrieve Geofence Configurations.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all geofence configurations, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="GeofenceConfigFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="GeofenceConfig"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<GeofenceConfig>, ResultsMeta) GetGeofenceConfigs(
+            GeofenceConfigFilter filter)
+        {
+            return AsyncUtil.RunSync(() => GetGeofenceConfigsAsync(filter));
         }
 
         /// <summary>
@@ -75,9 +113,45 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public (IList<GeofenceConfig>, ResultsMeta) GetGeofenceConfigs(
             GeofenceConfigFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             return AsyncUtil.RunSync(() => GetGeofenceConfigsAsync(filter, options));
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Geofence Configurations.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all geofence configurations, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="GeofenceConfig"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<GeofenceConfig>, ResultsMeta)> GetGeofenceConfigsAsync()
+        {
+            return await GetGeofenceConfigsAsync(null, null, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Geofence Configurations, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all geofence configurations, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="GeofenceConfig"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<GeofenceConfig>, ResultsMeta)> GetGeofenceConfigsAsync(
+            CancellationToken cancellationToken)
+        {
+            return await GetGeofenceConfigsAsync(null, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -94,9 +168,78 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="GeofenceConfig"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        public async Task<(IList<GeofenceConfig>, ResultsMeta)> GetGeofenceConfigsAsync(RequestOptions options = null)
+        public async Task<(IList<GeofenceConfig>, ResultsMeta)> GetGeofenceConfigsAsync(
+            RequestOptions options)
         {
-            return await GetGeofenceConfigsAsync(null, options).ConfigureAwait(false);
+            return await GetGeofenceConfigsAsync(null, options, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Geofence Configurations, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all geofence configurations, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="GeofenceConfig"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<GeofenceConfig>, ResultsMeta)> GetGeofenceConfigsAsync(
+            RequestOptions options,
+            CancellationToken cancellationToken)
+        {
+            return await GetGeofenceConfigsAsync(null, options, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Geofence Configurations.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all geofence configurations, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="GeofenceConfigFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="GeofenceConfig"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<GeofenceConfig>, ResultsMeta)> GetGeofenceConfigsAsync(
+            GeofenceConfigFilter filter)
+        {
+            return await GetGeofenceConfigsAsync(filter, null, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Geofence Configurations, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all geofence configurations, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="GeofenceConfigFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="GeofenceConfig"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<GeofenceConfig>, ResultsMeta)> GetGeofenceConfigsAsync(
+            GeofenceConfigFilter filter,
+            CancellationToken cancellationToken)
+        {
+            return await GetGeofenceConfigsAsync(filter, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -118,11 +261,39 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<GeofenceConfig>, ResultsMeta)> GetGeofenceConfigsAsync(
             GeofenceConfigFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
+        {
+            return await GetGeofenceConfigsAsync(filter, options, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Geofence Configurations, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all geofence configurations, with
+        /// optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="GeofenceConfigFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="GeofenceConfig"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<GeofenceConfig>, ResultsMeta)> GetGeofenceConfigsAsync(
+            GeofenceConfigFilter filter,
+            RequestOptions options,
+            CancellationToken cancellationToken)
         {
             var context = new GetContext<GeofenceConfig>(EndpointName.GeofenceConfigs, filter, options);
 
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
         }

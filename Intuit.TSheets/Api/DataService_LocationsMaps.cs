@@ -20,6 +20,7 @@
 namespace Intuit.TSheets.Api
 {
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -44,6 +45,22 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of all locations maps associated with your company,
         /// with optional filters to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="LocationsMap"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<LocationsMap>, ResultsMeta) GetLocationsMaps()
+        {
+            return AsyncUtil.RunSync(() => GetLocationsMapsAsync());
+        }
+
+        /// <summary>
+        /// Retrieve Locations Maps.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locations maps associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -51,9 +68,30 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="LocationsMap"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        public (IList<LocationsMap>, ResultsMeta) GetLocationsMaps(RequestOptions options = null)
+        public (IList<LocationsMap>, ResultsMeta) GetLocationsMaps(
+            RequestOptions options)
         {
-            return GetLocationsMaps(null, options);
+            return AsyncUtil.RunSync(() => GetLocationsMapsAsync(options));
+        }
+
+        /// <summary>
+        /// Retrieve Locations Maps.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locations maps associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="LocationsMapFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="LocationsMap"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<LocationsMap>, ResultsMeta) GetLocationsMaps(
+            LocationsMapFilter filter)
+        {
+            return AsyncUtil.RunSync(() => GetLocationsMapsAsync(filter));
         }
 
         /// <summary>
@@ -75,9 +113,45 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public (IList<LocationsMap>, ResultsMeta) GetLocationsMaps(
             LocationsMapFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             return AsyncUtil.RunSync(() => GetLocationsMapsAsync(filter, options));
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve LocationsMaps.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locationsMaps associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="Location"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<LocationsMap>, ResultsMeta)> GetLocationsMapsAsync()
+        {
+            return await GetLocationsMapsAsync(null, null, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve LocationsMaps, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locationsMaps associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Location"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<LocationsMap>, ResultsMeta)> GetLocationsMapsAsync(
+            CancellationToken cancellationToken)
+        {
+            return await GetLocationsMapsAsync(null, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -94,9 +168,78 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="Location"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        public async Task<(IList<LocationsMap>, ResultsMeta)> GetLocationsMapsAsync(RequestOptions options = null)
+        public async Task<(IList<LocationsMap>, ResultsMeta)> GetLocationsMapsAsync(
+            RequestOptions options)
         {
-            return await GetLocationsMapsAsync(null, options).ConfigureAwait(false);
+            return await GetLocationsMapsAsync(null, options, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve LocationsMaps, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locationsMaps associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Location"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<LocationsMap>, ResultsMeta)> GetLocationsMapsAsync(
+            RequestOptions options,
+            CancellationToken cancellationToken)
+        {
+            return await GetLocationsMapsAsync(null, options, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve LocationsMaps.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locationsMaps associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="LocationFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Location"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<LocationsMap>, ResultsMeta)> GetLocationsMapsAsync(
+            LocationsMapFilter filter)
+        {
+            return await GetLocationsMapsAsync(filter, null, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve LocationsMaps, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locationsMaps associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="LocationFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Location"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<LocationsMap>, ResultsMeta)> GetLocationsMapsAsync(
+            LocationsMapFilter filter,
+            CancellationToken cancellationToken)
+        {
+            return await GetLocationsMapsAsync(filter, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -118,11 +261,39 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<LocationsMap>, ResultsMeta)> GetLocationsMapsAsync(
             LocationsMapFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
+        {
+            return await GetLocationsMapsAsync(filter, options, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve LocationsMaps, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all locationsMaps associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="LocationFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Location"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<LocationsMap>, ResultsMeta)> GetLocationsMapsAsync(
+            LocationsMapFilter filter,
+            RequestOptions options,
+            CancellationToken cancellationToken)
         {
             var context = new GetContext<LocationsMap>(EndpointName.LocationsMaps, filter, options);
 
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
         }

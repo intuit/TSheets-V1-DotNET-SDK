@@ -83,7 +83,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
         private void AssertSerializesAsExpected<T>(EntityFilter filterToBeSerialized, string expectedSerialization)
         {
             GetReportContext<T> context = GetReportContext<T>(filterToBeSerialized);
-            AsyncUtil.RunSync(() => this.pipelineElement.ProcessAsync(context, NullLogger.Instance));
+            AsyncUtil.RunSync(() => this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default));
 
             TestHelper.AssertJsonEqual(expectedSerialization, context.SerializedRequest);
         }

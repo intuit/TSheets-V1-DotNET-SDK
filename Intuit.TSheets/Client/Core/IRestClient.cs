@@ -20,6 +20,7 @@
 namespace Intuit.TSheets.Client.Core
 {
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Utilities;
 
@@ -34,8 +35,15 @@ namespace Intuit.TSheets.Client.Core
         /// <param name="endpointName">The name of the endpoint, <see cref="EndpointName"/></param>
         /// <param name="jsonData">The content to be sent in the body of the request.</param>
         /// <param name="logContext">Call-specific contextual information for logging purposes.</param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
         /// <returns>The serialized response of the API method call.</returns>
-        Task<string> CreateAsync(EndpointName endpointName, string jsonData, LogContext logContext);
+        Task<string> CreateAsync(
+            EndpointName endpointName,
+            string jsonData,
+            LogContext logContext,
+            CancellationToken cancellationToken);
 
         /// <summary>
         /// Retrieves entities from TSheets via an HTTP GET call to the API endpoint.
@@ -43,8 +51,15 @@ namespace Intuit.TSheets.Client.Core
         /// <param name="endpointName">The name of the endpoint, <see cref="EndpointName"/></param>
         /// <param name="filters">The key-value pairs to be sent as URL request parameters.</param>
         /// <param name="logContext">Call-specific contextual information for logging purposes.</param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
         /// <returns>The serialized response of the API method call.</returns>
-        Task<string> GetAsync(EndpointName endpointName, Dictionary<string, string> filters, LogContext logContext);
+        Task<string> GetAsync(
+            EndpointName endpointName,
+            Dictionary<string, string> filters,
+            LogContext logContext,
+            CancellationToken cancellationToken);
 
         /// <summary>
         /// Downloads binary data from TSheets via an HTTP POST call to the API endpoint.
@@ -52,8 +67,15 @@ namespace Intuit.TSheets.Client.Core
         /// <param name="endpointName">The name of the endpoint, <see cref="EndpointName"/></param>
         /// <param name="filters">The key-value pairs to be sent as URL request parameters.</param>
         /// <param name="logContext">Call-specific contextual information for logging purposes.</param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
         /// <returns>The serialized response of the API method call.</returns>
-        Task<byte[]> DownloadAsync(EndpointName endpointName, Dictionary<string, string> filters, LogContext logContext);
+        Task<byte[]> DownloadAsync(
+            EndpointName endpointName,
+            Dictionary<string, string> filters,
+            LogContext logContext,
+            CancellationToken cancellationToken);
 
         /// <summary>
         /// Updates entities in TSheets via an HTTP PUT call to the API endpoint.
@@ -61,8 +83,15 @@ namespace Intuit.TSheets.Client.Core
         /// <param name="endpointName">The name of the endpoint, <see cref="EndpointName"/></param>
         /// <param name="jsonData">The content to be sent in the body of the request.</param>
         /// <param name="logContext">Call-specific contextual information for logging purposes.</param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
         /// <returns>The serialized response of the API method call.</returns>
-        Task<string> UpdateAsync(EndpointName endpointName, string jsonData, LogContext logContext);
+        Task<string> UpdateAsync(
+            EndpointName endpointName,
+            string jsonData,
+            LogContext logContext,
+            CancellationToken cancellationToken);
 
         /// <summary>
         /// Removes entities in TSheets via an HTTP DELETE call to the API endpoint.
@@ -70,7 +99,14 @@ namespace Intuit.TSheets.Client.Core
         /// <param name="endpointName">The name of the endpoint, <see cref="EndpointName"/></param>
         /// <param name="ids">The ids of the entities to be deleted.</param>
         /// <param name="logContext">Call-specific contextual information for logging purposes.</param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
         /// <returns>The serialized response of the API method call.</returns>
-        Task<string> DeleteAsync(EndpointName endpointName, IEnumerable<int> ids, LogContext logContext);
+        Task<string> DeleteAsync(
+            EndpointName endpointName,
+            IEnumerable<int> ids,
+            LogContext logContext,
+            CancellationToken cancellationToken);
     }
 }

@@ -21,6 +21,7 @@ namespace Intuit.TSheets.Api
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -37,24 +38,6 @@ namespace Intuit.TSheets.Api
     public partial class DataService
     {
         #region Create methods
-
-        /// <summary>
-        /// Create Notifications.
-        /// </summary>
-        /// <remarks>
-        /// Add one or more notifications.
-        /// </remarks>
-        /// <param name="notifications">
-        /// The set of <see cref="Notification"/> objects to be created.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Notification"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public (IList<Notification>, ResultsMeta) CreateNotifications(IEnumerable<Notification> notifications)
-        {
-            return AsyncUtil.RunSync(() => CreateNotificationsAsync(notifications));
-        }
 
         /// <summary>
         /// Create Notifications.
@@ -77,7 +60,7 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
-        /// Asynchronously Create Notifications.
+        /// Create Notifications.
         /// </summary>
         /// <remarks>
         /// Add one or more notifications.
@@ -89,13 +72,9 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Notification"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<Notification>, ResultsMeta)> CreateNotificationsAsync(IEnumerable<Notification> notifications)
+        public (IList<Notification>, ResultsMeta) CreateNotifications(IEnumerable<Notification> notifications)
         {
-            var context = new CreateContext<Notification>(EndpointName.Notifications, notifications);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
+            return AsyncUtil.RunSync(() => CreateNotificationsAsync(notifications));
         }
 
         /// <summary>
@@ -111,17 +90,105 @@ namespace Intuit.TSheets.Api
         /// The <see cref="Notification"/> object that was created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(Notification, ResultsMeta)> CreateNotificationAsync(Notification notification)
+        public async Task<(Notification, ResultsMeta)> CreateNotificationAsync(
+            Notification notification)
         {
-            (IList<Notification> notifications, ResultsMeta resultsMeta) = await CreateNotificationsAsync(new[] { notification }).ConfigureAwait(false);
+            (IList<Notification> notifications, ResultsMeta resultsMeta) = await CreateNotificationsAsync(new[] { notification }, default).ConfigureAwait(false);
 
             return (notifications.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Notifications, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add a single notification.
+        /// </remarks>
+        /// <param name="notification">
+        /// The <see cref="Notification"/> object to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Notification"/> object that was created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(Notification, ResultsMeta)> CreateNotificationAsync(
+            Notification notification,
+            CancellationToken cancellationToken)
+        {
+            (IList<Notification> notifications, ResultsMeta resultsMeta) = await CreateNotificationsAsync(new[] { notification }, cancellationToken).ConfigureAwait(false);
+
+            return (notifications.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Notifications.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more notifications.
+        /// </remarks>
+        /// <param name="notifications">
+        /// The set of <see cref="Notification"/> objects to be created.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Notification"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Notification>, ResultsMeta)> CreateNotificationsAsync(
+            IEnumerable<Notification> notifications)
+        {
+            return await CreateNotificationsAsync(notifications, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Notifications, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more notifications.
+        /// </remarks>
+        /// <param name="notifications">
+        /// The set of <see cref="Notification"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Notification"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Notification>, ResultsMeta)> CreateNotificationsAsync(
+            IEnumerable<Notification> notifications,
+            CancellationToken cancellationToken)
+        {
+            var context = new CreateContext<Notification>(EndpointName.Notifications, notifications);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion
 
         #region Get Methods
-        
+
+        /// <summary>
+        /// Retrieve Notifications.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all notifications associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="Notification"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<Notification>, ResultsMeta) GetNotifications()
+        {
+            return AsyncUtil.RunSync(() => GetNotificationsAsync());
+        }
+
         /// <summary>
         /// Retrieve Notifications.
         /// </summary>
@@ -136,9 +203,30 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="Notification"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        public (IList<Notification>, ResultsMeta) GetNotifications(RequestOptions options = null)
+        public (IList<Notification>, ResultsMeta) GetNotifications(
+            RequestOptions options)
         {
-            return GetNotifications(null, options);
+            return AsyncUtil.RunSync(() => GetNotificationsAsync(options));
+        }
+
+        /// <summary>
+        /// Retrieve Notifications.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all notifications associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="NotificationFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Notification"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public (IList<Notification>, ResultsMeta) GetNotifications(
+            NotificationFilter filter)
+        {
+            return AsyncUtil.RunSync(() => GetNotificationsAsync(filter));
         }
 
         /// <summary>
@@ -160,9 +248,45 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public (IList<Notification>, ResultsMeta) GetNotifications(
             NotificationFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             return AsyncUtil.RunSync(() => GetNotificationsAsync(filter, options));
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Notifications.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all notifications associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// An enumerable set of <see cref="Notification"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Notification>, ResultsMeta)> GetNotificationsAsync()
+        {
+            return await GetNotificationsAsync(null, null, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Notifications, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all notifications associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Notification"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Notification>, ResultsMeta)> GetNotificationsAsync(
+            CancellationToken cancellationToken)
+        {
+            return await GetNotificationsAsync(null, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -179,9 +303,78 @@ namespace Intuit.TSheets.Api
         /// An enumerable set of <see cref="Notification"/> objects, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns> 
-        public async Task<(IList<Notification>, ResultsMeta)> GetNotificationsAsync(RequestOptions options = null)
+        public async Task<(IList<Notification>, ResultsMeta)> GetNotificationsAsync(
+            RequestOptions options)
         {
-            return await GetNotificationsAsync(null, options).ConfigureAwait(false);
+            return await GetNotificationsAsync(null, options, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Notifications, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all notifications associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Notification"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Notification>, ResultsMeta)> GetNotificationsAsync(
+            RequestOptions options,
+            CancellationToken cancellationToken)
+        {
+            return await GetNotificationsAsync(null, options, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Notifications.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all notifications associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="NotificationFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Notification"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Notification>, ResultsMeta)> GetNotificationsAsync(
+            NotificationFilter filter)
+        {
+            return await GetNotificationsAsync(filter, null, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Notifications, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all notifications associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="NotificationFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Notification"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Notification>, ResultsMeta)> GetNotificationsAsync(
+            NotificationFilter filter,
+            CancellationToken cancellationToken)
+        {
+            return await GetNotificationsAsync(filter, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -203,11 +396,39 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<Notification>, ResultsMeta)> GetNotificationsAsync(
             NotificationFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
+        {
+            return await GetNotificationsAsync(filter, options, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Notifications, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all notifications associated with your company,
+        /// with optional filters to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="NotificationFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An enumerable set of <see cref="Notification"/> objects, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns> 
+        public async Task<(IList<Notification>, ResultsMeta)> GetNotificationsAsync(
+            NotificationFilter filter,
+            RequestOptions options,
+            CancellationToken cancellationToken)
         {
             var context = new GetContext<Notification>(EndpointName.Notifications, filter, options);
 
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
         }
@@ -227,23 +448,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         public void DeleteNotification(Notification notification)
         {
-            DeleteNotifications(new[] { notification });
-        }
-
-        /// <summary>
-        /// Delete Notifications.
-        /// </summary>
-        /// <remarks>
-        /// Delete one or more <see cref="Notification"/> objects.
-        /// </remarks>
-        /// <param name="notifications">
-        /// The set of <see cref="Notification"/> objects to be deleted.
-        /// </param>
-        public void DeleteNotifications(IEnumerable<Notification> notifications)
-        {
-            IEnumerable<int> ids = notifications.Select(j => j.Id);
-
-            DeleteNotifications(ids);
+            AsyncUtil.RunSync(() => DeleteNotificationAsync(notification));
         }
 
         /// <summary>
@@ -257,7 +462,21 @@ namespace Intuit.TSheets.Api
         /// </param>
         public void DeleteNotification(int id)
         {
-            DeleteNotifications(new[] { id });
+            AsyncUtil.RunSync(() => DeleteNotificationAsync(id));
+        }
+
+        /// <summary>
+        /// Delete Notifications.
+        /// </summary>
+        /// <remarks>
+        /// Delete one or more <see cref="Notification"/> objects.
+        /// </remarks>
+        /// <param name="notifications">
+        /// The set of <see cref="Notification"/> objects to be deleted.
+        /// </param>
+        public void DeleteNotifications(IEnumerable<Notification> notifications)
+        {
+            AsyncUtil.RunSync(() => DeleteNotificationsAsync(notifications));
         }
 
         /// <summary>
@@ -284,26 +503,30 @@ namespace Intuit.TSheets.Api
         /// The <see cref="Notification"/> object to be deleted.
         /// </param>
         /// <returns>The asynchronous task.</returns>
-        public async Task DeleteNotificationAsync(Notification notification)
+        public async Task DeleteNotificationAsync(
+            Notification notification)
         {
-            await DeleteNotificationsAsync(new[] { notification }).ConfigureAwait(false);
+            await DeleteNotificationsAsync(new[] { notification.Id }, default).ConfigureAwait(false);
         }
 
         /// <summary>
-        /// Asynchronously Delete Notifications.
+        /// Asynchronously Delete Notifications, with support for cancellation.
         /// </summary>
         /// <remarks>
-        /// Delete one or more <see cref="Notification"/> objects.
+        /// Delete a single <see cref="Notification"/> object.
         /// </remarks>
-        /// <param name="notifications">
-        /// The set of <see cref="Notification"/> objects to be deleted.
+        /// <param name="notification">
+        /// The <see cref="Notification"/> object to be deleted.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
         /// <returns>The asynchronous task.</returns>
-        public async Task DeleteNotificationsAsync(IEnumerable<Notification> notifications)
+        public async Task DeleteNotificationAsync(
+            Notification notification,
+            CancellationToken cancellationToken)
         {
-            IEnumerable<int> ids = notifications.Select(t => t.Id);
-
-            await DeleteNotificationsAsync(ids).ConfigureAwait(false);
+            await DeleteNotificationsAsync(new[] { notification.Id }, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -316,9 +539,70 @@ namespace Intuit.TSheets.Api
         /// The id of the <see cref="Notification"/> object to be deleted.
         /// </param>
         /// <returns>The asynchronous task.</returns>
-        public async Task DeleteNotificationAsync(int id)
+        public async Task DeleteNotificationAsync(
+            int id)
         {
-            await DeleteNotificationsAsync(new[] { id }).ConfigureAwait(false);
+            await DeleteNotificationsAsync(new[] { id }, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Delete Notifications, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Delete a single <see cref="Notification"/> object, by id.
+        /// </remarks>
+        /// <param name="id">
+        /// The id of the <see cref="Notification"/> object to be deleted.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>The asynchronous task.</returns>
+        public async Task DeleteNotificationAsync(
+            int id,
+            CancellationToken cancellationToken)
+        {
+            await DeleteNotificationsAsync(new[] { id }, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Delete Notifications.
+        /// </summary>
+        /// <remarks>
+        /// Delete one or more <see cref="Notification"/> objects.
+        /// </remarks>
+        /// <param name="notifications">
+        /// The set of <see cref="Notification"/> objects to be deleted.
+        /// </param>
+        /// <returns>The asynchronous task.</returns>
+        public async Task DeleteNotificationsAsync(
+            IEnumerable<Notification> notifications)
+        {
+            IEnumerable<int> ids = notifications.Select(t => t.Id);
+
+            await DeleteNotificationsAsync(ids, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Delete Notifications, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Delete one or more <see cref="Notification"/> objects.
+        /// </remarks>
+        /// <param name="notifications">
+        /// The set of <see cref="Notification"/> objects to be deleted.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>The asynchronous task.</returns>
+        public async Task DeleteNotificationsAsync(
+            IEnumerable<Notification> notifications,
+            CancellationToken cancellationToken)
+        {
+            IEnumerable<int> ids = notifications.Select(t => t.Id);
+
+            await DeleteNotificationsAsync(ids, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -331,11 +615,32 @@ namespace Intuit.TSheets.Api
         /// The set of ids for the <see cref="Notification"/> objects to be deleted.
         /// </param>
         /// <returns>The asynchronous task.</returns>
-        public async Task DeleteNotificationsAsync(IEnumerable<int> ids)
+        public async Task DeleteNotificationsAsync(
+            IEnumerable<int> ids)
+        {
+            await DeleteNotificationsAsync(ids, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Delete Notifications, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Delete one or more <see cref="Notification"/> objects, by id.
+        /// </remarks>
+        /// <param name="ids">
+        /// The set of ids for the <see cref="Notification"/> objects to be deleted.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>The asynchronous task.</returns>
+        public async Task DeleteNotificationsAsync(
+            IEnumerable<int> ids,
+            CancellationToken cancellationToken)
         {
             var context = new DeleteContext<Notification>(EndpointName.Notifications, ids);
 
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
         }
 
         #endregion

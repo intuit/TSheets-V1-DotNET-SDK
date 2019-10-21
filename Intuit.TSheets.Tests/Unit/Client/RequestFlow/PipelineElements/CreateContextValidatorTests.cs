@@ -20,6 +20,7 @@
 namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
 {
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -45,7 +46,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
         {
             var context = new CreateContext<TestEntity>(EndpointName.Tests, null);
 
-            await this.pipelineElement.ProcessAsync(context, MockLogger.Object)
+            await this.pipelineElement.ProcessAsync(context, MockLogger.Object, default)
                 .ConfigureAwait(false);
         }
 
@@ -55,7 +56,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
         {
             var context = new CreateContext<TestEntity>(EndpointName.Tests, new List<TestEntity>());
 
-            await this.pipelineElement.ProcessAsync(context, MockLogger.Object)
+            await this.pipelineElement.ProcessAsync(context, MockLogger.Object, default)
                 .ConfigureAwait(false);
         }
 

@@ -20,6 +20,7 @@
 namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
 {
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Api;
     using Intuit.TSheets.Client.Core;
@@ -52,13 +53,16 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
             // rest client Get() method is called with 3 parameters: 
             // the request id, the endpoint, and the dictionary of filter settings
             this.mockRestClient
-                .Setup(p => p.GetAsync(It.Is<EndpointName>(t => t.Equals(EndpointName.Tests)),
-                    It.Is<Dictionary<string, string>>(s => s.IsEqualTo(ExpectedFilters)), It.IsAny<LogContext>()))
+                .Setup(p => p.GetAsync(
+                    It.Is<EndpointName>(t => t.Equals(EndpointName.Tests)),
+                    It.Is<Dictionary<string, string>>(s => s.IsEqualTo(ExpectedFilters)),
+                    It.IsAny<LogContext>(),
+                    It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(Response));
 
             context.RestClient = this.mockRestClient.Object;
 
-            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
 
             this.mockRestClient.VerifyAll();
         }
@@ -67,14 +71,17 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
         public async Task RestClientGetHandler_RestClientSetsResponseContentPropertyOfContextObjectAsync()
         {
             this.mockRestClient
-                .Setup(p => p.GetAsync(It.IsAny<EndpointName>(),
-                    It.IsAny<Dictionary<string, string>>(), It.IsAny<LogContext>()))
+                .Setup(p => p.GetAsync(
+                    It.IsAny<EndpointName>(),
+                    It.IsAny<Dictionary<string, string>>(),
+                    It.IsAny<LogContext>(),
+                    It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(Response));
 
             GetContext<BasicTestEntity> context = GetContext();
             context.RestClient = this.mockRestClient.Object;
 
-            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
 
             Assert.AreEqual(Response, context.ResponseContent, "Expected response content to be set.");
 

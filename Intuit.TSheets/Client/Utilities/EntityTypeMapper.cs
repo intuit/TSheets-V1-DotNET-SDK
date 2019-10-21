@@ -35,6 +35,7 @@ namespace Intuit.TSheets.Client.Utilities
             { "customfields",     () => new CustomField() },
             { "customfielditems", () => new CustomFieldItem() },
             { "files",            () => new File() },
+            { "geofence_configs", () => new GeofenceConfig() },
             { "geolocations",     () => new Geolocation() },
             { "groups",           () => new Group() },
             { "jobcodes",         () => new Jobcode() },

@@ -22,6 +22,7 @@ namespace Intuit.TSheets.Examples
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Api;
     using Intuit.TSheets.Model;
@@ -82,6 +83,23 @@ namespace Intuit.TSheets.Examples
 
             // Retrieve some of the data we created.
             GetAsyncExample();
+            
+            // Retrieve users, but this time with a cancellation token.
+            // An OperationCanceledException will be thrown if the
+            // operation takes longer than 200ms to complete.
+            try
+            {
+                var tokenSource = new CancellationTokenSource();
+                tokenSource.CancelAfter(200);
+
+                this.apiClient.GetUsersAsync(
+                    new RequestOptions { PerPage = 1 },
+                    tokenSource.Token).GetAwaiter().GetResult();
+            }
+            catch (OperationCanceledException)
+            {
+                Console.WriteLine("Operation canceled.");
+            }
 
             // Cleanup everything that was added.
             Cleanup();
@@ -389,7 +407,7 @@ namespace Intuit.TSheets.Examples
             // Disable auto-paging to take direct control over results.  Retrieve a subset
             // of jobcodes, starting with page 2.
             Task<(IList<Jobcode>, ResultsMeta)> getJobcodesTask = this.apiClient.GetJobcodesAsync(
-                new RequestOptions { AutoPaging = false, Page = 2, PerPage = 2 });
+                new RequestOptions { AutoPaging = false, Page = 2, PerPage = 1 });
 
             // Block until both are finished
             Task.WaitAll(getUsersTask, getJobcodesTask);

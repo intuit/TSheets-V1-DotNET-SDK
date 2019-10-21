@@ -1,4 +1,5 @@
-﻿// *******************************************************************************
+﻿
+// *******************************************************************************
 // <copyright file="RequestPipeline.cs" company="Intuit">
 // Copyright (c) 2019 Intuit
 //
@@ -20,6 +21,7 @@
 namespace Intuit.TSheets.Client.RequestFlow.Pipelines
 {
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
     using Intuit.TSheets.Client.RequestFlow.PipelineElements;
@@ -61,11 +63,16 @@ namespace Intuit.TSheets.Client.RequestFlow.Pipelines
         /// <param name="context">The object of state through the pipeline.</param>
         /// <param name="logger">The logging instance.</param>
         /// <returns>The completed asynchronous task.</returns>
-        public async Task ProcessAsync<T>(PipelineContext<T> context, ILogger logger)
+        public async Task ProcessAsync<T>(
+            PipelineContext<T> context,
+            ILogger logger,
+            CancellationToken cancellationToken)
         {
             foreach (IPipelineElement pipelineElement in PipelineElements)
             {
-                await pipelineElement.ProcessAsync(context, logger).ConfigureAwait(false);
+                cancellationToken.ThrowIfCancellationRequested();
+
+                await pipelineElement.ProcessAsync(context, logger, cancellationToken).ConfigureAwait(false);
             }
         }
 

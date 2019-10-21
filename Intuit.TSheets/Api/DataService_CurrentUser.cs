@@ -20,6 +20,7 @@
 namespace Intuit.TSheets.Api
 {
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -43,6 +44,23 @@ namespace Intuit.TSheets.Api
         /// Retrieves the user object for the currently authenticated user. This is the
         /// user that authenticated to TSheets during the OAuth2 authentication process.
         /// </remarks>
+        /// <returns>
+        /// An instance of the <see cref="User"/> class, representing the current user, along
+        /// with an output instance of the <see cref="ResultsMeta"/> class containing additional
+        /// data.
+        /// </returns>
+        public (User, ResultsMeta) GetCurrentUser()
+        {
+            return AsyncUtil.RunSync(() => GetCurrentUserAsync());
+        }
+
+        /// <summary>
+        /// Retrieve the Current User.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves the user object for the currently authenticated user. This is the
+        /// user that authenticated to TSheets during the OAuth2 authentication process.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -51,11 +69,50 @@ namespace Intuit.TSheets.Api
         /// with an output instance of the <see cref="ResultsMeta"/> class containing additional
         /// data.
         /// </returns>
-        public (User, ResultsMeta) GetCurrentUser(RequestOptions options = null)
+        public (User, ResultsMeta) GetCurrentUser(
+            RequestOptions options)
         {
             return AsyncUtil.RunSync(() => GetCurrentUserAsync(options));
         }
-        
+
+        /// <summary>
+        /// Asynchronously Retrieve the Current User.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves the user object for the currently authenticated user. This is the
+        /// user that authenticated to TSheets during the OAuth2 authentication process.
+        /// </remarks>
+        /// <returns>
+        /// An instance of the <see cref="User"/> class, representing the current user, along
+        /// with an output instance of the <see cref="ResultsMeta"/> class containing additional
+        /// data.
+        /// </returns>
+        public async Task<(User, ResultsMeta)> GetCurrentUserAsync()
+        {
+            return await GetCurrentUserAsync(null, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve the Current User, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves the user object for the currently authenticated user. This is the
+        /// user that authenticated to TSheets during the OAuth2 authentication process.
+        /// </remarks>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An instance of the <see cref="User"/> class, representing the current user, along
+        /// with an output instance of the <see cref="ResultsMeta"/> class containing additional
+        /// data.
+        /// </returns>
+        public async Task<(User, ResultsMeta)> GetCurrentUserAsync(
+            CancellationToken cancellationToken)
+        {
+            return await GetCurrentUserAsync(null, cancellationToken).ConfigureAwait(false);
+        }
+
         /// <summary>
         /// Asynchronously Retrieve the Current User.
         /// </summary>
@@ -71,11 +128,37 @@ namespace Intuit.TSheets.Api
         /// with an output instance of the <see cref="ResultsMeta"/> class containing additional
         /// data.
         /// </returns>
-        public async Task<(User, ResultsMeta)> GetCurrentUserAsync(RequestOptions options = null)
+        public async Task<(User, ResultsMeta)> GetCurrentUserAsync(
+            RequestOptions options)
+        {
+            return await GetCurrentUserAsync(options, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve the Current User, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves the user object for the currently authenticated user. This is the
+        /// user that authenticated to TSheets during the OAuth2 authentication process.
+        /// </remarks>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An instance of the <see cref="User"/> class, representing the current user, along
+        /// with an output instance of the <see cref="ResultsMeta"/> class containing additional
+        /// data.
+        /// </returns>
+        public async Task<(User, ResultsMeta)> GetCurrentUserAsync(
+            RequestOptions options,
+            CancellationToken cancellationToken)
         {
             var context = new GetContext<User>(EndpointName.CurrentUser, options);
 
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
 
             return (context.Results.Items.FirstOrDefault(), context.ResultsMeta);
         }

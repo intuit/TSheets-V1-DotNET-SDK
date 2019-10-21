@@ -45,7 +45,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
         {
             var context = new DeleteContext<TestEntity>(EndpointName.Tests, null);
 
-            await this.pipelineElement.ProcessAsync(context, MockLogger.Object)
+            await this.pipelineElement.ProcessAsync(context, MockLogger.Object, default)
                 .ConfigureAwait(false);
         }
 
@@ -55,7 +55,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
         {
             var context = new DeleteContext<TestEntity>(EndpointName.Tests, new List<int>());
 
-            await this.pipelineElement.ProcessAsync(context, MockLogger.Object)
+            await this.pipelineElement.ProcessAsync(context, MockLogger.Object, default)
                 .ConfigureAwait(false);
         }
 

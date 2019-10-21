@@ -22,6 +22,7 @@ namespace Intuit.TSheets.Client.RequestFlow.Pipelines
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Api;
     using Intuit.TSheets.Client.Extensions;
@@ -68,11 +69,16 @@ namespace Intuit.TSheets.Client.RequestFlow.Pipelines
         /// <typeparam name="T">The type of data entity.</typeparam>
         /// <param name="context">The object of state through the pipeline.</param>
         /// <param name="logger">The logging instance.</param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
         /// <returns>The completed asynchronous task.</returns>
-        public async Task ProcessAsync<T>(PipelineContext<T> context, ILogger logger)
+        public async Task ProcessAsync<T>(
+            PipelineContext<T> context,
+            ILogger logger,
+            CancellationToken cancellationToken)
         {
             var writeContext = (IWritableContext<T>)context;
-            string correlationId = context.LogContext.CorrelationId;
             string httpMethod = context.MethodType.ToString();
 
             var allResults = new Results<T>();
@@ -86,6 +92,8 @@ namespace Intuit.TSheets.Client.RequestFlow.Pipelines
                 int totalBatchCount = GetBatchCount(allItems.Count, MaxItemsPerBatch);
                 foreach (IEnumerable<T> batch in allItems.MakeBatchesOfSize(MaxItemsPerBatch))
                 {
+                    cancellationToken.ThrowIfCancellationRequested();
+
                     T[] batchItems = batch.ToArray();
 
                     ++batchNumber;
@@ -102,7 +110,7 @@ namespace Intuit.TSheets.Client.RequestFlow.Pipelines
 
                     try
                     {
-                        await InnerPipeline.ProcessAsync(context, logger).ConfigureAwait(false);
+                        await InnerPipeline.ProcessAsync(context, logger, cancellationToken).ConfigureAwait(false);
                     }
                     catch (MultiStatusException<T> ex)
                     {
@@ -133,7 +141,7 @@ namespace Intuit.TSheets.Client.RequestFlow.Pipelines
             {
                 // There are few enough items that batching isn't needed.
                 // In this case, we can simply call the inner pipeline.
-                await InnerPipeline.ProcessAsync(context, logger).ConfigureAwait(false);
+                await InnerPipeline.ProcessAsync(context, logger, cancellationToken).ConfigureAwait(false);
             }
         }
 

@@ -47,7 +47,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
                 ResponseContent = @"{ ""more"": true }"
             };
 
-            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
 
             Assert.IsTrue(context.ResultsMeta.More, "Expected ResultsMeta.More to be true");
         }
@@ -60,7 +60,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
                 ResponseContent = @"{ ""more"": false }"
             };
 
-            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
 
             Assert.IsFalse(context.ResultsMeta.More, "Expected ResultsMeta.More to be false");
         }
@@ -73,7 +73,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
                 ResponseContent = @"{ ""more_is_not_present"": ""expect false"" }"
             };
 
-            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
 
             Assert.IsFalse(context.ResultsMeta.More, "Expected ResultsMeta.More to be false");
         }
@@ -88,7 +88,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
                 ResponseContent = @"{ ""more"": false }"
             };
 
-            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
 
             Assert.AreEqual(expectedPage, context.ResultsMeta.Page, $"Expected ResultsMeta.Page to be {expectedPage}.");
         }

@@ -20,6 +20,7 @@
 namespace Intuit.TSheets.Api
 {
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -44,6 +45,22 @@ namespace Intuit.TSheets.Api
         /// Retrieves a list of all custom field item filters associated with a user or group,
         /// with options to narrow down the results.
         /// </remarks>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItemJobcodeFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public (IList<CustomFieldItemJobcodeFilter>, ResultsMeta) GetCustomFieldItemJobcodeFilters()
+        {
+            return AsyncUtil.RunSync(() => GetCustomFieldItemJobcodeFiltersAsync());
+        }
+
+        /// <summary>
+        /// Retrieve Custom Field Item Jobcode Filters.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a user or group,
+        /// with options to narrow down the results.
+        /// </remarks>
         /// <param name="options">
         /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
         /// </param>
@@ -51,9 +68,30 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="CustomFieldItemJobcodeFilter"/> objects retrieved, along with an output
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public (IList<CustomFieldItemJobcodeFilter>, ResultsMeta) GetCustomFieldItemJobcodeFilters(RequestOptions options = null)
+        public (IList<CustomFieldItemJobcodeFilter>, ResultsMeta) GetCustomFieldItemJobcodeFilters(
+            RequestOptions options)
         {
-            return GetCustomFieldItemJobcodeFilters(null, options);
+            return AsyncUtil.RunSync(() => GetCustomFieldItemJobcodeFiltersAsync(options));
+        }
+
+        /// <summary>
+        /// Retrieve Custom Field Item Jobcode Filters.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a user or group,
+        /// with options to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="CustomFieldItemJobcodeFilterFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItemJobcodeFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public (IList<CustomFieldItemJobcodeFilter>, ResultsMeta) GetCustomFieldItemJobcodeFilters(
+            CustomFieldItemJobcodeFilterFilter filter)
+        {
+            return AsyncUtil.RunSync(() => GetCustomFieldItemJobcodeFiltersAsync(filter));
         }
 
         /// <summary>
@@ -75,9 +113,45 @@ namespace Intuit.TSheets.Api
         /// </returns>
         public (IList<CustomFieldItemJobcodeFilter>, ResultsMeta) GetCustomFieldItemJobcodeFilters(
             CustomFieldItemJobcodeFilterFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
         {
             return AsyncUtil.RunSync(() => GetCustomFieldItemJobcodeFiltersAsync(filter, options));
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Custom Field Item Jobcode Filters.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a user or group,
+        /// with options to narrow down the results.
+        /// </remarks>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItemJobcodeFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<CustomFieldItemJobcodeFilter>, ResultsMeta)> GetCustomFieldItemJobcodeFiltersAsync()
+        {
+            return await GetCustomFieldItemJobcodeFiltersAsync(null, null, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Custom Field Item Jobcode Filters, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a user or group,
+        /// with options to narrow down the results.
+        /// </remarks>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItemJobcodeFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<CustomFieldItemJobcodeFilter>, ResultsMeta)> GetCustomFieldItemJobcodeFiltersAsync(
+            CancellationToken cancellationToken)
+        {
+            return await GetCustomFieldItemJobcodeFiltersAsync(null, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -95,9 +169,77 @@ namespace Intuit.TSheets.Api
         /// instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
         public async Task<(IList<CustomFieldItemJobcodeFilter>, ResultsMeta)> GetCustomFieldItemJobcodeFiltersAsync(
-            RequestOptions options = null)
+            RequestOptions options)
         {
-            return await GetCustomFieldItemJobcodeFiltersAsync(null, options).ConfigureAwait(false);
+            return await GetCustomFieldItemJobcodeFiltersAsync(null, options, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Custom Field Item Jobcode Filters, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a user or group,
+        /// with options to narrow down the results.
+        /// </remarks>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItemJobcodeFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<CustomFieldItemJobcodeFilter>, ResultsMeta)> GetCustomFieldItemJobcodeFiltersAsync(
+            RequestOptions options,
+            CancellationToken cancellationToken)
+        {
+            return await GetCustomFieldItemJobcodeFiltersAsync(null, options, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Custom Field Item Jobcode Filters.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a user or group,
+        /// with options to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="CustomFieldItemJobcodeFilterFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItemJobcodeFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<CustomFieldItemJobcodeFilter>, ResultsMeta)> GetCustomFieldItemJobcodeFiltersAsync(
+            CustomFieldItemJobcodeFilterFilter filter)
+        {
+            return await GetCustomFieldItemJobcodeFiltersAsync(filter, null, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Custom Field Item Jobcode Filters, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a user or group,
+        /// with options to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="CustomFieldItemJobcodeFilterFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItemJobcodeFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<CustomFieldItemJobcodeFilter>, ResultsMeta)> GetCustomFieldItemJobcodeFiltersAsync(
+            CustomFieldItemJobcodeFilterFilter filter,
+            CancellationToken cancellationToken)
+        {
+            return await GetCustomFieldItemJobcodeFiltersAsync(filter, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -119,11 +261,39 @@ namespace Intuit.TSheets.Api
         /// </returns>
         public async Task<(IList<CustomFieldItemJobcodeFilter>, ResultsMeta)> GetCustomFieldItemJobcodeFiltersAsync(
             CustomFieldItemJobcodeFilterFilter filter,
-            RequestOptions options = null)
+            RequestOptions options)
+        {
+            return await GetCustomFieldItemJobcodeFiltersAsync(filter, options, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Custom Field Item Jobcode Filters, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of all custom field item filters associated with a user or group,
+        /// with options to narrow down the results.
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="CustomFieldItemJobcodeFilterFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="options">
+        /// An instance of the <see cref="RequestOptions"/> class, for customizing method processing.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItemJobcodeFilter"/> objects retrieved, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<CustomFieldItemJobcodeFilter>, ResultsMeta)> GetCustomFieldItemJobcodeFiltersAsync(
+            CustomFieldItemJobcodeFilterFilter filter,
+            RequestOptions options,
+            CancellationToken cancellationToken)
         {
             var context = new GetContext<CustomFieldItemJobcodeFilter>(EndpointName.CustomFieldItemJobcodeFilters, filter, options);
 
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
 
             return (context.Results.Items, context.ResultsMeta);
         }

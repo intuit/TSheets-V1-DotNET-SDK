@@ -39,12 +39,6 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
         }
 
         [TestMethod, TestCategory("Unit")]
-        public void ConnectionInfo_SecurityProtocolDefaultsToTls12()
-        {
-            Assert.AreEqual(SecurityProtocolType.Tls12, ConnectionInfo.SecurityProtocol);
-        }
-
-        [TestMethod, TestCategory("Unit")]
         public void ConnectionInfo_SecurityProtocolCanBeConfigured()
         {
             var expectedProtocolType = SecurityProtocolType.Tls11;

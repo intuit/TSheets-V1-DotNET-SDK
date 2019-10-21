@@ -24,6 +24,7 @@ namespace Intuit.TSheets.Client.Core
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Api;
     using Intuit.TSheets.Client.Extensions;
@@ -72,7 +73,10 @@ namespace Intuit.TSheets.Client.Core
         /// <param name="logger">
         /// Logging provider, an instance of <see cref="ILogger"/>.
         /// </param>
-        internal RestClient(DataServiceContext context, HttpClient httpClient, ILogger logger)
+        internal RestClient(
+            DataServiceContext context,
+            HttpClient httpClient,
+            ILogger logger)
         {
             this.context = context;
             this.logger = logger;
@@ -107,18 +111,20 @@ namespace Intuit.TSheets.Client.Core
         /// <param name="endpointName">The name of the endpoint, <see cref="EndpointName"/></param>
         /// <param name="requestData">The content to be sent in the body of the request.</param>
         /// <param name="logContext">Call-specific contextual information for logging purposes.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>The serialized response of the API method call.</returns>
         public async Task<string> CreateAsync(
             EndpointName endpointName,
             string requestData,
-            LogContext logContext)
+            LogContext logContext,
+            CancellationToken cancellationToken)
         {
             Uri requestUri = CreateRequestUri(endpointName);
 
             LogMethodCall(MethodType.Post, requestUri, logContext, requestData);
 
             HttpContent content = new StringContent(requestData, Encoding.UTF8);
-            HttpResponseMessage response = await this.httpClient.PostAsync(requestUri, content).ConfigureAwait(false);
+            HttpResponseMessage response = await this.httpClient.PostAsync(requestUri, content, cancellationToken).ConfigureAwait(false);
 
             return ProcessResponse(response, logContext, MethodType.Post);
         }
@@ -129,14 +135,19 @@ namespace Intuit.TSheets.Client.Core
         /// <param name="endpointName">The name of the endpoint, <see cref="EndpointName"/></param>
         /// <param name="filters">The key-value pairs to be sent as URL request parameters.</param>
         /// <param name="logContext">Call-specific contextual information for logging purposes.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>The serialized response of the API method call.</returns>
-        public async Task<string> GetAsync(EndpointName endpointName, Dictionary<string, string> filters, LogContext logContext)
+        public async Task<string> GetAsync(
+            EndpointName endpointName,
+            Dictionary<string, string> filters,
+            LogContext logContext,
+            CancellationToken cancellationToken)
         {
             Uri requestUri = CreateRequestUri(endpointName, filters);
 
             LogMethodCall(MethodType.Get, requestUri, logContext);
 
-            HttpResponseMessage response = await this.httpClient.GetAsync(requestUri).ConfigureAwait(false);
+            HttpResponseMessage response = await this.httpClient.GetAsync(requestUri, cancellationToken).ConfigureAwait(false);
 
             return ProcessResponse(response, logContext, MethodType.Get);
         }
@@ -147,15 +158,20 @@ namespace Intuit.TSheets.Client.Core
         /// <param name="endpointName">The name of the endpoint, <see cref="EndpointName"/></param>
         /// <param name="requestData">The content to be sent in the body of the request.</param>
         /// <param name="logContext">Call-specific contextual information for logging purposes.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>The serialized response of the API method call.</returns>
-        public async Task<string> UpdateAsync(EndpointName endpointName, string requestData, LogContext logContext)
+        public async Task<string> UpdateAsync(
+            EndpointName endpointName,
+            string requestData,
+            LogContext logContext,
+            CancellationToken cancellationToken)
         {
             Uri requestUri = CreateRequestUri(endpointName);
 
             LogMethodCall(MethodType.Put, requestUri, logContext, requestData);
 
             HttpContent content = new StringContent(requestData, Encoding.UTF8);
-            HttpResponseMessage response = await this.httpClient.PutAsync(requestUri, content).ConfigureAwait(false);
+            HttpResponseMessage response = await this.httpClient.PutAsync(requestUri, content, cancellationToken).ConfigureAwait(false);
 
             return ProcessResponse(response, logContext, MethodType.Put);
         }
@@ -166,8 +182,13 @@ namespace Intuit.TSheets.Client.Core
         /// <param name="endpointName">The name of the endpoint, <see cref="EndpointName"/></param>
         /// <param name="ids">The ids of the entities to be deleted.</param>
         /// <param name="logContext">Call-specific contextual information for logging purposes.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>The serialized response of the API method call.</returns>
-        public async Task<string> DeleteAsync(EndpointName endpointName, IEnumerable<int> ids, LogContext logContext)
+        public async Task<string> DeleteAsync(
+            EndpointName endpointName,
+            IEnumerable<int> ids,
+            LogContext logContext,
+            CancellationToken cancellationToken)
         {
             var filter = new Dictionary<string, string>
             {
@@ -178,7 +199,7 @@ namespace Intuit.TSheets.Client.Core
 
             LogMethodCall(MethodType.Delete, requestUri, logContext);
 
-            HttpResponseMessage response = await this.httpClient.DeleteAsync(requestUri).ConfigureAwait(false);
+            HttpResponseMessage response = await this.httpClient.DeleteAsync(requestUri, cancellationToken).ConfigureAwait(false);
 
             return ProcessResponse(response, logContext, MethodType.Delete);
         }
@@ -189,17 +210,19 @@ namespace Intuit.TSheets.Client.Core
         /// <param name="endpointName">The name of the endpoint, <see cref="EndpointName"/></param>
         /// <param name="filters">The key-value pairs to be sent as URL request parameters.</param>
         /// <param name="logContext">Call-specific contextual information for logging purposes.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>The serialized response of the API method call.</returns>
         public async Task<byte[]> DownloadAsync(
             EndpointName endpointName,
             Dictionary<string, string> filters,
-            LogContext logContext)
+            LogContext logContext,
+            CancellationToken cancellationToken)
         {
             Uri requestUri = CreateRequestUri(endpointName, filters);
 
             LogMethodCall(MethodType.Get, requestUri, logContext);
 
-            HttpResponseMessage response = await this.httpClient.GetAsync(requestUri).ConfigureAwait(false);
+            HttpResponseMessage response = await this.httpClient.GetAsync(requestUri, cancellationToken).ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
             {

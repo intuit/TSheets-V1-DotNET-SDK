@@ -20,6 +20,7 @@
 namespace Intuit.TSheets.Api
 {
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -79,7 +80,25 @@ namespace Intuit.TSheets.Api
         /// </returns>
         public async Task<LastModifiedTimestamps> GetLastModifiedTimestampsAsync()
         {
-            return await GetLastModifiedTimestampsAsync(null).ConfigureAwait(false);
+            return await GetLastModifiedTimestampsAsync(null, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Last Modified Timestamps, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of last modified timestamps associated with each requested API endpoint. 
+        /// </remarks>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An instance of a <see cref="LastModifiedTimestamps"/> class.
+        /// </returns>
+        public async Task<LastModifiedTimestamps> GetLastModifiedTimestampsAsync(
+            CancellationToken cancellationToken)
+        {
+            return await GetLastModifiedTimestampsAsync(null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -94,11 +113,34 @@ namespace Intuit.TSheets.Api
         /// <returns>
         /// An instance of a <see cref="LastModifiedTimestamps"/> class.
         /// </returns>
-        public async Task<LastModifiedTimestamps> GetLastModifiedTimestampsAsync(LastModifiedTimestampsFilter filter)
+        public async Task<LastModifiedTimestamps> GetLastModifiedTimestampsAsync(
+            LastModifiedTimestampsFilter filter)
+        {
+            return await GetLastModifiedTimestampsAsync(filter, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Retrieve Last Modified Timestamps, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a list of last modified timestamps associated with each requested API endpoint. 
+        /// </remarks>
+        /// <param name="filter">
+        /// An instance of the <see cref="LastModifiedTimestampsFilter"/> class, for narrowing down the results.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// An instance of a <see cref="LastModifiedTimestamps"/> class.
+        /// </returns>
+        public async Task<LastModifiedTimestamps> GetLastModifiedTimestampsAsync(
+            LastModifiedTimestampsFilter filter,
+            CancellationToken cancellationToken)
         {
             var context = new GetContext<LastModifiedTimestamps>(EndpointName.LastModifiedTimestamps, filter);
 
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
 
             return context.Results.Items.FirstOrDefault();
         }

@@ -22,6 +22,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Api;
     using Intuit.TSheets.Client.Core;
@@ -69,14 +70,15 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 .Setup(c => c.CreateAsync(
                     It.Is<EndpointName>(e => e.Equals(this.endpointName)),
                     It.Is<string>(j => j.Equals(this.inputData)),
-                    It.Is<LogContext>(l => l.Equals(this.logContext))))
-                .Callback((EndpointName en, string jd, LogContext lc)
+                    It.Is<LogContext>(l => l.Equals(this.logContext)),
+                    It.IsAny<CancellationToken>()))
+                .Callback((EndpointName en, string jd, LogContext lc, CancellationToken ct)
                     => throw new ServiceUnavailableException("Something went wrong."));
 
             try
             {
                 IRestClient restClient = GetRestClientWithRetries();
-                await restClient.CreateAsync(this.endpointName, this.inputData, this.logContext);
+                await restClient.CreateAsync(this.endpointName, this.inputData, this.logContext, default);
                 Assert.Fail("Expected exception to be thrown.");
             }
             catch (ServiceUnavailableException)
@@ -84,7 +86,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
             }
 
             // Verify our inner rest client was called 4 times (original invocation + retries)
-            this.mockRestClient.Verify(m => m.CreateAsync(this.endpointName, this.inputData, this.logContext),
+            this.mockRestClient.Verify(m => m.CreateAsync(this.endpointName, this.inputData, this.logContext, default),
                 Times.Exactly(RetryCount + 1));
         }
 
@@ -97,17 +99,18 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 .Setup(c => c.CreateAsync(
                     It.Is<EndpointName>(e => e.Equals(this.endpointName)),
                     It.Is<string>(j => j.Equals(this.inputData)),
-                    It.Is<LogContext>(l => l.Equals(this.logContext))))
+                    It.Is<LogContext>(l => l.Equals(this.logContext)),
+                    It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult("Done."));
 
             IRestClient restClient = GetRestClientWithRetries();
             
-            string result = await restClient.CreateAsync(this.endpointName, this.inputData, this.logContext);
+            string result = await restClient.CreateAsync(this.endpointName, this.inputData, this.logContext, default);
 
             Assert.AreEqual(SuccessResult, result, $"Expected result: '{SuccessResult}'.");
 
             // Verify our inner rest client was called only once.
-            this.mockRestClient.Verify(m => m.CreateAsync(this.endpointName, this.inputData, this.logContext),
+            this.mockRestClient.Verify(m => m.CreateAsync(this.endpointName, this.inputData, this.logContext, default),
                 Times.Once);
         }
 
@@ -120,15 +123,16 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 .Setup(c => c.CreateAsync(
                     It.Is<EndpointName>(e => e.Equals(this.endpointName)),
                     It.Is<string>(j => j.Equals(this.inputData)),
-                    It.Is<LogContext>(l => l.Equals(this.logContext))))
-                .Callback((EndpointName en, string jd, LogContext lc)
+                    It.Is<LogContext>(l => l.Equals(this.logContext)),
+                    It.IsAny<CancellationToken>()))
+                .Callback((EndpointName en, string jd, LogContext lc, CancellationToken ct)
                     => throw new BadRequestException("Bad request."));
 
             IRestClient restClient = GetRestClientWithRetries();
 
             try
             {
-                await restClient.CreateAsync(this.endpointName, this.inputData, this.logContext);
+                await restClient.CreateAsync(this.endpointName, this.inputData, this.logContext, default);
                 Assert.Fail("Expected exception to be thrown.");
             }
             catch (BadRequestException)
@@ -136,7 +140,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
             }
 
             // Verify our inner rest client was called exactly once.
-            this.mockRestClient.Verify(m => m.CreateAsync(this.endpointName, this.inputData, this.logContext),
+            this.mockRestClient.Verify(m => m.CreateAsync(this.endpointName, this.inputData, this.logContext, default),
                 Times.Once);
         }
 
@@ -149,14 +153,15 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 .Setup(c => c.GetAsync(
                     It.Is<EndpointName>(e => e.Equals(this.endpointName)),
                     It.Is<Dictionary<string, string>>(j => j.Equals(this.inputFilter)),
-                    It.Is<LogContext>(l => l.Equals(this.logContext))))
-                .Callback((EndpointName en, Dictionary<string, string> fi, LogContext lc)
+                    It.Is<LogContext>(l => l.Equals(this.logContext)),
+                    It.IsAny<CancellationToken>()))
+                .Callback((EndpointName en, Dictionary<string, string> fi, LogContext lc, CancellationToken ct)
                     => throw new ServiceUnavailableException("Something went wrong."));
 
             try
             {
                 IRestClient restClient = GetRestClientWithRetries();
-                await restClient.GetAsync(this.endpointName, this.inputFilter, this.logContext);
+                await restClient.GetAsync(this.endpointName, this.inputFilter, this.logContext, default);
                 Assert.Fail("Expected exception to be thrown.");
             }
             catch (ServiceUnavailableException)
@@ -164,7 +169,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
             }
 
             // Verify our inner rest client was called 4 times (original invocation + retries)
-            this.mockRestClient.Verify(m => m.GetAsync(this.endpointName, this.inputFilter, this.logContext),
+            this.mockRestClient.Verify(m => m.GetAsync(this.endpointName, this.inputFilter, this.logContext, default),
                 Times.Exactly(RetryCount + 1));
         }
 
@@ -177,17 +182,18 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 .Setup(c => c.GetAsync(
                     It.Is<EndpointName>(e => e.Equals(this.endpointName)),
                     It.Is<Dictionary<string, string>>(j => j.Equals(this.inputFilter)),
-                    It.Is<LogContext>(l => l.Equals(this.logContext))))
+                    It.Is<LogContext>(l => l.Equals(this.logContext)),
+                    It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult("Done."));
 
             IRestClient restClient = GetRestClientWithRetries();
 
-            string result = await restClient.GetAsync(this.endpointName, this.inputFilter, this.logContext);
+            string result = await restClient.GetAsync(this.endpointName, this.inputFilter, this.logContext, default);
 
             Assert.AreEqual(SuccessResult, result, $"Expected result: '{SuccessResult}'.");
 
             // Verify our inner rest client was called only once.
-            this.mockRestClient.Verify(m => m.GetAsync(this.endpointName, this.inputFilter, this.logContext),
+            this.mockRestClient.Verify(m => m.GetAsync(this.endpointName, this.inputFilter, this.logContext, default),
                 Times.Once);
         }
 
@@ -200,14 +206,15 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 .Setup(c => c.GetAsync(
                     It.Is<EndpointName>(e => e.Equals(this.endpointName)),
                     It.Is<Dictionary<string, string>>(j => j.Equals(this.inputFilter)),
-                    It.Is<LogContext>(l => l.Equals(this.logContext))))
-                .Callback((EndpointName en, Dictionary<string, string> fi, LogContext lc)
+                    It.Is<LogContext>(l => l.Equals(this.logContext)),
+                    It.IsAny<CancellationToken>()))
+                .Callback((EndpointName en, Dictionary<string, string> fi, LogContext lc, CancellationToken ct)
                     => throw new BadRequestException("Bad request."));
 
             try
             {
                 IRestClient restClient = GetRestClientWithRetries();
-                await restClient.GetAsync(this.endpointName, this.inputFilter, this.logContext);
+                await restClient.GetAsync(this.endpointName, this.inputFilter, this.logContext, default);
                 Assert.Fail("Expected exception to be thrown.");
             }
             catch (BadRequestException)
@@ -215,7 +222,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
             }
 
             // Verify our inner rest client was called exactly once.
-            this.mockRestClient.Verify(m => m.GetAsync(this.endpointName, this.inputFilter, this.logContext),
+            this.mockRestClient.Verify(m => m.GetAsync(this.endpointName, this.inputFilter, this.logContext, default),
                 Times.Once);
         }
 
@@ -228,14 +235,15 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 .Setup(c => c.DownloadAsync(
                     It.Is<EndpointName>(e => e.Equals(this.endpointName)),
                     It.Is<Dictionary<string, string>>(j => j.Equals(this.inputFilter)),
-                    It.Is<LogContext>(l => l.Equals(this.logContext))))
-                .Callback((EndpointName en, Dictionary<string, string> fi, LogContext lc)
+                    It.Is<LogContext>(l => l.Equals(this.logContext)),
+                    It.IsAny<CancellationToken>()))
+                .Callback((EndpointName en, Dictionary<string, string> fi, LogContext lc, CancellationToken ct)
                     => throw new ServiceUnavailableException("Something went wrong."));
 
             try
             {
                 IRestClient restClient = GetRestClientWithRetries();
-                await restClient.DownloadAsync(this.endpointName, this.inputFilter, this.logContext);
+                await restClient.DownloadAsync(this.endpointName, this.inputFilter, this.logContext, default);
                 Assert.Fail("Expected exception to be thrown.");
             }
             catch (ServiceUnavailableException)
@@ -243,7 +251,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
             }
 
             // Verify our inner rest client was called 4 times (original invocation + retries)
-            this.mockRestClient.Verify(m => m.DownloadAsync(this.endpointName, this.inputFilter, this.logContext),
+            this.mockRestClient.Verify(m => m.DownloadAsync(this.endpointName, this.inputFilter, this.logContext, default),
                 Times.Exactly(RetryCount + 1));
         }
 
@@ -256,18 +264,19 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 .Setup(c => c.DownloadAsync(
                     It.Is<EndpointName>(e => e.Equals(this.endpointName)),
                     It.Is<Dictionary<string, string>>(j => j.Equals(this.inputFilter)),
-                    It.Is<LogContext>(l => l.Equals(this.logContext))))
+                    It.Is<LogContext>(l => l.Equals(this.logContext)),
+                    It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(Encoding.UTF8.GetBytes(SuccessResult)));
 
             IRestClient restClient = GetRestClientWithRetries();
 
-            byte[] result = await restClient.DownloadAsync(this.endpointName, this.inputFilter, this.logContext);
+            byte[] result = await restClient.DownloadAsync(this.endpointName, this.inputFilter, this.logContext, default);
             string resultString = Encoding.UTF8.GetString(result);
 
             Assert.AreEqual(SuccessResult, resultString, $"Expected result: '{SuccessResult}'.");
 
             // Verify our inner rest client was called only once.
-            this.mockRestClient.Verify(m => m.DownloadAsync(this.endpointName, this.inputFilter, this.logContext),
+            this.mockRestClient.Verify(m => m.DownloadAsync(this.endpointName, this.inputFilter, this.logContext, default),
                 Times.Once);
         }
 
@@ -280,14 +289,15 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 .Setup(c => c.DownloadAsync(
                     It.Is<EndpointName>(e => e.Equals(this.endpointName)),
                     It.Is<Dictionary<string, string>>(j => j.Equals(this.inputFilter)),
-                    It.Is<LogContext>(l => l.Equals(this.logContext))))
-                .Callback((EndpointName en, Dictionary<string, string> fi, LogContext lc)
+                    It.Is<LogContext>(l => l.Equals(this.logContext)),
+                    It.IsAny<CancellationToken>()))
+                .Callback((EndpointName en, Dictionary<string, string> fi, LogContext lc, CancellationToken ct)
                     => throw new BadRequestException("Bad request."));
 
             try
             {
                 IRestClient restClient = GetRestClientWithRetries();
-                await restClient.DownloadAsync(this.endpointName, this.inputFilter, this.logContext);
+                await restClient.DownloadAsync(this.endpointName, this.inputFilter, this.logContext, default);
                 Assert.Fail("Expected exception to be thrown.");
             }
             catch (BadRequestException)
@@ -295,7 +305,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
             }
 
             // Verify our inner rest client was called exactly once.
-            this.mockRestClient.Verify(m => m.DownloadAsync(this.endpointName, this.inputFilter, this.logContext),
+            this.mockRestClient.Verify(m => m.DownloadAsync(this.endpointName, this.inputFilter, this.logContext, default),
                 Times.Once);
         }
 
@@ -308,14 +318,15 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 .Setup(c => c.UpdateAsync(
                     It.Is<EndpointName>(e => e.Equals(this.endpointName)),
                     It.Is<string>(j => j.Equals(this.inputData)),
-                    It.Is<LogContext>(l => l.Equals(this.logContext))))
-                .Callback((EndpointName en, string jd, LogContext lc)
+                    It.Is<LogContext>(l => l.Equals(this.logContext)),
+                    It.IsAny<CancellationToken>()))
+                .Callback((EndpointName en, string jd, LogContext lc, CancellationToken ct)
                     => throw new ServiceUnavailableException("Something went wrong."));
 
             try
             {
                 IRestClient restClient = GetRestClientWithRetries();
-                await restClient.UpdateAsync(this.endpointName, this.inputData, this.logContext);
+                await restClient.UpdateAsync(this.endpointName, this.inputData, this.logContext, default);
                 Assert.Fail("Expected exception to be thrown.");
             }
             catch (ServiceUnavailableException)
@@ -323,7 +334,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
             }
 
             // Verify our inner rest client was called 4 times (original invocation + retries)
-            this.mockRestClient.Verify(m => m.UpdateAsync(this.endpointName, this.inputData, this.logContext),
+            this.mockRestClient.Verify(m => m.UpdateAsync(this.endpointName, this.inputData, this.logContext, default),
                 Times.Exactly(RetryCount + 1));
         }
 
@@ -336,17 +347,18 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 .Setup(c => c.UpdateAsync(
                     It.Is<EndpointName>(e => e.Equals(this.endpointName)),
                     It.Is<string>(j => j.Equals(this.inputData)),
-                    It.Is<LogContext>(l => l.Equals(this.logContext))))
+                    It.Is<LogContext>(l => l.Equals(this.logContext)),
+                    It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult("Done."));
 
             IRestClient restClient = GetRestClientWithRetries();
             
-            string result = await restClient.UpdateAsync(this.endpointName, this.inputData, this.logContext);
+            string result = await restClient.UpdateAsync(this.endpointName, this.inputData, this.logContext, default);
 
             Assert.AreEqual(SuccessResult, result, $"Expected result: '{SuccessResult}'.");
 
             // Verify our inner rest client was called only once.
-            this.mockRestClient.Verify(m => m.UpdateAsync(this.endpointName, this.inputData, this.logContext),
+            this.mockRestClient.Verify(m => m.UpdateAsync(this.endpointName, this.inputData, this.logContext, default),
                 Times.Once);
         }
 
@@ -359,14 +371,15 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 .Setup(c => c.UpdateAsync(
                     It.Is<EndpointName>(e => e.Equals(this.endpointName)),
                     It.Is<string>(j => j.Equals(this.inputData)),
-                    It.Is<LogContext>(l => l.Equals(this.logContext))))
-                .Callback((EndpointName en, string jd, LogContext lc)
+                    It.Is<LogContext>(l => l.Equals(this.logContext)),
+                    It.IsAny<CancellationToken>()))
+                .Callback((EndpointName en, string jd, LogContext lc, CancellationToken ct)
                     => throw new BadRequestException("Bad request."));
 
             try
             {
                 IRestClient restClient = GetRestClientWithRetries();
-                await restClient.UpdateAsync(this.endpointName, this.inputData, this.logContext);
+                await restClient.UpdateAsync(this.endpointName, this.inputData, this.logContext, default);
                 Assert.Fail("Expected exception to be thrown.");
             }
             catch (BadRequestException)
@@ -374,7 +387,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
             }
 
             // Verify our inner rest client was called exactly once.
-            this.mockRestClient.Verify(m => m.UpdateAsync(this.endpointName, this.inputData, this.logContext),
+            this.mockRestClient.Verify(m => m.UpdateAsync(this.endpointName, this.inputData, this.logContext, default),
                 Times.Once);
         }
 
@@ -387,14 +400,15 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 .Setup(c => c.DeleteAsync(
                     It.Is<EndpointName>(e => e.Equals(this.endpointName)),
                     It.Is<IEnumerable<int>>(j => j.Equals(this.deleteIds)),
-                    It.Is<LogContext>(l => l.Equals(this.logContext))))
-                .Callback((EndpointName en, IEnumerable<int> di, LogContext lc)
+                    It.Is<LogContext>(l => l.Equals(this.logContext)),
+                    It.IsAny<CancellationToken>()))
+                .Callback((EndpointName en, IEnumerable<int> di, LogContext lc, CancellationToken ct)
                     => throw new ServiceUnavailableException("Something went wrong."));
 
             try
             {
                 IRestClient restClient = GetRestClientWithRetries();
-                await restClient.DeleteAsync(this.endpointName, this.deleteIds, this.logContext);
+                await restClient.DeleteAsync(this.endpointName, this.deleteIds, this.logContext, default);
                 Assert.Fail("Expected exception to be thrown.");
             }
             catch (ServiceUnavailableException)
@@ -402,7 +416,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
             }
 
             // Verify our inner rest client was called 4 times (original invocation + retries)
-            this.mockRestClient.Verify(m => m.DeleteAsync(this.endpointName, this.deleteIds, this.logContext),
+            this.mockRestClient.Verify(m => m.DeleteAsync(this.endpointName, this.deleteIds, this.logContext, default),
                 Times.Exactly(RetryCount + 1));
         }
 
@@ -415,17 +429,18 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 .Setup(c => c.DeleteAsync(
                     It.Is<EndpointName>(e => e.Equals(this.endpointName)),
                     It.Is<IEnumerable<int>>(j => j.Equals(this.deleteIds)),
-                    It.Is<LogContext>(l => l.Equals(this.logContext))))
+                    It.Is<LogContext>(l => l.Equals(this.logContext)),
+                    It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult("Done."));
 
             IRestClient restClient = GetRestClientWithRetries();
 
-            string result = await restClient.DeleteAsync(this.endpointName, this.deleteIds, this.logContext);
+            string result = await restClient.DeleteAsync(this.endpointName, this.deleteIds, this.logContext, default);
 
             Assert.AreEqual(SuccessResult, result, $"Expected result: '{SuccessResult}'.");
 
             // Verify our inner rest client was called only once.
-            this.mockRestClient.Verify(m => m.DeleteAsync(this.endpointName, this.deleteIds, this.logContext),
+            this.mockRestClient.Verify(m => m.DeleteAsync(this.endpointName, this.deleteIds, this.logContext, default),
                 Times.Once);
         }
 
@@ -438,14 +453,15 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
                 .Setup(c => c.DeleteAsync(
                     It.Is<EndpointName>(e => e.Equals(this.endpointName)),
                     It.Is<IEnumerable<int>>(j => j.Equals(this.deleteIds)),
-                    It.Is<LogContext>(l => l.Equals(this.logContext))))
-                .Callback((EndpointName en, IEnumerable<int> di, LogContext lc)
+                    It.Is<LogContext>(l => l.Equals(this.logContext)),
+                    It.IsAny<CancellationToken>()))
+                .Callback((EndpointName en, IEnumerable<int> di, LogContext lc, CancellationToken ct)
                     => throw new BadRequestException("Bad request."));
 
             try
             {
                 IRestClient restClient = GetRestClientWithRetries();
-                await restClient.DeleteAsync(this.endpointName, this.deleteIds, this.logContext);
+                await restClient.DeleteAsync(this.endpointName, this.deleteIds, this.logContext, default);
                 Assert.Fail("Expected exception to be thrown.");
             }
             catch (BadRequestException)
@@ -453,7 +469,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
             }
 
             // Verify our inner rest client was called exactly once.
-            this.mockRestClient.Verify(m => m.DeleteAsync(this.endpointName, this.deleteIds, this.logContext),
+            this.mockRestClient.Verify(m => m.DeleteAsync(this.endpointName, this.deleteIds, this.logContext, default),
                 Times.Once);
         }
 

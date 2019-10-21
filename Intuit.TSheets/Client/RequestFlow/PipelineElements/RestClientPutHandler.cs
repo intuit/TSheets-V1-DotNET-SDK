@@ -19,6 +19,7 @@
 
 namespace Intuit.TSheets.Client.RequestFlow.PipelineElements
 {
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
     using Microsoft.Extensions.Logging;
@@ -39,14 +40,18 @@ namespace Intuit.TSheets.Client.RequestFlow.PipelineElements
         /// <param name="context">The object of state through the pipeline.</param>
         /// <param name="logger">The logging instance.</param>
         /// <returns>The asynchronous task.</returns>
-        protected override async Task _ProcessAsync<T>(PipelineContext<T> context, ILogger logger)
+        protected override async Task _ProcessAsync<T>(
+            PipelineContext<T> context,
+            ILogger logger,
+            CancellationToken cancellationToken)
         {
             string serializedRequest = ((ISerializedRequest)context).SerializedRequest;
 
             context.ResponseContent = await context.RestClient.UpdateAsync(
                 context.Endpoint,
                 serializedRequest,
-                context.LogContext).ConfigureAwait(false);
+                context.LogContext,
+                cancellationToken).ConfigureAwait(false);
         }
     }
 }

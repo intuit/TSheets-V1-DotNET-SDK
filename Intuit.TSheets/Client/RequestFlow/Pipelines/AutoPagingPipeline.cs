@@ -21,6 +21,7 @@ namespace Intuit.TSheets.Client.RequestFlow.Pipelines
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Api;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -73,14 +74,18 @@ namespace Intuit.TSheets.Client.RequestFlow.Pipelines
         /// <param name="context">The object of state through the pipeline.</param>
         /// <param name="logger">The logging instance.</param>
         /// <returns>The completed asynchronous task.</returns>
-        public async Task ProcessAsync<T>(PipelineContext<T> context, ILogger logger)
+        public async Task ProcessAsync<T>(
+            PipelineContext<T> context,
+            ILogger logger,
+            CancellationToken cancellationToken)
         {
             var getContext = (GetContext<T>)context;
-            string correlationId = getContext.LogContext.CorrelationId;
             var consolidatedItems = new List<T>();
 
             do
             {
+                cancellationToken.ThrowIfCancellationRequested();
+
                 if (getContext.Options.Page.HasValue)
                 {
                     logger?.LogInformation(
@@ -91,7 +96,7 @@ namespace Intuit.TSheets.Client.RequestFlow.Pipelines
                         getContext.Endpoint);
                 }
 
-                await InnerPipeline.ProcessAsync(getContext, logger).ConfigureAwait(false);
+                await InnerPipeline.ProcessAsync(getContext, logger, cancellationToken).ConfigureAwait(false);
                 consolidatedItems.AddRange(getContext.Results.Items);
 
                 if (getContext.ResultsMeta.More)

@@ -47,7 +47,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
         {
             var context = new CreateContext<BasicTestEntity>(EndpointName.Tests, new[]{ new BasicTestEntity() });
 
-            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
         }
 
         [TestMethod, TestCategory("Unit")]
@@ -58,7 +58,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
                 Results = new Results<BasicTestEntity>()
             };
 
-            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
         }
 
         [TestMethod, TestCategory("Unit")]
@@ -79,7 +79,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
 
             try
             {
-                await this.pipelineElement.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+                await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
 
                 Assert.Fail("Expected MultiStatusException to be thrown");
             }

@@ -47,7 +47,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
             var expectedResult2 = new BasicTestEntity(2737, "Muriel");
 
             UpdateContext<BasicTestEntity> context = GetUpdateContext();
-            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
 
             const int expectedCount = 2;
             Assert.AreEqual(expectedCount, context.Results.Items.Count, $"Expected {expectedCount} success results.");
@@ -85,7 +85,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
                 });
 
             UpdateContext<BasicTestEntity> context = GetUpdateContextWithErrorResults();
-            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance).ConfigureAwait(false);
+            await this.pipelineElement.ProcessAsync(context, NullLogger.Instance, default).ConfigureAwait(false);
 
             const int expectedCount = 2;
             Assert.AreEqual(expectedCount, context.Results.ErrorItems.Count, $"Expected {expectedCount} error results.");

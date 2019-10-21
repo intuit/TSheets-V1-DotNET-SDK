@@ -20,6 +20,7 @@
 namespace Intuit.TSheets.Api
 {
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.Core;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
@@ -174,21 +175,26 @@ namespace Intuit.TSheets.Api
         /// </summary>
         /// <typeparam name="T">The entity data type.</typeparam>
         /// <param name="context">Vehicle of state, <see cref="PipelineContext{T}"/></param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
         /// <returns>The asynchronous task.</returns>
-        internal async Task ExecuteOperationAsync<T>(PipelineContext<T> context)
+        internal async Task ExecuteOperationAsync<T>(
+            PipelineContext<T> context,
+            CancellationToken cancellationToken)
         {
             try
             {
                 context.RestClient = this.restClient;
 
                 IPipeline requestPipeline = this.pipelineFactory.GetPipeline(context);
-                await requestPipeline.ProcessAsync(context, this.logger).ConfigureAwait(false);
+                await requestPipeline.ProcessAsync(context, this.logger, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
                 LogException(context, ex);
 
-                if (ex is ApiException)
+                if (ex is ApiException || ex is OperationCanceledException)
                 {
                     throw;
                 }
@@ -201,7 +207,18 @@ namespace Intuit.TSheets.Api
         {
             string methodType = context.MethodType.ToString().ToUpperInvariant();
 
-            if (ex is ApiException apiEx)
+            if (ex is OperationCanceledException)
+            {
+                logger?.LogDebug(
+                    context.LogContext.EventId,
+                    ex,
+                    "{CorrelationId} {Processor}::{Method}(): {HttpMethod} ERROR",
+                    context.LogContext.CorrelationId,
+                    nameof(DataService),
+                    nameof(ExecuteOperationAsync),
+                    methodType);
+            }
+            else if (ex is ApiException apiEx)
             {
                 logger?.LogError(
                     context.LogContext.EventId,

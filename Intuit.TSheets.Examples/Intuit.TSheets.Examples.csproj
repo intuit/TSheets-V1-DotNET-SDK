@@ -13,9 +13,10 @@
     <RepositoryType>Git</RepositoryType>
     <PackageTags>tsheets, sdk, quickbooks, time, tracking, api-client, time-tracking, payroll-management</PackageTags>
     <PackageReleaseNotes />
-    <AssemblyVersion>1.1.2.0</AssemblyVersion>
-    <Version>1.1.2</Version>
-    <FileVersion>1.1.2.0</FileVersion>
+    <AssemblyVersion>1.2.0.0</AssemblyVersion>
+    <Version>1.2.0</Version>
+    <FileVersion>1.2.0.0</FileVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

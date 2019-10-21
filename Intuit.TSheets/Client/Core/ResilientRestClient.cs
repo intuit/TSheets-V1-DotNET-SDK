@@ -22,9 +22,9 @@ namespace Intuit.TSheets.Client.Core
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Api;
-    using Intuit.TSheets.Client.Extensions;
     using Intuit.TSheets.Client.Utilities;
     using Intuit.TSheets.Model.Exceptions;
     using Microsoft.Extensions.Logging;
@@ -96,18 +96,21 @@ namespace Intuit.TSheets.Client.Core
         /// <param name="endpointName">The name of the endpoint, <see cref="EndpointName"/></param>
         /// <param name="jsonData">The content to be sent in the body of the request.</param>
         /// <param name="logContext">Call-specific contextual information for logging purposes.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>The serialized response of the API method call.</returns>
         public async Task<string> CreateAsync(
             EndpointName endpointName,
             string jsonData,
-            LogContext logContext)
+            LogContext logContext,
+            CancellationToken cancellationToken)
         {
             return await ExecutePolicyAsync(
                 logContext,
                 () => this.restClient.CreateAsync(
                     endpointName,
                     jsonData,
-                    logContext)).ConfigureAwait(false);
+                    logContext,
+                    cancellationToken)).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -116,18 +119,21 @@ namespace Intuit.TSheets.Client.Core
         /// <param name="endpointName">The name of the endpoint, <see cref="EndpointName"/></param>
         /// <param name="filters">The key-value pairs to be sent as URL request parameters.</param>
         /// <param name="logContext">Call-specific contextual information for logging purposes.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>The serialized response of the API method call.</returns>
         public async Task<string> GetAsync(
             EndpointName endpointName,
             Dictionary<string, string> filters,
-            LogContext logContext)
+            LogContext logContext,
+            CancellationToken cancellationToken)
         {
             return await ExecutePolicyAsync(
                 logContext,
                 () => this.restClient.GetAsync(
                     endpointName,
                     filters,
-                    logContext)).ConfigureAwait(false);
+                    logContext,
+                    cancellationToken)).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -136,15 +142,17 @@ namespace Intuit.TSheets.Client.Core
         /// <param name="endpointName">The name of the endpoint, <see cref="EndpointName"/></param>
         /// <param name="filters">The key-value pairs to be sent as URL request parameters.</param>
         /// <param name="logContext">Call-specific contextual information for logging purposes.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>The serialized response of the API method call.</returns>
         public async Task<byte[]> DownloadAsync(
             EndpointName endpointName,
             Dictionary<string, string> filters,
-            LogContext logContext)
+            LogContext logContext,
+            CancellationToken cancellationToken)
         {
             return await ExecutePolicyAsync(
                     logContext,
-                    () => this.restClient.DownloadAsync(endpointName, filters, logContext))
+                    () => this.restClient.DownloadAsync(endpointName, filters, logContext, cancellationToken))
                 .ConfigureAwait(false);
         }
 
@@ -154,15 +162,17 @@ namespace Intuit.TSheets.Client.Core
         /// <param name="endpointName">The name of the endpoint, <see cref="EndpointName"/></param>
         /// <param name="jsonData">The content to be sent in the body of the request.</param>
         /// <param name="logContext">Call-specific contextual information for logging purposes.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>The serialized response of the API method call.</returns>
         public async Task<string> UpdateAsync(
             EndpointName endpointName,
             string jsonData,
-            LogContext logContext)
+            LogContext logContext,
+            CancellationToken cancellationToken)
         {
             return await ExecutePolicyAsync(
                     logContext,
-                    () => this.restClient.UpdateAsync(endpointName, jsonData, logContext))
+                    () => this.restClient.UpdateAsync(endpointName, jsonData, logContext, cancellationToken))
                 .ConfigureAwait(false);
         }
 
@@ -172,15 +182,17 @@ namespace Intuit.TSheets.Client.Core
         /// <param name="endpointName">The name of the endpoint, <see cref="EndpointName"/></param>
         /// <param name="ids">The ids of the entities to be deleted.</param>
         /// <param name="logContext">Call-specific contextual information for logging purposes.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>The serialized response of the API method call.</returns>
         public async Task<string> DeleteAsync(
             EndpointName endpointName,
             IEnumerable<int> ids,
-            LogContext logContext)
+            LogContext logContext,
+            CancellationToken cancellationToken)
         {
             return await ExecutePolicyAsync(
                     logContext,
-                    () => this.restClient.DeleteAsync(endpointName, ids, logContext))
+                    () => this.restClient.DeleteAsync(endpointName, ids, logContext, cancellationToken))
                 .ConfigureAwait(false);
         }
 

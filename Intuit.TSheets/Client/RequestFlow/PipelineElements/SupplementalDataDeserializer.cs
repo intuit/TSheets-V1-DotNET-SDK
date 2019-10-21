@@ -21,6 +21,7 @@ namespace Intuit.TSheets.Client.RequestFlow.PipelineElements
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
     using Intuit.TSheets.Client.Utilities;
@@ -48,8 +49,14 @@ namespace Intuit.TSheets.Client.RequestFlow.PipelineElements
         /// <typeparam name="T">The type of data entity.</typeparam>
         /// <param name="context">The object of state through the pipeline.</param>
         /// <param name="logger">The logging instance.</param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
         /// <returns>The completed asynchronous task.</returns>
-        protected override Task _ProcessAsync<T>(PipelineContext<T> context, ILogger logger)
+        protected override Task _ProcessAsync<T>(
+            PipelineContext<T> context,
+            ILogger logger,
+            CancellationToken cancellationToken)
         {
             JToken document = JToken.Parse(context.ResponseContent);
             JObject supplementalDataSection = (JObject)document.SelectToken(JsonPath);
