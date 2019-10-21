@@ -131,7 +131,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<LocationsMap>, ResultsMeta)> GetLocationsMapsAsync()
         {
-            return await GetLocationsMapsAsync(null, null).ConfigureAwait(false);
+            return await GetLocationsMapsAsync(null, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -151,9 +151,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<LocationsMap>, ResultsMeta)> GetLocationsMapsAsync(
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetLocationsMapsAsync(null, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -173,7 +171,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<LocationsMap>, ResultsMeta)> GetLocationsMapsAsync(
             RequestOptions options)
         {
-            return await GetLocationsMapsAsync(null, options).ConfigureAwait(false);
+            return await GetLocationsMapsAsync(null, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -197,9 +195,7 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetLocationsMapsAsync(null, options, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -219,7 +215,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<LocationsMap>, ResultsMeta)> GetLocationsMapsAsync(
             LocationsMapFilter filter)
         {
-            return await GetLocationsMapsAsync(filter, null).ConfigureAwait(false);
+            return await GetLocationsMapsAsync(filter, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -243,9 +239,7 @@ namespace Intuit.TSheets.Api
             LocationsMapFilter filter,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetLocationsMapsAsync(filter, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -269,11 +263,7 @@ namespace Intuit.TSheets.Api
             LocationsMapFilter filter,
             RequestOptions options)
         {
-            var context = new GetContext<LocationsMap>(EndpointName.LocationsMaps, filter, options);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
+            return await GetLocationsMapsAsync(filter, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -301,9 +291,11 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            var context = new GetContext<LocationsMap>(EndpointName.LocationsMaps, filter, options);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion

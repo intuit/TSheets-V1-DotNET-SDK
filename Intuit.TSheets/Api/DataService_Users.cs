@@ -43,24 +43,6 @@ namespace Intuit.TSheets.Api
         /// Create Users.
         /// </summary>
         /// <remarks>
-        /// Add one or more users to your company.
-        /// </remarks>
-        /// <param name="users">
-        /// The set of <see cref="User"/> objects to be created.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="User"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public (IList<User>, ResultsMeta) CreateUsers(IEnumerable<User> users)
-        {
-            return AsyncUtil.RunSync(() => CreateUsersAsync(users));
-        }
-
-        /// <summary>
-        /// Create Users.
-        /// </summary>
-        /// <remarks>
         /// Add a single user to your company.
         /// </remarks>
         /// <param name="user">
@@ -78,7 +60,7 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
-        /// Asynchronously Create Users.
+        /// Create Users.
         /// </summary>
         /// <remarks>
         /// Add one or more users to your company.
@@ -90,39 +72,9 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="User"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<User>, ResultsMeta)> CreateUsersAsync(
-            IEnumerable<User> users)
+        public (IList<User>, ResultsMeta) CreateUsers(IEnumerable<User> users)
         {
-            var context = new CreateContext<User>(EndpointName.Users, users);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
-        }
-
-        /// <summary>
-        /// Asynchronously Create Users, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Add one or more users to your company.
-        /// </remarks>
-        /// <param name="users">
-        /// The set of <see cref="User"/> objects to be created.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="User"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public async Task<(IList<User>, ResultsMeta)> CreateUsersAsync(
-            IEnumerable<User> users,
-            CancellationToken cancellationToken)
-        {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return AsyncUtil.RunSync(() => CreateUsersAsync(users));
         }
 
         /// <summary>
@@ -141,7 +93,7 @@ namespace Intuit.TSheets.Api
         public async Task<(User, ResultsMeta)> CreateUserAsync(
             User user)
         {
-            (IList<User> users, ResultsMeta resultsMeta) = await CreateUsersAsync(new[] { user }).ConfigureAwait(false);
+            (IList<User> users, ResultsMeta resultsMeta) = await CreateUsersAsync(new[] { user }, default).ConfigureAwait(false);
 
             return (users.FirstOrDefault(), resultsMeta);
         }
@@ -166,9 +118,55 @@ namespace Intuit.TSheets.Api
             User user,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            (IList<User> users, ResultsMeta resultsMeta) = await CreateUsersAsync(new[] { user }, cancellationToken).ConfigureAwait(false);
+
+            return (users.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Users.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more users to your company.
+        /// </remarks>
+        /// <param name="users">
+        /// The set of <see cref="User"/> objects to be created.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="User"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<User>, ResultsMeta)> CreateUsersAsync(
+            IEnumerable<User> users)
+        {
+            return await CreateUsersAsync(users, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Users, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more users to your company.
+        /// </remarks>
+        /// <param name="users">
+        /// The set of <see cref="User"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="User"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<User>, ResultsMeta)> CreateUsersAsync(
+            IEnumerable<User> users,
+            CancellationToken cancellationToken)
+        {
+            var context = new CreateContext<User>(EndpointName.Users, users);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion
@@ -268,7 +266,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<User>, ResultsMeta)> GetUsersAsync()
         {
-            return await GetUsersAsync(null, null).ConfigureAwait(false);
+            return await GetUsersAsync(null, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -288,9 +286,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<User>, ResultsMeta)> GetUsersAsync(
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetUsersAsync(null, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -310,7 +306,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<User>, ResultsMeta)> GetUsersAsync(
             RequestOptions options)
         {
-            return await GetUsersAsync(null, options).ConfigureAwait(false);
+            return await GetUsersAsync(null, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -334,9 +330,7 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetUsersAsync(null, options, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -356,7 +350,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<User>, ResultsMeta)> GetUsersAsync(
             UserFilter filter)
         {
-            return await GetUsersAsync(filter, null).ConfigureAwait(false);
+            return await GetUsersAsync(filter, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -380,9 +374,7 @@ namespace Intuit.TSheets.Api
             UserFilter filter,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetUsersAsync(filter, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -406,11 +398,7 @@ namespace Intuit.TSheets.Api
             UserFilter filter,
             RequestOptions options)
         {
-            var context = new GetContext<User>(EndpointName.Users, filter, options);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
+            return await GetUsersAsync(filter, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -438,32 +426,16 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            var context = new GetContext<User>(EndpointName.Users, filter, options);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion
 
         #region Update methods
-
-        /// <summary>
-        /// Update Users.
-        /// </summary>
-        /// <remarks>
-        /// Edit one or more users in your company.
-        /// </remarks>
-        /// <param name="users">
-        /// The set of <see cref="User"/> objects to be updated.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="User"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public (IList<User>, ResultsMeta) UpdateUsers(IEnumerable<User> users)
-        {
-            return AsyncUtil.RunSync(() => UpdateUsersAsync(users));
-        }
 
         /// <summary>
         /// Update Users.
@@ -486,7 +458,7 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
-        /// Asynchronously Update Users.
+        /// Update Users.
         /// </summary>
         /// <remarks>
         /// Edit one or more users in your company.
@@ -498,39 +470,9 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="User"/> objects that were updated, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<User>, ResultsMeta)> UpdateUsersAsync(
-            IEnumerable<User> users)
+        public (IList<User>, ResultsMeta) UpdateUsers(IEnumerable<User> users)
         {
-            var context = new UpdateContext<User>(EndpointName.Users, users);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
-        }
-
-        /// <summary>
-        /// Asynchronously Update Users, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Edit one or more users in your company.
-        /// </remarks>
-        /// <param name="users">
-        /// The set of <see cref="User"/> objects to be updated.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="User"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public async Task<(IList<User>, ResultsMeta)> UpdateUsersAsync(
-            IEnumerable<User> users,
-            CancellationToken cancellationToken)
-        {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return AsyncUtil.RunSync(() => UpdateUsersAsync(users));
         }
 
         /// <summary>
@@ -549,7 +491,7 @@ namespace Intuit.TSheets.Api
         public async Task<(User, ResultsMeta)> UpdateUserAsync(
             User user)
         {
-            (IList<User> users, ResultsMeta resultsMeta) = await UpdateUsersAsync(new[] { user }).ConfigureAwait(false);
+            (IList<User> users, ResultsMeta resultsMeta) = await UpdateUsersAsync(new[] { user }, default).ConfigureAwait(false);
 
             return (users.FirstOrDefault(), resultsMeta);
         }
@@ -574,9 +516,55 @@ namespace Intuit.TSheets.Api
             User user,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            (IList<User> users, ResultsMeta resultsMeta) = await UpdateUsersAsync(new[] { user }, cancellationToken).ConfigureAwait(false);
+
+            return (users.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Update Users.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more users in your company.
+        /// </remarks>
+        /// <param name="users">
+        /// The set of <see cref="User"/> objects to be updated.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="User"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<User>, ResultsMeta)> UpdateUsersAsync(
+            IEnumerable<User> users)
+        {
+            return await UpdateUsersAsync(users, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Update Users, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more users in your company.
+        /// </remarks>
+        /// <param name="users">
+        /// The set of <see cref="User"/> objects to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="User"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<User>, ResultsMeta)> UpdateUsersAsync(
+            IEnumerable<User> users,
+            CancellationToken cancellationToken)
+        {
+            var context = new UpdateContext<User>(EndpointName.Users, users);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion

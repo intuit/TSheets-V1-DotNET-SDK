@@ -507,7 +507,7 @@ namespace Intuit.TSheets.Api
         public async Task DeleteJobcodeAssignmentAsync(
             JobcodeAssignment jobcodeAssignment)
         {
-            await DeleteJobcodeAssignmentsAsync(new[] { jobcodeAssignment }, default).ConfigureAwait(false);
+            await DeleteJobcodeAssignmentsAsync(new[] { jobcodeAssignment.Id }, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -527,7 +527,7 @@ namespace Intuit.TSheets.Api
             JobcodeAssignment jobcodeAssignment,
             CancellationToken cancellationToken)
         {
-            await DeleteJobcodeAssignmentsAsync(new[] { jobcodeAssignment }, cancellationToken).ConfigureAwait(false);
+            await DeleteJobcodeAssignmentsAsync(new[] { jobcodeAssignment.Id }, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>

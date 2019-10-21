@@ -369,22 +369,6 @@ namespace Intuit.TSheets.Api
         /// Create Custom Field Items.
         /// </summary>
         /// <remarks>
-        /// Add one or more <see cref="CustomFieldItem"/> objects to a <see cref="CustomField"/>.
-        /// </remarks>
-        /// <param name="customFieldItems">
-        /// The set of <see cref="CustomFieldItem"/> objects to be created.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="CustomFieldItem"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        (IList<CustomFieldItem>, ResultsMeta resultsMeta) CreateCustomFieldItems(
-            IEnumerable<CustomFieldItem> customFieldItems);
-
-        /// <summary>
-        /// Create Custom Field Items.
-        /// </summary>
-        /// <remarks>
         /// Add a single <see cref="CustomFieldItem"/> object to a <see cref="CustomField"/>.
         /// </remarks>
         /// <param name="customFieldItem">
@@ -398,7 +382,7 @@ namespace Intuit.TSheets.Api
             CustomFieldItem customFieldItem);
 
         /// <summary>
-        /// Asynchronously Create Custom Field Items.
+        /// Create Custom Field Items.
         /// </summary>
         /// <remarks>
         /// Add one or more <see cref="CustomFieldItem"/> objects to a <see cref="CustomField"/>.
@@ -410,28 +394,8 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="CustomFieldItem"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        Task<(IList<CustomFieldItem>, ResultsMeta resultsMeta)> CreateCustomFieldItemsAsync(
+        (IList<CustomFieldItem>, ResultsMeta resultsMeta) CreateCustomFieldItems(
             IEnumerable<CustomFieldItem> customFieldItems);
-
-        /// <summary>
-        /// Asynchronously Create Custom Field Items, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Add one or more <see cref="CustomFieldItem"/> objects to a <see cref="CustomField"/>.
-        /// </remarks>
-        /// <param name="customFieldItems">
-        /// The set of <see cref="CustomFieldItem"/> objects to be created.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="CustomFieldItem"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        Task<(IList<CustomFieldItem>, ResultsMeta resultsMeta)> CreateCustomFieldItemsAsync(
-            IEnumerable<CustomFieldItem> customFieldItems,
-            CancellationToken cancellationToken);
 
         /// <summary>
         /// Asynchronously Create Custom Field Items.
@@ -467,6 +431,42 @@ namespace Intuit.TSheets.Api
         /// </returns>
         Task<(CustomFieldItem, ResultsMeta)> CreateCustomFieldItemAsync(
             CustomFieldItem customFieldItem,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Asynchronously Create Custom Field Items.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more <see cref="CustomFieldItem"/> objects to a <see cref="CustomField"/>.
+        /// </remarks>
+        /// <param name="customFieldItems">
+        /// The set of <see cref="CustomFieldItem"/> objects to be created.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItem"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<CustomFieldItem>, ResultsMeta resultsMeta)> CreateCustomFieldItemsAsync(
+            IEnumerable<CustomFieldItem> customFieldItems);
+
+        /// <summary>
+        /// Asynchronously Create Custom Field Items, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more <see cref="CustomFieldItem"/> objects to a <see cref="CustomField"/>.
+        /// </remarks>
+        /// <param name="customFieldItems">
+        /// The set of <see cref="CustomFieldItem"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItem"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<CustomFieldItem>, ResultsMeta resultsMeta)> CreateCustomFieldItemsAsync(
+            IEnumerable<CustomFieldItem> customFieldItems,
             CancellationToken cancellationToken);
 
         /// <summary>
@@ -595,22 +595,6 @@ namespace Intuit.TSheets.Api
         /// Update Custom Field Items.
         /// </summary>
         /// <remarks>
-        /// Update one or more <see cref="CustomFieldItem"/> objects on a <see cref="CustomField"/>.
-        /// </remarks>
-        /// <param name="customFieldItems">
-        /// The set of <see cref="CustomFieldItem"/> objects to be updated.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="CustomFieldItem"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        (IList<CustomFieldItem>, ResultsMeta resultsMeta) UpdateCustomFieldItems(
-            IEnumerable<CustomFieldItem> customFieldItems);
-
-        /// <summary>
-        /// Update Custom Field Items.
-        /// </summary>
-        /// <remarks>
         /// Update a single <see cref="CustomFieldItem"/> object on a <see cref="CustomField"/>.
         /// </remarks>
         /// <param name="customFieldItem">
@@ -624,7 +608,7 @@ namespace Intuit.TSheets.Api
             CustomFieldItem customFieldItem);
 
         /// <summary>
-        /// Asynchronously Update Custom Field Items.
+        /// Update Custom Field Items.
         /// </summary>
         /// <remarks>
         /// Update one or more <see cref="CustomFieldItem"/> objects on a <see cref="CustomField"/>.
@@ -636,28 +620,8 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="CustomFieldItem"/> objects that were updated, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        Task<(IList<CustomFieldItem>, ResultsMeta resultsMeta)> UpdateCustomFieldItemsAsync(
+        (IList<CustomFieldItem>, ResultsMeta resultsMeta) UpdateCustomFieldItems(
             IEnumerable<CustomFieldItem> customFieldItems);
-
-        /// <summary>
-        /// Asynchronously Update Custom Field Items, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Update one or more <see cref="CustomFieldItem"/> objects on a <see cref="CustomField"/>.
-        /// </remarks>
-        /// <param name="customFieldItems">
-        /// The set of <see cref="CustomFieldItem"/> objects to be updated.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="CustomFieldItem"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        Task<(IList<CustomFieldItem>, ResultsMeta resultsMeta)> UpdateCustomFieldItemsAsync(
-            IEnumerable<CustomFieldItem> customFieldItems,
-            CancellationToken cancellationToken);
 
         /// <summary>
         /// Asynchronously Update Custom Field Items.
@@ -693,6 +657,42 @@ namespace Intuit.TSheets.Api
         /// </returns>
         Task<(CustomFieldItem, ResultsMeta)> UpdateCustomFieldItemAsync(
             CustomFieldItem customFieldItem,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Asynchronously Update Custom Field Items.
+        /// </summary>
+        /// <remarks>
+        /// Update one or more <see cref="CustomFieldItem"/> objects on a <see cref="CustomField"/>.
+        /// </remarks>
+        /// <param name="customFieldItems">
+        /// The set of <see cref="CustomFieldItem"/> objects to be updated.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItem"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<CustomFieldItem>, ResultsMeta resultsMeta)> UpdateCustomFieldItemsAsync(
+            IEnumerable<CustomFieldItem> customFieldItems);
+
+        /// <summary>
+        /// Asynchronously Update Custom Field Items, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Update one or more <see cref="CustomFieldItem"/> objects on a <see cref="CustomField"/>.
+        /// </remarks>
+        /// <param name="customFieldItems">
+        /// The set of <see cref="CustomFieldItem"/> objects to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomFieldItem"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<CustomFieldItem>, ResultsMeta resultsMeta)> UpdateCustomFieldItemsAsync(
+            IEnumerable<CustomFieldItem> customFieldItems,
             CancellationToken cancellationToken);
 
         #endregion
@@ -1795,22 +1795,6 @@ namespace Intuit.TSheets.Api
         /// Update Files.
         /// </summary>
         /// <remarks>
-        /// Update one or more <see cref="File"/> objects that are/can be attached to timesheets.
-        /// </remarks>
-        /// <param name="files">
-        /// The set of <see cref="File"/> objects to be updated.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="File"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        (IList<File>, ResultsMeta resultsMeta) UpdateFiles(
-            IEnumerable<File> files);
-
-        /// <summary>
-        /// Update Files.
-        /// </summary>
-        /// <remarks>
         /// Update a single <see cref="File"/> object that is/can be attached to a timesheet.
         /// </remarks>
         /// <param name="file">
@@ -1823,7 +1807,7 @@ namespace Intuit.TSheets.Api
         (File, ResultsMeta) UpdateFile(File file);
 
         /// <summary>
-        /// Asynchronously Update Files.
+        /// Update Files.
         /// </summary>
         /// <remarks>
         /// Update one or more <see cref="File"/> objects that are/can be attached to timesheets.
@@ -1835,28 +1819,8 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="File"/> objects that were updated, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        Task<(IList<File>, ResultsMeta)> UpdateFilesAsync(
+        (IList<File>, ResultsMeta resultsMeta) UpdateFiles(
             IEnumerable<File> files);
-
-        /// <summary>
-        /// Asynchronously Update Files, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Update one or more <see cref="File"/> objects that are/can be attached to timesheets.
-        /// </remarks>
-        /// <param name="files">
-        /// The set of <see cref="File"/> objects to be updated.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="File"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        Task<(IList<File>, ResultsMeta)> UpdateFilesAsync(
-            IEnumerable<File> files,
-            CancellationToken cancellationToken);
 
         /// <summary>
         /// Asynchronously Update Files.
@@ -1892,6 +1856,42 @@ namespace Intuit.TSheets.Api
         /// </returns>
         Task<(File, ResultsMeta)> UpdateFileAsync(
             File file,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Asynchronously Update Files.
+        /// </summary>
+        /// <remarks>
+        /// Update one or more <see cref="File"/> objects that are/can be attached to timesheets.
+        /// </remarks>
+        /// <param name="files">
+        /// The set of <see cref="File"/> objects to be updated.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="File"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<File>, ResultsMeta)> UpdateFilesAsync(
+            IEnumerable<File> files);
+
+        /// <summary>
+        /// Asynchronously Update Files, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Update one or more <see cref="File"/> objects that are/can be attached to timesheets.
+        /// </remarks>
+        /// <param name="files">
+        /// The set of <see cref="File"/> objects to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="File"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<File>, ResultsMeta)> UpdateFilesAsync(
+            IEnumerable<File> files,
             CancellationToken cancellationToken);
 
         /// <summary>
@@ -1938,18 +1938,6 @@ namespace Intuit.TSheets.Api
         /// Delete Files.
         /// </summary>
         /// <remarks>
-        /// Delete one or more <see cref="File"/> objects.
-        /// </remarks>
-        /// <param name="files">
-        /// The set of <see cref="File"/> objects to be deleted.
-        /// </param>
-        void DeleteFiles(
-            IEnumerable<File> files);
-
-        /// <summary>
-        /// Delete Files.
-        /// </summary>
-        /// <remarks>
         /// Delete a single <see cref="File"/> object, by id.
         /// </remarks>
         /// <param name="id">
@@ -1957,6 +1945,18 @@ namespace Intuit.TSheets.Api
         /// </param>
         void DeleteFile(
             int id);
+
+        /// <summary>
+        /// Delete Files.
+        /// </summary>
+        /// <remarks>
+        /// Delete one or more <see cref="File"/> objects.
+        /// </remarks>
+        /// <param name="files">
+        /// The set of <see cref="File"/> objects to be deleted.
+        /// </param>
+        void DeleteFiles(
+            IEnumerable<File> files);
 
         /// <summary>
         /// Delete Files.
@@ -2004,36 +2004,6 @@ namespace Intuit.TSheets.Api
         /// Asynchronously Delete Files.
         /// </summary>
         /// <remarks>
-        /// Delete one or more <see cref="File"/> objects.
-        /// </remarks>
-        /// <param name="files">
-        /// The set of <see cref="File"/> objects to be deleted.
-        /// </param>
-        /// <returns>The asynchronous task.</returns>
-        Task DeleteFilesAsync(
-            IEnumerable<File> files);
-
-        /// <summary>
-        /// Asynchronously Delete Files, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Delete one or more <see cref="File"/> objects.
-        /// </remarks>
-        /// <param name="files">
-        /// The set of <see cref="File"/> objects to be deleted.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>The asynchronous task.</returns>
-        Task DeleteFilesAsync(
-            IEnumerable<File> files,
-            CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Asynchronously Delete Files.
-        /// </summary>
-        /// <remarks>
         /// Delete a single <see cref="File"/> object, by id.
         /// </remarks>
         /// <param name="id">
@@ -2058,6 +2028,36 @@ namespace Intuit.TSheets.Api
         /// <returns>The asynchronous task.</returns>
         Task DeleteFileAsync(
             int id,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Asynchronously Delete Files.
+        /// </summary>
+        /// <remarks>
+        /// Delete one or more <see cref="File"/> objects.
+        /// </remarks>
+        /// <param name="files">
+        /// The set of <see cref="File"/> objects to be deleted.
+        /// </param>
+        /// <returns>The asynchronous task.</returns>
+        Task DeleteFilesAsync(
+            IEnumerable<File> files);
+
+        /// <summary>
+        /// Asynchronously Delete Files, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Delete one or more <see cref="File"/> objects.
+        /// </remarks>
+        /// <param name="files">
+        /// The set of <see cref="File"/> objects to be deleted.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>The asynchronous task.</returns>
+        Task DeleteFilesAsync(
+            IEnumerable<File> files,
             CancellationToken cancellationToken);
 
         /// <summary>
@@ -2321,19 +2321,6 @@ namespace Intuit.TSheets.Api
         /// <summary>
         /// Create Geolocations.
         /// </summary>
-        /// <param name="geolocations">
-        /// The set of <see cref="Geolocation"/> objects to be created.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Geolocation"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        (IList<Geolocation>, ResultsMeta) CreateGeolocations(
-            IEnumerable<Geolocation> geolocations);
-
-        /// <summary>
-        /// Create Geolocations.
-        /// </summary>
         /// <param name="geolocation">
         /// The <see cref="Geolocation"/> object to be created.
         /// </param>
@@ -2345,7 +2332,7 @@ namespace Intuit.TSheets.Api
             Geolocation geolocation);
 
         /// <summary>
-        /// Asynchronously Create Geolocations.
+        /// Create Geolocations.
         /// </summary>
         /// <param name="geolocations">
         /// The set of <see cref="Geolocation"/> objects to be created.
@@ -2354,25 +2341,8 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Geolocation"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        Task<(IList<Geolocation>, ResultsMeta)> CreateGeolocationsAsync(
+        (IList<Geolocation>, ResultsMeta) CreateGeolocations(
             IEnumerable<Geolocation> geolocations);
-
-        /// <summary>
-        /// Asynchronously Create Geolocations, with support for cancellation.
-        /// </summary>
-        /// <param name="geolocations">
-        /// The set of <see cref="Geolocation"/> objects to be created.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Geolocation"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        Task<(IList<Geolocation>, ResultsMeta)> CreateGeolocationsAsync(
-            IEnumerable<Geolocation> geolocations,
-            CancellationToken cancellationToken);
 
         /// <summary>
         /// Asynchronously Create Geolocations.
@@ -2402,6 +2372,36 @@ namespace Intuit.TSheets.Api
         /// </returns>
         Task<(Geolocation, ResultsMeta)> CreateGeolocationAsync(
             Geolocation geolocation,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Asynchronously Create Geolocations.
+        /// </summary>
+        /// <param name="geolocations">
+        /// The set of <see cref="Geolocation"/> objects to be created.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Geolocation"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Geolocation>, ResultsMeta)> CreateGeolocationsAsync(
+            IEnumerable<Geolocation> geolocations);
+
+        /// <summary>
+        /// Asynchronously Create Geolocations, with support for cancellation.
+        /// </summary>
+        /// <param name="geolocations">
+        /// The set of <see cref="Geolocation"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Geolocation"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Geolocation>, ResultsMeta)> CreateGeolocationsAsync(
+            IEnumerable<Geolocation> geolocations,
             CancellationToken cancellationToken);
 
         /// <summary>
@@ -2534,22 +2534,6 @@ namespace Intuit.TSheets.Api
         /// Create Groups.
         /// </summary>
         /// <remarks>
-        /// Add one or more groups to your company.
-        /// </remarks>
-        /// <param name="groups">
-        /// The set of <see cref="Group"/> objects to be created.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Group"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        (IList<Group>, ResultsMeta) CreateGroups(
-            IEnumerable<Group> groups);
-
-        /// <summary>
-        /// Create Groups.
-        /// </summary>
-        /// <remarks>
         /// Add a single group to your company.
         /// </remarks> 
         /// <param name="group">
@@ -2563,7 +2547,7 @@ namespace Intuit.TSheets.Api
             Group group);
 
         /// <summary>
-        /// Asynchronously Create Groups.
+        /// Create Groups.
         /// </summary>
         /// <remarks>
         /// Add one or more groups to your company.
@@ -2575,28 +2559,8 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Group"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        Task<(IList<Group>, ResultsMeta)> CreateGroupsAsync(
+        (IList<Group>, ResultsMeta) CreateGroups(
             IEnumerable<Group> groups);
-
-        /// <summary>
-        /// Asynchronously Create Groups, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Add one or more groups to your company.
-        /// </remarks>
-        /// <param name="groups">
-        /// The set of <see cref="Group"/> objects to be created.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Group"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        Task<(IList<Group>, ResultsMeta)> CreateGroupsAsync(
-            IEnumerable<Group> groups,
-            CancellationToken cancellationToken);
 
         /// <summary>
         /// Asynchronously Create Groups.
@@ -2632,6 +2596,42 @@ namespace Intuit.TSheets.Api
         /// </returns>
         Task<(Group, ResultsMeta)> CreateGroupAsync(
             Group group,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Asynchronously Create Groups.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more groups to your company.
+        /// </remarks>
+        /// <param name="groups">
+        /// The set of <see cref="Group"/> objects to be created.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Group"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Group>, ResultsMeta)> CreateGroupsAsync(
+            IEnumerable<Group> groups);
+
+        /// <summary>
+        /// Asynchronously Create Groups, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more groups to your company.
+        /// </remarks>
+        /// <param name="groups">
+        /// The set of <see cref="Group"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Group"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Group>, ResultsMeta)> CreateGroupsAsync(
+            IEnumerable<Group> groups,
             CancellationToken cancellationToken);
 
         /// <summary>
@@ -2858,22 +2858,6 @@ namespace Intuit.TSheets.Api
         /// Update Groups.
         /// </summary>
         /// <remarks>
-        /// Edit one or more groups in your company.
-        /// </remarks>
-        /// <param name="groups">
-        /// The set of <see cref="Group"/> objects to be updated.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Group"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        (IList<Group>, ResultsMeta) UpdateGroups(
-            IEnumerable<Group> groups);
-
-        /// <summary>
-        /// Update Groups.
-        /// </summary>
-        /// <remarks>
         /// Edit a single group in your company.
         /// </remarks>
         /// <param name="group">
@@ -2887,7 +2871,7 @@ namespace Intuit.TSheets.Api
             Group group);
 
         /// <summary>
-        /// Asynchronously Update Groups.
+        /// Update Groups.
         /// </summary>
         /// <remarks>
         /// Edit one or more groups in your company.
@@ -2899,28 +2883,8 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Group"/> objects that were updated, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        Task<(IList<Group>, ResultsMeta)> UpdateGroupsAsync(
+        (IList<Group>, ResultsMeta) UpdateGroups(
             IEnumerable<Group> groups);
-
-        /// <summary>
-        /// Asynchronously Update Groups, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Edit one or more groups in your company.
-        /// </remarks>
-        /// <param name="groups">
-        /// The set of <see cref="Group"/> objects to be updated.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Group"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        Task<(IList<Group>, ResultsMeta)> UpdateGroupsAsync(
-            IEnumerable<Group> groups,
-            CancellationToken cancellationToken);
 
         /// <summary>
         /// Asynchronously Update Groups.
@@ -2958,25 +2922,45 @@ namespace Intuit.TSheets.Api
             Group group,
             CancellationToken cancellationToken);
 
+        /// <summary>
+        /// Asynchronously Update Groups.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more groups in your company.
+        /// </remarks>
+        /// <param name="groups">
+        /// The set of <see cref="Group"/> objects to be updated.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Group"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Group>, ResultsMeta)> UpdateGroupsAsync(
+            IEnumerable<Group> groups);
+
+        /// <summary>
+        /// Asynchronously Update Groups, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more groups in your company.
+        /// </remarks>
+        /// <param name="groups">
+        /// The set of <see cref="Group"/> objects to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Group"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Group>, ResultsMeta)> UpdateGroupsAsync(
+            IEnumerable<Group> groups,
+            CancellationToken cancellationToken);
+
         #endregion
 
         #region Invitations
-
-        /// <summary>
-        /// Create Invitations.
-        /// </summary>
-        /// <remarks>
-        /// Invite one or more users to your company.
-        /// </remarks>
-        /// <param name="invitations">
-        /// The set of <see cref="Invitation"/> objects to be created.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Invitation"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        (IList<Invitation>, ResultsMeta) CreateInvitations(
-            IEnumerable<Invitation> invitations);
 
         /// <summary>
         /// Create Invitations.
@@ -2995,7 +2979,7 @@ namespace Intuit.TSheets.Api
             Invitation invitation);
 
         /// <summary>
-        /// Asynchronously Create Invitations.
+        /// Create Invitations.
         /// </summary>
         /// <remarks>
         /// Invite one or more users to your company.
@@ -3007,28 +2991,8 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Invitation"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        Task<(IList<Invitation>, ResultsMeta)> CreateInvitationsAsync(
+        (IList<Invitation>, ResultsMeta) CreateInvitations(
             IEnumerable<Invitation> invitations);
-
-        /// <summary>
-        /// Asynchronously Create Invitations, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Invite one or more users to your company.
-        /// </remarks>
-        /// <param name="invitations">
-        /// The set of <see cref="Invitation"/> objects to be created.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Invitation"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        Task<(IList<Invitation>, ResultsMeta)> CreateInvitationsAsync(
-            IEnumerable<Invitation> invitations,
-            CancellationToken cancellationToken);
 
         /// <summary>
         /// Asynchronously Create An Invitation.
@@ -3066,25 +3030,45 @@ namespace Intuit.TSheets.Api
             Invitation invitation,
             CancellationToken cancellationToken);
 
+        /// <summary>
+        /// Asynchronously Create Invitations.
+        /// </summary>
+        /// <remarks>
+        /// Invite one or more users to your company.
+        /// </remarks>
+        /// <param name="invitations">
+        /// The set of <see cref="Invitation"/> objects to be created.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Invitation"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Invitation>, ResultsMeta)> CreateInvitationsAsync(
+            IEnumerable<Invitation> invitations);
+
+        /// <summary>
+        /// Asynchronously Create Invitations, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Invite one or more users to your company.
+        /// </remarks>
+        /// <param name="invitations">
+        /// The set of <see cref="Invitation"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Invitation"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Invitation>, ResultsMeta)> CreateInvitationsAsync(
+            IEnumerable<Invitation> invitations,
+            CancellationToken cancellationToken);
+
         #endregion
 
         #region Jobcodes
-
-        /// <summary>
-        /// Create Jobcodes.
-        /// </summary>
-        /// <remarks>
-        /// Add one or more jobcodes to your company.
-        /// </remarks>
-        /// <param name="jobcodes">
-        /// The set of <see cref="Jobcode"/> objects to be created.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Jobcode"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        (IList<Jobcode>, ResultsMeta) CreateJobcodes(
-            IEnumerable<Jobcode> jobcodes);
 
         /// <summary>
         /// Create Jobcodes.
@@ -3103,7 +3087,7 @@ namespace Intuit.TSheets.Api
             Jobcode jobcode);
 
         /// <summary>
-        /// Asynchronously Create Jobcodes.
+        /// Create Jobcodes.
         /// </summary>
         /// <remarks>
         /// Add one or more jobcodes to your company.
@@ -3115,28 +3099,8 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Jobcode"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        Task<(IList<Jobcode>, ResultsMeta)> CreateJobcodesAsync(
+        (IList<Jobcode>, ResultsMeta) CreateJobcodes(
             IEnumerable<Jobcode> jobcodes);
-
-        /// <summary>
-        /// Asynchronously Create Jobcodes, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Add one or more jobcodes to your company.
-        /// </remarks>
-        /// <param name="jobcodes">
-        /// The set of <see cref="Jobcode"/> objects to be created.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Jobcode"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        Task<(IList<Jobcode>, ResultsMeta)> CreateJobcodesAsync(
-            IEnumerable<Jobcode> jobcodes,
-            CancellationToken cancellationToken);
 
         /// <summary>
         /// Asynchronously Create A Jobcode.
@@ -3172,6 +3136,42 @@ namespace Intuit.TSheets.Api
         /// </returns>
         Task<(Jobcode, ResultsMeta)> CreateJobcodeAsync(
             Jobcode jobcode,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Asynchronously Create Jobcodes.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more jobcodes to your company.
+        /// </remarks>
+        /// <param name="jobcodes">
+        /// The set of <see cref="Jobcode"/> objects to be created.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Jobcode"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Jobcode>, ResultsMeta)> CreateJobcodesAsync(
+            IEnumerable<Jobcode> jobcodes);
+
+        /// <summary>
+        /// Asynchronously Create Jobcodes, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more jobcodes to your company.
+        /// </remarks>
+        /// <param name="jobcodes">
+        /// The set of <see cref="Jobcode"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Jobcode"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Jobcode>, ResultsMeta)> CreateJobcodesAsync(
+            IEnumerable<Jobcode> jobcodes,
             CancellationToken cancellationToken);
 
         /// <summary>
@@ -3398,22 +3398,6 @@ namespace Intuit.TSheets.Api
         /// Update Jobcodes.
         /// </summary>
         /// <remarks>
-        /// Edit one or more jobcodes in your company.
-        /// </remarks>
-        /// <param name="jobcodes">
-        /// The set of <see cref="Jobcode"/> objects to be updated.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Jobcode"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        (IList<Jobcode>, ResultsMeta) UpdateJobcodes(
-            IEnumerable<Jobcode> jobcodes);
-
-        /// <summary>
-        /// Update Jobcodes.
-        /// </summary>
-        /// <remarks>
         /// Edit a single jobcode in your company.
         /// </remarks>
         /// <param name="jobcode">
@@ -3427,7 +3411,7 @@ namespace Intuit.TSheets.Api
             Jobcode jobcode);
 
         /// <summary>
-        /// Asynchronously Update Jobcodes.
+        /// Update Jobcodes.
         /// </summary>
         /// <remarks>
         /// Edit one or more jobcodes in your company.
@@ -3439,28 +3423,8 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Jobcode"/> objects that were updated, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        Task<(IList<Jobcode>, ResultsMeta)> UpdateJobcodesAsync(
+        (IList<Jobcode>, ResultsMeta) UpdateJobcodes(
             IEnumerable<Jobcode> jobcodes);
-
-        /// <summary>
-        /// Asynchronously Update Jobcodes, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Edit one or more jobcodes in your company.
-        /// </remarks>
-        /// <param name="jobcodes">
-        /// The set of <see cref="Jobcode"/> objects to be updated.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Jobcode"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        Task<(IList<Jobcode>, ResultsMeta)> UpdateJobcodesAsync(
-            IEnumerable<Jobcode> jobcodes,
-            CancellationToken cancellationToken);
 
         /// <summary>
         /// Asynchronously Update Jobcodes.
@@ -3498,25 +3462,45 @@ namespace Intuit.TSheets.Api
             Jobcode jobcode,
             CancellationToken cancellationToken);
 
+        /// <summary>
+        /// Asynchronously Update Jobcodes.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more jobcodes in your company.
+        /// </remarks>
+        /// <param name="jobcodes">
+        /// The set of <see cref="Jobcode"/> objects to be updated.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Jobcode"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Jobcode>, ResultsMeta)> UpdateJobcodesAsync(
+            IEnumerable<Jobcode> jobcodes);
+
+        /// <summary>
+        /// Asynchronously Update Jobcodes, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more jobcodes in your company.
+        /// </remarks>
+        /// <param name="jobcodes">
+        /// The set of <see cref="Jobcode"/> objects to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Jobcode"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Jobcode>, ResultsMeta)> UpdateJobcodesAsync(
+            IEnumerable<Jobcode> jobcodes,
+            CancellationToken cancellationToken);
+
         #endregion
 
         #region JobcodeAssignments
-
-        /// <summary>
-        /// Create Jobcode Assignments.
-        /// </summary>
-        /// <remarks>
-        /// Add one or more jobcode assignments to a user.
-        /// </remarks>
-        /// <param name="jobcodeAssignments">
-        /// The set of <see cref="JobcodeAssignment"/> assignments to be created.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="JobcodeAssignment"/> assignments that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        (IList<JobcodeAssignment>, ResultsMeta) CreateJobcodeAssignments(
-            IEnumerable<JobcodeAssignment> jobcodeAssignments);
 
         /// <summary>
         /// Create Jobcode Assignments.
@@ -3535,7 +3519,7 @@ namespace Intuit.TSheets.Api
             JobcodeAssignment jobcodeAssignment);
 
         /// <summary>
-        /// Asynchronously Create Jobcode Assignments.
+        /// Create Jobcode Assignments.
         /// </summary>
         /// <remarks>
         /// Add one or more jobcode assignments to a user.
@@ -3547,28 +3531,8 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="JobcodeAssignment"/> assignments that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        Task<(IList<JobcodeAssignment>, ResultsMeta)> CreateJobcodeAssignmentsAsync(
+        (IList<JobcodeAssignment>, ResultsMeta) CreateJobcodeAssignments(
             IEnumerable<JobcodeAssignment> jobcodeAssignments);
-
-        /// <summary>
-        /// Asynchronously Create Jobcode Assignments, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Add one or more jobcode assignments to a user.
-        /// </remarks>
-        /// <param name="jobcodeAssignments">
-        /// The set of <see cref="JobcodeAssignment"/> assignments to be created.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="JobcodeAssignment"/> assignments that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        Task<(IList<JobcodeAssignment>, ResultsMeta)> CreateJobcodeAssignmentsAsync(
-            IEnumerable<JobcodeAssignment> jobcodeAssignments,
-            CancellationToken cancellationToken);
 
         /// <summary>
         /// Asynchronously Create Jobcode Assignments.
@@ -3604,6 +3568,42 @@ namespace Intuit.TSheets.Api
         /// </returns>
         Task<(JobcodeAssignment, ResultsMeta)> CreateJobcodeAssignmentAsync(
             JobcodeAssignment jobcodeAssignment,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Asynchronously Create Jobcode Assignments.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more jobcode assignments to a user.
+        /// </remarks>
+        /// <param name="jobcodeAssignments">
+        /// The set of <see cref="JobcodeAssignment"/> assignments to be created.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="JobcodeAssignment"/> assignments that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<JobcodeAssignment>, ResultsMeta)> CreateJobcodeAssignmentsAsync(
+            IEnumerable<JobcodeAssignment> jobcodeAssignments);
+
+        /// <summary>
+        /// Asynchronously Create Jobcode Assignments, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more jobcode assignments to a user.
+        /// </remarks>
+        /// <param name="jobcodeAssignments">
+        /// The set of <see cref="JobcodeAssignment"/> assignments to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="JobcodeAssignment"/> assignments that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<JobcodeAssignment>, ResultsMeta)> CreateJobcodeAssignmentsAsync(
+            IEnumerable<JobcodeAssignment> jobcodeAssignments,
             CancellationToken cancellationToken);
 
         /// <summary>
@@ -3842,18 +3842,6 @@ namespace Intuit.TSheets.Api
         /// Delete Jobcode Assignments.
         /// </summary>
         /// <remarks>
-        /// Delete one or more <see cref="JobcodeAssignment"/> assignments.
-        /// </remarks>
-        /// <param name="jobcodeAssignments">
-        /// The set of <see cref="JobcodeAssignment"/> assignment objects to be deleted.
-        /// </param>
-        void DeleteJobcodeAssignments(
-            IEnumerable<JobcodeAssignment> jobcodeAssignments);
-
-        /// <summary>
-        /// Delete Jobcode Assignments.
-        /// </summary>
-        /// <remarks>
         /// Delete a single <see cref="JobcodeAssignment"/> assignment, by id.
         /// </remarks>
         /// <param name="id">
@@ -3861,6 +3849,18 @@ namespace Intuit.TSheets.Api
         /// </param>
         void DeleteJobcodeAssignment(
             int id);
+
+        /// <summary>
+        /// Delete Jobcode Assignments.
+        /// </summary>
+        /// <remarks>
+        /// Delete one or more <see cref="JobcodeAssignment"/> assignments.
+        /// </remarks>
+        /// <param name="jobcodeAssignments">
+        /// The set of <see cref="JobcodeAssignment"/> assignment objects to be deleted.
+        /// </param>
+        void DeleteJobcodeAssignments(
+            IEnumerable<JobcodeAssignment> jobcodeAssignments);
 
         /// <summary>
         /// Delete Jobcode Assignments.
@@ -3908,36 +3908,6 @@ namespace Intuit.TSheets.Api
         /// Asynchronously Delete Jobcode Assignments.
         /// </summary>
         /// <remarks>
-        /// Delete one or more <see cref="JobcodeAssignment"/> assignments.
-        /// </remarks>
-        /// <param name="jobcodeAssignments">
-        /// The set of <see cref="JobcodeAssignment"/> assignment objects to be deleted.
-        /// </param>
-        /// <returns>The asynchronous task.</returns>
-        Task DeleteJobcodeAssignmentsAsync(
-            IEnumerable<JobcodeAssignment> jobcodeAssignments);
-
-        /// <summary>
-        /// Asynchronously Delete Jobcode Assignments, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Delete one or more <see cref="JobcodeAssignment"/> assignments.
-        /// </remarks>
-        /// <param name="jobcodeAssignments">
-        /// The set of <see cref="JobcodeAssignment"/> assignment objects to be deleted.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>The asynchronous task.</returns>
-        Task DeleteJobcodeAssignmentsAsync(
-            IEnumerable<JobcodeAssignment> jobcodeAssignments,
-            CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Asynchronously Delete Jobcode Assignments.
-        /// </summary>
-        /// <remarks>
         /// Delete a single <see cref="JobcodeAssignment"/> assignment, by id.
         /// </remarks>
         /// <param name="id">
@@ -3962,6 +3932,36 @@ namespace Intuit.TSheets.Api
         /// <returns>The asynchronous task.</returns>
         Task DeleteJobcodeAssignmentAsync(
             int id,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Asynchronously Delete Jobcode Assignments.
+        /// </summary>
+        /// <remarks>
+        /// Delete one or more <see cref="JobcodeAssignment"/> assignments.
+        /// </remarks>
+        /// <param name="jobcodeAssignments">
+        /// The set of <see cref="JobcodeAssignment"/> assignment objects to be deleted.
+        /// </param>
+        /// <returns>The asynchronous task.</returns>
+        Task DeleteJobcodeAssignmentsAsync(
+            IEnumerable<JobcodeAssignment> jobcodeAssignments);
+
+        /// <summary>
+        /// Asynchronously Delete Jobcode Assignments, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Delete one or more <see cref="JobcodeAssignment"/> assignments.
+        /// </remarks>
+        /// <param name="jobcodeAssignments">
+        /// The set of <see cref="JobcodeAssignment"/> assignment objects to be deleted.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>The asynchronous task.</returns>
+        Task DeleteJobcodeAssignmentsAsync(
+            IEnumerable<JobcodeAssignment> jobcodeAssignments,
             CancellationToken cancellationToken);
 
         /// <summary>
@@ -4092,22 +4092,6 @@ namespace Intuit.TSheets.Api
         /// Create Locations.
         /// </summary>
         /// <remarks>
-        /// Add one or more locations to your company.
-        /// </remarks>
-        /// <param name="locations">
-        /// The set of <see cref="Location"/> objects to be created.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Location"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        (IList<Location>, ResultsMeta) CreateLocations(
-            IEnumerable<Location> locations);
-
-        /// <summary>
-        /// Create Locations.
-        /// </summary>
-        /// <remarks>
         /// Add a single location to your company.
         /// </remarks>
         /// <param name="location">
@@ -4121,7 +4105,7 @@ namespace Intuit.TSheets.Api
             Location location);
 
         /// <summary>
-        /// Asynchronously Create Locations.
+        /// Create Locations.
         /// </summary>
         /// <remarks>
         /// Add one or more locations to your company.
@@ -4133,28 +4117,8 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Location"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        Task<(IList<Location>, ResultsMeta)> CreateLocationsAsync(
+        (IList<Location>, ResultsMeta) CreateLocations(
             IEnumerable<Location> locations);
-
-        /// <summary>
-        /// Asynchronously Create Locations, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Add one or more locations to your company.
-        /// </remarks>
-        /// <param name="locations">
-        /// The set of <see cref="Location"/> objects to be created.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Location"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        Task<(IList<Location>, ResultsMeta)> CreateLocationsAsync(
-            IEnumerable<Location> locations,
-            CancellationToken cancellationToken);
 
         /// <summary>
         /// Asynchronously Create Locations.
@@ -4190,6 +4154,42 @@ namespace Intuit.TSheets.Api
         /// </returns>
         Task<(Location, ResultsMeta)> CreateLocationAsync(
             Location location,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Asynchronously Create Locations.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more locations to your company.
+        /// </remarks>
+        /// <param name="locations">
+        /// The set of <see cref="Location"/> objects to be created.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Location"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Location>, ResultsMeta)> CreateLocationsAsync(
+            IEnumerable<Location> locations);
+
+        /// <summary>
+        /// Asynchronously Create Locations, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more locations to your company.
+        /// </remarks>
+        /// <param name="locations">
+        /// The set of <see cref="Location"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Location"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Location>, ResultsMeta)> CreateLocationsAsync(
+            IEnumerable<Location> locations,
             CancellationToken cancellationToken);
 
         /// <summary>
@@ -4416,22 +4416,6 @@ namespace Intuit.TSheets.Api
         /// Update Locations.
         /// </summary>
         /// <remarks>
-        /// Edit one or more locations in your company.
-        /// </remarks>
-        /// <param name="locations">
-        /// The set of <see cref="Location"/> objects to be updated.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Location"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        (IList<Location>, ResultsMeta) UpdateLocations(
-            IEnumerable<Location> locations);
-
-        /// <summary>
-        /// Update Locations.
-        /// </summary>
-        /// <remarks>
         /// Edit a single location in your company.
         /// </remarks>
         /// <param name="location">
@@ -4445,7 +4429,7 @@ namespace Intuit.TSheets.Api
             Location location);
 
         /// <summary>
-        /// Asynchronously Update Locations.
+        /// Update Locations.
         /// </summary>
         /// <remarks>
         /// Edit one or more locations in your company.
@@ -4457,28 +4441,8 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Location"/> objects that were updated, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        Task<(IList<Location>, ResultsMeta)> UpdateLocationsAsync(
+        (IList<Location>, ResultsMeta) UpdateLocations(
             IEnumerable<Location> locations);
-
-        /// <summary>
-        /// Asynchronously Update Locations, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Edit one or more locations in your company.
-        /// </remarks>
-        /// <param name="locations">
-        /// The set of <see cref="Location"/> objects to be updated.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Location"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        Task<(IList<Location>, ResultsMeta)> UpdateLocationsAsync(
-            IEnumerable<Location> locations,
-            CancellationToken cancellationToken);
 
         /// <summary>
         /// Asynchronously Update Locations.
@@ -4514,6 +4478,42 @@ namespace Intuit.TSheets.Api
         /// </returns>
         Task<(Location, ResultsMeta)> UpdateLocationAsync(
             Location location,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Asynchronously Update Locations.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more locations in your company.
+        /// </remarks>
+        /// <param name="locations">
+        /// The set of <see cref="Location"/> objects to be updated.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Location"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Location>, ResultsMeta)> UpdateLocationsAsync(
+            IEnumerable<Location> locations);
+
+        /// <summary>
+        /// Asynchronously Update Locations, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more locations in your company.
+        /// </remarks>
+        /// <param name="locations">
+        /// The set of <see cref="Location"/> objects to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Location"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Location>, ResultsMeta)> UpdateLocationsAsync(
+            IEnumerable<Location> locations,
             CancellationToken cancellationToken);
 
         #endregion
@@ -4972,22 +4972,6 @@ namespace Intuit.TSheets.Api
         /// Create Notifications.
         /// </summary>
         /// <remarks>
-        /// Add one or more notifications.
-        /// </remarks>
-        /// <param name="notifications">
-        /// The set of <see cref="Notification"/> objects to be created.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Notification"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        (IList<Notification>, ResultsMeta) CreateNotifications(
-            IEnumerable<Notification> notifications);
-
-        /// <summary>
-        /// Create Notifications.
-        /// </summary>
-        /// <remarks>
         /// Add a single notification.
         /// </remarks>
         /// <param name="notification">
@@ -5001,7 +4985,7 @@ namespace Intuit.TSheets.Api
             Notification notification);
 
         /// <summary>
-        /// Asynchronously Create Notifications.
+        /// Create Notifications.
         /// </summary>
         /// <remarks>
         /// Add one or more notifications.
@@ -5013,28 +4997,8 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Notification"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        Task<(IList<Notification>, ResultsMeta)> CreateNotificationsAsync(
+        (IList<Notification>, ResultsMeta) CreateNotifications(
             IEnumerable<Notification> notifications);
-
-        /// <summary>
-        /// Asynchronously Create Notifications, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Add one or more notifications.
-        /// </remarks>
-        /// <param name="notifications">
-        /// The set of <see cref="Notification"/> objects to be created.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Notification"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        Task<(IList<Notification>, ResultsMeta)> CreateNotificationsAsync(
-            IEnumerable<Notification> notifications,
-            CancellationToken cancellationToken);
 
         /// <summary>
         /// Asynchronously Create Notifications.
@@ -5070,6 +5034,42 @@ namespace Intuit.TSheets.Api
         /// </returns>
         Task<(Notification, ResultsMeta)> CreateNotificationAsync(
             Notification notification,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Asynchronously Create Notifications.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more notifications.
+        /// </remarks>
+        /// <param name="notifications">
+        /// The set of <see cref="Notification"/> objects to be created.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Notification"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Notification>, ResultsMeta)> CreateNotificationsAsync(
+            IEnumerable<Notification> notifications);
+
+        /// <summary>
+        /// Asynchronously Create Notifications, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more notifications.
+        /// </remarks>
+        /// <param name="notifications">
+        /// The set of <see cref="Notification"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Notification"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Notification>, ResultsMeta)> CreateNotificationsAsync(
+            IEnumerable<Notification> notifications,
             CancellationToken cancellationToken);
 
         /// <summary>
@@ -5309,18 +5309,6 @@ namespace Intuit.TSheets.Api
         /// Delete Notifications.
         /// </summary>
         /// <remarks>
-        /// Delete one or more <see cref="Notification"/> objects.
-        /// </remarks>
-        /// <param name="notifications">
-        /// The set of <see cref="Notification"/> objects to be deleted.
-        /// </param>
-        void DeleteNotifications(
-            IEnumerable<Notification> notifications);
-
-        /// <summary>
-        /// Delete Notifications.
-        /// </summary>
-        /// <remarks>
         /// Delete a single <see cref="Notification"/> object, by id.
         /// </remarks>
         /// <param name="id">
@@ -5328,6 +5316,18 @@ namespace Intuit.TSheets.Api
         /// </param>
         void DeleteNotification(
             int id);
+
+        /// <summary>
+        /// Delete Notifications.
+        /// </summary>
+        /// <remarks>
+        /// Delete one or more <see cref="Notification"/> objects.
+        /// </remarks>
+        /// <param name="notifications">
+        /// The set of <see cref="Notification"/> objects to be deleted.
+        /// </param>
+        void DeleteNotifications(
+            IEnumerable<Notification> notifications);
 
         /// <summary>
         /// Delete Notifications.
@@ -5375,36 +5375,6 @@ namespace Intuit.TSheets.Api
         /// Asynchronously Delete Notifications.
         /// </summary>
         /// <remarks>
-        /// Delete one or more <see cref="Notification"/> objects.
-        /// </remarks>
-        /// <param name="notifications">
-        /// The set of <see cref="Notification"/> objects to be deleted.
-        /// </param>
-        /// <returns>The asynchronous task.</returns>
-        Task DeleteNotificationsAsync(
-            IEnumerable<Notification> notifications);
-
-        /// <summary>
-        /// Asynchronously Delete Notifications, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Delete one or more <see cref="Notification"/> objects.
-        /// </remarks>
-        /// <param name="notifications">
-        /// The set of <see cref="Notification"/> objects to be deleted.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>The asynchronous task.</returns>
-        Task DeleteNotificationsAsync(
-            IEnumerable<Notification> notifications,
-            CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Asynchronously Delete Notifications.
-        /// </summary>
-        /// <remarks>
         /// Delete a single <see cref="Notification"/> object, by id.
         /// </remarks>
         /// <param name="id">
@@ -5429,6 +5399,36 @@ namespace Intuit.TSheets.Api
         /// <returns>The asynchronous task.</returns>
         Task DeleteNotificationAsync(
             int id,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Asynchronously Delete Notifications.
+        /// </summary>
+        /// <remarks>
+        /// Delete one or more <see cref="Notification"/> objects.
+        /// </remarks>
+        /// <param name="notifications">
+        /// The set of <see cref="Notification"/> objects to be deleted.
+        /// </param>
+        /// <returns>The asynchronous task.</returns>
+        Task DeleteNotificationsAsync(
+            IEnumerable<Notification> notifications);
+
+        /// <summary>
+        /// Asynchronously Delete Notifications, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Delete one or more <see cref="Notification"/> objects.
+        /// </remarks>
+        /// <param name="notifications">
+        /// The set of <see cref="Notification"/> objects to be deleted.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>The asynchronous task.</returns>
+        Task DeleteNotificationsAsync(
+            IEnumerable<Notification> notifications,
             CancellationToken cancellationToken);
 
         /// <summary>
@@ -5469,22 +5469,6 @@ namespace Intuit.TSheets.Api
         /// Create Reminders.
         /// </summary>
         /// <remarks>
-        /// Add one or more user-specific or company-wide reminders.
-        /// </remarks>
-        /// <param name="reminders">
-        /// The set of <see cref="Reminder"/> objects to be created.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Reminder"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        (IList<Reminder>, ResultsMeta) CreateReminders(
-            IEnumerable<Reminder> reminders);
-
-        /// <summary>
-        /// Create Reminders.
-        /// </summary>
-        /// <remarks>
         /// Add a single user-specific or company-wide reminder.
         /// </remarks>
         /// <param name="reminder">
@@ -5498,7 +5482,7 @@ namespace Intuit.TSheets.Api
             Reminder reminder);
 
         /// <summary>
-        /// Asynchronously Create Reminders.
+        /// Create Reminders.
         /// </summary>
         /// <remarks>
         /// Add one or more user-specific or company-wide reminders.
@@ -5510,28 +5494,8 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Reminder"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        Task<(IList<Reminder>, ResultsMeta)> CreateRemindersAsync(
+        (IList<Reminder>, ResultsMeta) CreateReminders(
             IEnumerable<Reminder> reminders);
-
-        /// <summary>
-        /// Asynchronously Create Reminders, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Add one or more user-specific or company-wide reminders.
-        /// </remarks>
-        /// <param name="reminders">
-        /// The set of <see cref="Reminder"/> objects to be created.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Reminder"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        Task<(IList<Reminder>, ResultsMeta)> CreateRemindersAsync(
-            IEnumerable<Reminder> reminders,
-            CancellationToken cancellationToken);
 
         /// <summary>
         /// Asynchronously Create Reminders.
@@ -5567,6 +5531,42 @@ namespace Intuit.TSheets.Api
         /// </returns>
         Task<(Reminder, ResultsMeta)> CreateReminderAsync(
             Reminder reminder,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Asynchronously Create Reminders.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more user-specific or company-wide reminders.
+        /// </remarks>
+        /// <param name="reminders">
+        /// The set of <see cref="Reminder"/> objects to be created.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Reminder"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Reminder>, ResultsMeta)> CreateRemindersAsync(
+            IEnumerable<Reminder> reminders);
+
+        /// <summary>
+        /// Asynchronously Create Reminders, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more user-specific or company-wide reminders.
+        /// </remarks>
+        /// <param name="reminders">
+        /// The set of <see cref="Reminder"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Reminder"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Reminder>, ResultsMeta)> CreateRemindersAsync(
+            IEnumerable<Reminder> reminders,
             CancellationToken cancellationToken);
 
         /// <summary>
@@ -5695,22 +5695,6 @@ namespace Intuit.TSheets.Api
         /// Update Reminders.
         /// </summary>
         /// <remarks>
-        /// Edit one or more reminders for employees within your company.
-        /// </remarks>
-        /// <param name="reminders">
-        /// The set of <see cref="Reminder"/> objects to be updated.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Reminder"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        (IList<Reminder>, ResultsMeta) UpdateReminders(
-            IEnumerable<Reminder> reminders);
-
-        /// <summary>
-        /// Update Reminders.
-        /// </summary>
-        /// <remarks>
         /// Edit a single reminder for employees within your company.
         /// </remarks>
         /// <param name="reminder">
@@ -5724,7 +5708,7 @@ namespace Intuit.TSheets.Api
             Reminder reminder);
 
         /// <summary>
-        /// Asynchronously Update Reminders.
+        /// Update Reminders.
         /// </summary>
         /// <remarks>
         /// Edit one or more reminders for employees within your company.
@@ -5736,28 +5720,8 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Reminder"/> objects that were updated, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        Task<(IList<Reminder>, ResultsMeta)> UpdateRemindersAsync(
+        (IList<Reminder>, ResultsMeta) UpdateReminders(
             IEnumerable<Reminder> reminders);
-
-        /// <summary>
-        /// Asynchronously Update Reminders, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Edit one or more reminders for employees within your company.
-        /// </remarks>
-        /// <param name="reminders">
-        /// The set of <see cref="Reminder"/> objects to be updated.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Reminder"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        Task<(IList<Reminder>, ResultsMeta)> UpdateRemindersAsync(
-            IEnumerable<Reminder> reminders,
-            CancellationToken cancellationToken);
 
         /// <summary>
         /// Asynchronously Update Reminders.
@@ -5793,6 +5757,42 @@ namespace Intuit.TSheets.Api
         /// </returns>
         Task<(Reminder, ResultsMeta)> UpdateReminderAsync(
             Reminder reminder,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Asynchronously Update Reminders.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more reminders for employees within your company.
+        /// </remarks>
+        /// <param name="reminders">
+        /// The set of <see cref="Reminder"/> objects to be updated.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Reminder"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Reminder>, ResultsMeta)> UpdateRemindersAsync(
+            IEnumerable<Reminder> reminders);
+
+        /// <summary>
+        /// Asynchronously Update Reminders, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more reminders for employees within your company.
+        /// </remarks>
+        /// <param name="reminders">
+        /// The set of <see cref="Reminder"/> objects to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Reminder"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Reminder>, ResultsMeta)> UpdateRemindersAsync(
+            IEnumerable<Reminder> reminders,
             CancellationToken cancellationToken);
 
         #endregion
@@ -6299,22 +6299,6 @@ namespace Intuit.TSheets.Api
         #region ScheduleEvents
 
         /// <summary>
-        /// Create Schedule Events.
-        /// </summary>
-        /// <remarks>
-        /// Add one or more schedule events.
-        /// </remarks>
-        /// <param name="scheduleEvents">
-        /// The set of <see cref="ScheduleEvent"/> objects to be created.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="ScheduleEvent"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        (IList<ScheduleEvent>, ResultsMeta) CreateScheduleEvents(
-            IEnumerable<ScheduleEvent> scheduleEvents);
-
-        /// <summary>
         /// Create ScheduleEvents.
         /// </summary>
         /// <remarks>
@@ -6331,7 +6315,7 @@ namespace Intuit.TSheets.Api
             ScheduleEvent scheduleEvent);
 
         /// <summary>
-        /// Asynchronously Create Schedule Events.
+        /// Create Schedule Events.
         /// </summary>
         /// <remarks>
         /// Add one or more schedule events.
@@ -6343,28 +6327,8 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="ScheduleEvent"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        Task<(IList<ScheduleEvent>, ResultsMeta)> CreateScheduleEventsAsync(
+        (IList<ScheduleEvent>, ResultsMeta) CreateScheduleEvents(
             IEnumerable<ScheduleEvent> scheduleEvents);
-
-        /// <summary>
-        /// Asynchronously Create Schedule Events, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Add one or more schedule events.
-        /// </remarks>
-        /// <param name="scheduleEvents">
-        /// The set of <see cref="ScheduleEvent"/> objects to be created.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="ScheduleEvent"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        Task<(IList<ScheduleEvent>, ResultsMeta)> CreateScheduleEventsAsync(
-            IEnumerable<ScheduleEvent> scheduleEvents,
-            CancellationToken cancellationToken);
 
         /// <summary>
         /// Asynchronously Create ScheduleEvents.
@@ -6403,6 +6367,42 @@ namespace Intuit.TSheets.Api
             CancellationToken cancellationToken);
 
         /// <summary>
+        /// Asynchronously Create Schedule Events.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more schedule events.
+        /// </remarks>
+        /// <param name="scheduleEvents">
+        /// The set of <see cref="ScheduleEvent"/> objects to be created.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="ScheduleEvent"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<ScheduleEvent>, ResultsMeta)> CreateScheduleEventsAsync(
+            IEnumerable<ScheduleEvent> scheduleEvents);
+
+        /// <summary>
+        /// Asynchronously Create Schedule Events, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more schedule events.
+        /// </remarks>
+        /// <param name="scheduleEvents">
+        /// The set of <see cref="ScheduleEvent"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="ScheduleEvent"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<ScheduleEvent>, ResultsMeta)> CreateScheduleEventsAsync(
+            IEnumerable<ScheduleEvent> scheduleEvents,
+            CancellationToken cancellationToken);
+
+        /// <summary>
         /// Retrieve Schedule Events.
         /// </summary>
         /// <remarks>
@@ -6525,22 +6525,6 @@ namespace Intuit.TSheets.Api
             CancellationToken cancellationToken);
 
         /// <summary>
-        /// Update Schedule Events.
-        /// </summary>
-        /// <remarks>
-        /// Edit one or more schedule events.
-        /// </remarks>
-        /// <param name="scheduleEvents">
-        /// The set of <see cref="ScheduleEvent"/> objects to be updated.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="ScheduleEvent"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        (IList<ScheduleEvent>, ResultsMeta) UpdateScheduleEvents(
-            IEnumerable<ScheduleEvent> scheduleEvents);
-
-        /// <summary>
         /// Update ScheduleEvents.
         /// </summary>
         /// <remarks>
@@ -6557,7 +6541,7 @@ namespace Intuit.TSheets.Api
             ScheduleEvent scheduleEvent);
 
         /// <summary>
-        /// Asynchronously Update ScheduleEvents.
+        /// Update Schedule Events.
         /// </summary>
         /// <remarks>
         /// Edit one or more schedule events.
@@ -6569,28 +6553,8 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="ScheduleEvent"/> objects that were updated, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        Task<(IList<ScheduleEvent>, ResultsMeta)> UpdateScheduleEventsAsync(
+        (IList<ScheduleEvent>, ResultsMeta) UpdateScheduleEvents(
             IEnumerable<ScheduleEvent> scheduleEvents);
-
-        /// <summary>
-        /// Asynchronously Update ScheduleEvents, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Edit one or more schedule events.
-        /// </remarks>
-        /// <param name="scheduleEvents">
-        /// The set of <see cref="ScheduleEvent"/> objects to be updated.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="ScheduleEvent"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        Task<(IList<ScheduleEvent>, ResultsMeta)> UpdateScheduleEventsAsync(
-            IEnumerable<ScheduleEvent> scheduleEvents,
-            CancellationToken cancellationToken);
 
         /// <summary>
         /// Asynchronously Update ScheduleEvents.
@@ -6628,25 +6592,45 @@ namespace Intuit.TSheets.Api
             ScheduleEvent scheduleEvent,
             CancellationToken cancellationToken);
 
+        /// <summary>
+        /// Asynchronously Update ScheduleEvents.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more schedule events.
+        /// </remarks>
+        /// <param name="scheduleEvents">
+        /// The set of <see cref="ScheduleEvent"/> objects to be updated.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="ScheduleEvent"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<ScheduleEvent>, ResultsMeta)> UpdateScheduleEventsAsync(
+            IEnumerable<ScheduleEvent> scheduleEvents);
+
+        /// <summary>
+        /// Asynchronously Update ScheduleEvents, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more schedule events.
+        /// </remarks>
+        /// <param name="scheduleEvents">
+        /// The set of <see cref="ScheduleEvent"/> objects to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="ScheduleEvent"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<ScheduleEvent>, ResultsMeta)> UpdateScheduleEventsAsync(
+            IEnumerable<ScheduleEvent> scheduleEvents,
+            CancellationToken cancellationToken);
+
         #endregion
 
         #region Timesheets 
-
-        /// <summary>
-        /// Create Timesheets.
-        /// </summary>
-        /// <remarks>
-        /// Add one or more timesheets to your company.
-        /// </remarks>
-        /// <param name="timesheets">
-        /// The set of <see cref="Timesheet"/> objects to be created.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Timesheet"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        (IList<Timesheet>, ResultsMeta) CreateTimesheets(
-            IEnumerable<Timesheet> timesheets);
 
         /// <summary>
         /// Create Timesheets.
@@ -6665,7 +6649,7 @@ namespace Intuit.TSheets.Api
             Timesheet timesheet);
 
         /// <summary>
-        /// Asynchronously Create Timesheets.
+        /// Create Timesheets.
         /// </summary>
         /// <remarks>
         /// Add one or more timesheets to your company.
@@ -6677,28 +6661,8 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Timesheet"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        Task<(IList<Timesheet>, ResultsMeta)> CreateTimesheetsAsync(
+        (IList<Timesheet>, ResultsMeta) CreateTimesheets(
             IEnumerable<Timesheet> timesheets);
-
-        /// <summary>
-        /// Asynchronously Create Timesheets, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Add one or more timesheets to your company.
-        /// </remarks>
-        /// <param name="timesheets">
-        /// The set of <see cref="Timesheet"/> objects to be created.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Timesheet"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        Task<(IList<Timesheet>, ResultsMeta)> CreateTimesheetsAsync(
-            IEnumerable<Timesheet> timesheets,
-            CancellationToken cancellationToken);
 
         /// <summary>
         /// Asynchronously Create Timesheets.
@@ -6734,6 +6698,42 @@ namespace Intuit.TSheets.Api
         /// </returns>
         Task<(Timesheet, ResultsMeta)> CreateTimesheetAsync(
             Timesheet timesheet,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Asynchronously Create Timesheets.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more timesheets to your company.
+        /// </remarks>
+        /// <param name="timesheets">
+        /// The set of <see cref="Timesheet"/> objects to be created.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Timesheet"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Timesheet>, ResultsMeta)> CreateTimesheetsAsync(
+            IEnumerable<Timesheet> timesheets);
+
+        /// <summary>
+        /// Asynchronously Create Timesheets, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more timesheets to your company.
+        /// </remarks>
+        /// <param name="timesheets">
+        /// The set of <see cref="Timesheet"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Timesheet"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<Timesheet>, ResultsMeta)> CreateTimesheetsAsync(
+            IEnumerable<Timesheet> timesheets,
             CancellationToken cancellationToken);
 
         /// <summary>
@@ -6862,22 +6862,6 @@ namespace Intuit.TSheets.Api
         /// Update Timesheets.
         /// </summary>
         /// <remarks>
-        /// Edit one or more timesheets in your company.
-        /// </remarks>
-        /// <param name="timesheets">
-        /// The set of <see cref="Timesheet"/> objects to be updated.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Timesheet"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        (IList<Timesheet>, ResultsMeta) UpdateTimesheets(
-            IEnumerable<Timesheet> timesheets);
-
-        /// <summary>
-        /// Update Timesheets.
-        /// </summary>
-        /// <remarks>
         /// Edit a single timesheet in your company.
         /// </remarks>
         /// <param name="timesheet">
@@ -6889,6 +6873,22 @@ namespace Intuit.TSheets.Api
         /// </returns>
         (Timesheet, ResultsMeta) UpdateTimesheet(
             Timesheet timesheet);
+
+        /// <summary>
+        /// Update Timesheets.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more timesheets in your company.
+        /// </remarks>
+        /// <param name="timesheets">
+        /// The set of <see cref="Timesheet"/> objects to be updated.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Timesheet"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        (IList<Timesheet>, ResultsMeta) UpdateTimesheets(
+            IEnumerable<Timesheet> timesheets);
 
         /// <summary>
         /// Asynchronously Update Timesheets.
@@ -6905,6 +6905,26 @@ namespace Intuit.TSheets.Api
         /// </returns>
         Task<(IList<Timesheet>, ResultsMeta)> UpdateTimesheetsAsync(
             IEnumerable<Timesheet> timesheets);
+
+        /// <summary>
+        /// Asynchronously Update Timesheets, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Edit a single timesheet in your company.
+        /// </remarks>
+        /// <param name="timesheet">
+        /// The <see cref="Timesheet"/> object to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Timesheet"/> object that was updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(Timesheet, ResultsMeta)> UpdateTimesheetAsync(
+            Timesheet timesheet,
+            CancellationToken cancellationToken);
 
         /// <summary>
         /// Asynchronously Update Timesheets, with support for cancellation.
@@ -6943,26 +6963,6 @@ namespace Intuit.TSheets.Api
             Timesheet timesheet);
 
         /// <summary>
-        /// Asynchronously Update Timesheets, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Edit a single timesheet in your company.
-        /// </remarks>
-        /// <param name="timesheet">
-        /// The <see cref="Timesheet"/> object to be updated.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Timesheet"/> object that was updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        Task<(Timesheet, ResultsMeta)> UpdateTimesheetAsync(
-            Timesheet timesheet,
-            CancellationToken cancellationToken);
-
-        /// <summary>
         /// Delete Timesheets.
         /// </summary>
         /// <remarks>
@@ -6978,18 +6978,6 @@ namespace Intuit.TSheets.Api
         /// Delete Timesheets.
         /// </summary>
         /// <remarks>
-        /// Delete one or more <see cref="Timesheet"/> objects.
-        /// </remarks>
-        /// <param name="timesheets">
-        /// The set of <see cref="Timesheet"/> objects to be deleted.
-        /// </param>
-        void DeleteTimesheets(
-            IEnumerable<Timesheet> timesheets);
-
-        /// <summary>
-        /// Delete Timesheets.
-        /// </summary>
-        /// <remarks>
         /// Delete a single <see cref="Timesheet"/> object, by id.
         /// </remarks>
         /// <param name="id">
@@ -6997,6 +6985,18 @@ namespace Intuit.TSheets.Api
         /// </param>
         void DeleteTimesheet(
             int id);
+
+        /// <summary>
+        /// Delete Timesheets.
+        /// </summary>
+        /// <remarks>
+        /// Delete one or more <see cref="Timesheet"/> objects.
+        /// </remarks>
+        /// <param name="timesheets">
+        /// The set of <see cref="Timesheet"/> objects to be deleted.
+        /// </param>
+        void DeleteTimesheets(
+            IEnumerable<Timesheet> timesheets);
 
         /// <summary>
         /// Delete Timesheets.
@@ -7044,36 +7044,6 @@ namespace Intuit.TSheets.Api
         /// Asynchronously Delete Timesheets.
         /// </summary>
         /// <remarks>
-        /// Delete one or more <see cref="Timesheet"/> objects.
-        /// </remarks>
-        /// <param name="timesheets">
-        /// The set of <see cref="Timesheet"/> objects to be deleted.
-        /// </param>
-        /// <returns>The asynchronous task.</returns>
-        Task DeleteTimesheetsAsync(
-            IEnumerable<Timesheet> timesheets);
-
-        /// <summary>
-        /// Asynchronously Delete Timesheets, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Delete one or more <see cref="Timesheet"/> objects.
-        /// </remarks>
-        /// <param name="timesheets">
-        /// The set of <see cref="Timesheet"/> objects to be deleted.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>The asynchronous task.</returns>
-        Task DeleteTimesheetsAsync(
-            IEnumerable<Timesheet> timesheets,
-            CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Asynchronously Delete Timesheets.
-        /// </summary>
-        /// <remarks>
         /// Delete a single <see cref="Timesheet"/> object, by id.
         /// </remarks>
         /// <param name="id">
@@ -7098,6 +7068,36 @@ namespace Intuit.TSheets.Api
         /// <returns>The asynchronous task.</returns>
         Task DeleteTimesheetAsync(
             int id,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Asynchronously Delete Timesheets.
+        /// </summary>
+        /// <remarks>
+        /// Delete one or more <see cref="Timesheet"/> objects.
+        /// </remarks>
+        /// <param name="timesheets">
+        /// The set of <see cref="Timesheet"/> objects to be deleted.
+        /// </param>
+        /// <returns>The asynchronous task.</returns>
+        Task DeleteTimesheetsAsync(
+            IEnumerable<Timesheet> timesheets);
+
+        /// <summary>
+        /// Asynchronously Delete Timesheets, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Delete one or more <see cref="Timesheet"/> objects.
+        /// </remarks>
+        /// <param name="timesheets">
+        /// The set of <see cref="Timesheet"/> objects to be deleted.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>The asynchronous task.</returns>
+        Task DeleteTimesheetsAsync(
+            IEnumerable<Timesheet> timesheets,
             CancellationToken cancellationToken);
 
         /// <summary>
@@ -7264,22 +7264,6 @@ namespace Intuit.TSheets.Api
         /// Create Users.
         /// </summary>
         /// <remarks>
-        /// Add one or more users to your company.
-        /// </remarks>
-        /// <param name="users">
-        /// The set of <see cref="User"/> objects to be created.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="User"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        (IList<User>, ResultsMeta) CreateUsers(
-            IEnumerable<User> users);
-
-        /// <summary>
-        /// Create Users.
-        /// </summary>
-        /// <remarks>
         /// Add a single user to your company.
         /// </remarks>
         /// <param name="user">
@@ -7293,7 +7277,7 @@ namespace Intuit.TSheets.Api
             User user);
 
         /// <summary>
-        /// Asynchronously Create Users.
+        /// Create Users.
         /// </summary>
         /// <remarks>
         /// Add one or more users to your company.
@@ -7305,28 +7289,8 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="User"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        Task<(IList<User>, ResultsMeta)> CreateUsersAsync(
+        (IList<User>, ResultsMeta) CreateUsers(
             IEnumerable<User> users);
-
-        /// <summary>
-        /// Asynchronously Create Users, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Add one or more users to your company.
-        /// </remarks>
-        /// <param name="users">
-        /// The set of <see cref="User"/> objects to be created.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="User"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        Task<(IList<User>, ResultsMeta)> CreateUsersAsync(
-            IEnumerable<User> users,
-            CancellationToken cancellationToken);
 
         /// <summary>
         /// Asynchronously Create Users.
@@ -7362,6 +7326,42 @@ namespace Intuit.TSheets.Api
         /// </returns>
         Task<(User, ResultsMeta)> CreateUserAsync(
             User user,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Asynchronously Create Users.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more users to your company.
+        /// </remarks>
+        /// <param name="users">
+        /// The set of <see cref="User"/> objects to be created.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="User"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<User>, ResultsMeta)> CreateUsersAsync(
+            IEnumerable<User> users);
+
+        /// <summary>
+        /// Asynchronously Create Users, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more users to your company.
+        /// </remarks>
+        /// <param name="users">
+        /// The set of <see cref="User"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="User"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<User>, ResultsMeta)> CreateUsersAsync(
+            IEnumerable<User> users,
             CancellationToken cancellationToken);
 
         /// <summary>
@@ -7588,22 +7588,6 @@ namespace Intuit.TSheets.Api
         /// Update Users.
         /// </summary>
         /// <remarks>
-        /// Edit one or more users in your company.
-        /// </remarks>
-        /// <param name="users">
-        /// The set of <see cref="User"/> objects to be updated.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="User"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        (IList<User>, ResultsMeta) UpdateUsers(
-            IEnumerable<User> users);
-
-        /// <summary>
-        /// Update Users.
-        /// </summary>
-        /// <remarks>
         /// Edit a single user in your company.
         /// </remarks>
         /// <param name="user">
@@ -7617,7 +7601,7 @@ namespace Intuit.TSheets.Api
             User user);
 
         /// <summary>
-        /// Asynchronously Update Users.
+        /// Update Users.
         /// </summary>
         /// <remarks>
         /// Edit one or more users in your company.
@@ -7629,28 +7613,8 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="User"/> objects that were updated, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        Task<(IList<User>, ResultsMeta)> UpdateUsersAsync(
+        (IList<User>, ResultsMeta) UpdateUsers(
             IEnumerable<User> users);
-
-        /// <summary>
-        /// Asynchronously Update Users, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Edit one or more users in your company.
-        /// </remarks>
-        /// <param name="users">
-        /// The set of <see cref="User"/> objects to be updated.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="User"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        Task<(IList<User>, ResultsMeta)> UpdateUsersAsync(
-            IEnumerable<User> users,
-            CancellationToken cancellationToken);
 
         /// <summary>
         /// Asynchronously Update Users.
@@ -7686,6 +7650,42 @@ namespace Intuit.TSheets.Api
         /// </returns>
         Task<(User, ResultsMeta)> UpdateUserAsync(
             User user,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Asynchronously Update Users.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more users in your company.
+        /// </remarks>
+        /// <param name="users">
+        /// The set of <see cref="User"/> objects to be updated.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="User"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<User>, ResultsMeta)> UpdateUsersAsync(
+            IEnumerable<User> users);
+
+        /// <summary>
+        /// Asynchronously Update Users, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more users in your company.
+        /// </remarks>
+        /// <param name="users">
+        /// The set of <see cref="User"/> objects to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="User"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<User>, ResultsMeta)> UpdateUsersAsync(
+            IEnumerable<User> users,
             CancellationToken cancellationToken);
 
         #endregion

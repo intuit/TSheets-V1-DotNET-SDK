@@ -131,7 +131,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<ManagedClient>, ResultsMeta)> GetManagedClientsAsync()
         {
-            return await GetManagedClientsAsync(null, null).ConfigureAwait(false);
+            return await GetManagedClientsAsync(null, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -151,9 +151,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<ManagedClient>, ResultsMeta)> GetManagedClientsAsync(
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetManagedClientsAsync(null, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -173,7 +171,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<ManagedClient>, ResultsMeta)> GetManagedClientsAsync(
             RequestOptions options)
         {
-            return await GetManagedClientsAsync(null, options).ConfigureAwait(false);
+            return await GetManagedClientsAsync(null, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -197,9 +195,7 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetManagedClientsAsync(null, options, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -219,7 +215,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<ManagedClient>, ResultsMeta)> GetManagedClientsAsync(
             ManagedClientFilter filter)
         {
-            return await GetManagedClientsAsync(filter, null).ConfigureAwait(false);
+            return await GetManagedClientsAsync(filter, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -243,9 +239,7 @@ namespace Intuit.TSheets.Api
             ManagedClientFilter filter,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetManagedClientsAsync(filter, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -269,11 +263,7 @@ namespace Intuit.TSheets.Api
             ManagedClientFilter filter,
             RequestOptions options)
         {
-            var context = new GetContext<ManagedClient>(EndpointName.ManagedClients, filter, options);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
+            return await GetManagedClientsAsync(filter, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -301,9 +291,11 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            var context = new GetContext<ManagedClient>(EndpointName.ManagedClients, filter, options);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion

@@ -131,7 +131,7 @@ namespace Intuit.TSheets.Api
         /// </returns> 
         public async Task<(IList<ScheduleCalendar>, ResultsMeta)> GetScheduleCalendarsAsync()
         {
-            return await GetScheduleCalendarsAsync(null, null).ConfigureAwait(false);
+            return await GetScheduleCalendarsAsync(null, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -151,9 +151,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<ScheduleCalendar>, ResultsMeta)> GetScheduleCalendarsAsync(
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetScheduleCalendarsAsync(null, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -173,7 +171,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<ScheduleCalendar>, ResultsMeta)> GetScheduleCalendarsAsync(
             RequestOptions options)
         {
-            return await GetScheduleCalendarsAsync(null, options).ConfigureAwait(false);
+            return await GetScheduleCalendarsAsync(null, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -196,9 +194,7 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetScheduleCalendarsAsync(null, options, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -218,7 +214,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<ScheduleCalendar>, ResultsMeta)> GetScheduleCalendarsAsync(
             ScheduleCalendarFilter filter)
         {
-            return await GetScheduleCalendarsAsync(filter, null).ConfigureAwait(false);
+            return await GetScheduleCalendarsAsync(filter, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -242,9 +238,7 @@ namespace Intuit.TSheets.Api
             ScheduleCalendarFilter filter,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetScheduleCalendarsAsync(filter, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -268,11 +262,7 @@ namespace Intuit.TSheets.Api
             ScheduleCalendarFilter filter,
             RequestOptions options)
         {
-            var context = new GetContext<ScheduleCalendar>(EndpointName.ScheduleCalendars, filter, options);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
+            return await GetScheduleCalendarsAsync(filter, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -300,9 +290,11 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            var context = new GetContext<ScheduleCalendar>(EndpointName.ScheduleCalendars, filter, options);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion

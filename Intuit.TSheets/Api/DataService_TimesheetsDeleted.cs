@@ -99,7 +99,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<TimesheetsDeleted>, ResultsMeta)> GetTimesheetsDeletedAsync(
             TimesheetsDeletedFilter filter)
         {
-            return await GetTimesheetsDeletedAsync(filter, null).ConfigureAwait(false);
+            return await GetTimesheetsDeletedAsync(filter, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -123,9 +123,7 @@ namespace Intuit.TSheets.Api
             TimesheetsDeletedFilter filter,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetTimesheetsDeletedAsync(filter, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -149,11 +147,7 @@ namespace Intuit.TSheets.Api
             TimesheetsDeletedFilter filter,
             RequestOptions options)
         {
-            var context = new GetContext<TimesheetsDeleted>(EndpointName.TimesheetsDeleted, filter, options);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
+            return await GetTimesheetsDeletedAsync(filter, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -181,9 +175,11 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            var context = new GetContext<TimesheetsDeleted>(EndpointName.TimesheetsDeleted, filter, options);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion

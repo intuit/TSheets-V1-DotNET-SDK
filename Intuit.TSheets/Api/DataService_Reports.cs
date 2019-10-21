@@ -85,7 +85,7 @@ namespace Intuit.TSheets.Api
         /// </returns>
         public async Task<(CurrentTotalsReport, ResultsMeta)> GetCurrentTotalsReportAsync()
         {
-            return await GetCurrentTotalsReportAsync(null).ConfigureAwait(false);
+            return await GetCurrentTotalsReportAsync(null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -105,9 +105,7 @@ namespace Intuit.TSheets.Api
         public async Task<(CurrentTotalsReport, ResultsMeta)> GetCurrentTotalsReportAsync(
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetCurrentTotalsReportAsync(null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -127,11 +125,7 @@ namespace Intuit.TSheets.Api
         public async Task<(CurrentTotalsReport, ResultsMeta)> GetCurrentTotalsReportAsync(
             CurrentTotalsReportFilter filter)
         {
-            var context = new GetReportContext<CurrentTotalsReport>(EndpointName.CurrentTotalsReports, filter);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results, context.ResultsMeta);
+            return await GetCurrentTotalsReportAsync(filter, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -155,9 +149,11 @@ namespace Intuit.TSheets.Api
             CurrentTotalsReportFilter filter,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            var context = new GetReportContext<CurrentTotalsReport>(EndpointName.CurrentTotalsReports, filter);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results, context.ResultsMeta);
         }
 
         #endregion
@@ -200,11 +196,7 @@ namespace Intuit.TSheets.Api
         public async Task<(PayrollReport, ResultsMeta)> GetPayrollReportAsync(
             PayrollReportFilter filter)
         {
-            var context = new GetReportContext<PayrollReport>(EndpointName.PayrollReports, filter);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results, context.ResultsMeta);
+            return await GetPayrollReportAsync(filter, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -228,9 +220,11 @@ namespace Intuit.TSheets.Api
             PayrollReportFilter filter,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            var context = new GetReportContext<PayrollReport>(EndpointName.PayrollReports, filter);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results, context.ResultsMeta);
         }
 
         #endregion
@@ -273,11 +267,7 @@ namespace Intuit.TSheets.Api
         public async Task<(PayrollByJobcodeReport, ResultsMeta)> GetPayrollByJobcodeReportAsync(
             PayrollByJobcodeReportFilter filter)
         {
-            var context = new GetReportContext<PayrollByJobcodeReport>(EndpointName.PayrollByJobcodeReports, filter);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results, context.ResultsMeta);
+            return await GetPayrollByJobcodeReportAsync(filter, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -301,9 +291,11 @@ namespace Intuit.TSheets.Api
             PayrollByJobcodeReportFilter filter,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            var context = new GetReportContext<PayrollByJobcodeReport>(EndpointName.PayrollByJobcodeReports, filter);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results, context.ResultsMeta);
         }
 
         #endregion
@@ -344,11 +336,7 @@ namespace Intuit.TSheets.Api
         public async Task<(ProjectReport, ResultsMeta)> GetProjectReportAsync(
             ProjectReportFilter filter)
         {
-            var context = new GetReportContext<ProjectReport>(EndpointName.ProjectReports, filter);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results, context.ResultsMeta);
+            return await GetProjectReportAsync(filter, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -371,9 +359,11 @@ namespace Intuit.TSheets.Api
             ProjectReportFilter filter,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            var context = new GetReportContext<ProjectReport>(EndpointName.ProjectReports, filter);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results, context.ResultsMeta);
         }
 
         #endregion

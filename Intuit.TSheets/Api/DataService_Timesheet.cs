@@ -43,24 +43,6 @@ namespace Intuit.TSheets.Api
         /// Create Timesheets.
         /// </summary>
         /// <remarks>
-        /// Add one or more timesheets to your company.
-        /// </remarks>
-        /// <param name="timesheets">
-        /// The set of <see cref="Timesheet"/> objects to be created.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Timesheet"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public (IList<Timesheet>, ResultsMeta) CreateTimesheets(IEnumerable<Timesheet> timesheets)
-        {
-            return AsyncUtil.RunSync(() => CreateTimesheetsAsync(timesheets));
-        }
-
-        /// <summary>
-        /// Create Timesheets.
-        /// </summary>
-        /// <remarks>
         /// Add a single timesheet to your company.
         /// </remarks>
         /// <param name="timesheet">
@@ -78,7 +60,7 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
-        /// Asynchronously Create Timesheets.
+        /// Create Timesheets.
         /// </summary>
         /// <remarks>
         /// Add one or more timesheets to your company.
@@ -90,39 +72,9 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Timesheet"/> objects that were created, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<Timesheet>, ResultsMeta)> CreateTimesheetsAsync(
-            IEnumerable<Timesheet> timesheets)
+        public (IList<Timesheet>, ResultsMeta) CreateTimesheets(IEnumerable<Timesheet> timesheets)
         {
-            var context = new CreateContext<Timesheet>(EndpointName.Timesheets, timesheets);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
-        }
-
-        /// <summary>
-        /// Asynchronously Create Timesheets, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Add one or more timesheets to your company.
-        /// </remarks>
-        /// <param name="timesheets">
-        /// The set of <see cref="Timesheet"/> objects to be created.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Timesheet"/> objects that were created, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public async Task<(IList<Timesheet>, ResultsMeta)> CreateTimesheetsAsync(
-            IEnumerable<Timesheet> timesheets,
-            CancellationToken cancellationToken)
-        {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return AsyncUtil.RunSync(() => CreateTimesheetsAsync(timesheets));
         }
 
         /// <summary>
@@ -141,7 +93,7 @@ namespace Intuit.TSheets.Api
         public async Task<(Timesheet, ResultsMeta)> CreateTimesheetAsync(
             Timesheet timesheet)
         {
-            (IList<Timesheet> timesheets, ResultsMeta resultsMeta) = await CreateTimesheetsAsync(new[] { timesheet }).ConfigureAwait(false);
+            (IList<Timesheet> timesheets, ResultsMeta resultsMeta) = await CreateTimesheetsAsync(new[] { timesheet }, default).ConfigureAwait(false);
 
             return (timesheets.FirstOrDefault(), resultsMeta);
         }
@@ -166,9 +118,55 @@ namespace Intuit.TSheets.Api
             Timesheet timesheet,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            (IList<Timesheet> timesheets, ResultsMeta resultsMeta) = await CreateTimesheetsAsync(new[] { timesheet }, cancellationToken).ConfigureAwait(false);
+
+            return (timesheets.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Timesheets.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more timesheets to your company.
+        /// </remarks>
+        /// <param name="timesheets">
+        /// The set of <see cref="Timesheet"/> objects to be created.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Timesheet"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Timesheet>, ResultsMeta)> CreateTimesheetsAsync(
+            IEnumerable<Timesheet> timesheets)
+        {
+            return await CreateTimesheetsAsync(timesheets, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Create Timesheets, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more timesheets to your company.
+        /// </remarks>
+        /// <param name="timesheets">
+        /// The set of <see cref="Timesheet"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Timesheet"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Timesheet>, ResultsMeta)> CreateTimesheetsAsync(
+            IEnumerable<Timesheet> timesheets,
+            CancellationToken cancellationToken)
+        {
+            var context = new CreateContext<Timesheet>(EndpointName.Timesheets, timesheets);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion
@@ -236,7 +234,7 @@ namespace Intuit.TSheets.Api
         public async Task<(IList<Timesheet>, ResultsMeta)> GetTimesheetsAsync(
             TimesheetFilter filter)
         {
-            return await GetTimesheetsAsync(filter, null).ConfigureAwait(false);
+            return await GetTimesheetsAsync(filter, null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -260,9 +258,7 @@ namespace Intuit.TSheets.Api
             TimesheetFilter filter,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetTimesheetsAsync(filter, null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -286,11 +282,7 @@ namespace Intuit.TSheets.Api
             TimesheetFilter filter,
             RequestOptions options)
         {
-            var context = new GetContext<Timesheet>(EndpointName.Timesheets, filter, options);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
+            return await GetTimesheetsAsync(filter, options, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -318,32 +310,16 @@ namespace Intuit.TSheets.Api
             RequestOptions options,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            var context = new GetContext<Timesheet>(EndpointName.Timesheets, filter, options);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion
 
         #region Update methods
-
-        /// <summary>
-        /// Update Timesheets.
-        /// </summary>
-        /// <remarks>
-        /// Edit one or more timesheets in your company.
-        /// </remarks>
-        /// <param name="timesheets">
-        /// The set of <see cref="Timesheet"/> objects to be updated.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Timesheet"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public (IList<Timesheet>, ResultsMeta) UpdateTimesheets(IEnumerable<Timesheet> timesheets)
-        {
-            return AsyncUtil.RunSync(() => UpdateTimesheetsAsync(timesheets));
-        }
 
         /// <summary>
         /// Update Timesheets.
@@ -368,7 +344,7 @@ namespace Intuit.TSheets.Api
         }
 
         /// <summary>
-        /// Asynchronously Update Timesheets.
+        /// Update Timesheets.
         /// </summary>
         /// <remarks>
         /// Edit one or more timesheets in your company.
@@ -380,39 +356,9 @@ namespace Intuit.TSheets.Api
         /// The set of the <see cref="Timesheet"/> objects that were updated, along with
         /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
         /// </returns>
-        public async Task<(IList<Timesheet>, ResultsMeta)> UpdateTimesheetsAsync(
-            IEnumerable<Timesheet> timesheets)
+        public (IList<Timesheet>, ResultsMeta) UpdateTimesheets(IEnumerable<Timesheet> timesheets)
         {
-            var context = new UpdateContext<Timesheet>(EndpointName.Timesheets, timesheets);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return (context.Results.Items, context.ResultsMeta);
-        }
-
-        /// <summary>
-        /// Asynchronously Update Timesheets, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Edit one or more timesheets in your company.
-        /// </remarks>
-        /// <param name="timesheets">
-        /// The set of <see cref="Timesheet"/> objects to be updated.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>
-        /// The set of the <see cref="Timesheet"/> objects that were updated, along with
-        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
-        /// </returns>
-        public async Task<(IList<Timesheet>, ResultsMeta)> UpdateTimesheetsAsync(
-            IEnumerable<Timesheet> timesheets,
-            CancellationToken cancellationToken)
-        {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return AsyncUtil.RunSync(() => UpdateTimesheetsAsync(timesheets));
         }
 
         /// <summary>
@@ -432,7 +378,7 @@ namespace Intuit.TSheets.Api
             Timesheet timesheet)
         {
             (IList<Timesheet> timesheets, ResultsMeta resultsMeta) =
-                await UpdateTimesheetsAsync(new[] { timesheet }).ConfigureAwait(false);
+                await UpdateTimesheetsAsync(new[] { timesheet }, default).ConfigureAwait(false);
 
             return (timesheets.FirstOrDefault(), resultsMeta);
         }
@@ -457,9 +403,56 @@ namespace Intuit.TSheets.Api
             Timesheet timesheet,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            (IList<Timesheet> timesheets, ResultsMeta resultsMeta) =
+                await UpdateTimesheetsAsync(new[] { timesheet }, cancellationToken).ConfigureAwait(false);
+
+            return (timesheets.FirstOrDefault(), resultsMeta);
+        }
+
+        /// <summary>
+        /// Asynchronously Update Timesheets.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more timesheets in your company.
+        /// </remarks>
+        /// <param name="timesheets">
+        /// The set of <see cref="Timesheet"/> objects to be updated.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Timesheet"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Timesheet>, ResultsMeta)> UpdateTimesheetsAsync(
+            IEnumerable<Timesheet> timesheets)
+        {
+            return await UpdateTimesheetsAsync(timesheets, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Update Timesheets, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Edit one or more timesheets in your company.
+        /// </remarks>
+        /// <param name="timesheets">
+        /// The set of <see cref="Timesheet"/> objects to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="Timesheet"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        public async Task<(IList<Timesheet>, ResultsMeta)> UpdateTimesheetsAsync(
+            IEnumerable<Timesheet> timesheets,
+            CancellationToken cancellationToken)
+        {
+            var context = new UpdateContext<Timesheet>(EndpointName.Timesheets, timesheets);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return (context.Results.Items, context.ResultsMeta);
         }
 
         #endregion
@@ -477,23 +470,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         public void DeleteTimesheet(Timesheet timesheet)
         {
-            DeleteTimesheets(new[] { timesheet });
-        }
-
-        /// <summary>
-        /// Delete Timesheets.
-        /// </summary>
-        /// <remarks>
-        /// Delete one or more <see cref="Timesheet"/> objects.
-        /// </remarks>
-        /// <param name="timesheets">
-        /// The set of <see cref="Timesheet"/> objects to be deleted.
-        /// </param>
-        public void DeleteTimesheets(IEnumerable<Timesheet> timesheets)
-        {
-            IEnumerable<int> ids = timesheets.Select(j => j.Id);
-
-            DeleteTimesheets(ids);
+            AsyncUtil.RunSync(() => DeleteTimesheetAsync(timesheet));
         }
 
         /// <summary>
@@ -507,7 +484,21 @@ namespace Intuit.TSheets.Api
         /// </param>
         public void DeleteTimesheet(int id)
         {
-            DeleteTimesheets(new[] { id });
+            AsyncUtil.RunSync(() => DeleteTimesheetAsync(id));
+        }
+
+        /// <summary>
+        /// Delete Timesheets.
+        /// </summary>
+        /// <remarks>
+        /// Delete one or more <see cref="Timesheet"/> objects.
+        /// </remarks>
+        /// <param name="timesheets">
+        /// The set of <see cref="Timesheet"/> objects to be deleted.
+        /// </param>
+        public void DeleteTimesheets(IEnumerable<Timesheet> timesheets)
+        {
+            AsyncUtil.RunSync(() => DeleteTimesheetsAsync(timesheets));
         }
 
         /// <summary>
@@ -537,7 +528,7 @@ namespace Intuit.TSheets.Api
         public async Task DeleteTimesheetAsync(
             Timesheet timesheet)
         {
-            await DeleteTimesheetsAsync(new[] { timesheet }).ConfigureAwait(false);
+            await DeleteTimesheetsAsync(new[] { timesheet.Id }, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -557,49 +548,7 @@ namespace Intuit.TSheets.Api
             Timesheet timesheet,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
-        }
-
-        /// <summary>
-        /// Asynchronously Delete Timesheets.
-        /// </summary>
-        /// <remarks>
-        /// Delete one or more <see cref="Timesheet"/> objects.
-        /// </remarks>
-        /// <param name="timesheets">
-        /// The set of <see cref="Timesheet"/> objects to be deleted.
-        /// </param>
-        /// <returns>The asynchronous task.</returns>
-        public async Task DeleteTimesheetsAsync(
-            IEnumerable<Timesheet> timesheets)
-        {
-            IEnumerable<int> ids = timesheets.Select(t => t.Id);
-
-            await DeleteTimesheetsAsync(ids).ConfigureAwait(false);
-        }
-
-        /// <summary>
-        /// Asynchronously Delete Timesheets, with support for cancellation.
-        /// </summary>
-        /// <remarks>
-        /// Delete one or more <see cref="Timesheet"/> objects.
-        /// </remarks>
-        /// <param name="timesheets">
-        /// The set of <see cref="Timesheet"/> objects to be deleted.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
-        /// </param>
-        /// <returns>The asynchronous task.</returns>
-        public async Task DeleteTimesheetsAsync(
-            IEnumerable<Timesheet> timesheets,
-            CancellationToken cancellationToken)
-        {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            await DeleteTimesheetsAsync(new[] { timesheet.Id }, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -615,7 +564,7 @@ namespace Intuit.TSheets.Api
         public async Task DeleteTimesheetAsync(
             int id)
         {
-            await DeleteTimesheetsAsync(new[] { id }).ConfigureAwait(false);
+            await DeleteTimesheetsAsync(new[] { id }, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -635,9 +584,47 @@ namespace Intuit.TSheets.Api
             int id,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            await DeleteTimesheetsAsync(new[] { id }, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Delete Timesheets.
+        /// </summary>
+        /// <remarks>
+        /// Delete one or more <see cref="Timesheet"/> objects.
+        /// </remarks>
+        /// <param name="timesheets">
+        /// The set of <see cref="Timesheet"/> objects to be deleted.
+        /// </param>
+        /// <returns>The asynchronous task.</returns>
+        public async Task DeleteTimesheetsAsync(
+            IEnumerable<Timesheet> timesheets)
+        {
+            IEnumerable<int> ids = timesheets.Select(t => t.Id);
+
+            await DeleteTimesheetsAsync(ids, default).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Asynchronously Delete Timesheets, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Delete one or more <see cref="Timesheet"/> objects.
+        /// </remarks>
+        /// <param name="timesheets">
+        /// The set of <see cref="Timesheet"/> objects to be deleted.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>The asynchronous task.</returns>
+        public async Task DeleteTimesheetsAsync(
+            IEnumerable<Timesheet> timesheets,
+            CancellationToken cancellationToken)
+        {
+            IEnumerable<int> ids = timesheets.Select(t => t.Id);
+
+            await DeleteTimesheetsAsync(ids, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -653,9 +640,7 @@ namespace Intuit.TSheets.Api
         public async Task DeleteTimesheetsAsync(
             IEnumerable<int> ids)
         {
-            var context = new DeleteContext<Timesheet>(EndpointName.Timesheets, ids);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
+            await DeleteTimesheetsAsync(ids, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -675,9 +660,9 @@ namespace Intuit.TSheets.Api
             IEnumerable<int> ids,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            var context = new DeleteContext<Timesheet>(EndpointName.Timesheets, ids);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
         }
 
         #endregion

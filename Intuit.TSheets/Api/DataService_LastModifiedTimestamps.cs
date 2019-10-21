@@ -80,7 +80,7 @@ namespace Intuit.TSheets.Api
         /// </returns>
         public async Task<LastModifiedTimestamps> GetLastModifiedTimestampsAsync()
         {
-            return await GetLastModifiedTimestampsAsync(null).ConfigureAwait(false);
+            return await GetLastModifiedTimestampsAsync(null, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -98,9 +98,7 @@ namespace Intuit.TSheets.Api
         public async Task<LastModifiedTimestamps> GetLastModifiedTimestampsAsync(
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            return await GetLastModifiedTimestampsAsync(null, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -118,11 +116,7 @@ namespace Intuit.TSheets.Api
         public async Task<LastModifiedTimestamps> GetLastModifiedTimestampsAsync(
             LastModifiedTimestampsFilter filter)
         {
-            var context = new GetContext<LastModifiedTimestamps>(EndpointName.LastModifiedTimestamps, filter);
-
-            await ExecuteOperationAsync(context).ConfigureAwait(false);
-
-            return context.Results.Items.FirstOrDefault();
+            return await GetLastModifiedTimestampsAsync(filter, default).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -144,9 +138,11 @@ namespace Intuit.TSheets.Api
             LastModifiedTimestampsFilter filter,
             CancellationToken cancellationToken)
         {
-            // TODO
-            await Task.Run(() => { });
-            throw new System.NotImplementedException();
+            var context = new GetContext<LastModifiedTimestamps>(EndpointName.LastModifiedTimestamps, filter);
+
+            await ExecuteOperationAsync(context, cancellationToken).ConfigureAwait(false);
+
+            return context.Results.Items.FirstOrDefault();
         }
 
         #endregion
