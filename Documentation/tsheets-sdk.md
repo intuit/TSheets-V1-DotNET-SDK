@@ -108,6 +108,12 @@ var jobcodeFilter = new JobcodeFilter
 ```cs
 // Retrieve the current user, asynchronously.
 (User user, ResultsMeta resultsMeta) = await apiClient.GetCurrentUserAsync().ConfigureAwait(false);
+
+// Retrieve all users, with a cancellation token.
+// If not yet complete, cancel after 200ms.
+var tokenSource = new CancellationTokenSource();
+tokenSource.CancelAfter(200);
+(IList<User> users, ResultsMeta resultsMeta) = await apiClient.GetUsersAsync(tokenSource.Token).ConfigureAwait(false);
 ```
 
 #### Auto-Paging Behavior
