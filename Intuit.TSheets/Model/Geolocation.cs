@@ -21,6 +21,7 @@ namespace Intuit.TSheets.Model
 {
     using System;
     using Intuit.TSheets.Client.Serialization.Attributes;
+    using Intuit.TSheets.Client.Serialization.Converters;
     using Intuit.TSheets.Model.Enums;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -134,6 +135,7 @@ namespace Intuit.TSheets.Model
         /// <summary>
         /// Gets or sets the date/time when this geolocation was created.
         /// </summary>
+        [JsonConverter(typeof(DateTimeFormatConverter))]
         [JsonProperty("created")]
         public DateTimeOffset? Created { get; set; }
     }

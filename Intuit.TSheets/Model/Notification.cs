@@ -21,6 +21,7 @@ namespace Intuit.TSheets.Model
 {
     using System;
     using Intuit.TSheets.Client.Serialization.Attributes;
+    using Intuit.TSheets.Client.Serialization.Converters;
     using Intuit.TSheets.Model.Enums;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -119,6 +120,7 @@ namespace Intuit.TSheets.Model
         /// <remarks>
         /// Defaults to the current time.
         /// </remarks>
+        [JsonConverter(typeof(DateTimeFormatConverter))]
         [JsonProperty("delivery_time")]
         public DateTimeOffset? DeliveryTime { get; set; }
 

@@ -131,12 +131,14 @@ namespace Intuit.TSheets.Model.Filters
         /// <summary>
         /// Gets or sets the value for filtering schedule events to a date range start.
         /// </summary>
+        [JsonConverter(typeof(DateTimeFormatConverter))]
         [JsonProperty("start")]
         public DateTimeOffset? Start { get; set; }
 
         /// <summary>
         /// Gets or sets the value for filtering schedule events to a date range end.
         /// </summary>
+        [JsonConverter(typeof(DateTimeFormatConverter))]
         [JsonProperty("end")]
         public DateTimeOffset? End { get; set; }
 

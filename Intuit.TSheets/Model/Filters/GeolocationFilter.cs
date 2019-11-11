@@ -78,6 +78,7 @@ namespace Intuit.TSheets.Model.Filters
         /// <summary>
         /// Gets or sets the filter for returning only those geolocations modified before this date/time.
         /// </summary>
+        [JsonConverter(typeof(DateTimeFormatConverter))]
         [JsonProperty("modified_before")]
         public DateTimeOffset? ModifiedBefore { get; set; }
 
