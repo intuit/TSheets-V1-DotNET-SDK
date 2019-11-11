@@ -1,3 +1,9 @@
+# v1.2.1 (Mon. Nov 11th, 2019)
+
+#### Bugfix
+
+ - Fixing issue #13: Error with DateTimeOffset in ScheduleEvent object.
+
 # v1.2.0 (Mon. Oct 21st, 2019)
 
 #### Minor Feature

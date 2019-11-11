@@ -14,9 +14,9 @@
     <RepositoryUrl>https://github.com/intuit/TSheets-V1-DotNET-SDK</RepositoryUrl>
     <PackageIcon>Circle_T_web128px.png</PackageIcon>
     <RepositoryType>Git</RepositoryType>
-    <PackageReleaseNotes>Minor Feature: Adding CancellationToken support for all asynchronous API methods.</PackageReleaseNotes>
+    <PackageReleaseNotes>Bugfix: Fixing invalid serialization of DateTimeOffset properties for the ScheduleEvent object.</PackageReleaseNotes>
     <PackageTags>tsheets, sdk, quickbooks, time, tracking, api-client, time-tracking, payroll-management</PackageTags>
-    <Version>1.2.0</Version>
+    <Version>1.2.1</Version>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 

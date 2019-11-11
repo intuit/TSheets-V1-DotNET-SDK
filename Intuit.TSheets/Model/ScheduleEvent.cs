@@ -22,6 +22,7 @@ namespace Intuit.TSheets.Model
     using System;
     using System.Collections.Generic;
     using Intuit.TSheets.Client.Serialization.Attributes;
+    using Intuit.TSheets.Client.Serialization.Converters;
     using Intuit.TSheets.Model.Enums;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -84,12 +85,14 @@ namespace Intuit.TSheets.Model
         /// <summary>
         /// Gets or sets the date/time that represents the start time of this schedule event.
         /// </summary>
+        [JsonConverter(typeof(DateTimeFormatConverter))]
         [JsonProperty("start")]
         public DateTimeOffset? Start { get; set; }
 
         /// <summary>
         /// Gets or sets the date/time that represents the end time of this schedule event.
         /// </summary>
+        [JsonConverter(typeof(DateTimeFormatConverter))]
         [JsonProperty("end")]
         public DateTimeOffset? End { get; set; }
 
@@ -132,6 +135,7 @@ namespace Intuit.TSheets.Model
         /// Empty if the event is unassigned. Changing the assigned user IDs of
         /// an event may result in multiple event modifications.
         /// </remarks>
+        [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonProperty("assigned_user_ids")]
         public IList<int> AssignedUserIds { get; set; }
 

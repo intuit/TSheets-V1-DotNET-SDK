@@ -21,6 +21,7 @@ namespace Intuit.TSheets.Model
 {
     using System;
     using System.Collections.Generic;
+    using Intuit.TSheets.Client.Serialization.Attributes;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -38,6 +39,7 @@ namespace Intuit.TSheets.Model
         /// <summary>
         /// Gets the date/time at which the setting was most recently modified.
         /// </summary>
+        [NoSerializeOnWrite]
         [JsonProperty("last_modified")]
         public DateTimeOffset? LastModified { get; internal set; }
     }

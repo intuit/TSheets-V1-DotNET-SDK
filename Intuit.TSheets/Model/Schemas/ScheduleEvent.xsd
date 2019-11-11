@@ -52,11 +52,7 @@
       "type": "boolean"
     },
     "assigned_user_ids": {
-      "type": "array",
-      "items": {
-        "type": "integer",
-        "format": "int32"
-      }
+      "type": "string"
     },
     "jobcode_id": {
       "type": "integer",

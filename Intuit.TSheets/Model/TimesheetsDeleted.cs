@@ -55,12 +55,14 @@ namespace Intuit.TSheets.Model
         /// <summary>
         /// Gets the date/time that represents the start time of this timesheet.
         /// </summary>
+        [JsonConverter(typeof(DateTimeFormatConverter))]
         [JsonProperty("start")]
         public DateTimeOffset? Start { get; internal set; }
 
         /// <summary>
         /// Gets the date/time that represents the end time of this timesheet.
         /// </summary>
+        [JsonConverter(typeof(DateTimeFormatConverter))]
         [JsonProperty("end")]
         public DateTimeOffset? End { get; internal set; }
 
