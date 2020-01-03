@@ -22,9 +22,9 @@ namespace Intuit.TSheets.Model.Enums
     using System.Runtime.Serialization;
 
     /// <summary>
-    /// The types of Custom Field values.
+    /// The values for filtering of Custom Fields.
     /// </summary>
-    public enum CustomFieldValueType
+    public enum CustomFieldValueFilterType
     {
         /// <summary>
         /// The ManagedList Custom Field value type.
@@ -36,6 +36,12 @@ namespace Intuit.TSheets.Model.Enums
         /// The Freeform Custom Field value type.
         /// </summary>
         [EnumMember(Value = "free-form")]
-        Freeform
+        Freeform,
+
+        /// <summary>
+        /// Both Custom Field value types.
+        /// </summary>
+        [EnumMember(Value = "both")]
+        Both
     }
 }

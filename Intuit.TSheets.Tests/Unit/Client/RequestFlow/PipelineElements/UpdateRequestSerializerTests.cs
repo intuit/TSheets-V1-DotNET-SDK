@@ -82,7 +82,25 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
 
             AssertSerializesAsExpected(entityToBeSerialized, expectedSerialization);
         }
-       
+
+        [TestMethod, TestCategory("Unit")]
+        public void UpdateRequestSerializer_DoesNotSerializePropertiesAttributedWithNoSerializeOnUpdate()
+        {
+            var entityToBeSerialized = new TestEntityNoSerializeOnUpdate
+            {
+                SomeProperty = 100
+            };
+
+            const string expectedSerialization = @"
+            {
+              ""data"": [
+                { }
+              ]
+            }";
+
+            AssertSerializesAsExpected(entityToBeSerialized, expectedSerialization);
+        }
+
         private void AssertSerializesAsExpected<T>(T entityToSerialize, string expectedSerialization)
         {
             UpdateContext<T> context = new UpdateContext<T>(EndpointName.Tests, new[] { entityToSerialize });

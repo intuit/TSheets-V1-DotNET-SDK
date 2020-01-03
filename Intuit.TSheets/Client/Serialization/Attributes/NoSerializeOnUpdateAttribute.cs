@@ -1,5 +1,5 @@
 ﻿// *******************************************************************************
-// <copyright file="CustomFieldValueTypeTests.cs" company="Intuit">
+// <copyright file="NoSerializeOnUpdateAttribute.cs" company="Intuit">
 // Copyright (c) 2019 Intuit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,24 +17,16 @@
 // </copyright>
 // *******************************************************************************
 
-namespace Intuit.TSheets.Tests.Unit.Model.Enums
+namespace Intuit.TSheets.Client.Serialization.Attributes
 {
     using System;
-    using Intuit.TSheets.Model.Enums;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    [TestClass]
-    public class CustomFieldValueTypeTests
+    /// <summary>
+    /// A custom attribute used to prevent selected entity properties
+    /// from being serialized prior to a POST call.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Property)]
+    internal sealed class NoSerializeOnUpdateAttribute : Attribute
     {
-        [TestMethod, TestCategory("Unit")]
-        public void CustomFieldValueType_StringValuesAreCorrect()
-        {
-            const int expectedCount = 2;
-            int actualCount = Enum.GetNames(typeof(CustomFieldValueType)).Length;
-            Assert.AreEqual(expectedCount, actualCount, $"Expected {expectedCount} enum values.");
-
-            Assert.AreEqual("managed-list", CustomFieldValueType.ManagedList.StringValue());
-            Assert.AreEqual("free-form", CustomFieldValueType.Freeform.StringValue());
-        }
     }
 }

@@ -36,6 +36,32 @@ namespace Intuit.TSheets.Model
     public class CustomField : IIdentifiable
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="CustomField"/> class.
+        /// </summary>
+        public CustomField()
+        {
+            // Currently only timesheet custom field types are supported for create operations.
+            AppliesTo = AppliesToType.Timesheet;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CustomField"/> class,
+        /// with minimal required parameters to create the new entity.
+        /// </summary>
+        /// <param name="name">
+        /// The name of the custom field item.
+        /// </param>
+        /// <param name="customFieldId">
+        /// The id for the custom field that this item belongs to.
+        /// </param>
+        public CustomField(string name, CustomFieldValueType type)
+            :this()
+        {
+            Name = name;
+            CustomFieldType = type;
+        }
+
+        /// <summary>
         /// Gets the id of the custom field.
         /// </summary>
         [NoSerializeOnCreate]
@@ -43,35 +69,41 @@ namespace Intuit.TSheets.Model
         public int Id { get; internal set; }
 
         /// <summary>
-        /// Gets the status of the custom field.
+        /// Gets or sets the status of the custom field.
         /// </summary>
         /// <remarks>
         /// If 'true', this custom field is active. If 'false', this custom field is archived.
         /// </remarks>
         [JsonProperty("active")]
-        public bool? Active { get; internal set; }
+        public bool? Active { get; set; }
 
         /// <summary>
-        /// Gets the name of the custom field.
+        /// Gets or sets the name of the custom field.
         /// </summary>
         [JsonProperty("name")]
-        public string Name { get; internal set; }
+        public string Name { get; set; }
 
         /// <summary>
-        /// Gets the abbreviated alias for the custom field.
+        /// Gets or sets the abbreviated alias for the custom field.
         /// </summary>
         /// <remarks>
         /// A shortened code or alias that consists
         /// only of letters and numbers.
         /// </remarks>
         [JsonProperty("short_code")]
-        public string ShortCode { get; internal set; }
+        public string ShortCode { get; set; }
 
         /// <summary>
-        /// Gets the value indicating whether or not the custom field is required on the timesheet.
+        /// Gets or sets whether this customfield should be shown on timesheets regardless of the jobcode chosen.
+        /// </summary>
+        [JsonProperty("show_to_all")]
+        public bool? ShowToAll { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value indicating whether or not the custom field is required on the timesheet.
         /// </summary>
         [JsonProperty("required")]
-        public bool? Required { get; internal set; }
+        public bool? Required { get; set; }
 
         /// <summary>
         /// Gets the type of object this custom field applies to.
@@ -79,23 +111,25 @@ namespace Intuit.TSheets.Model
         /// <remarks>
         /// See <see cref="AppliesToType"/> for allowable values.
         /// </remarks>
+        [NoSerializeOnUpdate]
         [JsonConverter(typeof(StringEnumConverter))]
         [JsonProperty("applies_to")]
         public AppliesToType? AppliesTo { get; internal set; }
 
         /// <summary>
-        /// Gets the type of custom field.
+        /// Gets or sets the type of custom field.
         /// </summary>
         /// <remarks>
-        /// See <see cref="CustomFieldValueType"/> for allowable values.  If 'FreeFor', then it should
+        /// See <see cref="CustomFieldValueType"/> for allowable values.  If 'FreeForm', then it should
         /// be displayed in a UI as a text box, where users can enter values for this custom field and
         /// they'll get added automatically to the custom field if they don't already exist. If
         /// 'ManagedList', then it should be displayed as a select-box and users can only choose an
         /// existing value.
         /// </remarks>
+        [NoSerializeOnUpdate]
         [JsonConverter(typeof(StringEnumConverter))]
         [JsonProperty("type")]
-        public CustomFieldValueType? CustomFieldType { get; internal set; }
+        public CustomFieldValueType? CustomFieldType { get; set; }
 
         /// <summary>
         /// Gets the preferred user interface type.
@@ -103,6 +137,7 @@ namespace Intuit.TSheets.Model
         /// <remarks>
         /// See <see cref="CustomFieldUiPreferenceType"/> for allowable values.
         /// </remarks>
+        [NoSerializeOnWrite]
         [JsonConverter(typeof(StringEnumConverter))]
         [JsonProperty("ui_preference")]
         public CustomFieldUiPreferenceType? UiPreference { get; internal set; }
@@ -114,6 +149,7 @@ namespace Intuit.TSheets.Model
         /// Expression is applied to any new items as they're added to the custom field.
         /// If they do not match the regex filter, they will not be added.
         /// </remarks> 
+        [NoSerializeOnWrite]
         [JsonProperty("regex_filter")]
         public string RegexFilter { get; internal set; }
 
@@ -132,10 +168,10 @@ namespace Intuit.TSheets.Model
         public DateTimeOffset? Created { get; internal set; }
 
         /// <summary>
-        /// Gets the ids of custom fields that should be displayed when this custom field is visible on a timesheet.
+        /// Gets or sets the ids of custom fields that should be displayed when this custom field is visible on a timesheet.
         /// </summary>
         [NoSerializeOnWrite]
         [JsonProperty("required_customfields")]
-        public IReadOnlyList<int> RequiredCustomFields { get; internal set; }
+        public IList<int> RequiredCustomFields { get; internal set; }
     }
 }

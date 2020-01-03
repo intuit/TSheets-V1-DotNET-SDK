@@ -142,6 +142,110 @@ namespace Intuit.TSheets.Api
         #region CustomFields
 
         /// <summary>
+        /// Create Custom Fields.
+        /// </summary>
+        /// <remarks>
+        /// Create a single <see cref="CustomField"/> object.
+        /// </remarks>
+        /// <param name="customField">
+        /// The <see cref="CustomField"/> object to be created.
+        /// </param>
+        /// <returns>
+        /// The <see cref="CustomField"/> object that was created, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        (CustomField, ResultsMeta) CreateCustomField(
+            CustomField customField);
+
+        /// <summary>
+        /// Create Custom Fields.
+        /// </summary>
+        /// <remarks>
+        /// Create one or more <see cref="CustomField"/> objects.
+        /// </remarks>
+        /// <param name="customFields">
+        /// The set of <see cref="CustomField"/> objects to be created.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomField"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        (IList<CustomField>, ResultsMeta resultsMeta) CreateCustomFields(
+            IEnumerable<CustomField> customFields);
+
+        /// <summary>
+        /// Asynchronously Create Custom Fields.
+        /// </summary>
+        /// <remarks>
+        /// Create a single <see cref="CustomField"/> object.
+        /// </remarks>
+        /// <param name="customField">
+        /// The <see cref="CustomField"/> object to be created.
+        /// </param>
+        /// <returns>
+        /// The <see cref="CustomField"/> object that was created, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(CustomField, ResultsMeta)> CreateCustomFieldAsync(
+            CustomField customField);
+
+        /// <summary>
+        /// Asynchronously Create Custom Fields, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Create a single <see cref="CustomField"/> object.
+        /// </remarks>
+        /// <param name="customField">
+        /// The <see cref="CustomField"/> object to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The <see cref="CustomField"/> object that was created, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(CustomField, ResultsMeta)> CreateCustomFieldAsync(
+            CustomField customField,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Asynchronously Create Custom Fields.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more <see cref="CustomField"/> objects.
+        /// </remarks>
+        /// <param name="customFields">
+        /// The set of <see cref="CustomField"/> objects to be created.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomField"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<CustomField>, ResultsMeta resultsMeta)> CreateCustomFieldsAsync(
+            IEnumerable<CustomField> customFields);
+
+        /// <summary>
+        /// Asynchronously Create Custom Fields, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add one or more <see cref="CustomField"/> objects.
+        /// </remarks>
+        /// <param name="customFields">
+        /// The set of <see cref="CustomField"/> objects to be created.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomField"/> objects that were created, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<CustomField>, ResultsMeta resultsMeta)> CreateCustomFieldsAsync(
+            IEnumerable<CustomField> customFields,
+            CancellationToken cancellationToken);
+
+        /// <summary>
         /// Retrieve Custom Fields.
         /// </summary>
         /// <remarks>
@@ -359,6 +463,110 @@ namespace Intuit.TSheets.Api
         Task<(IList<CustomField>, ResultsMeta)> GetCustomFieldsAsync(
             CustomFieldFilter filter,
             RequestOptions options,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Update Custom Fields.
+        /// </summary>
+        /// <remarks>
+        /// Update a single <see cref="CustomField"/> object.
+        /// </remarks>
+        /// <param name="customField">
+        /// The <see cref="CustomField"/> object to be updated.
+        /// </param>
+        /// <returns>
+        /// The <see cref="CustomField"/> object that was updated, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        (CustomField, ResultsMeta) UpdateCustomField(
+            CustomField customField);
+
+        /// <summary>
+        /// Update Custom Fields.
+        /// </summary>
+        /// <remarks>
+        /// Update one or more <see cref="CustomField"/> objects.
+        /// </remarks>
+        /// <param name="customFields">
+        /// The set of <see cref="CustomField"/> objects to be updated.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomField"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        (IList<CustomField>, ResultsMeta resultsMeta) UpdateCustomFields(
+            IEnumerable<CustomField> customFields);
+
+        /// <summary>
+        /// Asynchronously Update Custom Fields.
+        /// </summary>
+        /// <remarks>
+        /// Add a single <see cref="CustomField"/> object.
+        /// </remarks>
+        /// <param name="customField">
+        /// The <see cref="CustomField"/> object to be updated.
+        /// </param>
+        /// <returns>
+        /// The <see cref="CustomField"/> object that was updated, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(CustomField, ResultsMeta)> UpdateCustomFieldAsync(
+            CustomField customField);
+
+        /// <summary>
+        /// Asynchronously Update Custom Fields, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Add a single <see cref="CustomField"/> object.
+        /// </remarks>
+        /// <param name="customField">
+        /// The <see cref="CustomField"/> object to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The <see cref="CustomField"/> object that was updated, along with an output
+        /// instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(CustomField, ResultsMeta)> UpdateCustomFieldAsync(
+            CustomField customField,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Asynchronously Update Custom Fields.
+        /// </summary>
+        /// <remarks>
+        /// Update one or more <see cref="CustomField"/> objects.
+        /// </remarks>
+        /// <param name="customFields">
+        /// The set of <see cref="CustomField"/> objects to be updated.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomField"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<CustomField>, ResultsMeta resultsMeta)> UpdateCustomFieldsAsync(
+            IEnumerable<CustomField> customFields);
+
+        /// <summary>
+        /// Asynchronously Update Custom Fields, with support for cancellation.
+        /// </summary>
+        /// <remarks>
+        /// Update one or more <see cref="CustomField"/> objects.
+        /// </remarks>
+        /// <param name="customFields">
+        /// The set of <see cref="CustomField"/> objects to be updated.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// The set of the <see cref="CustomField"/> objects that were updated, along with
+        /// an output instance of the <see cref="ResultsMeta"/> class containing additional data.
+        /// </returns>
+        Task<(IList<CustomField>, ResultsMeta resultsMeta)> UpdateCustomFieldsAsync(
+            IEnumerable<CustomField> customFields,
             CancellationToken cancellationToken);
 
         #endregion
