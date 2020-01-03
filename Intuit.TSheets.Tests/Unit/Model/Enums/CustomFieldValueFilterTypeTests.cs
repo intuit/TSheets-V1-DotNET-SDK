@@ -1,5 +1,5 @@
 ﻿// *******************************************************************************
-// <copyright file="CustomFieldValueTypeTests.cs" company="Intuit">
+// <copyright file="CustomFieldValueFilterTypeTests.cs" company="Intuit">
 // Copyright (c) 2019 Intuit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,17 +24,18 @@ namespace Intuit.TSheets.Tests.Unit.Model.Enums
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class CustomFieldValueTypeTests
+    public class CustomFieldValueFilterTypeTests
     {
         [TestMethod, TestCategory("Unit")]
-        public void CustomFieldValueType_StringValuesAreCorrect()
+        public void CustomFieldValueFilterType_StringValuesAreCorrect()
         {
-            const int expectedCount = 2;
-            int actualCount = Enum.GetNames(typeof(CustomFieldValueType)).Length;
+            const int expectedCount = 3;
+            int actualCount = Enum.GetNames(typeof(CustomFieldValueFilterType)).Length;
             Assert.AreEqual(expectedCount, actualCount, $"Expected {expectedCount} enum values.");
 
-            Assert.AreEqual("managed-list", CustomFieldValueType.ManagedList.StringValue());
-            Assert.AreEqual("free-form", CustomFieldValueType.Freeform.StringValue());
+            Assert.AreEqual("managed-list", CustomFieldValueFilterType.ManagedList.StringValue());
+            Assert.AreEqual("free-form", CustomFieldValueFilterType.Freeform.StringValue());
+            Assert.AreEqual("both", CustomFieldValueFilterType.Both.StringValue());
         }
     }
 }

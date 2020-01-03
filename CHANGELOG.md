@@ -1,3 +1,10 @@
+# v1.3.0 (Fri. Jan 3rd, 2020)
+
+#### Feature
+
+ - Added Create and Update operations for Custom Field objects.
+ - Updated User model to include new DisplayName & Pronoun properties.
+
 # v1.2.1 (Mon. Nov 11th, 2019)
 
 #### Bugfix

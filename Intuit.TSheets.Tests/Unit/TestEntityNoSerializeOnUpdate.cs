@@ -1,5 +1,5 @@
 ﻿// *******************************************************************************
-// <copyright file="CustomFieldValueType.cs" company="Intuit">
+// <copyright file="TestEntityNoSerializeOnUpdate.cs" company="Intuit">
 // Copyright (c) 2019 Intuit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,25 +17,18 @@
 // </copyright>
 // *******************************************************************************
 
-namespace Intuit.TSheets.Model.Enums
+namespace Intuit.TSheets.Tests.Unit
 {
-    using System.Runtime.Serialization;
+    using Intuit.TSheets.Client.Serialization.Attributes;
+    using Newtonsoft.Json;
 
-    /// <summary>
-    /// The types of Custom Field values.
-    /// </summary>
-    public enum CustomFieldValueType
+    [DataEntity]
+    [JsonObject]
+    public class TestEntityNoSerializeOnUpdate
     {
-        /// <summary>
-        /// The ManagedList Custom Field value type.
-        /// </summary>
-        [EnumMember(Value = "managed-list")]
-        ManagedList,
-
-        /// <summary>
-        /// The Freeform Custom Field value type.
-        /// </summary>
-        [EnumMember(Value = "free-form")]
-        Freeform
+        [NoSerializeOnUpdate]
+        [JsonProperty("some_property")]
+        public int SomeProperty { get; internal set; }
     }
+
 }

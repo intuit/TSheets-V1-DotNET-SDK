@@ -7,6 +7,8 @@
     "id",
     "first_name",
     "last_name",
+    "display_name",
+    "pronouns",
     "group_id",
     "active",
     "employee_number",
@@ -46,6 +48,12 @@
       "type": "string"
     },
     "last_name": {
+      "type": "string"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "pronouns": {
       "type": "string"
     },
     "group_id": {

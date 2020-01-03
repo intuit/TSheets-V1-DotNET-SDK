@@ -61,7 +61,7 @@ namespace Intuit.TSheets.Model.Filters
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         [JsonProperty("value_type")]
-        public CustomFieldValueType? ValueType { get; set; }
+        public CustomFieldValueFilterType? ValueType { get; set; }
 
         /// <summary>
         /// Gets or sets the filter by modification before date/time.

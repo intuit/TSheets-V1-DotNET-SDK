@@ -75,6 +75,10 @@ namespace Intuit.TSheets.Examples
             CreateMultipleJobcodes();
             CreateSingleJobcode();
 
+            // Create some new custom fields.
+            CreateMultipleCustomFields();
+            CreateSingleCustomField();
+
             // Clock one of the new users into one of the new jobcodes.
             (User user, Timesheet timesheet) = ClockAUserIntoATimesheet();
             SeeIfUserIsOnTheClock(user);
@@ -138,7 +142,7 @@ namespace Intuit.TSheets.Examples
                 users.ToList().ForEach(u => u.Active = false);
                 this.apiClient.UpdateUsers(users);
 
-                // Get the list of group ids to which these users belonged, from supplemental data.  Archive them as well.
+                // Get the list of group ids to which these users belonged, from supplemental data. Archive them as well.
                 IReadOnlyList<Group> groups = resultsMeta.SupplementalData.GetAll<Group>();
 
                 if (groups.Count > 0)
@@ -148,7 +152,19 @@ namespace Intuit.TSheets.Examples
                 }
             }
 
-            // Do the same for jobcodes.  Discard ResultsMeta since we won't be using it.
+            // Do the same for custom fields. Discard ResultsMeta since we won't be using it.
+            (IList<CustomField> customFields, _) = this.apiClient.GetCustomFields(
+                new RequestOptions { IncludeSupplementalData = false });
+
+            List<CustomField> testCustomFields = customFields.Where(cf => cf.Name.StartsWith("TestCF")).ToList();
+            if (testCustomFields.Count > 0)
+            {
+                testCustomFields.ForEach(cf => cf.Active = false);
+
+                this.apiClient.UpdateCustomFields(testCustomFields);
+            }
+
+            // And also for jobcodes.
             (IList<Jobcode> jobcodes, _) = this.apiClient.GetJobcodes(
                 new JobcodeFilter { Name = "TestJobcode*" },
                 new RequestOptions { IncludeSupplementalData = false });
@@ -287,6 +303,59 @@ namespace Intuit.TSheets.Examples
             };
 
             this.apiClient.CreateLocation(location);
+        }
+
+        /// <summary>
+        /// Create multiple custom fields.
+        /// </summary>
+        private void CreateMultipleCustomFields()
+        {
+            // names of custom fields and short codes in TSheets cannot be repeated, so we need
+            // to generate unique values for each invocation of the app.
+            long runId = DateTimeOffset.Now.ToUnixTimeSeconds();
+
+            var customFields = new List<CustomField>
+            {
+                new CustomField($"TestCF_A{runId}", CustomFieldValueType.Freeform)
+                {
+                    Active = true,
+                    // short codes must be limited to 8 characters
+                    ShortCode = $"TA{runId % 1000000}",
+                    ShowToAll = true,
+                    Required = false
+                },
+                new CustomField($"TestCF_B{runId}", CustomFieldValueType.ManagedList)
+                {
+                    Active = true,
+                    ShortCode = $"TB{runId % 1000000}",
+                    ShowToAll = true,
+                    Required = false
+                }
+            };
+
+            this.apiClient.CreateCustomFields(customFields);
+        }
+
+        /// <summary>
+        /// Create a single custom field.
+        /// </summary>
+        private void CreateSingleCustomField()
+        {
+            // names of custom fields and short codes in TSheets cannot be repeated, so we need
+            // to generate unique values for each invocation of the app.
+            long runId = DateTimeOffset.Now.ToUnixTimeSeconds();
+
+            var customField = new CustomField($"TestCF_C{runId}", CustomFieldValueType.Freeform)
+            {
+                Active = true,
+
+                // short codes must be limited to 8 characters
+                ShortCode = $"TC{runId % 1000000}",
+                ShowToAll = true,
+                Required = false
+            };
+
+            this.apiClient.CreateCustomField(customField);
         }
 
         /// <summary>

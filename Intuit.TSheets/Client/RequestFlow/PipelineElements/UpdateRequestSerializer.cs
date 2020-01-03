@@ -41,7 +41,7 @@ namespace Intuit.TSheets.Client.RequestFlow.PipelineElements
         /// be serialized on an update operation (i.e. CreatedDate, etc.)
         /// </summary>
         private static JsonConverter SerializationConverter =>
-            new SerializationConverter(typeof(NoSerializeOnWriteAttribute));
+            new SerializationConverter(typeof(NoSerializeOnUpdateAttribute), typeof(NoSerializeOnWriteAttribute));
 
         /// <summary>
         /// Reads from the context object the set of entities to be updated, and writes it back to 

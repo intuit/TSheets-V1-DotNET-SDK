@@ -2,7 +2,6 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "JobcodeFilter",
   "type": "object",
-  "description": "Filter for narrowing down the results of a call to retrieve Jobcode entities.",
   "additionalProperties": false,
   "required": [
     "ids",
@@ -15,48 +14,33 @@
   ],
   "properties": {
     "ids": {
-      "type": "string",
-      "description": "Gets or sets the jobcode ids you'd like to filter on."
+      "type": "string"
     },
     "parent_ids": {
-      "type": "string",
-      "description": "Gets or sets the jobcode parent ids you'd like to filter on."
+      "type": "string"
     },
     "name": {
-      "type": "string",
-      "description": "Gets or sets the wildcard-able filter on the jobcode name."
+      "type": "string"
     },
     "type": {
-      "description": "Gets or sets the value for filtering by jobcode type, e.g. 'regular', 'PTO', etc.",
-      "oneOf": [
-        {
-          "$ref": "#/definitions/JobcodeType"
-        }
-      ]
+      "$ref": "#/definitions/JobcodeType"
     },
     "active": {
-      "description": "Gets or sets the value for filtering by active or inactive state, or both.",
-      "oneOf": [
-        {
-          "$ref": "#/definitions/TristateChoice"
-        }
-      ]
+      "$ref": "#/definitions/TristateChoice"
     },
     "modified_before": {
       "type": "string",
-      "description": "Gets or sets the filter for returning only those jobcodes modified before this date/time.",
       "format": "date-time"
     },
     "modified_since": {
       "type": "string",
-      "description": "Gets or sets the filter for returning only those jobcodes modified after this date/time.",
       "format": "date-time"
     }
   },
   "definitions": {
     "JobcodeType": {
       "type": "string",
-      "description": "The supported jobcode types.",
+      "description": "",
       "x-enumNames": [
         "Regular",
         "Pto",
@@ -76,7 +60,7 @@
     },
     "TristateChoice": {
       "type": "string",
-      "description": "A value for filtering results on 'yes', 'no', or 'both'.",
+      "description": "",
       "x-enumNames": [
         "Yes",
         "No",
