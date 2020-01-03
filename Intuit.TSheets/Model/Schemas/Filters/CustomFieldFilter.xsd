@@ -22,7 +22,7 @@
       "$ref": "#/definitions/AppliesToType"
     },
     "value_type": {
-      "$ref": "#/definitions/CustomFieldValueType"
+      "$ref": "#/definitions/CustomFieldValueFilterType"
     },
     "modified_before": {
       "type": "string",
@@ -64,7 +64,7 @@
         "all"
       ]
     },
-    "CustomFieldValueType": {
+    "CustomFieldValueFilterType": {
       "type": "string",
       "description": "",
       "x-enumNames": [

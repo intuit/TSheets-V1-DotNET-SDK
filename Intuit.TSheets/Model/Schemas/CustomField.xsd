@@ -8,6 +8,7 @@
     "active",
     "name",
     "short_code",
+    "show_to_all",
     "required",
     "applies_to",
     "type",
@@ -30,6 +31,9 @@
     },
     "short_code": {
       "type": "string"
+    },
+    "show_to_all": {
+      "type": "boolean"
     },
     "required": {
       "type": "boolean"
@@ -84,13 +88,11 @@
       "description": "",
       "x-enumNames": [
         "ManagedList",
-        "Freeform",
-        "Both"
+        "Freeform"
       ],
       "enum": [
         "managed-list",
-        "free-form",
-        "both"
+        "free-form"
       ]
     },
     "CustomFieldUiPreferenceType": {
