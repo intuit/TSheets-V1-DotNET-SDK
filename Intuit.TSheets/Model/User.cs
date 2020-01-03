@@ -75,6 +75,18 @@ namespace Intuit.TSheets.Model
         public string LastName { get; set; }
 
         /// <summary>
+        /// Gets or sets the display name of user.
+        /// </summary>
+        [JsonProperty("display_name")]
+        public string DisplayName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the pronouns name of user.
+        /// </summary>
+        [JsonProperty("pronouns")]
+        public string Pronouns { get; set; }
+
+        /// <summary>
         /// Gets or sets the id of the group this user belongs to.
         /// </summary>
         [JsonProperty("group_id")]
