@@ -251,5 +251,13 @@ var retrySettings = new RetrySettings(5, 2.0f, 1.5f, typeof(ServiceUnavailableEx
 return new DataService(authToken, retrySettings, logger);
 ```
 
+## Known Issues
+
+**"Method Not Found" Error**
+If you encounter an error similar to the following, try adding a NuGet package dependency to System.ValueTuple.  While this shouldn't happen in C# 7.0 (.NET Framework >=4.7), both the error has been reported, and the workaround confirmed.
+```cs
+Method not found: 'System.ValueTuple`2<System.Collections.Generic.IList`1<Intuit.TSheets.Model.Timesheet>,Intuit.TSheets.Api.ResultsMeta> Intuit.TSheets.Api.DataService.GetTimesheets(Intuit.TSheets.Model.Filters.TimesheetFilter, Intuit.TSheets.Api.RequestOptions
+```
+
 ## More
 Is there anything in the SDK you'd like to see better documented?  Please open an issue in this GitHub repo.
