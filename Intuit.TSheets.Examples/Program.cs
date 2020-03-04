@@ -35,7 +35,7 @@ namespace Intuit.TSheets.Examples
         // 4) Debug the code, stepping into each of the demonstration methods. Note the log output in the console window.
         // 5) Try changing the logging level in the ConfigureServices() method to "Debug" or "Trace" to see increased log verbosity.
 
-        private const string AuthToken = "S.7__1f8a5c7432a83d997f072403a35e91293ad345a3";
+        private const string AuthToken = "<YOUR_AUTH_TOKEN>";
 
         /// <summary>
         /// Entry point for the TSheets SDK Example App.
