@@ -9,14 +9,14 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Intuit</Authors>
     <PackageProjectUrl>https://github.com/intuit/TSheets-V1-DotNET-SDK</PackageProjectUrl>
-    <AssemblyVersion>1.3.0.0</AssemblyVersion>
-    <FileVersion>1.3.0.0</FileVersion>
+    <AssemblyVersion>1.3.1.0</AssemblyVersion>
+    <FileVersion>1.3.1.0</FileVersion>
     <RepositoryUrl>https://github.com/intuit/TSheets-V1-DotNET-SDK</RepositoryUrl>
     <PackageIcon>Circle_T_web128px.png</PackageIcon>
     <RepositoryType>Git</RepositoryType>
-    <PackageReleaseNotes>New Feature: Added Create and Update support for Custom Field objects.</PackageReleaseNotes>
+    <PackageReleaseNotes>Bugfix: addressing unhandled exception on GetDateTimeOffsetValue (https://github.com/intuit/TSheets-V1-DotNET-SDK/issues/17)</PackageReleaseNotes>
     <PackageTags>tsheets, sdk, quickbooks, time, tracking, api-client, time-tracking, payroll-management</PackageTags>
-    <Version>1.3.0</Version>
+    <Version>1.3.1</Version>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
