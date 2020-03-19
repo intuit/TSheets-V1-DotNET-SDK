@@ -70,6 +70,14 @@ namespace Intuit.TSheets.Tests.Unit.Client.Serialization.Converters
 
             Assert.AreEqual(DateTimeOffset.MinValue, testEntity.Created);
         }
+
+        [TestMethod, TestCategory("Unit")]
+        public void DateFormatConverter_DeserializesToDateTimeOffsetMinValueWhenEmptyString()
+        {
+            var testEntity = JsonConvert.DeserializeObject<DateFormatConverterTestEntity>("{\"Created\":\"\"}");
+
+            Assert.AreEqual(DateTimeOffset.MinValue, testEntity.Created);
+        }
     }
 
     public class DateFormatConverterTestEntity

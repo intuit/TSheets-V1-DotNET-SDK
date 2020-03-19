@@ -75,7 +75,7 @@ namespace Intuit.TSheets.Client.Serialization.Converters
 
         private static DateTimeOffset GetDateTimeOffsetValue(string stringValue, string format)
         {
-            return stringValue.Equals(UninitializedDateString)
+            return (stringValue.Equals(string.Empty) || stringValue.Equals(UninitializedDateString))
                 ? DateTimeOffset.MinValue
                 : DateTimeOffset.ParseExact(stringValue, format, CultureInfo.InvariantCulture);
         }

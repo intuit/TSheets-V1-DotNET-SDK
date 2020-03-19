@@ -1,3 +1,9 @@
+# v1.3.1 (Thurs. Mar. 19th, 2020)
+
+#### Bugfix
+
+ - Fixing issue #17: Unhandled exception on GetDateTimeOffsetValue
+
 # v1.3.0 (Fri. Jan 3rd, 2020)
 
 #### Feature
