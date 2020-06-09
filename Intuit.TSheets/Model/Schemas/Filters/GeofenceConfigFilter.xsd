@@ -48,12 +48,14 @@
       "x-enumNames": [
         "Global",
         "Clients",
-        "Jobcodes"
+        "Jobcodes",
+        "Locations"
       ],
       "enum": [
         "global",
         "clients",
-        "job_codes"
+        "job_codes",
+        "locations"
       ]
     },
     "TristateChoice": {

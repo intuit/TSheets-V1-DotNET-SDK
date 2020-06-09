@@ -29,13 +29,14 @@ namespace Intuit.TSheets.Tests.Unit.Model.Enums
         [TestMethod, TestCategory("Unit")]
         public void GeofenceConfigType_StringValuesAreCorrect()
         {
-            const int expectedCount = 3;
+            const int expectedCount = 4;
             int actualCount = Enum.GetNames(typeof(GeofenceConfigType)).Length;
             Assert.AreEqual(expectedCount, actualCount, $"Expected {expectedCount} enum values.");
 
             Assert.AreEqual("global", GeofenceConfigType.Global.StringValue());
             Assert.AreEqual("clients", GeofenceConfigType.Clients.StringValue());
             Assert.AreEqual("job_codes", GeofenceConfigType.Jobcodes.StringValue());
+            Assert.AreEqual("locations", GeofenceConfigType.Locations.StringValue());
         }
     }
 }
