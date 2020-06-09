@@ -42,6 +42,12 @@ namespace Intuit.TSheets.Model.Enums
         /// A Geofence configuration type related to jobcodes.
         /// </summary>
         [EnumMember(Value = "job_codes")]
-        Jobcodes
+        Jobcodes,
+
+        /// <summary>
+        /// A Geofence configuration type related to locations.
+        /// </summary>
+        [EnumMember(Value = "locations")]
+        Locations
     }
 }

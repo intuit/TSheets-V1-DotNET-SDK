@@ -1,3 +1,9 @@
+# v1.3.2 (Tues. Jun. 9th, 2020)
+
+#### Bugfix
+
+ - Adding missing GeofenceConfigyType enumeration value for 'locations'
+
 # v1.3.1 (Thurs. Mar. 19th, 2020)
 
 #### Bugfix
