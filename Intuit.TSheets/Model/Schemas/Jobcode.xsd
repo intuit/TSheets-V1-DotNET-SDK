@@ -19,7 +19,8 @@
     "last_modified",
     "created",
     "locations",
-    "project_id"
+    "project_id",
+    "connect_with_quickbooks"
   ],
   "properties": {
     "id": {
@@ -90,6 +91,9 @@
     "project_id": {
       "type": "integer",
       "format": "int32"
+    },
+    "connect_with_quickbooks": {
+      "type": "boolean"
     }
   },
   "definitions": {

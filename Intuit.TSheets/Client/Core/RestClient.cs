@@ -39,7 +39,7 @@ namespace Intuit.TSheets.Client.Core
     {
         private const string ProductName = "TSheets-V1-DotNET-SDK";
         private const string ProductVersion = "2.0";
-        
+
         private readonly HttpClient httpClient;
         private readonly DataServiceContext context;
         private readonly ILogger logger;
@@ -123,7 +123,7 @@ namespace Intuit.TSheets.Client.Core
 
             LogMethodCall(MethodType.Post, requestUri, logContext, requestData);
 
-            HttpContent content = new StringContent(requestData, Encoding.UTF8);
+            HttpContent content = new StringContent(requestData, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await this.httpClient.PostAsync(requestUri, content, cancellationToken).ConfigureAwait(false);
 
             return ProcessResponse(response, logContext, MethodType.Post);
@@ -170,7 +170,7 @@ namespace Intuit.TSheets.Client.Core
 
             LogMethodCall(MethodType.Put, requestUri, logContext, requestData);
 
-            HttpContent content = new StringContent(requestData, Encoding.UTF8);
+            HttpContent content = new StringContent(requestData, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await this.httpClient.PutAsync(requestUri, content, cancellationToken).ConfigureAwait(false);
 
             return ProcessResponse(response, logContext, MethodType.Put);
