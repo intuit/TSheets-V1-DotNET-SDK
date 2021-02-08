@@ -1,3 +1,9 @@
+# v1.4.0 (Wed. Jan 13, 2021)
+
+#### Feature
+
+- Added `connectWithQuickBooks` property to `Jobcode` to support the two-way sync feature.
+
 # v1.3.2 (Tues. Jun. 9th, 2020)
 
 #### Bugfix

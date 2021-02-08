@@ -75,6 +75,24 @@ namespace Intuit.TSheets.Examples
             CreateMultipleJobcodes();
             CreateSingleJobcode();
 
+            // Create some new jobcodes with two-way sync enabled.
+            // Two-way sync is a beta feature that will sync changes immediately to QBO.
+            if (this.IsTwoWaySyncEnabled())
+            {
+                CreateSharedJobcode();
+                CreateNotSharedJobcode();
+            }
+            else
+            {
+                try
+                {
+                    CreateSharedJobcode();
+                }
+                catch (MultiStatusException<Jobcode> e) {
+                    this.logger.LogInformation("Caught expected exception for setting connect_with_quickbooks when two-way sync is not enabled.", e);
+                }
+            }
+
             // Create some new custom fields.
             CreateMultipleCustomFields();
             CreateSingleCustomField();
@@ -87,7 +105,7 @@ namespace Intuit.TSheets.Examples
 
             // Retrieve some of the data we created.
             GetAsyncExample();
-            
+
             // Retrieve users, but this time with a cancellation token.
             // An OperationCanceledException will be thrown if the
             // operation takes longer than 200ms to complete.
@@ -107,6 +125,8 @@ namespace Intuit.TSheets.Examples
 
             // Cleanup everything that was added.
             Cleanup();
+
+            this.logger.LogInformation("Complete");
         }
 
         /// <summary>
@@ -138,7 +158,7 @@ namespace Intuit.TSheets.Examples
                 {
                     this.apiClient.DeleteTimesheets(timesheets);
                 }
-                
+
                 users.ToList().ForEach(u => u.Active = false);
                 this.apiClient.UpdateUsers(users);
 
@@ -337,6 +357,32 @@ namespace Intuit.TSheets.Examples
         }
 
         /// <summary>
+        /// Create a jobcode that is shared with QuickBooks.
+        /// </summary>
+        private void CreateSharedJobcode()
+        {
+            this.apiClient.CreateJobcode(
+                new Jobcode
+                {
+                    Name = "TestJobcode4",
+                    ConnectWithQuickBooks = true
+                });
+        }
+
+        /// <summary>
+        /// Create a jobcode that is not shared with QuickBooks.
+        /// </summary>
+        private void CreateNotSharedJobcode()
+        {
+            this.apiClient.CreateJobcode(
+                new Jobcode
+                {
+                    Name = "TestJobcode5",
+                    ConnectWithQuickBooks = false
+                });
+        }
+
+        /// <summary>
         /// Create a single custom field.
         /// </summary>
         private void CreateSingleCustomField()
@@ -389,7 +435,7 @@ namespace Intuit.TSheets.Examples
         /// Check to see if a particular user is currently clocked-in to a timesheet.
         /// </summary>
         /// <remarks>
-        /// See also https://tsheetsteam.github.io/api_docs/#recipes-for-some-common-workflows 
+        /// See also https://tsheetsteam.github.io/api_docs/#recipes-for-some-common-workflows
         /// </remarks>
         /// <param name="user">The user to check.</param>
         private void SeeIfUserIsOnTheClock(User user)
@@ -489,6 +535,25 @@ namespace Intuit.TSheets.Examples
                 "Retrieved {UserCount} user(s) and {JobcodeCount} jobcode(s).",
                 users.Count(),
                 jobcodes.Count());
+        }
+
+        /// <summary>
+        /// Determine if two-way sync is enabled.
+        /// Two-way sync is a beta feature that will sync changes immediately to QBO.
+        /// </summary>
+        private bool IsTwoWaySyncEnabled()
+        {
+            EffectiveSettings effectiveSettings = this.apiClient.GetEffectiveSettings();
+            var quickBooksSettings = effectiveSettings.Sections.FirstOrDefault(a => a.Key.Equals("quickbooks"));
+            if (quickBooksSettings.Key != null)
+            {
+                var twoWaySyncEnabled = quickBooksSettings.Value.Settings.FirstOrDefault(a => a.Key.Equals("two_way_sync_enabled_for_user"));
+                if (twoWaySyncEnabled.Value != null)
+                {
+                    return twoWaySyncEnabled.Value.ToString() == "1";
+                }
+            }
+            return false;
         }
     }
 }

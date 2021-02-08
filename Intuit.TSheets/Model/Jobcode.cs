@@ -193,5 +193,15 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [JsonProperty("project_id")]
         public int? ProjectId { get; internal set; }
+
+
+        /// <summary>
+        /// <remarks>
+        /// This is a beta feature. Please leave this value null until it is generally available.
+        /// </remarks>
+        /// Gets or sets the value indicating whether or not this jobcode should be shared with QuickBooks.
+        /// </summary>
+        [JsonProperty("connect_with_quickbooks")]
+        public bool? ConnectWithQuickBooks { get; set; }
     }
 }
