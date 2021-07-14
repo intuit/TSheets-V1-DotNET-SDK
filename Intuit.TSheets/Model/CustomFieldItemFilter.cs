@@ -41,19 +41,19 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnCreate] 
         [JsonProperty("id")]
-        public int Id { get; internal set; }
+        public long Id { get; internal set; }
 
         /// <summary>
         /// Gets or sets the id for the custom field that this filter belongs to.
         /// </summary>
         [JsonProperty("customfield_id")]
-        public int? CustomFieldId { get; set; }
+        public long? CustomFieldId { get; set; }
 
         /// <summary>
         /// Gets or sets the id for the custom field item that this filter belongs to.
         /// </summary>
         [JsonProperty("customfielditem_id")]
-        public int? CustomFieldItemId { get; set; }
+        public long? CustomFieldItemId { get; set; }
 
         /// <summary>
         /// Gets or sets the entity type this filter relates to.
@@ -76,7 +76,7 @@ namespace Intuit.TSheets.Model
         /// jobcode this filter referred to. If requested, the supplemental data will also contain this jobcode.
         /// </remarks>
         [JsonProperty("applies_to_id")]
-        public int? AppliesToId { get; set; }
+        public long? AppliesToId { get; set; }
 
         /// <summary>
         /// Gets or sets the status of the item filter object.

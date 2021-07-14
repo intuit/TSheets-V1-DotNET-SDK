@@ -31,7 +31,7 @@ namespace Intuit.TSheets.Model.Filters
         /// Initializes a new instance of the <see cref="FileDownloadFilter"/> class.
         /// </summary>
         /// <param name="id">The id of the file to download.</param>
-        internal FileDownloadFilter(int id)
+        internal FileDownloadFilter(long id)
         {
             Id = id;
         }
@@ -40,6 +40,6 @@ namespace Intuit.TSheets.Model.Filters
         /// Gets or sets the id of the file to download.
         /// </summary>
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public long Id { get; set; }
     }
 }

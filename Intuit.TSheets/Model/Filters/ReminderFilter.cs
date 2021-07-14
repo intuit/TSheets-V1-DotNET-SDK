@@ -43,7 +43,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("user_ids")]
-        public IEnumerable<int> UserIds { get; set; }
+        public IEnumerable<long> UserIds { get; set; }
 
         /// <summary>
         /// Gets or sets the reminder types you'd like to filter on.

@@ -39,7 +39,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("user_ids")]
-        public IEnumerable<int> UserIds { get; set; }
+        public IEnumerable<long> UserIds { get; set; }
 
         /// <summary>
         /// Gets or sets the group ids for which users belonging Only totals for users from these groups will be included.
@@ -47,7 +47,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("group_ids")]
-        public IEnumerable<int> GroupIds { get; set; }
+        public IEnumerable<long> GroupIds { get; set; }
 
         /// <summary>
         /// Gets or sets the value indicating filtering by users who are on or off the clock, or both.

@@ -1,3 +1,8 @@
+# v1.4.1 (Wed. Jul 14th, 2021)
+
+#### THIS IS A BREAKING CHANGE RELEASE
+ - Addressing issue #22: All entity and entity reference ID's are now data type _long_.
+
 # v1.4.0 (Wed. Jan 13, 2021)
 
 #### Feature

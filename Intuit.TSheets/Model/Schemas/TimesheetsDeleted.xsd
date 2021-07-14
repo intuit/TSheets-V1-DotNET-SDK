@@ -21,15 +21,15 @@
   "properties": {
     "id": {
       "type": "integer",
-      "format": "int32"
+      "format": "int64"
     },
     "user_id": {
       "type": "integer",
-      "format": "int32"
+      "format": "int64"
     },
     "jobcode_id": {
       "type": "integer",
-      "format": "int32"
+      "format": "int64"
     },
     "start": {
       "type": "string",

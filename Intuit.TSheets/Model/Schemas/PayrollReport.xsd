@@ -33,11 +33,11 @@
       "properties": {
         "user_id": {
           "type": "integer",
-          "format": "int32"
+          "format": "int64"
         },
         "client_id": {
           "type": "integer",
-          "format": "int32"
+          "format": "int64"
         },
         "start_date": {
           "type": "string",

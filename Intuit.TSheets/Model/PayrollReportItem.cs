@@ -34,13 +34,13 @@ namespace Intuit.TSheets.Model
         /// Gets the user id to which this payroll data pertains.
         /// </summary>
         [JsonProperty("user_id")]
-        public int UserId { get; internal set; }
+        public long UserId { get; internal set; }
 
         /// <summary>
         /// Gets the client id to which this payroll data pertains.
         /// </summary>
         [JsonProperty("client_id")]
-        public int ClientId { get; internal set; }
+        public long ClientId { get; internal set; }
 
         /// <summary> 
         /// Gets start of the reporting time frame.

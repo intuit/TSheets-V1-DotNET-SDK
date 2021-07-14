@@ -39,7 +39,7 @@ namespace Intuit.TSheets.Model
         /// Only time for these users will be included.
         /// </remarks>
         [JsonProperty("user_ids")]
-        public IReadOnlyList<int> UserIds { get; internal set; }
+        public IReadOnlyList<long> UserIds { get; internal set; }
 
         /// <summary>
         /// Gets filter for the ids for <see cref="Group"/> objects to be included in the report.
@@ -48,7 +48,7 @@ namespace Intuit.TSheets.Model
         /// Only time for these groups will be included.
         /// </remarks>
         [JsonProperty("group_ids")]
-        public IReadOnlyList<int> GroupIds { get; internal set; }
+        public IReadOnlyList<long> GroupIds { get; internal set; }
 
         /// <summary>
         /// Gets filter for the start date for the report.
@@ -77,7 +77,7 @@ namespace Intuit.TSheets.Model
         /// Only time for these jobcodes will be included.
         /// </remarks>
         [JsonProperty("jobcode_ids")]
-        public IReadOnlyList<int> JobcodeIds { get; internal set; }
+        public IReadOnlyList<long> JobcodeIds { get; internal set; }
 
         /// <summary>
         /// Gets filters for the <see cref="CustomFieldItems"/> objects to be included in the report.

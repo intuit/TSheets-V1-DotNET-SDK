@@ -30,7 +30,7 @@ namespace Intuit.TSheets.Tests.Unit.Api
     {
         private static readonly TimesheetsDeletedFilter DummyFilter = new TimesheetsDeletedFilter
         {
-            Ids = new[] { 1, 2 }
+            Ids = new long[] { 1, 2 }
         };
 
         #region Get Method Tests

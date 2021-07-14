@@ -32,24 +32,24 @@ namespace Intuit.TSheets.Model
         /// Gets User Report Totals
         /// </summary>
         [JsonProperty("users")]
-        public IReadOnlyDictionary<int, float> Users { get; internal set; }
+        public IReadOnlyDictionary<long, float> Users { get; internal set; }
 
         /// <summary>
         /// Gets Group Report Totals
         /// </summary>
         [JsonProperty("groups")]
-        public IReadOnlyDictionary<int, float> Groups { get; internal set; }
+        public IReadOnlyDictionary<long, float> Groups { get; internal set; }
 
         /// <summary>
         /// Gets Jobcode Report Totals
         /// </summary>
         [JsonProperty("jobcodes")]
-        public IReadOnlyDictionary<int, float> Jobcodes { get; internal set; }
+        public IReadOnlyDictionary<long, float> Jobcodes { get; internal set; }
 
         /// <summary>
         /// Gets Custom Field Report Totals
         /// </summary>
         [JsonProperty("customfields")]
-        public IReadOnlyDictionary<int, IReadOnlyDictionary<int, float>> CustomFields { get; internal set; }
+        public IReadOnlyDictionary<long, IReadOnlyDictionary<long, float>> CustomFields { get; internal set; }
     }
 }

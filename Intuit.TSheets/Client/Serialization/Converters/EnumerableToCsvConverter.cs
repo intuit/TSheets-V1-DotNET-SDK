@@ -103,6 +103,10 @@ namespace Intuit.TSheets.Client.Serialization.Converters
                     csv = string.Join(",", intsValue);
                     break;
 
+                case IEnumerable<long> longsValue:
+                    csv = string.Join(",", longsValue);
+                    break;
+
                 default:
                     throw new InvalidOperationException("Unexpected type.");
             }

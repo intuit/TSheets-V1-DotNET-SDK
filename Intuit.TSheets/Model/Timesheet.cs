@@ -49,7 +49,7 @@ namespace Intuit.TSheets.Model
         /// <param name="userId">User id for the user that this timesheet belongs to.</param>
         /// <param name="jobcodeId">Jobcode id for the jobcode that this timesheet is recorded against.</param>
         /// <param name="start">Date/time that represents the start time of this timesheet.</param>
-        public Timesheet(int userId, int jobcodeId, DateTimeOffset start)
+        public Timesheet(long userId, long jobcodeId, DateTimeOffset start)
         {
             UserId = userId;
             JobcodeId = jobcodeId;
@@ -68,7 +68,7 @@ namespace Intuit.TSheets.Model
         /// <param name="jobcodeId">Jobcode id for the jobcode that this timesheet is recorded against.</param>
         /// <param name="start">Date/time that represents the start time of this timesheet.</param>
         /// <param name="end">Date/time that represents the end time of this timesheet.</param>
-        public Timesheet(int userId, int jobcodeId, DateTimeOffset start, DateTimeOffset end)
+        public Timesheet(long userId, long jobcodeId, DateTimeOffset start, DateTimeOffset end)
         {
             UserId = userId;
             JobcodeId = jobcodeId;
@@ -85,7 +85,7 @@ namespace Intuit.TSheets.Model
         /// <param name="jobcodeId">Id for the jobcode that this timesheet is recorded against.</param>
         /// <param name="duration">The total amount of time recorded for this timesheet.</param>
         /// <param name="date">The date on which time is to be recorded for this timesheet.</param>
-        public Timesheet(int userId, int jobcodeId, TimeSpan duration, DateTimeOffset date)
+        public Timesheet(long userId, long jobcodeId, TimeSpan duration, DateTimeOffset date)
         {
             UserId = userId;
             JobcodeId = jobcodeId;
@@ -99,19 +99,19 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnCreate]
         [JsonProperty("id")]
-        public int Id { get; internal set; }
+        public long Id { get; internal set; }
 
         /// <summary>
         /// Gets or sets the id for the user that this timesheet belongs to.
         /// </summary>
         [JsonProperty("user_id")]
-        public int? UserId { get; set; }
+        public long? UserId { get; set; }
 
         /// <summary>
         /// Gets or sets the id for the jobcode that this timesheet is recorded against.
         /// </summary>
         [JsonProperty("jobcode_id")]
-        public int? JobcodeId { get; set; }
+        public long? JobcodeId { get; set; }
 
         /// <summary>
         /// Gets the value indicating whether or not the timesheet is locked.
@@ -177,14 +177,14 @@ namespace Intuit.TSheets.Model
         /// Gets or sets the ids of files attached to this timesheet.
         /// </summary>
         [JsonProperty("attached_files")]
-        public IList<int> AttachedFiles { get; set; }
+        public IList<long> AttachedFiles { get; set; }
 
         /// <summary>
         /// Gets the user id for the user that initially created this timesheet.
         /// </summary>
         [NoSerializeOnWrite]
         [JsonProperty("created_by_user_id")]
-        public int? CreatedByUserId { get; internal set; }
+        public long? CreatedByUserId { get; internal set; }
 
         /// <summary>
         /// Gets or sets the total number of seconds recorded for this timesheet.

@@ -61,7 +61,7 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnCreate]
         [JsonProperty("id")]
-        public int Id { get; internal set; }
+        public long Id { get; internal set; }
 
         /// <summary>
         /// Gets or sets the name of this file.
@@ -84,7 +84,7 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnWrite]
         [JsonProperty("uploaded_by_user_id")]
-        public int? UploadedByUserId { get; internal set; }
+        public long? UploadedByUserId { get; internal set; }
 
         /// <summary>
         /// Gets the value indicating whether this file is considered deleted.

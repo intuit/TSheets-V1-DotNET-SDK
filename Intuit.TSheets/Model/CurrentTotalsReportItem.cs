@@ -32,7 +32,7 @@ namespace Intuit.TSheets.Model
         ///  Gets the user id to which these totals pertain.
         /// </summary>
         [JsonProperty("user_id")]
-        public int UserId { get; internal set; }
+        public long UserId { get; internal set; }
 
         /// <summary>
         /// Gets the value indicating whether this user is on or off the clock.
@@ -44,19 +44,19 @@ namespace Intuit.TSheets.Model
         /// Gets the timesheet id for the current timesheet.
         /// </summary>
         [JsonProperty("timesheet_id")]
-        public int? TimesheetId { get; internal set; }
+        public long? TimesheetId { get; internal set; }
 
         /// <summary>
         /// Gets the jobcode id for the current timesheet.
         /// </summary>
         [JsonProperty("jobcode_id")]
-        public int? JobcodeId { get; internal set; }
+        public long? JobcodeId { get; internal set; }
 
         /// <summary>
         /// Gets the unique group id for this user (value of zero represents those without a group).
         /// </summary>
         [JsonProperty("group_id")]
-        public int? GroupId { get; internal set; }
+        public long? GroupId { get; internal set; }
 
         /// <summary>
         /// Gets the value indicating whether geolocations are available for the current timesheet.

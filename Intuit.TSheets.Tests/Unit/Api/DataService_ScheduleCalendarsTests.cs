@@ -30,7 +30,7 @@ namespace Intuit.TSheets.Tests.Unit.Api
     {
         private static readonly ScheduleCalendarFilter DummyFilter = new ScheduleCalendarFilter
         {
-            Ids = new[]{ 1, 2 }
+            Ids = new long[]{ 1, 2 }
         };
 
         #region Get Method Tests

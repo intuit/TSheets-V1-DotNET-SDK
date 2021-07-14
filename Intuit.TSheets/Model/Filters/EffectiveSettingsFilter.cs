@@ -38,7 +38,7 @@ namespace Intuit.TSheets.Model.Filters
         /// An admin will see more settings than a regular user will.
         /// </remarks>
         [JsonProperty("user_id")]
-        public int? UserId { get; set; }
+        public long? UserId { get; set; }
 
         /// <summary>
         /// Gets or sets the filter for returning only those settings modified before this date/time.

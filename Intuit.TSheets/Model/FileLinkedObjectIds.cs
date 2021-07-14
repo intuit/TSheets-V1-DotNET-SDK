@@ -34,6 +34,6 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnWrite]
         [JsonProperty("timesheets")]
-        public IReadOnlyList<int> Timesheets { get; set; } = new List<int>();
+        public IReadOnlyList<long> Timesheets { get; set; } = new List<long>();
     }
 }

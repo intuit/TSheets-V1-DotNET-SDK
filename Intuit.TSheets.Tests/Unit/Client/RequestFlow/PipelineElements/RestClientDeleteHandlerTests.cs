@@ -47,14 +47,14 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
         [TestMethod, TestCategory("Unit")]
         public async Task RestClientDeleteHandler_RestClientIsInvokedWithExpectedInputsAsync()
         {
-            var idsToDelete = new List<int> { 1, 2, 3 };
+            var idsToDelete = new List<long> { 1, 2, 3 };
 
             // rest client Delete() method is called with 3 parameters: 
             // the request id, the endpoint, and the list of id's to delete
             this.mockRestClient
                 .Setup(p => p.DeleteAsync(
                     It.Is<EndpointName>(t => t.Equals(EndpointName.Tests)),
-                    It.Is<IEnumerable<int>>(s => s.IsEqualTo(idsToDelete)),
+                    It.Is<IEnumerable<long>>(s => s.IsEqualTo(idsToDelete)),
                     It.IsAny<LogContext>(),
                     It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(Response));
@@ -75,12 +75,12 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
             this.mockRestClient
                 .Setup(p => p.DeleteAsync(
                     It.IsAny<EndpointName>(),
-                    It.IsAny<IEnumerable<int>>(),
+                    It.IsAny<IEnumerable<long>>(),
                     It.IsAny<LogContext>(),
                     It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(Response));
 
-            var context = new DeleteContext<BasicTestEntity>(EndpointName.Tests, new[] {1})
+            var context = new DeleteContext<BasicTestEntity>(EndpointName.Tests, new long[] {1})
             {
                 RestClient = this.mockRestClient.Object
             };

@@ -33,7 +33,7 @@ namespace Intuit.TSheets.Model.Filters
         /// Gets or sets the value to filter results to only those with given jobcode id.
         /// </summary>
         [JsonProperty("jobcode_id")]
-        public int? JobcodeId { get; set; }
+        public long? JobcodeId { get; set; }
 
         /// <summary>
         /// Gets or sets the date/time for which only results modified before it will be returned.

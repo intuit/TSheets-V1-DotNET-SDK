@@ -38,19 +38,19 @@ namespace Intuit.TSheets.Model
         /// Gets the id of the timesheet.
         /// </summary>
         [JsonProperty("id")]
-        public int Id { get; internal set; }
+        public long Id { get; internal set; }
 
         /// <summary>
         /// Gets the user id for the user that this timesheet belongs to.
         /// </summary>
         [JsonProperty("user_id")]
-        public int? UserId { get; internal set; }
+        public long? UserId { get; internal set; }
 
         /// <summary>
         /// Gets the id for the jobcode that this timesheet is recorded against.
         /// </summary>
         [JsonProperty("jobcode_id")]
-        public int? JobcodeId { get; internal set; }
+        public long? JobcodeId { get; internal set; }
 
         /// <summary>
         /// Gets the date/time that represents the start time of this timesheet.

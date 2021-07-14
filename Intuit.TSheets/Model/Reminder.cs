@@ -75,7 +75,7 @@ namespace Intuit.TSheets.Model
         /// receive that reminder type regardless of how company-wide reminders are configured.
         /// </param>
         public Reminder(
-            int userId,
+            long userId,
             ReminderTypes reminderType,
             DateTimeOffset dueTime,
             DaysOfTheWeek dueDaysOfWeek,
@@ -97,7 +97,7 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnCreate]
         [JsonProperty("id")]
-        public int Id { get; internal set; }
+        public long Id { get; internal set; }
 
         /// <summary>
         /// Gets id of the user that this reminder pertains to.
@@ -106,7 +106,7 @@ namespace Intuit.TSheets.Model
         /// A value of 0 indicates that this is a company-wide reminder.
         /// </remarks>
         [JsonProperty("user_id")]
-        public int? UserId { get; internal set; }
+        public long? UserId { get; internal set; }
 
         /// <summary>
         /// Gets or sets the type of this reminder object.

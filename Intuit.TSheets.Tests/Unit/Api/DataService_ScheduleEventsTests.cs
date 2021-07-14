@@ -31,7 +31,7 @@ namespace Intuit.TSheets.Tests.Unit.Api
     {
         private static readonly ScheduleEventFilter DummyFilter = new ScheduleEventFilter
         {
-            Ids = new[] { 1, 2 }
+            Ids = new long[] { 1, 2 }
         };
 
         private static readonly ScheduleEvent DummyEntity = new ScheduleEvent();

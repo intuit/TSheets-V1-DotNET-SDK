@@ -40,7 +40,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)] 
         [JsonProperty("ids")]
-        public IEnumerable<int> Ids { get; set; }
+        public IEnumerable<long> Ids { get; set; }
 
         /// <summary>
         /// Gets or sets the ids you'd like to exclude.
@@ -48,7 +48,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("not_ids")]
-        public IEnumerable<int> NotIds { get; set; }
+        public IEnumerable<long> NotIds { get; set; }
 
         /// <summary>
         /// Gets or sets the employee numbers you'd like to filter on.
@@ -56,7 +56,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("employee_numbers")]
-        public IEnumerable<int> EmployeeNumbers { get; set; }
+        public IEnumerable<long> EmployeeNumbers { get; set; }
 
         /// <summary>
         /// Gets or sets the user names you'd like to filter on.
@@ -72,7 +72,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("group_ids")]
-        public IEnumerable<int> GroupIds { get; set; }
+        public IEnumerable<long> GroupIds { get; set; }
 
         /// <summary>
         /// Gets or sets the group ids you'd like to exclude.
@@ -80,7 +80,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("not_group_ids")]
-        public IEnumerable<int> NotGroupIds { get; set; }
+        public IEnumerable<long> NotGroupIds { get; set; }
 
         /// <summary>
         /// Gets or sets the payroll ids you'd like to filter on. Only users with these payroll ids will be returned.
@@ -88,7 +88,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("payroll_ids")]
-        public IEnumerable<int> PayrollIds { get; set; }
+        public IEnumerable<long> PayrollIds { get; set; }
 
         /// <summary>
         /// Gets or sets the value indicating whether to filter by active or inactive state, or both.

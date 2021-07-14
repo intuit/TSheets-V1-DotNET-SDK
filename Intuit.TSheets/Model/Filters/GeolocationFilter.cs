@@ -46,7 +46,7 @@ namespace Intuit.TSheets.Model.Filters
         /// <param name="ids">
         /// The geolocation ids you'd like to filter on.
         /// </param>
-        public GeolocationFilter(IEnumerable<int> ids)
+        public GeolocationFilter(IEnumerable<long> ids)
         {
             Ids = ids;
         }
@@ -73,7 +73,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("ids")]
-        public IEnumerable<int> Ids { get; set; }
+        public IEnumerable<long> Ids { get; set; }
 
         /// <summary>
         /// Gets or sets the filter for returning only those geolocations modified before this date/time.
@@ -95,7 +95,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("user_ids")]
-        public IEnumerable<int> UserIds { get; set; }
+        public IEnumerable<long> UserIds { get; set; }
 
         /// <summary>
         /// Gets or sets the group ids to which only those linked geolocations will be returned.
@@ -103,6 +103,6 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("group_ids")]
-        public IEnumerable<int> GroupIds { get; set; }
+        public IEnumerable<long> GroupIds { get; set; }
     }
 }

@@ -15,22 +15,22 @@
   "properties": {
     "id": {
       "type": "integer",
-      "format": "int32"
+      "format": "int64"
     },
     "customfield_id": {
       "type": "integer",
-      "format": "int32"
+      "format": "int64"
     },
     "customfielditem_id": {
       "type": "integer",
-      "format": "int32"
+      "format": "int64"
     },
     "applies_to": {
       "$ref": "#/definitions/FilterAppliesTo"
     },
     "applies_to_id": {
       "type": "integer",
-      "format": "int32"
+      "format": "int64"
     },
     "active": {
       "type": "boolean"

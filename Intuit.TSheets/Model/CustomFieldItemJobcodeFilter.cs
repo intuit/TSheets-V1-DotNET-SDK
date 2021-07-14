@@ -37,7 +37,7 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnCreate] 
         [JsonProperty("id")]
-        public int Id { get; internal set; }
+        public long Id { get; internal set; }
 
         /// <summary>
         /// Gets the date/time when last modified.
@@ -54,6 +54,6 @@ namespace Intuit.TSheets.Model
         /// and the value is an array of item ids to which the jobcode is assigned.
         /// </remarks>
         [JsonProperty("filtered_customfielditems")]
-        public IDictionary<string, IList<int>> FilteredCustomFieldItems { get; internal set; }
+        public IDictionary<string, IList<long>> FilteredCustomFieldItems { get; internal set; }
     }
 }

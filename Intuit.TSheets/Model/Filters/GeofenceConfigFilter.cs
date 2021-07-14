@@ -40,7 +40,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("ids")]
-        public IEnumerable<int> Ids { get; set; }
+        public IEnumerable<long> Ids { get; set; }
 
         /// <summary>
         /// Gets or sets the geofence configurations you'd like to filter on.
@@ -55,7 +55,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("type_ids")]
-        public IEnumerable<int> TypeIds { get; set; }
+        public IEnumerable<long> TypeIds { get; set; }
 
         /// <summary>
         /// Gets or sets the value indicating whether to return enabled or disabled geofence configurations.

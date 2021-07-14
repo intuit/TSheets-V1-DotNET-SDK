@@ -32,6 +32,6 @@ namespace Intuit.TSheets.Model
         /// <summary>
         /// Gets the item's identifier value
         /// </summary>
-        int Id { get; }
+        long Id { get; }
     }
 }

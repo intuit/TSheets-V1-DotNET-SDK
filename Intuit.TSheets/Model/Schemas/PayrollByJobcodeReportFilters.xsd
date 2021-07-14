@@ -23,14 +23,14 @@
       "type": "array",
       "items": {
         "type": "integer",
-        "format": "int32"
+        "format": "int64"
       }
     },
     "group_ids": {
       "type": "array",
       "items": {
         "type": "integer",
-        "format": "int32"
+        "format": "int64"
       }
     },
     "advanced_overtime": {

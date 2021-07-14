@@ -31,7 +31,7 @@ namespace Intuit.TSheets.Tests.Unit.Api
     {
         private static readonly TimesheetFilter DummyFilter = new TimesheetFilter
         {
-            Ids = new[] { 1, 2 }
+            Ids = new long[] { 1, 2 }
         };
 
         private static readonly Timesheet DummyEntity = new Timesheet();
@@ -260,7 +260,7 @@ namespace Intuit.TSheets.Tests.Unit.Api
         {
             ExpectDelete<Timesheet>(EndpointName.Timesheets);
 
-            ApiService.DeleteTimesheets(new[] { 1, 2 });
+            ApiService.DeleteTimesheets(new long[] { 1, 2 });
         }
 
         [TestMethod, TestCategory("Unit")]
@@ -292,7 +292,7 @@ namespace Intuit.TSheets.Tests.Unit.Api
         {
             ExpectDelete<Timesheet>(EndpointName.Timesheets);
 
-            await ApiService.DeleteTimesheetsAsync(new[] { 1, 2 }).ConfigureAwait(false);
+            await ApiService.DeleteTimesheetsAsync(new long[] { 1, 2 }).ConfigureAwait(false);
         }
 
         #endregion

@@ -33,13 +33,13 @@ namespace Intuit.TSheets.Model.Filters
         /// Gets or sets the value to filter results to only those with given user id.
         /// </summary>
         [JsonProperty("user_id")]
-        public int? UserId { get; set; }
+        public long? UserId { get; set; }
 
         /// <summary>
         /// Gets or sets the value to filter results to only those with given group id.
         /// </summary>
         [JsonProperty("group_id")]
-        public int? GroupId { get; set; }
+        public long? GroupId { get; set; }
 
         /// <summary>
         /// Gets or sets the value indicating whether to additionally return filters for the user's group.

@@ -51,7 +51,7 @@ namespace Intuit.TSheets.Model
         /// <param name="userId">
         /// The id of the user for which the invitation is to be sent.
         /// </param>
-        public Invitation(InvitationContactMethod contactMethod, string contactInfo, int userId)
+        public Invitation(InvitationContactMethod contactMethod, string contactInfo, long userId)
         {
             ContactMethod = contactMethod;
             ContactInfo = contactInfo;
@@ -81,6 +81,6 @@ namespace Intuit.TSheets.Model
         /// Gets or sets the id of the user for which the invitation is to be sent.
         /// </summary>
         [JsonProperty("user_id")]
-        public int UserId { get; set; }
+        public long UserId { get; set; }
     }
 }

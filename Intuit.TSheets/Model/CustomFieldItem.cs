@@ -51,7 +51,7 @@ namespace Intuit.TSheets.Model
         /// <param name="customFieldId">
         /// The id for the custom field that this item belongs to.
         /// </param>
-        public CustomFieldItem(string name, int customFieldId)
+        public CustomFieldItem(string name, long customFieldId)
         {
             Name = name;
             CustomFieldId = customFieldId;
@@ -62,13 +62,13 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnCreate] 
         [JsonProperty("id")]
-        public int Id { get; internal set; }
+        public long Id { get; internal set; }
 
         /// <summary>
         /// Gets or sets the id for the custom field that this item belongs to.
         /// </summary>
         [JsonProperty("customfield_id")]
-        public int? CustomFieldId { get; set; }
+        public long? CustomFieldId { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the custom field item.
@@ -107,6 +107,6 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnWrite]
         [JsonProperty("required_customfields")]
-        public IReadOnlyList<int> RequiredCustomFields { get; internal set; }
+        public IReadOnlyList<long> RequiredCustomFields { get; internal set; }
     }
 }

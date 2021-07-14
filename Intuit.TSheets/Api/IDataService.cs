@@ -2108,7 +2108,7 @@ namespace Intuit.TSheets.Api
         /// <param name="id">The id the of the image file to download.</param>
         /// <returns>An array of bytes, representing the image content.</returns>
         byte[] DownloadFile(
-            int id);
+            long id);
 
         /// <summary>
         /// Asynchronously download the raw bytes of an image file.
@@ -2116,7 +2116,7 @@ namespace Intuit.TSheets.Api
         /// <param name="id">The id the of the image file to download.</param>
         /// <returns>An array of bytes, representing the image content.</returns>
         Task<byte[]> DownloadFileAsync(
-            int id);
+            long id);
 
         /// <summary>
         /// Asynchronously download the raw bytes of an image file, with support for cancellation.
@@ -2127,7 +2127,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>An array of bytes, representing the image content.</returns>
         Task<byte[]> DownloadFileAsync(
-            int id,
+            long id,
             CancellationToken cancellationToken);
 
         /// <summary>
@@ -2152,7 +2152,7 @@ namespace Intuit.TSheets.Api
         /// The id of the <see cref="File"/> object to be deleted.
         /// </param>
         void DeleteFile(
-            int id);
+            long id);
 
         /// <summary>
         /// Delete Files.
@@ -2176,7 +2176,7 @@ namespace Intuit.TSheets.Api
         /// The set of ids for the <see cref="File"/> objects to be deleted.
         /// </param>
         void DeleteFiles(
-            IEnumerable<int> ids);
+            IEnumerable<long> ids);
 
         /// <summary>
         /// Asynchronously Delete Files.
@@ -2219,7 +2219,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         Task DeleteFileAsync(
-            int id);
+            long id);
 
         /// <summary>
         /// Asynchronously Delete Files, with support for cancellation.
@@ -2235,7 +2235,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         Task DeleteFileAsync(
-            int id,
+            long id,
             CancellationToken cancellationToken);
 
         /// <summary>
@@ -2279,7 +2279,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         Task DeleteFilesAsync(
-            IEnumerable<int> ids);
+            IEnumerable<long> ids);
 
         /// <summary>
         /// Asynchronously Delete Files, with support for cancellation.
@@ -2295,7 +2295,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         Task DeleteFilesAsync(
-            IEnumerable<int> ids,
+            IEnumerable<long> ids,
             CancellationToken cancellationToken);
 
         #endregion
@@ -4056,7 +4056,7 @@ namespace Intuit.TSheets.Api
         /// The id of the <see cref="JobcodeAssignment"/> assignment object to be deleted.
         /// </param>
         void DeleteJobcodeAssignment(
-            int id);
+            long id);
 
         /// <summary>
         /// Delete Jobcode Assignments.
@@ -4080,7 +4080,7 @@ namespace Intuit.TSheets.Api
         /// The set of ids for the <see cref="JobcodeAssignment"/> assignment objects to be deleted.
         /// </param>
         void DeleteJobcodeAssignments(
-            IEnumerable<int> ids);
+            IEnumerable<long> ids);
 
         /// <summary>
         /// Asynchronously Delete Jobcode Assignments.
@@ -4123,7 +4123,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         Task DeleteJobcodeAssignmentAsync(
-            int id);
+            long id);
 
         /// <summary>
         /// Asynchronously Delete Jobcode Assignments, with support for cancellation.
@@ -4139,7 +4139,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         Task DeleteJobcodeAssignmentAsync(
-            int id,
+            long id,
             CancellationToken cancellationToken);
 
         /// <summary>
@@ -4183,7 +4183,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         Task DeleteJobcodeAssignmentsAsync(
-            IEnumerable<int> ids);
+            IEnumerable<long> ids);
 
         /// <summary>
         /// Asynchronously Delete Jobcode Assignments, with support for cancellation.
@@ -4199,7 +4199,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         Task DeleteJobcodeAssignmentsAsync(
-            IEnumerable<int> ids,
+            IEnumerable<long> ids,
             CancellationToken cancellationToken);
 
         #endregion
@@ -5523,7 +5523,7 @@ namespace Intuit.TSheets.Api
         /// The id of the <see cref="Notification"/> object to be deleted.
         /// </param>
         void DeleteNotification(
-            int id);
+            long id);
 
         /// <summary>
         /// Delete Notifications.
@@ -5547,7 +5547,7 @@ namespace Intuit.TSheets.Api
         /// The set of ids for the <see cref="Notification"/> objects to be deleted.
         /// </param>
         void DeleteNotifications(
-            IEnumerable<int> ids);
+            IEnumerable<long> ids);
 
         /// <summary>
         /// Asynchronously Delete Notifications.
@@ -5590,7 +5590,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         Task DeleteNotificationAsync(
-            int id);
+            long id);
 
         /// <summary>
         /// Asynchronously Delete Notifications, with support for cancellation.
@@ -5606,7 +5606,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         Task DeleteNotificationAsync(
-            int id,
+            long id,
             CancellationToken cancellationToken);
 
         /// <summary>
@@ -5650,7 +5650,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         Task DeleteNotificationsAsync(
-            IEnumerable<int> ids);
+            IEnumerable<long> ids);
 
         /// <summary>
         /// Asynchronously Delete Notifications, with support for cancellation.
@@ -5666,7 +5666,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         Task DeleteNotificationsAsync(
-            IEnumerable<int> ids,
+            IEnumerable<long> ids,
             CancellationToken cancellationToken);
 
         #endregion
@@ -7192,7 +7192,7 @@ namespace Intuit.TSheets.Api
         /// The id of the <see cref="Timesheet"/> object to be deleted.
         /// </param>
         void DeleteTimesheet(
-            int id);
+            long id);
 
         /// <summary>
         /// Delete Timesheets.
@@ -7216,7 +7216,7 @@ namespace Intuit.TSheets.Api
         /// The set of ids for the <see cref="Timesheet"/> objects to be deleted.
         /// </param>
         void DeleteTimesheets(
-            IEnumerable<int> ids);
+            IEnumerable<long> ids);
 
         /// <summary>
         /// Asynchronously Delete Timesheets.
@@ -7259,7 +7259,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         Task DeleteTimesheetAsync(
-            int id);
+            long id);
 
         /// <summary>
         /// Asynchronously Delete Timesheets, with support for cancellation.
@@ -7275,7 +7275,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         Task DeleteTimesheetAsync(
-            int id,
+            long id,
             CancellationToken cancellationToken);
 
         /// <summary>
@@ -7319,7 +7319,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         Task DeleteTimesheetsAsync(
-            IEnumerable<int> ids);
+            IEnumerable<long> ids);
 
         /// <summary>
         /// Asynchronously Delete Timesheets, with support for cancellation.
@@ -7335,7 +7335,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         Task DeleteTimesheetsAsync(
-            IEnumerable<int> ids,
+            IEnumerable<long> ids,
             CancellationToken cancellationToken);
 
         #endregion

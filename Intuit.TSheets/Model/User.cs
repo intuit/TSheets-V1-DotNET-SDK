@@ -60,7 +60,7 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnCreate]
         [JsonProperty("id")]
-        public int Id { get; internal set; }
+        public long Id { get; internal set; }
 
         /// <summary>
         /// Gets or sets the first name of user.
@@ -90,7 +90,7 @@ namespace Intuit.TSheets.Model
         /// Gets or sets the id of the group this user belongs to.
         /// </summary>
         [JsonProperty("group_id")]
-        public int? GroupId { get; set; }
+        public long? GroupId { get; set; }
 
         /// <summary>
         /// Gets or sets the value indicating whether this user is active or archived.
@@ -102,7 +102,7 @@ namespace Intuit.TSheets.Model
         /// Gets or sets the employee number associated with this user.
         /// </summary>
         [JsonProperty("employee_number")]
-        public int? EmployeeNumber { get; set; }
+        public long? EmployeeNumber { get; set; }
 
         /// <summary>
         /// Gets or sets the value indicating whether or not the user is salaried.
@@ -211,7 +211,7 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnWrite]
         [JsonProperty("pto_balances")]
-        public IReadOnlyDictionary<int, int> PtoBalances { get; internal set; }
+        public IReadOnlyDictionary<long, int> PtoBalances { get; internal set; }
 
         /// <summary>
         /// Gets or sets the latest date up to which this user has submitted timesheets.
@@ -232,7 +232,7 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnWrite]
         [JsonProperty("manager_of_group_ids")]
-        public IReadOnlyList<int> ManagerOfGroups { get; internal set; }
+        public IReadOnlyList<long> ManagerOfGroups { get; internal set; }
 
         /// <summary>
         /// Gets or sets the value indicating whether or not a password change is required.

@@ -17,14 +17,14 @@
       "type": "array",
       "items": {
         "type": "integer",
-        "format": "int32"
+        "format": "int64"
       }
     },
     "group_ids": {
       "type": "array",
       "items": {
         "type": "integer",
-        "format": "int32"
+        "format": "int64"
       }
     },
     "start_date": {
@@ -39,7 +39,7 @@
       "type": "array",
       "items": {
         "type": "integer",
-        "format": "int32"
+        "format": "int64"
       }
     },
     "customfielditems": {

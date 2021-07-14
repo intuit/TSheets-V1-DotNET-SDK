@@ -16,22 +16,22 @@
   "properties": {
     "user_id": {
       "type": "integer",
-      "format": "int32"
+      "format": "int64"
     },
     "on_the_clock": {
       "type": "boolean"
     },
     "timesheet_id": {
       "type": "integer",
-      "format": "int32"
+      "format": "int64"
     },
     "jobcode_id": {
       "type": "integer",
-      "format": "int32"
+      "format": "int64"
     },
     "group_id": {
       "type": "integer",
-      "format": "int32"
+      "format": "int64"
     },
     "shift_geolocations_available": {
       "type": "boolean"

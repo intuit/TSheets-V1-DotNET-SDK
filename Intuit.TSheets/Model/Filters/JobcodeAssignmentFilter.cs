@@ -40,7 +40,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("user_ids")]
-        public IEnumerable<int> UserIds { get; set; }
+        public IEnumerable<long> UserIds { get; set; }
 
         /// <summary>
         /// Gets or sets the value for filtering by jobcode type, e.g. 'regular', 'PTO', etc.
@@ -53,7 +53,7 @@ namespace Intuit.TSheets.Model.Filters
         /// Gets or sets the jobcode ids you'd like to filter on.
         /// </summary>
         [JsonProperty("jobcode_id")]
-        public int? JobcodeId { get; set; }
+        public long? JobcodeId { get; set; }
 
         /// <summary>
         /// Gets or sets the jobcode parent id you'd like to filter on.
@@ -64,7 +64,7 @@ namespace Intuit.TSheets.Model.Filters
         /// To get a list of only top-level jobcode assignments, pass in a jobcode_parent_id of 0.
         /// </remarks>
         [JsonProperty("jobcode_parent_id")]
-        public int? JobcodeParentId { get; set; }
+        public long? JobcodeParentId { get; set; }
 
         /// <summary>
         /// Gets or sets the value for filtering by active or inactive state, or both.

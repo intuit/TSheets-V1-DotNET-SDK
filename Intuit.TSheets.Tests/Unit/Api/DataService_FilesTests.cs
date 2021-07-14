@@ -328,7 +328,7 @@ namespace Intuit.TSheets.Tests.Unit.Api
         {
             ExpectDelete<File>(EndpointName.Files);
 
-            ApiService.DeleteFiles(new[]{ 1, 2 });
+            ApiService.DeleteFiles(new long[]{ 1, 2 });
         }
 
         [TestMethod, TestCategory("Unit")]
@@ -360,7 +360,7 @@ namespace Intuit.TSheets.Tests.Unit.Api
         {
             ExpectDelete<File>(EndpointName.Files);
 
-            await ApiService.DeleteFilesAsync(new[] { 1, 2 }).ConfigureAwait(false);
+            await ApiService.DeleteFilesAsync(new long[] { 1, 2 }).ConfigureAwait(false);
         }
 
         #endregion

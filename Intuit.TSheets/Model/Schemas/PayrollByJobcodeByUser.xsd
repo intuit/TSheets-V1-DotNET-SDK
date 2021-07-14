@@ -11,7 +11,7 @@
   "properties": {
     "user_id": {
       "type": "integer",
-      "format": "int32"
+      "format": "int64"
     },
     "totals": {
       "type": "object",
@@ -46,7 +46,7 @@
       "properties": {
         "jobcode_id": {
           "type": "integer",
-          "format": "int32"
+          "format": "int64"
         },
         "total_re_seconds": {
           "type": "integer",

@@ -31,7 +31,7 @@ namespace Intuit.TSheets.Tests.Unit.Api
     {
         private static readonly CurrentTotalsReportFilter DummyCurrentTotalsReportFilter = new CurrentTotalsReportFilter
         {
-            UserIds = new[]{ 1, 2 }
+            UserIds = new long[]{ 1, 2 }
         };
 
         private static readonly PayrollReportFilter DummyPayrollReportFilter = new PayrollReportFilter(

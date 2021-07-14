@@ -258,7 +258,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.Pipelines
         {
             var context = new DeleteContext<TestEntity>(
                 EndpointName.Tests,
-                new[]{ 1, 2, 3 });
+                new long[]{ 1, 2, 3 });
 
             var pipeline = (RequestPipeline)this.pipelineFactory.GetPipeline(context);
 

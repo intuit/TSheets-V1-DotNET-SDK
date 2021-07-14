@@ -44,7 +44,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
         private EndpointName endpointName;
         private string inputData;
         private Dictionary<string, string> inputFilter;
-        private List<int> deleteIds;
+        private List<long> deleteIds;
         private LogContext logContext;
         private Mock<IRestClient> mockRestClient;
 
@@ -56,7 +56,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
             this.endpointName = EndpointName.Tests;
             this.inputData = "{ \"input\": \"data\" }";
             this.inputFilter = new Dictionary<string, string> { { "ids", "1,2,3"} };
-            this.deleteIds = new List<int>{1, 2, 3};
+            this.deleteIds = new List<long>{1, 2, 3};
             this.logContext = new LogContext();
             this.mockRestClient = new Mock<IRestClient>();
         }
@@ -399,10 +399,10 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
             this.mockRestClient
                 .Setup(c => c.DeleteAsync(
                     It.Is<EndpointName>(e => e.Equals(this.endpointName)),
-                    It.Is<IEnumerable<int>>(j => j.Equals(this.deleteIds)),
+                    It.Is<IEnumerable<long>>(j => j.Equals(this.deleteIds)),
                     It.Is<LogContext>(l => l.Equals(this.logContext)),
                     It.IsAny<CancellationToken>()))
-                .Callback((EndpointName en, IEnumerable<int> di, LogContext lc, CancellationToken ct)
+                .Callback((EndpointName en, IEnumerable<long> di, LogContext lc, CancellationToken ct)
                     => throw new ServiceUnavailableException("Something went wrong."));
 
             try
@@ -428,7 +428,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
             this.mockRestClient
                 .Setup(c => c.DeleteAsync(
                     It.Is<EndpointName>(e => e.Equals(this.endpointName)),
-                    It.Is<IEnumerable<int>>(j => j.Equals(this.deleteIds)),
+                    It.Is<IEnumerable<long>>(j => j.Equals(this.deleteIds)),
                     It.Is<LogContext>(l => l.Equals(this.logContext)),
                     It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult("Done."));
@@ -452,10 +452,10 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
             this.mockRestClient
                 .Setup(c => c.DeleteAsync(
                     It.Is<EndpointName>(e => e.Equals(this.endpointName)),
-                    It.Is<IEnumerable<int>>(j => j.Equals(this.deleteIds)),
+                    It.Is<IEnumerable<long>>(j => j.Equals(this.deleteIds)),
                     It.Is<LogContext>(l => l.Equals(this.logContext)),
                     It.IsAny<CancellationToken>()))
-                .Callback((EndpointName en, IEnumerable<int> di, LogContext lc, CancellationToken ct)
+                .Callback((EndpointName en, IEnumerable<long> di, LogContext lc, CancellationToken ct)
                     => throw new BadRequestException("Bad request."));
 
             try

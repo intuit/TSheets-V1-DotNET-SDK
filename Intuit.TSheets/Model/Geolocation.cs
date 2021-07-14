@@ -53,7 +53,7 @@ namespace Intuit.TSheets.Model
         /// <param name="longitude">The longitude of the geolocation in degrees.</param>
         public Geolocation(
             DateTimeOffset created,
-            int userId,
+            long userId,
             float accuracy,
             float altitude,
             float latitude,
@@ -72,13 +72,13 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnCreate]
         [JsonProperty("id")]
-        public int Id { get; internal set; }
+        public long Id { get; internal set; }
 
         /// <summary>
         /// Gets or sets the id for the user that this geolocation belongs to.
         /// </summary>
         [JsonProperty("user_id")]
-        public int? UserId { get; set; }
+        public long? UserId { get; set; }
 
         /// <summary>
         /// Gets or sets the radius of accuracy around the geolocation in meters.

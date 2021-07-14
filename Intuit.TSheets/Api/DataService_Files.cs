@@ -580,7 +580,7 @@ namespace Intuit.TSheets.Api
         /// </summary>
         /// <param name="id">The id the of the image file to download.</param>
         /// <returns>An array of bytes, representing the image content.</returns>
-        public byte[] DownloadFile(int id)
+        public byte[] DownloadFile(long id)
         {
             return AsyncUtil.RunSync(() => DownloadFileAsync(id));
         }
@@ -591,7 +591,7 @@ namespace Intuit.TSheets.Api
         /// <param name="id">The id the of the image file to download.</param>
         /// <returns>An array of bytes, representing the image content.</returns>
         public async Task<byte[]> DownloadFileAsync(
-            int id)
+            long id)
         {
             return await DownloadFileAsync(id, default).ConfigureAwait(false);
         }
@@ -605,7 +605,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>An array of bytes, representing the image content.</returns>
         public async Task<byte[]> DownloadFileAsync(
-            int id,
+            long id,
             CancellationToken cancellationToken)
         {
             var context = new DownloadContext<File>(EndpointName.FilesRaw, new FileDownloadFilter(id));
@@ -642,7 +642,7 @@ namespace Intuit.TSheets.Api
         /// <param name="id">
         /// The id of the <see cref="File"/> object to be deleted.
         /// </param>
-        public void DeleteFile(int id)
+        public void DeleteFile(long id)
         {
             AsyncUtil.RunSync(() => DeleteFileAsync(id));
         }
@@ -670,7 +670,7 @@ namespace Intuit.TSheets.Api
         /// <param name="ids">
         /// The set of ids for the <see cref="File"/> objects to be deleted.
         /// </param>
-        public void DeleteFiles(IEnumerable<int> ids)
+        public void DeleteFiles(IEnumerable<long> ids)
         {
             AsyncUtil.RunSync(() => DeleteFilesAsync(ids));
         }
@@ -722,7 +722,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         public async Task DeleteFileAsync(
-            int id)
+            long id)
         {
             await DeleteFilesAsync(new[] { id }, default).ConfigureAwait(false);
         }
@@ -741,7 +741,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         public async Task DeleteFileAsync(
-            int id,
+            long id,
             CancellationToken cancellationToken)
         {
             await DeleteFilesAsync(new[] { id }, cancellationToken).ConfigureAwait(false);
@@ -760,7 +760,7 @@ namespace Intuit.TSheets.Api
         public async Task DeleteFilesAsync(
             IEnumerable<File> files)
         {
-            IEnumerable<int> ids = files?.Select(t => t.Id);
+            IEnumerable<long> ids = files?.Select(t => t.Id);
 
             await DeleteFilesAsync(ids, default).ConfigureAwait(false);
         }
@@ -782,7 +782,7 @@ namespace Intuit.TSheets.Api
             IEnumerable<File> files,
             CancellationToken cancellationToken)
         {
-            IEnumerable<int> ids = files?.Select(t => t.Id);
+            IEnumerable<long> ids = files?.Select(t => t.Id);
 
             await DeleteFilesAsync(ids, cancellationToken).ConfigureAwait(false);
         }
@@ -798,7 +798,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         public async Task DeleteFilesAsync(
-            IEnumerable<int> ids)
+            IEnumerable<long> ids)
         {
             await DeleteFilesAsync(ids, default).ConfigureAwait(false);
         }
@@ -817,7 +817,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         public async Task DeleteFilesAsync(
-            IEnumerable<int> ids,
+            IEnumerable<long> ids,
             CancellationToken cancellationToken)
         {
             var context = new DeleteContext<File>(EndpointName.Files, ids);

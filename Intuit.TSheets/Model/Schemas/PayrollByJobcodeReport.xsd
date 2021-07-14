@@ -39,14 +39,14 @@
           "type": "array",
           "items": {
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           }
         },
         "group_ids": {
           "type": "array",
           "items": {
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           }
         },
         "advanced_overtime": {
@@ -92,7 +92,7 @@
       "properties": {
         "jobcode_id": {
           "type": "integer",
-          "format": "int32"
+          "format": "int64"
         },
         "total_re_seconds": {
           "type": "integer",
@@ -141,7 +141,7 @@
       "properties": {
         "user_id": {
           "type": "integer",
-          "format": "int32"
+          "format": "int64"
         },
         "totals": {
           "type": "object",

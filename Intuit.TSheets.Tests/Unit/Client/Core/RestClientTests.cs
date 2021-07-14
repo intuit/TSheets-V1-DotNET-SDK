@@ -416,7 +416,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
         [TestMethod, TestCategory("Unit")]
         public async Task DeleteAsync_ReturnsExpectedResponse()
         {
-            var expectedRequest = new int[] { 1, 2, 3 };
+            var expectedRequest = new long[] { 1, 2, 3 };
             string expectedResponse = "success";
 
             var mockHttpClient = GetMockHttpClient(
@@ -440,7 +440,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
         public async Task DeleteAsync_IsCalledWithExpectedInputs()
         {
             Uri expectedUri = new Uri("https://rest.tsheets.com/api/v1/tests?ids=1%2C2%2C3");
-            var expectedRequest = new int[] { 1, 2, 3 };
+            var expectedRequest = new long[] { 1, 2, 3 };
 
             var mockHttpClient = GetMockHttpClient(
                 (HttpRequestMessage request, CancellationToken token) =>
@@ -466,7 +466,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.Core
         [ExpectedException(typeof(ExpectationFailedException))]
         public async Task DeleteAsync_ThrowsOnError()
         {
-            var expectedRequest = new int[] { 1, 2, 3 };
+            var expectedRequest = new long[] { 1, 2, 3 };
 
             var mockHttpClient = GetMockHttpClient(
                 new HttpResponseMessage()

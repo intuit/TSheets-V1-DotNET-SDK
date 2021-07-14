@@ -78,7 +78,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
               }
             }";
 
-            return new DeleteContext<T>(EndpointName.Tests, new[]{ 135694294, 135694494 })
+            return new DeleteContext<T>(EndpointName.Tests, new long[]{ 135694294, 135694494 })
             {
                 ResponseContent = responseContent
             };
@@ -109,7 +109,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
               }
             }";
 
-            return new DeleteContext<T>(EndpointName.Tests, new[]{ 135694294, 135694494, 135694495 })
+            return new DeleteContext<T>(EndpointName.Tests, new long[]{ 135694294, 135694494, 135694495 })
             {
                 ResponseContent = responseContent
             };
