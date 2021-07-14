@@ -51,7 +51,7 @@ namespace Intuit.TSheets.Model.Filters
         /// <param name="scheduleCalendarIds">
         /// The schedule calendar ids you'd like to filter on.
         /// </param>
-        public ScheduleEventFilter(IEnumerable<int> ids, IEnumerable<int> scheduleCalendarIds)
+        public ScheduleEventFilter(IEnumerable<long> ids, IEnumerable<long> scheduleCalendarIds)
         {
             Ids = ids;
             ScheduleCalendarIds = scheduleCalendarIds;
@@ -70,7 +70,7 @@ namespace Intuit.TSheets.Model.Filters
         /// <param name="scheduleCalendarIds">
         /// The schedule calendar ids you'd like to filter on.
         /// </param>
-        public ScheduleEventFilter(DateTimeOffset modifiedSince, DateTimeOffset modifiedBefore, IEnumerable<int> scheduleCalendarIds)
+        public ScheduleEventFilter(DateTimeOffset modifiedSince, DateTimeOffset modifiedBefore, IEnumerable<long> scheduleCalendarIds)
         {
             ModifiedSince = modifiedSince;
             ModifiedBefore = modifiedBefore;
@@ -87,7 +87,7 @@ namespace Intuit.TSheets.Model.Filters
         /// <param name="scheduleCalendarIds">
         /// The schedule calendar ids you'd like to filter on.
         /// </param>
-        public ScheduleEventFilter(DateTimeOffset start, IEnumerable<int> scheduleCalendarIds)
+        public ScheduleEventFilter(DateTimeOffset start, IEnumerable<long> scheduleCalendarIds)
         {
             Start = start;
             ScheduleCalendarIds = scheduleCalendarIds;
@@ -99,7 +99,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("ids")]
-        public IEnumerable<int> Ids { get; set; }
+        public IEnumerable<long> Ids { get; set; }
 
         /// <summary>
         /// Gets or sets the user ids you'd like to filter on.
@@ -107,7 +107,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("user_ids")]
-        public IEnumerable<int> UserIds { get; set; }
+        public IEnumerable<long> UserIds { get; set; }
 
         /// <summary>
         /// Gets or sets the schedule calendar ids you'd like to filter on.
@@ -118,7 +118,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("schedule_calendar_ids")]
-        public IEnumerable<int> ScheduleCalendarIds { get; set; }
+        public IEnumerable<long> ScheduleCalendarIds { get; set; }
 
         /// <summary>
         /// Gets or sets the jobcode ids you'd like to filter on. Only schedule events with these jobcodes will be returned.
@@ -126,7 +126,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("jobcode_ids")]
-        public IEnumerable<int> JobcodeIds { get; set; }
+        public IEnumerable<long> JobcodeIds { get; set; }
 
         /// <summary>
         /// Gets or sets the value for filtering schedule events to a date range start.

@@ -31,7 +31,7 @@ namespace Intuit.TSheets.Tests.Unit.Api
     {
         private static readonly NotificationFilter DummyFilter = new NotificationFilter
         {
-            Ids = new[] { 1, 2}
+            Ids = new long[] { 1, 2}
         };
 
         private static readonly Notification DummyEntity = new Notification();
@@ -222,7 +222,7 @@ namespace Intuit.TSheets.Tests.Unit.Api
         {
             ExpectDelete<Notification>(EndpointName.Notifications);
 
-            ApiService.DeleteNotifications(new[] { 1, 2 });
+            ApiService.DeleteNotifications(new long[] { 1, 2 });
         }
 
         [TestMethod, TestCategory("Unit")]
@@ -254,7 +254,7 @@ namespace Intuit.TSheets.Tests.Unit.Api
         {
             ExpectDelete<Notification>(EndpointName.Notifications);
 
-            await ApiService.DeleteNotificationsAsync(new[] { 1, 2 }).ConfigureAwait(false);
+            await ApiService.DeleteNotificationsAsync(new long[] { 1, 2 }).ConfigureAwait(false);
         }
 
         #endregion

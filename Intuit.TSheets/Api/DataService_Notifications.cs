@@ -460,7 +460,7 @@ namespace Intuit.TSheets.Api
         /// <param name="id">
         /// The id of the <see cref="Notification"/> object to be deleted.
         /// </param>
-        public void DeleteNotification(int id)
+        public void DeleteNotification(long id)
         {
             AsyncUtil.RunSync(() => DeleteNotificationAsync(id));
         }
@@ -488,7 +488,7 @@ namespace Intuit.TSheets.Api
         /// <param name="ids">
         /// The set of ids for the <see cref="Notification"/> objects to be deleted.
         /// </param>
-        public void DeleteNotifications(IEnumerable<int> ids)
+        public void DeleteNotifications(IEnumerable<long> ids)
         {
             AsyncUtil.RunSync(() => DeleteNotificationsAsync(ids));
         }
@@ -540,7 +540,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         public async Task DeleteNotificationAsync(
-            int id)
+            long id)
         {
             await DeleteNotificationsAsync(new[] { id }, default).ConfigureAwait(false);
         }
@@ -559,7 +559,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         public async Task DeleteNotificationAsync(
-            int id,
+            long id,
             CancellationToken cancellationToken)
         {
             await DeleteNotificationsAsync(new[] { id }, cancellationToken).ConfigureAwait(false);
@@ -578,7 +578,7 @@ namespace Intuit.TSheets.Api
         public async Task DeleteNotificationsAsync(
             IEnumerable<Notification> notifications)
         {
-            IEnumerable<int> ids = notifications.Select(t => t.Id);
+            IEnumerable<long> ids = notifications.Select(t => t.Id);
 
             await DeleteNotificationsAsync(ids, default).ConfigureAwait(false);
         }
@@ -600,7 +600,7 @@ namespace Intuit.TSheets.Api
             IEnumerable<Notification> notifications,
             CancellationToken cancellationToken)
         {
-            IEnumerable<int> ids = notifications.Select(t => t.Id);
+            IEnumerable<long> ids = notifications.Select(t => t.Id);
 
             await DeleteNotificationsAsync(ids, cancellationToken).ConfigureAwait(false);
         }
@@ -616,7 +616,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         public async Task DeleteNotificationsAsync(
-            IEnumerable<int> ids)
+            IEnumerable<long> ids)
         {
             await DeleteNotificationsAsync(ids, default).ConfigureAwait(false);
         }
@@ -635,7 +635,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         public async Task DeleteNotificationsAsync(
-            IEnumerable<int> ids,
+            IEnumerable<long> ids,
             CancellationToken cancellationToken)
         {
             var context = new DeleteContext<Notification>(EndpointName.Notifications, ids);

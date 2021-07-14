@@ -17,15 +17,15 @@
   "properties": {
     "jobcode_id": {
       "type": "integer",
-      "format": "int32"
+      "format": "int64"
     },
     "user_id": {
       "type": "integer",
-      "format": "int32"
+      "format": "int64"
     },
     "group_id": {
       "type": "integer",
-      "format": "int32"
+      "format": "int64"
     },
     "include_user_group": {
       "type": "boolean"

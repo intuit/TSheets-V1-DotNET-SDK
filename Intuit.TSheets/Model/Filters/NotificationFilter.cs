@@ -38,7 +38,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("ids")]
-        public IEnumerable<int> Ids { get; set; }
+        public IEnumerable<long> Ids { get; set; }
 
         /// <summary>
         /// Gets or sets the filter for returning only those notifications with a delivery data before this date/time.
@@ -58,7 +58,7 @@ namespace Intuit.TSheets.Model.Filters
         /// Gets or sets the user id for filtering results only to those notifications linked.
         /// </summary>
         [JsonProperty("user_id")]
-        public int? UserId { get; set; }
+        public long? UserId { get; set; }
 
         /// <summary>
         /// Gets or sets the value for filtering by the tracking ID string of a notification. Only those notifications with this message tracking id will be returned.

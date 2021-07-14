@@ -77,7 +77,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("user_ids")]
-        public IEnumerable<int> UserIds { get; set; }
+        public IEnumerable<long> UserIds { get; set; }
 
         /// <summary>
         /// Gets or sets the group ids you'd like to filter on.
@@ -85,7 +85,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("group_ids")]
-        public IEnumerable<int> GroupIds { get; set; }
+        public IEnumerable<long> GroupIds { get; set; }
 
         /// <summary>
         /// Gets or sets the jobcode ids you'd like to filter on.
@@ -93,7 +93,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("jobcode_ids")]
-        public IEnumerable<int> JobcodeIds { get; set; }
+        public IEnumerable<long> JobcodeIds { get; set; }
 
         /// <summary>
         /// Gets or sets the jobcode types you'd like to filter on.

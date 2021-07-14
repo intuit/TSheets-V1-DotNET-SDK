@@ -48,7 +48,7 @@ namespace Intuit.TSheets.Model.Filters
         /// <param name="ids">
         /// The deleted timesheet ids you'd like to filter on.
         /// </param>
-        public TimesheetsDeletedFilter(IEnumerable<int> ids)
+        public TimesheetsDeletedFilter(IEnumerable<long> ids)
         {
             Ids = ids;
         }
@@ -109,7 +109,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("ids")]
-        public IEnumerable<int> Ids { get; set; }
+        public IEnumerable<long> Ids { get; set; }
 
         /// <summary>
         /// Gets or sets the filter for returning only those deleted timesheets after before this date/time.
@@ -131,7 +131,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("group_ids")]
-        public IEnumerable<int> GroupIds { get; set; }
+        public IEnumerable<long> GroupIds { get; set; }
 
         /// <summary>
         /// Gets or sets the user ids you'd like to filter on. Only deleted timesheets linked these users will be returned.
@@ -139,7 +139,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("user_ids")]
-        public IEnumerable<int> UserIds { get; set; }
+        public IEnumerable<long> UserIds { get; set; }
 
         /// <summary>
         /// Gets or sets the value for filter results to a specific username.
@@ -156,7 +156,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("jobcode_ids")]
-        public IEnumerable<int> JobcodeIds { get; set; }
+        public IEnumerable<long> JobcodeIds { get; set; }
 
         /// <summary>
         /// Gets or sets the jobcode type you'd like to filter on.

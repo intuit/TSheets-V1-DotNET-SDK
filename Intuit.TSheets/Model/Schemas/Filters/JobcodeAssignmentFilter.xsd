@@ -21,11 +21,11 @@
     },
     "jobcode_id": {
       "type": "integer",
-      "format": "int32"
+      "format": "int64"
     },
     "jobcode_parent_id": {
       "type": "integer",
-      "format": "int32"
+      "format": "int64"
     },
     "active": {
       "$ref": "#/definitions/TristateChoice"

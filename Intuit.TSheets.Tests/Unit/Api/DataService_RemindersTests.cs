@@ -31,7 +31,7 @@ namespace Intuit.TSheets.Tests.Unit.Api
     {
         private static readonly ReminderFilter DummyFilter = new ReminderFilter
         {
-            UserIds = new[] { 1, 2 }
+            UserIds = new long[] { 1, 2 }
         };
 
         private static readonly Reminder DummyEntity = new Reminder();

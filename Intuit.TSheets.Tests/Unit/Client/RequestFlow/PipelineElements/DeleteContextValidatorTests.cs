@@ -53,7 +53,7 @@ namespace Intuit.TSheets.Tests.Unit.Client.RequestFlow.PipelineElements
         [ExpectedException(typeof(BadRequestException))]
         public async Task DeleteContextValidator_ThrowsWhenInputIdsIsEmpty()
         {
-            var context = new DeleteContext<TestEntity>(EndpointName.Tests, new List<int>());
+            var context = new DeleteContext<TestEntity>(EndpointName.Tests, new List<long>());
 
             await this.pipelineElement.ProcessAsync(context, MockLogger.Object, default)
                 .ConfigureAwait(false);

@@ -35,7 +35,7 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnCreate]
         [JsonProperty("id")]
-        public int Id { get; internal set; }
+        public long Id { get; internal set; }
 
         /// <summary>
         /// Gets the name of the schedule calendar.

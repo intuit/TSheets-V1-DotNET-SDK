@@ -12,7 +12,7 @@ TSheets-V1-DotNET-SDK
 **Support:** [![Help](https://img.shields.io/badge/Support-TSheets%20Developer-blue.svg)](https://www.tsheets.com/contact-tsheets)<br/>
 **Documentation:** [![User Guide](https://img.shields.io/badge/User%20Guide-SDK%20Docs-blue.svg)](./Documentation/tsheets-sdk.md)<br/>
 **Continuous Integration:** [![Build Status](https://travis-ci.com/intuit/TSheets-V1-DotNET-SDK.svg?token=HSEoRBBbbnL3x2dQy3Rm&branch=master)](https://travis-ci.com/intuit/TSheets-V1-DotNET-SDK.svg?token=HSEoRBBbbnL3x2dQy3Rm&branch=master)<br/>
-**Binaries:** [![Nuget](https://img.shields.io/badge/Nuget-1.4.0-blue.svg)](https://www.nuget.org/packages/Intuit.TSheets/)<br/>
+**Binaries:** [![Nuget](https://img.shields.io/badge/Nuget-1.4.1-blue.svg)](https://www.nuget.org/packages/Intuit.TSheets/)<br/>
 
 The TSheets .NET SDK provides class libraries for accessing the TSheets API quickly, easily, and with confidence.
 It supports .Net Standard 2.0, and .Net Framework 4.7.2.

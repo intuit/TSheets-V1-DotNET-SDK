@@ -105,7 +105,7 @@ namespace Intuit.TSheets.Client.Core
         /// <returns>The serialized response of the API method call.</returns>
         Task<string> DeleteAsync(
             EndpointName endpointName,
-            IEnumerable<int> ids,
+            IEnumerable<long> ids,
             LogContext logContext,
             CancellationToken cancellationToken);
     }

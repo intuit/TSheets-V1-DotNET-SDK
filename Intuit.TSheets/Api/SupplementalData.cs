@@ -34,8 +34,8 @@ namespace Intuit.TSheets.Api
     /// </remarks>
     public class SupplementalData
     {
-        private readonly Dictionary<Type, Dictionary<int, IIdentifiable>> supplementalData
-            = new Dictionary<Type, Dictionary<int, IIdentifiable>>();
+        private readonly Dictionary<Type, Dictionary<long, IIdentifiable>> supplementalData
+            = new Dictionary<Type, Dictionary<long, IIdentifiable>>();
 
         /// <summary>
         /// Returns a supplemental data entity of given type, having the provided id.
@@ -46,7 +46,7 @@ namespace Intuit.TSheets.Api
         /// <exception cref="NotFoundException">
         /// Not found exception is thrown if no entity with given id exists for the provided type.
         /// </exception>
-        public T GetById<T>(int id)
+        public T GetById<T>(long id)
             where T : IIdentifiable
         {
             Type type = typeof(T);
@@ -95,7 +95,7 @@ namespace Intuit.TSheets.Api
             Type type = entity.GetType();
             if (!this.supplementalData.ContainsKey(type))
             {
-                this.supplementalData.Add(type, new Dictionary<int, IIdentifiable>());
+                this.supplementalData.Add(type, new Dictionary<long, IIdentifiable>());
             }
 
             this.supplementalData[type][entity.Id] = entity;

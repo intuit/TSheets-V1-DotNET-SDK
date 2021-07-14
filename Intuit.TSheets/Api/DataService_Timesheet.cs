@@ -482,7 +482,7 @@ namespace Intuit.TSheets.Api
         /// <param name="id">
         /// The id of the <see cref="Timesheet"/> object to be deleted.
         /// </param>
-        public void DeleteTimesheet(int id)
+        public void DeleteTimesheet(long id)
         {
             AsyncUtil.RunSync(() => DeleteTimesheetAsync(id));
         }
@@ -510,7 +510,7 @@ namespace Intuit.TSheets.Api
         /// <param name="ids">
         /// The set of ids for the <see cref="Timesheet"/> objects to be deleted.
         /// </param>
-        public void DeleteTimesheets(IEnumerable<int> ids)
+        public void DeleteTimesheets(IEnumerable<long> ids)
         {
             AsyncUtil.RunSync(() => DeleteTimesheetsAsync(ids));
         }
@@ -562,7 +562,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         public async Task DeleteTimesheetAsync(
-            int id)
+            long id)
         {
             await DeleteTimesheetsAsync(new[] { id }, default).ConfigureAwait(false);
         }
@@ -581,7 +581,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         public async Task DeleteTimesheetAsync(
-            int id,
+            long id,
             CancellationToken cancellationToken)
         {
             await DeleteTimesheetsAsync(new[] { id }, cancellationToken).ConfigureAwait(false);
@@ -600,7 +600,7 @@ namespace Intuit.TSheets.Api
         public async Task DeleteTimesheetsAsync(
             IEnumerable<Timesheet> timesheets)
         {
-            IEnumerable<int> ids = timesheets.Select(t => t.Id);
+            IEnumerable<long> ids = timesheets.Select(t => t.Id);
 
             await DeleteTimesheetsAsync(ids, default).ConfigureAwait(false);
         }
@@ -622,7 +622,7 @@ namespace Intuit.TSheets.Api
             IEnumerable<Timesheet> timesheets,
             CancellationToken cancellationToken)
         {
-            IEnumerable<int> ids = timesheets.Select(t => t.Id);
+            IEnumerable<long> ids = timesheets.Select(t => t.Id);
 
             await DeleteTimesheetsAsync(ids, cancellationToken).ConfigureAwait(false);
         }
@@ -638,7 +638,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         public async Task DeleteTimesheetsAsync(
-            IEnumerable<int> ids)
+            IEnumerable<long> ids)
         {
             await DeleteTimesheetsAsync(ids, default).ConfigureAwait(false);
         }
@@ -657,7 +657,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         public async Task DeleteTimesheetsAsync(
-            IEnumerable<int> ids,
+            IEnumerable<long> ids,
             CancellationToken cancellationToken)
         {
             var context = new DeleteContext<Timesheet>(EndpointName.Timesheets, ids);

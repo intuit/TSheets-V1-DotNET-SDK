@@ -38,7 +38,7 @@ namespace Intuit.TSheets.Model.Filters
         /// Gets or sets the value to filter results to only those with given jobcode id.
         /// </summary>
         [JsonProperty("jobcode_id")]
-        public int? JobcodeId { get; set; }
+        public long? JobcodeId { get; set; }
 
         /// <summary>
         /// Gets or sets the value to filter results to only those with given user id.
@@ -48,7 +48,7 @@ namespace Intuit.TSheets.Model.Filters
         /// include the 'IncludeUserGroup' parameter.
         /// </remarks>
         [JsonProperty("user_id")]
-        public int? UserId { get; set; }
+        public long? UserId { get; set; }
 
         /// <summary>
         /// Gets or sets the value to filter results to only those with given group id.
@@ -58,7 +58,7 @@ namespace Intuit.TSheets.Model.Filters
         /// include the <see cref="IncludeUserGroup"/> parameter.
         /// </remarks>
         [JsonProperty("group_id")]
-        public int? GroupId { get; set; }
+        public long? GroupId { get; set; }
 
         /// <summary>
         /// Gets or sets the value indicating whether to filter by the user's group.
@@ -88,7 +88,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("ids")]
-        public IEnumerable<int> Ids { get; set; }
+        public IEnumerable<long> Ids { get; set; }
 
         /// <summary>
         /// Gets or sets the date/time for which only results modified before it will be returned.

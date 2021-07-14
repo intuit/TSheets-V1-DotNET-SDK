@@ -78,7 +78,7 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnCreate]
         [JsonProperty("id")]
-        public int Id { get; internal set; }
+        public long Id { get; internal set; }
 
         /// <summary>
         /// Gets or sets the first line of the location's address.
@@ -209,6 +209,6 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnWrite]
         [JsonProperty("geofence_config_id")]
-        public int? GeofenceConfigId { get; internal set; }
+        public long? GeofenceConfigId { get; internal set; }
     }
 }

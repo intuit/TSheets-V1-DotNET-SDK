@@ -38,7 +38,7 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnCreate]
         [JsonProperty("id")]
-        public int Id { get; internal set; }
+        public long Id { get; internal set; }
 
         /// <summary>
         /// Gets the type of entity the geofence config is related to.
@@ -54,7 +54,7 @@ namespace Intuit.TSheets.Model
         /// Gets the id of the entity the geofence config is related to.
         /// </summary>
         [JsonProperty("type_id")]
-        public int? TypeId { get; internal set; }
+        public long? TypeId { get; internal set; }
 
         /// <summary>
         /// Gets the status of this geofence config.

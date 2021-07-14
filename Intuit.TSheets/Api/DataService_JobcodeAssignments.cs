@@ -460,7 +460,7 @@ namespace Intuit.TSheets.Api
         /// <param name="id">
         /// The id of the <see cref="JobcodeAssignment"/> assignment object to be deleted.
         /// </param>
-        public void DeleteJobcodeAssignment(int id)
+        public void DeleteJobcodeAssignment(long id)
         {
             AsyncUtil.RunSync(() => DeleteJobcodeAssignmentAsync(id));
         }
@@ -489,7 +489,7 @@ namespace Intuit.TSheets.Api
         /// <param name="ids">
         /// The set of ids for the <see cref="JobcodeAssignment"/> assignment objects to be deleted.
         /// </param>
-        public void DeleteJobcodeAssignments(IEnumerable<int> ids)
+        public void DeleteJobcodeAssignments(IEnumerable<long> ids)
         {
             AsyncUtil.RunSync(() => DeleteJobcodeAssignmentsAsync(ids));
         }
@@ -541,7 +541,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         public async Task DeleteJobcodeAssignmentAsync(
-            int id)
+            long id)
         {
             await DeleteJobcodeAssignmentsAsync(new[] { id }, default).ConfigureAwait(false);
         }
@@ -560,7 +560,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         public async Task DeleteJobcodeAssignmentAsync(
-            int id,
+            long id,
             CancellationToken cancellationToken)
         {
             await DeleteJobcodeAssignmentsAsync(new[] { id }, cancellationToken).ConfigureAwait(false);
@@ -579,7 +579,7 @@ namespace Intuit.TSheets.Api
         public async Task DeleteJobcodeAssignmentsAsync(
             IEnumerable<JobcodeAssignment> jobcodeAssignments)
         {
-            IEnumerable<int> ids = jobcodeAssignments.Select(t => t.Id);
+            IEnumerable<long> ids = jobcodeAssignments.Select(t => t.Id);
 
             await DeleteJobcodeAssignmentsAsync(ids, default).ConfigureAwait(false);
         }
@@ -601,7 +601,7 @@ namespace Intuit.TSheets.Api
             IEnumerable<JobcodeAssignment> jobcodeAssignments,
             CancellationToken cancellationToken)
         {
-            IEnumerable<int> ids = jobcodeAssignments.Select(t => t.Id);
+            IEnumerable<long> ids = jobcodeAssignments.Select(t => t.Id);
 
             await DeleteJobcodeAssignmentsAsync(ids, cancellationToken).ConfigureAwait(false);
         }
@@ -617,7 +617,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         public async Task DeleteJobcodeAssignmentsAsync(
-            IEnumerable<int> ids)
+            IEnumerable<long> ids)
         {
             await DeleteJobcodeAssignmentsAsync(ids, default).ConfigureAwait(false);
         }
@@ -636,7 +636,7 @@ namespace Intuit.TSheets.Api
         /// </param>
         /// <returns>The asynchronous task.</returns>
         public async Task DeleteJobcodeAssignmentsAsync(
-            IEnumerable<int> ids,
+            IEnumerable<long> ids,
             CancellationToken cancellationToken)
         {
             var context = new DeleteContext<JobcodeAssignment>(EndpointName.JobcodeAssignments, ids);

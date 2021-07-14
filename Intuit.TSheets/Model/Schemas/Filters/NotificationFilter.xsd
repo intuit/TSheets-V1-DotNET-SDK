@@ -24,7 +24,7 @@
     },
     "user_id": {
       "type": "integer",
-      "format": "int32"
+      "format": "int64"
     },
     "msg_tracking_id": {
       "type": "string"

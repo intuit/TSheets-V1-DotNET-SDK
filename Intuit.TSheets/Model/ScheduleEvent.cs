@@ -58,7 +58,7 @@ namespace Intuit.TSheets.Model
         /// The value indicating whether or not the event is all-day.
         /// </param>
         public ScheduleEvent(
-            int scheduleCalendarId,
+            long scheduleCalendarId,
             DateTimeOffset start,
             DateTimeOffset end,
             bool allDay)
@@ -74,13 +74,13 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnCreate]
         [JsonProperty("id")]
-        public int Id { get; internal set; }
+        public long Id { get; internal set; }
 
         /// <summary>
         /// Gets or sets the id of the calendar that contains this schedule event.
         /// </summary>
         [JsonProperty("schedule_calendar_id")]
-        public int? ScheduleCalendarId { get; set; }
+        public long? ScheduleCalendarId { get; set; }
 
         /// <summary>
         /// Gets or sets the date/time that represents the start time of this schedule event.
@@ -115,7 +115,7 @@ namespace Intuit.TSheets.Model
         /// </remarks>
         [NoSerializeOnWrite]
         [JsonProperty("user_id")]
-        public int? UserId { get; internal set; }
+        public long? UserId { get; internal set; }
 
         /// <summary>
         /// Gets the value indicating Whether or not the schedule event is assigned.
@@ -135,15 +135,14 @@ namespace Intuit.TSheets.Model
         /// Empty if the event is unassigned. Changing the assigned user IDs of
         /// an event may result in multiple event modifications.
         /// </remarks>
-        [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonProperty("assigned_user_ids")]
-        public IList<int> AssignedUserIds { get; set; }
+        public IList<long> AssignedUserIds { get; set; }
 
         /// <summary>
         /// Gets or sets the id of the jobcode associated with this event.
         /// </summary>
         [JsonProperty("jobcode_id")]
-        public int? JobcodeId { get; set; }
+        public long? JobcodeId { get; set; }
 
         /// <summary>
         /// Gets or sets the status of the schedule event.

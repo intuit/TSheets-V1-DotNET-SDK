@@ -32,7 +32,7 @@ namespace Intuit.TSheets.Model
         ///  Gets the jobcode id to which this data pertains.
         /// </summary>
         [JsonProperty("jobcode_id")]
-        public int JobcodeId { get; internal set; }
+        public long JobcodeId { get; internal set; }
 
         /// <summary>
         /// Gets regular time, in seconds 

@@ -50,7 +50,7 @@ namespace Intuit.TSheets.Model
         /// <param name="message">
         /// The message text of the notification.
         /// </param>
-        public Notification(int userId, string message)
+        public Notification(long userId, string message)
         {
             UserId = userId;
             Message = message;
@@ -61,13 +61,13 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnCreate]
         [JsonProperty("id")]
-        public int Id { get; internal set; }
+        public long Id { get; internal set; }
 
         /// <summary>
         /// Gets or sets the id for the user that this notification will be sent to.
         /// </summary>
         [JsonProperty("user_id")]
-        public int? UserId { get; set; }
+        public long? UserId { get; set; }
 
         /// <summary>
         /// Gets the GUID string used for additional tracking.

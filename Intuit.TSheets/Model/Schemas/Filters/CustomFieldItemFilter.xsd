@@ -13,7 +13,7 @@
   "properties": {
     "customfield_id": {
       "type": "integer",
-      "format": "int32"
+      "format": "int64"
     },
     "ids": {
       "type": "string"

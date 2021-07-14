@@ -222,7 +222,7 @@ namespace Intuit.TSheets.Tests.Unit.Api
         {
             ExpectDelete<JobcodeAssignment>(EndpointName.JobcodeAssignments);
 
-            ApiService.DeleteJobcodeAssignments(new[] { 1, 2 });
+            ApiService.DeleteJobcodeAssignments(new long[] { 1, 2 });
         }
 
 
@@ -255,7 +255,7 @@ namespace Intuit.TSheets.Tests.Unit.Api
         {
             ExpectDelete<JobcodeAssignment>(EndpointName.JobcodeAssignments);
 
-            await ApiService.DeleteJobcodeAssignmentsAsync(new[] { 1, 2 }).ConfigureAwait(false);
+            await ApiService.DeleteJobcodeAssignmentsAsync(new long[] { 1, 2 }).ConfigureAwait(false);
         }
 
         #endregion

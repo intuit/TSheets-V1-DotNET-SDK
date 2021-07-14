@@ -66,7 +66,7 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnCreate]
         [JsonProperty("id")]
-        public int Id { get; internal set; }
+        public long Id { get; internal set; }
 
         /// <summary>
         /// Gets or sets the status of the custom field.
@@ -172,6 +172,6 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnWrite]
         [JsonProperty("required_customfields")]
-        public IList<int> RequiredCustomFields { get; internal set; }
+        public IList<long> RequiredCustomFields { get; internal set; }
     }
 }

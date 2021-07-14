@@ -35,7 +35,7 @@ namespace Intuit.TSheets.Model
         /// Gets the id of the managed client.
         /// </summary>
         [JsonProperty("id")]
-        public int Id { get; internal set; }
+        public long Id { get; internal set; }
 
         /// <summary>
         /// Gets the sub-domain portion of the company URL used by the managed client to sign in to TSheets.

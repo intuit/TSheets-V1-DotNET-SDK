@@ -48,7 +48,7 @@ namespace Intuit.TSheets.Model.Filters
         /// <param name="customFieldId">
         /// Id of the custom field whose items you'd like to list.
         /// </param>
-        public CustomFieldItemFilter(int customFieldId)
+        public CustomFieldItemFilter(long customFieldId)
         {
             CustomFieldId = customFieldId;
         }
@@ -57,7 +57,7 @@ namespace Intuit.TSheets.Model.Filters
         /// Gets or sets the id of the custom field whose items you'd like to filter on.
         /// </summary>
         [JsonProperty("customfield_id")]
-        public int? CustomFieldId { get; set; }
+        public long? CustomFieldId { get; set; }
 
         /// <summary>
         /// Gets or sets the ids you'd like to filter on.
@@ -65,7 +65,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("ids")]
-        public IEnumerable<int> Ids { get; set; }
+        public IEnumerable<long> Ids { get; set; }
 
         /// <summary>
         /// Gets or sets the value indicating whether to filter by active or inactive state, or both.

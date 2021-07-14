@@ -37,10 +37,10 @@ namespace Intuit.TSheets.Client.RequestFlow.Contexts
         /// </summary>
         /// <param name="endpoint">The endpoint with which to interact.</param>
         /// <param name="ids">The set of ids corresponding to the data entities to be deleted.</param>
-        internal DeleteContext(EndpointName endpoint, IEnumerable<int> ids)
+        internal DeleteContext(EndpointName endpoint, IEnumerable<long> ids)
             : base(MethodType.Delete, endpoint)
         {
-            List<int> listIds = ids?.ToList();
+            List<long> listIds = ids?.ToList();
             if (listIds == null || !listIds.Any())
             {
                 throw new BadRequestException("Request cannot contain a null or empty set of ids.");
@@ -53,6 +53,6 @@ namespace Intuit.TSheets.Client.RequestFlow.Contexts
         /// Gets the set of ids corresponding to the data entities to be deleted.
         /// </summary>
         [JsonProperty]
-        internal IEnumerable<int> Ids { get; private set; }
+        internal IEnumerable<long> Ids { get; private set; }
     }
 }

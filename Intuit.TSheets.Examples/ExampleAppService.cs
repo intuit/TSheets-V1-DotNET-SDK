@@ -318,7 +318,7 @@ namespace Intuit.TSheets.Examples
                 Zip = "83616",
                 LinkedObjects = new LocationLinkedObjectIds
                 {
-                    Jobcodes = new List<int> { jobcode.Id }
+                    Jobcodes = new List<long> { jobcode.Id }
                 }
             };
 

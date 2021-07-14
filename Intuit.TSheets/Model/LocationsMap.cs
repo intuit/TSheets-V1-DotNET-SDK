@@ -37,7 +37,7 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnCreate]
         [JsonProperty("id")]
-        public int Id { get; internal set; }
+        public long Id { get; internal set; }
 
         /// <summary>
         /// Gets the name of the entity the location is mapped to.
@@ -53,13 +53,13 @@ namespace Intuit.TSheets.Model
         /// Gets the id of the entity the location is mapped to.
         /// </summary>
         [JsonProperty("x_id")]
-        public int? XId { get; internal set; }
+        public long? XId { get; internal set; }
 
         /// <summary>
         /// Gets the id of the location that is mapped to the entity.
         /// </summary>
         [JsonProperty("location_id")]
-        public int? LocationId { get; internal set; }
+        public long? LocationId { get; internal set; }
 
         /// <summary>
         /// Gets the date/time when this locations map was last modified.

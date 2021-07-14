@@ -56,7 +56,7 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnCreate] 
         [JsonProperty("id")]
-        public int Id { get; internal set; }
+        public long Id { get; internal set; }
 
         /// <summary>
         /// Gets or sets the value indicating whether this group is active or archived.
@@ -74,7 +74,7 @@ namespace Intuit.TSheets.Model
         /// Gets or sets the list of id's of the users allowed to manage this group.
         /// </summary>
         [JsonProperty("manager_ids")]
-        public IList<int> ManagerIds { get; set; }
+        public IList<long> ManagerIds { get; set; }
 
         /// <summary>
         /// Gets the date/time when this group was created.

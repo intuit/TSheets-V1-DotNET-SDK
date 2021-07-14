@@ -41,7 +41,7 @@ namespace Intuit.TSheets.Tests.Unit
 
         [NoSerializeOnCreate]
         [JsonProperty("id")]
-        public int Id { get; internal set; }
+        public long Id { get; internal set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }

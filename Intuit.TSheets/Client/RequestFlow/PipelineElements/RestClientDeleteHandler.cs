@@ -49,7 +49,7 @@ namespace Intuit.TSheets.Client.RequestFlow.PipelineElements
             ILogger logger,
             CancellationToken cancellationToken)
         {
-            IEnumerable<int> ids = ((DeleteContext<T>)context).Ids;
+            IEnumerable<long> ids = ((DeleteContext<T>)context).Ids;
 
             context.ResponseContent = await context.RestClient.DeleteAsync(
                 context.Endpoint,

@@ -31,7 +31,7 @@ namespace Intuit.TSheets.Tests.Unit.Api
     {
         private static readonly GeolocationFilter DummyFilter = new GeolocationFilter
         {
-            Ids = new[] { 1, 2 }
+            Ids = new long[] { 1, 2 }
         };
 
         private static readonly Geolocation DummyEntity = new Geolocation();

@@ -49,7 +49,7 @@ namespace Intuit.TSheets.Model
         /// <param name="jobcodeId">
         /// The id of the jobcode to which this assignment pertains.
         /// </param> 
-        public JobcodeAssignment(int userId, int jobcodeId)
+        public JobcodeAssignment(long userId, long jobcodeId)
         {
             UserId = userId;
             JobcodeId = jobcodeId;
@@ -60,19 +60,19 @@ namespace Intuit.TSheets.Model
         /// </summary>
         [NoSerializeOnCreate] 
         [JsonProperty("id")]
-        public int Id { get; internal set; }
+        public long Id { get; internal set; }
 
         /// <summary>
         /// Gets or sets the id of the user to which this assignment pertains.
         /// </summary>
         [JsonProperty("user_id")]
-        public int? UserId { get; set; }
+        public long? UserId { get; set; }
 
         /// <summary>
         /// Gets or sets the id of the jobcode that this assignment pertains to.
         /// </summary>
         [JsonProperty("jobcode_id")]
-        public int? JobcodeId { get; set; }
+        public long? JobcodeId { get; set; }
 
         /// <summary>
         /// Gets or sets the status of the jobcode assignment.

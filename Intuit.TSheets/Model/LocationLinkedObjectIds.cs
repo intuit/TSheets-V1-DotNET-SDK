@@ -32,6 +32,6 @@ namespace Intuit.TSheets.Model
         /// Gets or sets the jobcodes to which this location is linked.
         /// </summary>
         [JsonProperty("jobcodes")]
-        public IList<int> Jobcodes { get; set; }
+        public IList<long> Jobcodes { get; set; }
     }
 }

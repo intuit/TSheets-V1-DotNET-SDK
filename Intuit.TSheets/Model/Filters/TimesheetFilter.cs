@@ -48,7 +48,7 @@ namespace Intuit.TSheets.Model.Filters
         /// <param name="ids">
         /// The timesheet ids you'd like to filter on.
         /// </param>
-        public TimesheetFilter(IEnumerable<int> ids)
+        public TimesheetFilter(IEnumerable<long> ids)
         {
             Ids = ids;
         }
@@ -95,7 +95,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("ids")]
-        public IEnumerable<int> Ids { get; set; }
+        public IEnumerable<long> Ids { get; set; }
 
         /// <summary>
         /// Gets or sets the value for filtering timesheets to a date range start.
@@ -117,7 +117,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("jobcode_ids")]
-        public IEnumerable<int> JobcodeIds { get; set; }
+        public IEnumerable<long> JobcodeIds { get; set; }
 
         /// <summary>
         /// Gets or sets the payroll ids you'd like to filter on. Only time recorded against users with these payroll ids will be returned.
@@ -125,7 +125,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("payroll_ids")]
-        public IEnumerable<int> PayrollIds { get; set; }
+        public IEnumerable<long> PayrollIds { get; set; }
 
         /// <summary>
         /// Gets or sets the user ids you'd like to filter on. Only timesheets linked to these users will be returned.
@@ -133,7 +133,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("user_ids")]
-        public IEnumerable<int> UserIds { get; set; }
+        public IEnumerable<long> UserIds { get; set; }
 
         /// <summary>
         /// Gets or sets the group ids you'd like to filter on. Only timesheets linked to users from these groups will be returned.
@@ -141,7 +141,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("group_ids")]
-        public IEnumerable<int> GroupIds { get; set; }
+        public IEnumerable<long> GroupIds { get; set; }
 
         /// <summary>
         /// Gets or sets the value indicating filtering by users who are on or off the clock, or both.

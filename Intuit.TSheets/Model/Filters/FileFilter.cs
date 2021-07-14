@@ -40,7 +40,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("ids")]
-        public IEnumerable<int> Ids { get; set; }
+        public IEnumerable<long> Ids { get; set; }
 
         /// <summary>
         /// Gets or sets the ids you'd like to filter on. Only files uploaded by these users will be returned. 
@@ -51,7 +51,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("uploaded_by_user_ids")]
-        public IEnumerable<int> UploadedByUserIds { get; set; }
+        public IEnumerable<long> UploadedByUserIds { get; set; }
 
         /// <summary>
         /// Gets or sets the filter to return only files linked to the given object type.
@@ -65,7 +65,7 @@ namespace Intuit.TSheets.Model.Filters
         [JsonConverter(typeof(EnumerableToCsvConverter))]
         [JsonSchema(JsonObjectType.String)]
         [JsonProperty("object_ids")]
-        public IEnumerable<int> ObjectIds { get; set; }
+        public IEnumerable<long> ObjectIds { get; set; }
 
         /// <summary>
         /// Gets or sets the value for filtering by active or inactive state, or both.

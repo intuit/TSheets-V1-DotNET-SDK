@@ -41,7 +41,7 @@ namespace Intuit.TSheets.Tests.Unit
         }
 
         [JsonProperty("id")]
-        public int Id { get; private set; }
+        public long Id { get; private set; }
 
         [JsonProperty("name")]
         public string Name { get; private set; }

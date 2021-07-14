@@ -32,7 +32,7 @@ namespace Intuit.TSheets.Model
         ///  Gets the user id to which this report data pertains.
         /// </summary>
         [JsonProperty("user_id")]
-        public int UserId { get; internal set; }
+        public long UserId { get; internal set; }
 
         /// <summary>
         /// Gets the Payroll By Jobcode Totals for this User

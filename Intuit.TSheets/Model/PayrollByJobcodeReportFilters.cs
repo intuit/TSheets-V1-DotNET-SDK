@@ -57,7 +57,7 @@ namespace Intuit.TSheets.Model
         /// Only time for these users will be included.
         /// </remarks>
         [JsonProperty("user_ids")]
-        public IReadOnlyList<int> UserIds { get; internal set; }
+        public IReadOnlyList<long> UserIds { get; internal set; }
 
         /// <summary>
         /// Gets the ids for groups to be included in the report.
@@ -66,7 +66,7 @@ namespace Intuit.TSheets.Model
         /// Only time for these groups will be included.
         /// </remarks>
         [JsonProperty("group_ids")]
-        public IReadOnlyList<int> GroupIds { get; internal set; }
+        public IReadOnlyList<long> GroupIds { get; internal set; }
 
         /// <summary>
         /// Gets the value indicating whether or not advanced overtime is enabled for the report.

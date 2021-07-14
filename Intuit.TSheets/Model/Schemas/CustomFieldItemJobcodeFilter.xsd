@@ -11,7 +11,7 @@
   "properties": {
     "id": {
       "type": "integer",
-      "format": "int32"
+      "format": "int64"
     },
     "last_modified": {
       "type": "string",
@@ -23,7 +23,7 @@
         "type": "array",
         "items": {
           "type": "integer",
-          "format": "int32"
+          "format": "int64"
         }
       }
     }

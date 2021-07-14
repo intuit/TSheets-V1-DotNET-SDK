@@ -42,7 +42,7 @@
   "properties": {
     "id": {
       "type": "integer",
-      "format": "int32"
+      "format": "int64"
     },
     "first_name": {
       "type": "string"
@@ -58,14 +58,14 @@
     },
     "group_id": {
       "type": "integer",
-      "format": "int32"
+      "format": "int64"
     },
     "active": {
       "type": "boolean"
     },
     "employee_number": {
       "type": "integer",
-      "format": "int32"
+      "format": "int64"
     },
     "salaried": {
       "type": "boolean"
@@ -137,7 +137,7 @@
       "type": "array",
       "items": {
         "type": "integer",
-        "format": "int32"
+        "format": "int64"
       }
     },
     "require_password_change": {
