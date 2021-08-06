@@ -32,8 +32,7 @@
         "user_ids": {
           "type": "array",
           "items": {
-            "type": "integer",
-            "format": "int64"
+            "type": "string"
           }
         },
         "group_ids": {
@@ -52,11 +51,7 @@
           "format": "date-time"
         },
         "jobcode_ids": {
-          "type": "array",
-          "items": {
-            "type": "integer",
-            "format": "int64"
-          }
+          "type": "string"
         },
         "customfielditems": {
           "type": "object",

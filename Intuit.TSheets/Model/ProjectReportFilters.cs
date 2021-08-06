@@ -25,6 +25,8 @@ namespace Intuit.TSheets.Model
     using Intuit.TSheets.Model.Enums;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
+    using NJsonSchema;
+    using NJsonSchema.Annotations;
 
     /// <summary>
     /// The filters used to generate the report.
@@ -39,7 +41,7 @@ namespace Intuit.TSheets.Model
         /// Only time for these users will be included.
         /// </remarks>
         [JsonProperty("user_ids")]
-        public IReadOnlyList<long> UserIds { get; internal set; }
+        public IReadOnlyList<string> UserIds { get; internal set; }
 
         /// <summary>
         /// Gets filter for the ids for <see cref="Group"/> objects to be included in the report.
@@ -76,6 +78,8 @@ namespace Intuit.TSheets.Model
         /// <remarks>
         /// Only time for these jobcodes will be included.
         /// </remarks>
+        [JsonConverter(typeof(EnumerableToCsvConverter))]
+        [JsonSchema(JsonObjectType.String)]
         [JsonProperty("jobcode_ids")]
         public IReadOnlyList<long> JobcodeIds { get; internal set; }
 

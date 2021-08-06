@@ -53,7 +53,7 @@ namespace Intuit.TSheets.Client.Serialization.Converters
         /// <param name="serializer">The calling serializer, <see cref="JsonSerializer"/></param> 
         /// <example>
         /// <![CDATA[
-        /// Given: "1,2,3", Return: new List<int>{ 1, 2, 3 }
+        /// Given: "1,2,3", Return: new List<long>{ 1, 2, 3 }
         /// ]]>
         /// </example>
         /// <returns>The generic list of values</returns>
@@ -69,9 +69,9 @@ namespace Intuit.TSheets.Client.Serialization.Converters
             // Split the values and return as a list of ints if possible, else as a list of strings.
             List<string> values = csv.Split(',').Select(p => p.Trim()).ToList();
 
-            if (values.All(v => int.TryParse(v, out _)))
+            if (values.All(v => long.TryParse(v, out _)))
             {
-                return values.Select(v => int.Parse(v)).ToList();
+                return values.Select(v => long.Parse(v)).ToList();
             }
 
             return values;
@@ -85,7 +85,7 @@ namespace Intuit.TSheets.Client.Serialization.Converters
         /// <param name="serializer">The calling serializer, <see cref="JsonSerializer"/></param>
         /// <example>
         /// <![CDATA[
-        /// Given: List<int>{ 1, 2, 3 }, Return: "1,2,3"
+        /// Given: List<long>{ 1, 2, 3 }, Return: "1,2,3"
         /// ]]>
         /// </example>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

@@ -29,9 +29,9 @@ namespace Intuit.TSheets.Tests.Unit.Client.Serialization.Converters
     public class EnumerableToCsvConverterTests
     {
         [TestMethod, TestCategory("Unit")]
-        public void EnumerableToCsvConverter_SerializesIntsToCsv()
+        public void EnumerableToCsvConverter_SerializesLongsToCsv()
         {
-            var testEntityFalse = new IntsToCsvConverterTestEntity { Ids = new[] { 1, 2, 3 } };
+            var testEntityFalse = new LongsToCsvConverterTestEntity { Ids = new long[] { 1, 2, 3 } };
 
             Assert.AreEqual("{\"Ids\":\"1,2,3\"}", JsonConvert.SerializeObject(testEntityFalse));
         }
@@ -45,10 +45,10 @@ namespace Intuit.TSheets.Tests.Unit.Client.Serialization.Converters
         }
 
         [TestMethod, TestCategory("Unit")]
-        public void EnumerableToCsvConverter_DeserializesCsvToInts()
+        public void EnumerableToCsvConverter_DeserializesCsvToLongs()
         {
-            var expected = new[] { 1, 2, 3 };
-            var testEntity = JsonConvert.DeserializeObject<IntsToCsvConverterTestEntity>("{\"Ids\":\"1,2,3\"}");
+            var expected = new long[] { 1, 2, 3 };
+            var testEntity = JsonConvert.DeserializeObject<LongsToCsvConverterTestEntity>("{\"Ids\":\"1,2,3\"}");
 
             Assert.IsTrue(expected.SequenceEqual(testEntity.Ids));
         }
@@ -63,10 +63,10 @@ namespace Intuit.TSheets.Tests.Unit.Client.Serialization.Converters
         }
     }
 
-    public class IntsToCsvConverterTestEntity
+    public class LongsToCsvConverterTestEntity
     {
         [JsonConverter(typeof(EnumerableToCsvConverter))]
-        public IList<int> Ids { get; set; }
+        public IList<long> Ids { get; set; }
     }
 
     public class StringsToCsvConverterTestEntity

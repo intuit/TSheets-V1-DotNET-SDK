@@ -1,3 +1,9 @@
+# v1.4.2 (Fri. Aug 6th, 2021)
+
+#### Bugfix
+
+ - Addressing issue #24: Fixing broken serialization of `ProjectReport`.
+
 # v1.4.1 (Wed. Jul 14th, 2021)
 
 #### THIS IS A BREAKING CHANGE RELEASE

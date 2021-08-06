@@ -9,15 +9,14 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Intuit</Authors>
     <PackageProjectUrl>https://github.com/intuit/TSheets-V1-DotNET-SDK</PackageProjectUrl>
-    <AssemblyVersion>1.4.1.0</AssemblyVersion>
-    <FileVersion>1.4.1.0</FileVersion>
+    <AssemblyVersion>1.4.2.0</AssemblyVersion>
+    <FileVersion>1.4.2.0</FileVersion>
     <RepositoryUrl>https://github.com/intuit/TSheets-V1-DotNET-SDK</RepositoryUrl>
     <PackageIcon>Circle_T_web128px.png</PackageIcon>
     <RepositoryType>Git</RepositoryType>
-    <PackageReleaseNotes>THIS IS A BREAKING CHANGE RELEASE:
-All entity and entity reference ID's are now data type _long_.</PackageReleaseNotes>
+    <PackageReleaseNotes>BUGFIX: Fixing serialization issue with ProjectReport.</PackageReleaseNotes>
     <PackageTags>tsheets, sdk, quickbooks, time, tracking, api-client, time-tracking, payroll-management</PackageTags>
-    <Version>1.4.1</Version>
+    <Version>1.4.2</Version>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
