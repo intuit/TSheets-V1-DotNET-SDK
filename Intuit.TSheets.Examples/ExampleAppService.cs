@@ -123,6 +123,9 @@ namespace Intuit.TSheets.Examples
                 Console.WriteLine("Operation canceled.");
             }
 
+            // Get a project report
+            GetProjectReport(new List<long> { 20370911 }, DateTimeOffset.Now.AddDays(-14), DateTimeOffset.Now);
+
             // Cleanup everything that was added.
             Cleanup();
 
@@ -535,6 +538,19 @@ namespace Intuit.TSheets.Examples
                 "Retrieved {UserCount} user(s) and {JobcodeCount} jobcode(s).",
                 users.Count(),
                 jobcodes.Count());
+        }
+
+        /// <summary>
+        /// Retrieve project report for given jobcode id's over a date range.
+        /// </summary>
+        private ProjectReport GetProjectReport(List<long> jobcodeId, DateTimeOffset startDate, DateTimeOffset endDate)
+        {
+            var filter = new ProjectReportFilter { StartDate = startDate, EndDate = endDate, JobcodeIds = jobcodeId };
+
+            ProjectReport projectReport = this.apiClient.GetProjectReport(filter).Item1;
+
+            return projectReport;
+
         }
 
         /// <summary>
