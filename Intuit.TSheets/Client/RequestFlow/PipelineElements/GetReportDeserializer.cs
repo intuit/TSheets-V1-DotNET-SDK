@@ -19,9 +19,11 @@
 
 namespace Intuit.TSheets.Client.RequestFlow.PipelineElements
 {
+    using System.Text.RegularExpressions;
     using System.Threading;
     using System.Threading.Tasks;
     using Intuit.TSheets.Client.RequestFlow.Contexts;
+    using Intuit.TSheets.Model;
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
 
@@ -51,7 +53,21 @@ namespace Intuit.TSheets.Client.RequestFlow.PipelineElements
             CancellationToken cancellationToken)
         {
             var reportContext = (GetReportContext<T>)context;
-            var report = JsonConvert.DeserializeObject<Report<T>>(context.ResponseContent);
+
+            // Workaround for a bug in the TSheets API ProjectReport response. Specifically, some properties
+            // will contain an empty JSON *array* to indicate no results found, when in actuality the response
+            // should be an empty *object*.
+            string responseContent = context.ResponseContent;
+            if (typeof(T).Equals(typeof(ProjectReport)))
+            {
+                foreach (string field in new[] { "users", "groups", "jobcodes", "customfields" })
+                {
+                    string pattern = $"\"{field}\":\\s\\[\\s+\\]";
+                    responseContent = Regex.Replace(responseContent, pattern, $"\"{field}\": {{}}");
+                }
+            }
+
+            var report = JsonConvert.DeserializeObject<Report<T>>(responseContent);
 
             reportContext.Results = report.Results;
 
