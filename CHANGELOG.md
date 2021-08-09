@@ -1,3 +1,9 @@
+# v1.4.3 (Mon. Aug 9th, 2021)
+
+#### Bugfix
+
+ - Addressing issue #26: Fixing broken serialization of `ProjectReportTotals`.
+
 # v1.4.2 (Fri. Aug 6th, 2021)
 
 #### Bugfix
